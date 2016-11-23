@@ -19,6 +19,11 @@ import { AuthService } from './core/auth.service';
     HttpModule,
     RouterModule.forRoot([
       {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+      {
         path: 'login',
         component: LoginComponent
       }
