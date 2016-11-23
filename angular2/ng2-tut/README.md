@@ -757,9 +757,9 @@ export class LoginComponent implements OnInit {
 
 由于我们要以路由形式显示组件，建立路由前，让我们先把`src\app\app.component.html`中的`<app-login></app-login>`删掉。
 
-第一步：在`src/index.html`中指定基准路径，即在`<header>`中加入`<base href="/">`，这个是指向你的`index.html`所在的路径，浏览器也会根据这个路径下载css，图像和js文件，所以请将这个语句放在header的最顶端。
-第二步：在`src/app/app.module.ts`中引入RouterModule：`import { RouterModule }   from '@angular/router';`
-第三步：定义和配置路由数组，我们暂时只为login来定义路由，仍然在`src/app/app.module.ts`中的imports中
+- 第一步：在`src/index.html`中指定基准路径，即在`<header>`中加入`<base href="/">`，这个是指向你的`index.html`所在的路径，浏览器也会根据这个路径下载css，图像和js文件，所以请将这个语句放在header的最顶端。
+- 第二步：在`src/app/app.module.ts`中引入RouterModule：`import { RouterModule }   from '@angular/router';`
+- 第三步：定义和配置路由数组，我们暂时只为login来定义路由，仍然在`src/app/app.module.ts`中的imports中
 ```javascript
   imports: [
     BrowserModule,
