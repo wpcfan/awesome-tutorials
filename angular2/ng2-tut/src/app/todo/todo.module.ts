@@ -9,6 +9,8 @@ import { TodoComponent } from './todo.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 import { TodoHeaderComponent } from './todo-header/todo-header.component';
 import { TodoService } from './todo.service';
+import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { TodoService } from './todo.service';
   declarations: [
     TodoComponent,
     TodoFooterComponent,
-    TodoHeaderComponent
+    TodoHeaderComponent,
+    TodoItemComponent,
+    TodoListComponent
   ],
   providers: [
     {provide: 'todoService', useClass: TodoService}

@@ -7,8 +7,8 @@ import { Todo } from './todo.model';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  todos : Todo[];
-  desc = '';
+  desc: string = '';
+  todos : Todo[] = [];
 
   constructor(@Inject('todoService') private service) {}
   ngOnInit() {
