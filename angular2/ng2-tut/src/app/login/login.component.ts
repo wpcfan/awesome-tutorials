@@ -30,10 +30,10 @@ import { Component, OnInit, Inject } from '@angular/core';
     </div>
   `,
   styles: [`
-    .ng-invalid{
+    input.ng-invalid{
       border: 3px solid red;
     }
-    .ng-valid{
+    input.ng-valid{
       border: 3px solid green;
     }
   `]
