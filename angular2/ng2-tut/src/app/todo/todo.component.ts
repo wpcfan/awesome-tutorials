@@ -16,6 +16,11 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
     this.getTodos();
   }
+
+  onTextChanges(value) {
+    this.desc = value;
+  }
+
   addTodo(){
     this.service
       .addTodo(this.desc)

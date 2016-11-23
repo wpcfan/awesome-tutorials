@@ -1,8 +1,10 @@
 <section class="todoapp">
-  <header class="header">
-    <h1>Todos</h1>
-    <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="desc" (keyup.enter)="addTodo()">
-  </header>
+  <app-todo-header
+      placeholder="What do you want"
+      delay="400"
+      (textChanges)="onTextChanges($event)"
+      (onEnterUp)="addTodo()" >
+  </app-todo-header>
   <section class="main" *ngIf="todos?.length > 0">
     <input class="toggle-all" type="checkbox">
     <ul class="todo-list">
@@ -15,15 +17,5 @@
       </li>
     </ul>
   </section>
-  <footer class="footer" *ngIf="todos?.length > 0">
-    <span class="todo-count">
-      <strong>{{todos?.length}}</strong> {{todos?.length == 1 ? 'item' : 'items'}} left
-    </span>
-    <ul class="filters">
-      <li><a href="">All</a></li>
-      <li><a href="">Active</a></li>
-      <li><a href="">Completed</a></li>
-    </ul>
-    <button class="clear-completed">Clear completed</button>
-  </footer>
+  <app-todo-footer [itemCount]="todos?.length"></app-todo-footer>
 </section>
