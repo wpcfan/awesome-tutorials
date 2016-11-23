@@ -11,12 +11,14 @@ import { Component, OnInit, Inject } from '@angular/core';
         required
         minlength="3"
         />
-        {{usernameRef.valid}}
+        {{ usernameRef.errors | json }}
+        <div *ngIf="usernameRef.errors?.required">this is required</div>
+        <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charactors</div>
       <input required type="password"
         [(ngModel)]="password"
         #passwordRef="ngModel"
         />
-        {{passwordRef.valid}}
+        <div *ngIf="passwordRef.errors?.required">this is required</div>
       <button (click)="onClick()">Login</button>
     </div>
   `,
