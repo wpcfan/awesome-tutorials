@@ -25,13 +25,14 @@ export class TodoService {
             .then(res => res.json() as Todo)
             .catch(this.handleError);
   }
-  // PUT /todos/:id
+  // It was PUT /todos/:id before
+  // But we will use PATCH /todos/:id instead
+  // Because we don't want to waste the bytes those don't change
   toggleTodo(todo: Todo): Promise<Todo> {
     const url = `${this.api_url}/${todo.id}`;
-    console.log(url);
     let updatedTodo = Object.assign({}, todo, {completed: !todo.completed});
     return this.http
-            .put(url, JSON.stringify(updatedTodo), {headers: this.headers})
+            .patch(url, JSON.stringify({completed: !todo.completed}), {headers: this.headers})
             .toPromise()
             .then(() => updatedTodo)
             .catch(this.handleError);

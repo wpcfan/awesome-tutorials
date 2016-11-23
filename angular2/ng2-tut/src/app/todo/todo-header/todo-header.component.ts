@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
   templateUrl: './todo-header.component.html',
   styleUrls: ['./todo-header.component.css']
 })
-export class TodoHeaderComponent implements OnInit {
+export class TodoHeaderComponent {
   inputValue: string = '';
   @Input() placeholder: string = 'What needs to be done?';
   @Input() delay: number = 300;
@@ -25,8 +25,6 @@ export class TodoHeaderComponent implements OnInit {
       .debounceTime(this.delay)
       .distinctUntilChanged();
     event$.subscribe(input => this.textChanges.emit(input));
-  }
-  ngOnInit() {
   }
   enterUp(){
     this.onEnterUp.emit(true);

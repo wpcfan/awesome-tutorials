@@ -6,9 +6,13 @@
   </app-todo-header>
   <app-todo-list
     [todos]="todos"
+    (onToggleAll)="toggleAll()"
     (onRemoveTodo)="removeTodo($event)"
     (onToggleTodo)="toggleTodo($event)"
     >
   </app-todo-list>
-  <app-todo-footer [itemCount]="todos?.length"></app-todo-footer>
+  <app-todo-footer
+    [itemCount]="todos?.length"
+    (onClear)="clearCompleted()">
+  </app-todo-footer>
 </section>
