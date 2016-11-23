@@ -741,6 +741,8 @@ export class LoginComponent implements OnInit {
 ```
 很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][32]和https://css-tricks.com/multiple-class-id-selectors/。
 
+本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap02/angular2/ng2-tut
+
 ## 进一步的练习
 
 练习1：如果我们想给username和password输入框设置默认值。比如“请输入用户名”和“请输入密码”，自己动手试一下吧。
