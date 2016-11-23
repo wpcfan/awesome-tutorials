@@ -49,7 +49,7 @@
 作者：王芃 wpcfan@gmail.com
 标签（空格分隔）： 编程 前端 javascript 框架 教程
 ---
-
+[TOC]
 
 # 第一节：认识Angular 2.0
 ## 前言
@@ -119,7 +119,7 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 
 ## 第一个组件
 那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
-![c1_s1_ng_generate_component.png-23.2kB][18]
+![image_1b27r02qlo6f11f19qg1q9k1fclm.png-30.3kB][18]
 angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
@@ -158,7 +158,7 @@ export class LoginComponent implements OnInit {
 <app-login></app-login>
 ```
 保存后返回浏览器，可以看到我们的第一个组件也显示出来了。
-![image_1b0uon4nk166c1t8csvittehk9.png-15.1kB][19]
+![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][19]
 
 ## 一些基础概念
 这里我们粗略介绍一些Angular的基础概念，这些基础概念在后面的章节中会更详细的讲解。
@@ -3061,8 +3061,8 @@ export class CoreModule {
   [15]: http://static.zybuluo.com/wpcfan/4xrvfcelykg9dbmft73rm3ym/c1_s1_ng_serve.png
   [16]: http://static.zybuluo.com/wpcfan/1fhyangnbqqjemxr5md4qa2p/c1_s1_project_1st_browser.png
   [17]: http://static.zybuluo.com/wpcfan/00ujvqg9m6ir0km0nzp54x4d/c1_s1_project_1st_browser_update.png
-  [18]: http://static.zybuluo.com/wpcfan/fyyy1bsjffockae39ohyar1g/c1_s1_ng_generate_component.png
-  [19]: http://static.zybuluo.com/wpcfan/221myv71bszofiagzj9zn8nq/image_1b0uon4nk166c1t8csvittehk9.png
+  [18]: http://static.zybuluo.com/wpcfan/cemx8k69lys6xcjtecvgns3o/image_1b27r02qlo6f11f19qg1q9k1fclm.png
+  [19]: http://static.zybuluo.com/wpcfan/hykairb7gc7indb3ytousn2r/image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png
   [20]: http://static.zybuluo.com/wpcfan/g2c5iklgoiefb4gwf032ewy3/c2_s1_input_button_added.png
   [21]: http://static.zybuluo.com/wpcfan/vguefg9j7ogiyrnqyymb0tkd/c2_s1_handle_click_method.png
   [22]: http://static.zybuluo.com/wpcfan/6v6bvj0yj60rrei7y8bhk0t3/c2_s1_input_button_ref.png
