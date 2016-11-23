@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TodoService } from './todo.service';
 import { Todo } from './todo.model';
 
 @Component({
-  selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css'],
-  providers: [TodoService]
+  styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
   todos : Todo[];
   desc = '';
 
-  constructor(private service: TodoService) {}
+  constructor(@Inject('todoService') private service) {}
   ngOnInit() {
     this.getTodos();
   }
