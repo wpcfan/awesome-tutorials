@@ -34,11 +34,12 @@
   - [填坑，完成漏掉的功能](#%E5%A1%AB%E5%9D%91%E5%AE%8C%E6%88%90%E6%BC%8F%E6%8E%89%E7%9A%84%E5%8A%9F%E8%83%BD)
     - [用路由参数传递数据](#%E7%94%A8%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE)
     - [批量修改和批量删除](#%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%92%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4)
-- [多用户版本的待办事项应用](#%E5%A4%9A%E7%94%A8%E6%88%B7%E7%89%88%E6%9C%AC%E7%9A%84%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
+- [第五节：多用户版本的待办事项应用](#%E7%AC%AC%E4%BA%94%E8%8A%82%E5%A4%9A%E7%94%A8%E6%88%B7%E7%89%88%E6%9C%AC%E7%9A%84%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
   - [数据驱动开发](#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91)
   - [验证用户账户的流程](#%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E7%9A%84%E6%B5%81%E7%A8%8B)
     - [核心模块](#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97)
     - [路由守卫](#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB)
+  - [路由模块化](#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96)
   - [用VSCode进行调试](#%E7%94%A8vscode%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -745,9 +746,9 @@ export class LoginComponent implements OnInit {
 
 ## 进一步的练习
 
-练习1：如果我们想给username和password输入框设置默认值。比如“请输入用户名”和“请输入密码”，自己动手试一下吧。
-练习2：如果我们想在输入框聚焦时把默认文字清除掉，该怎么做？
-练习3：如果我们想把默认文字颜色设置成浅灰色该怎么做？
+ - 练习1：如果我们想给username和password输入框设置默认值。比如“请输入用户名”和“请输入密码”，自己动手试一下吧。
+ - 练习2：如果我们想在输入框聚焦时把默认文字清除掉，该怎么做？
+ - 练习3：如果我们想把默认文字颜色设置成浅灰色该怎么做？
 
 # 第三节：建立一个待办事项应用
 
@@ -842,7 +843,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -852,8 +852,7 @@ import { routing } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    TodoComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -934,7 +933,7 @@ export class TodoComponent implements OnInit {
 如上面代码所示，我们建立了一个文本输入框，这个输入框的值应该是新todo的描述（desc），我们想在用户按了回车键后进行添加操作（`(keyup.enter)="addTodo()`）。由于todos是个数组，所以我们利用一个循环将数组内容显示出来（`<li *ngFor="let todo of todos">{{ todo.desc }}</li>`）。好了让我们欣赏一下成果吧
 ![image_1b0kgg9mnppf16pkip81b2hhbrm.png-90.1kB][35]
 
-如果我们还记得之前提到的业务逻辑应该放在单独的service中，我们还可以做的更好一些。在todo文件夹内建立TodoService：`ng g s todo\todo`。上面的例子中所有创建的todo都是id为1的，这显然是一个大bug，我们看一下怎么处理。常见的不重复id创建方式有两种，一个是搞一个自增长数列，另一个是采用随机生成一组不可能重复的字符序列，常见的就是UUID了。我们来引入一个uuid的包：`npm i --save angular2-uuid`，由于这个包中已经含有了用于typescript的定义文件，这里就执行这一个命令就足够了。
+如果我们还记得之前提到的业务逻辑应该放在单独的service中，我们还可以做的更好一些。在todo文件夹内建立TodoService：`ng g s todo\todo`。上面的例子中所有创建的todo都是id为1的，这显然是一个大bug，我们看一下怎么处理。常见的不重复id创建方式有两种，一个是搞一个自增长数列，另一个是采用随机生成一组不可能重复的字符序列，常见的就是UUID了。我们来引入一个uuid的包：`npm i --save angular2-uuid`，由于这个包中已经含有了用于typescript的定义文件，这里就执行这一个命令就足够了。由于此时`Todo`对象的`id`已经是字符型了，请更改其声明为`id: string;`。
 然后修改service成下面的样子：
 ```javascript
 import { Injectable } from '@angular/core';
@@ -1022,15 +1021,8 @@ class Todo {
   ]
 }
 ```
-现在我们在todo文件夹下创建一个`src\app\todo\todo.model.ts`
-```javascript
-export class Todo {
-  id: string;
-  desc: string;
-  completed: boolean;
-}
-```
-然后在同一文件夹下创建一个文件`src\app\todo\todo-data.ts`
+首先我们需要安装`angular-in-memory-web-api`，输入`npm install --save angular-in-memory-web-api`
+然后在Todo文件夹下创建一个文件`src\app\todo\todo-data.ts`
 ```javascript
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Todo } from './todo.model';
@@ -1214,8 +1206,8 @@ import { Todo } from './todo.model';
   providers: [TodoService]
 })
 export class TodoComponent implements OnInit {
-  todos : Todo[];
-  desc = '';
+  todos : Todo[] = [];
+  desc: string = '';
 
   constructor(private service: TodoService) {}
   ngOnInit() {
@@ -1616,6 +1608,7 @@ body {
 ```
 现在我们看看成果吧，现在好看多了
 ![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][37]
+本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap03/angular2/ng2-tut
 
 # 第四节：进化！模块化你的应用
 ## 一个复杂组件的分拆
@@ -1753,7 +1746,13 @@ placeholder和delay作为2个输入型变量，这样`<app-todo-header>`标签�
 
  - enterUp：这个是比较常规的方法，在`todo-header.component.html`中我们定义了`(keyup.enter)="enterUp()"`，所以在组件的enterUp方法中，我们直接让onEnterUp发射了对应事件。
  - 构造器中使用Rx：这里涉及了很多新知识，首先我们注入了ElementRef，这个是一个Angular中需要谨慎使用的对象，因为它可以让你直接操作DOM，也就是HTML的元素和事件。同时我们使用了Rx（响应式对象），Rx是一个很复杂的话题，这里我们不展开了，但我们主要是利用Observable去观察HTML中的keyup事件，然后在这个事件流中做一个转换把输入框的值发射出来（map），应用一个时间的滤波器（debounceTime），然后应用一个筛选器（distinctUntilChanged）。这里由于这个事件的发射条件是依赖于输入时的当时条件，我们没有办法按前面的以模板事件触发做处理。
-
+最后需要在`todo.component.ts`中加入对header输出参数发射事件的处理
+```javascript
+  onTextChanges(value) {
+    this.desc = value;
+  }
+```
+ 
 最后由于组件分拆后，我们希望也分拆一下css，这里就直接给代码了
 `todo-header.component.css`的样式如下：
 ```css
@@ -2095,7 +2094,45 @@ export const routes: Routes = [
 export const routing = RouterModule.forRoot(routes);
 ```
 注意到我们去掉了TodoComponent的依赖，而且更改todo路径定义为redirecTo到todo路径，但没有给出组件，这叫做“无组件路由”，也就是说后面的事情是TodoModule负责的。
+此时我们就可以去掉AppModule中引用的Todo相关的组件了。
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
+import { TodoModule } from './todo/todo.module';
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryTodoDbService } from './todo/todo-data';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './core/auth.service';
+import { routing } from './app.routes';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryTodoDbService),
+    routing,
+    TodoModule
+  ],
+  providers: [
+    {provide: 'auth',  useClass: AuthService}
+    ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+而且此时我们注意到其实没有任何一个地方目前还需引用`<app-todo></app-todo>`了，这就是说我们可以安全地把`selector: 'app-todo',`从Todo组件中的`@Component`修饰符中删除了。
 ## 更真实的web服务
 这里我们不想再使用内存Web服务了，因为如果使用，我们无法将其封装在TodoModule中。所以我们使用一个更“真”的web服务：json-server。使用`npm install -g json-server`安装json-server。然后在todo目录下建立`todo-data.json`
 ```javascript
@@ -2129,22 +2166,19 @@ export const routing = RouterModule.forRoot(routes);
 // private api_url = 'api/todos';
   private api_url = 'http://localhost:3000/todos';
 ```
-并将addTodo和getTodos中then语句中的 `res.json().data`替换成`res.json()`。
-另外打开一个命令窗口，进入工程目录，输入`json-server ./src/app/todo/todo-data.json`
-
-最后别忘了在根模块中引入TodoModule和清理你的根模块中现在不需要的类库引用。
-```javascript
+并将addTodo和getTodos中then语句中的 `res.json().data`替换成`res.json()`。在AppModule中删掉内存web服务相关的语句。
+```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AuthService } from './core/auth.service';
-import { routing } from './app.routes';
 import { TodoModule } from './todo/todo.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './core/auth.service';
+import { routing } from './app.routes';
 
 
 @NgModule({
@@ -2161,11 +2195,13 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     {provide: 'auth',  useClass: AuthService}
-  ],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
+另外打开一个命令窗口，进入工程目录，输入`json-server ./src/app/todo/todo-data.json`
+
 欣赏一下成果吧
 ![image_1b12b5v4onlm16ai1bdn7pu143e9.png-165.7kB][39]
 ## 完善Todo应用
@@ -2372,7 +2408,7 @@ export class TodoListComponent {
     });
   }
 ```
-从`this.route.params`返回的是一个Observable，里面包含着所以传递的参数，当然我们这个例子很简单只有一个，就是刚才定义的`filter`。当然我们需要在组件内添加对各种filter处理的方法：调用service中的处理方法后对todos数组进行操作。
+从`this.route.params`返回的是一个Observable，里面包含着所以传递的参数，当然我们这个例子很简单只有一个，就是刚才定义的`filter`。当然我们需要在组件内添加对各种filter处理的方法：调用service中的处理方法后对todos数组进行操作。组件中原有的getTodos方法已经没有用了，删掉吧。
 ```javascript
   filterTodos(filter: string): void{
     this.service
@@ -2504,8 +2540,10 @@ toggleTodo(todo: Todo): Promise<void> {
     Promise.all(this.todos.map(todo => this.toggleTodo(todo)));
   }
   clearCompleted(){
-    const todos = this.todos.filter(todo=> todo.completed===true);
-    Promise.all(todos.map(todo => this.removeTodo(todo)));
+    const completed_todos = this.todos.filter(todo => todo.completed === true);
+    const active_todos = this.todos.filter(todo => todo.completed === false);
+    Promise.all(completed_todos.map(todo => this.service.deleteTodoById(todo.id)))
+      .then(() => this.todos = [...active_todos]);
   }
 ```
 现在再去试试效果，应该一切功能正常。当然这个版本其实还是有问题的，本质上还是在循环调用`toggleTodo`和`removeTodo`，这样做会导致多次进行HTTP连接，所以最佳策略应该是请服务器后端同学增加一个批处理的API给我们。但是服务器端的编程不是本教程的范畴，这里就不展开了，大家只需记住如果在生产环境中切记要减少HTTP请求的次数和缩减发送数据包的大小。说到减小HTTP交互数据的大小的话，我们的`todo.service.ts`中可以对`toggleTodo`方法做点改造。原来的put方法是将整个todo数据上传，但其实我们只改动了`todo.completed`属性。如果你的web api是符合REST标准的话，我们可以用Http的`PATCH`方法而不是`PUT`方法，`PATCH`方法会只上传变化的数据。
@@ -2523,7 +2561,11 @@ toggleTodo(todo: Todo): Promise<void> {
             .catch(this.handleError);
   }
 ```
-# 多用户版本的待办事项应用
+最后其实Todo的所有子组件其实都没有用到ngInit，所以不必实现NgInit接口，可以去掉ngInit方法和相关的接口引用。
+
+本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap04/angular2/ng2-tut
+
+# 第五节：多用户版本的待办事项应用
 第四节我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
 但可惜我们目前的LoginComponent还是个实验品，很多功能的缺失，我们是先去做Login呢，还是利用现有的Todo对象先试验一下呢？我个人的习惯是先进行试验。
 
@@ -2997,6 +3039,64 @@ export class CoreModule {
  直接在浏览器地址栏输入`http://localhost:4200/todo`，你会发现被重新导航到了`login`。输入正确的用户名密码后，我们被导航到了todo，现在每个用户都可以创建属于自己的待办事项了。
  ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][46]
 
+## 路由模块化
+Angular团队推荐把路由模块化，这样便于使业务逻辑和路由松耦合。虽然目前在我们的应用中感觉用处不大，但按官方推荐的方式还是和大家一起改造一下吧。删掉原有的`app.routes.ts`和`todo.routes.ts`。添加`app-routing.module.ts`:
+```javascript
+import { NgModule }     from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'todo',
+    redirectTo: 'todo/ALL'
+  }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule {}
+```
+以及`src\app\todo\todo-routing.module.ts`
+```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { TodoComponent } from './todo.component';
+
+import { AuthGuardService } from '../core/auth-guard.service';
+
+const routes: Routes = [
+  {
+    path: 'todo/:filter',
+    canActivate: [AuthGuardService],
+    component: TodoComponent
+  }
+];
+
+@NgModule({
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
+})
+export class TodoRoutingModule { }
+
+```
+并分别在AppModule和TodoModule中引入路由模块。
+
 ## 用VSCode进行调试
 有读者问如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
 ![image_1b23hjd3rble1nb11u7i19qgjqb1g.png-170.5kB][47]
@@ -3044,7 +3144,7 @@ export class CoreModule {
 现在你可以试着在源码中设置一个断点，点击debug视图中的debug按钮，可以尝试右键点击变量把它放到监视中看看变量值或者逐步调试应用。
 ![image_1b23igfkdhn71ug71cng3in94t2a.png-400.1kB][49]
 
-本章完整代码见： https://github.com/wpcfan/hi-angular
+本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
 
 
   [1]: https://angular.io/
