@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './core/auth.service';
+import { routing } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -17,21 +17,11 @@ import { AuthService } from './core/auth.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-      },
-      {
-        path: 'login',
-        component: LoginComponent
-      }
-    ])
+    routing
   ],
   providers: [
     {provide: 'auth',  useClass: AuthService}
-  ],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
