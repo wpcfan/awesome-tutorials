@@ -4,7 +4,7 @@ import { UUID } from 'angular2-uuid';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Todo } from './todo.model';
+import { Todo } from '../domain/entities';
 
 @Injectable()
 export class TodoService {
