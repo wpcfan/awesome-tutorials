@@ -5,9 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { TodoModule } from './todo/todo.module';
 
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryTodoDbService } from './todo/todo-data';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './core/auth.service';
@@ -23,7 +20,6 @@ import { routing } from './app.routes';
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryTodoDbService),
     routing,
     TodoModule
   ],
