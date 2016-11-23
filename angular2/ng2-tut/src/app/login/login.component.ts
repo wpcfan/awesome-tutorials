@@ -5,9 +5,11 @@ import { Component, OnInit, Inject } from '@angular/core';
   selector: 'app-login',
   template: `
     <div>
-      <input required type="text"
+      <input type="text"
         [(ngModel)]="username"
         #usernameRef="ngModel"
+        required
+        minlength="3"
         />
         {{usernameRef.valid}}
       <input required type="password"
