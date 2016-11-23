@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "sourceMaps": true,
+            "runtimeArgs": [
+                "--disable-session-crashed-bubble",
+                "--disable-infobars"
+            ],
+            "diagnosticLogging": true,
+            "webRoot": "${workspaceRoot}/src",
+            //windows setup
+            "userDataDir": "C:\\temp\\chromeDummyDir",
+            "sourceMapPathOverrides": {
+                "webpack:///C:*":"C:/*"
+                //use "webpack:///*": "/*" on Linux/OSX
+            }
+        },
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "diagnosticLogging": true,
+            "webRoot": "${workspaceRoot}/src",
+            "sourceMapPathOverrides": {
+                "webpack:///C:*":"C:/*"
+            }
+        }
+    ]
+}
