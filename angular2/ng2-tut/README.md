@@ -4,7 +4,8 @@
 作者：王芃 wpcfan@gmail.com
 标签（空格分隔）： 编程 前端 javascript 框架 教程
 ---
-[TOC]
+* auto-gen TOC:
+{:toc}
 
 # 第一节：认识Angular 2.0
 ## 前言
