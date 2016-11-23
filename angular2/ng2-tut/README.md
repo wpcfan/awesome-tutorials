@@ -1,11 +1,55 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Angular 2.x 从0到1](#angular-2x-%E4%BB%8E0%E5%88%B01)
+  - [史上最简单Angular 2.x教程，大叔都学会了](#%E5%8F%B2%E4%B8%8A%E6%9C%80%E7%AE%80%E5%8D%95angular-2x%E6%95%99%E7%A8%8B%E5%A4%A7%E5%8F%94%E9%83%BD%E5%AD%A6%E4%BC%9A%E4%BA%86)
+  - [标签（空格分隔）： 编程 前端 javascript 框架 教程](#%E6%A0%87%E7%AD%BE%E7%A9%BA%E6%A0%BC%E5%88%86%E9%9A%94-%E7%BC%96%E7%A8%8B-%E5%89%8D%E7%AB%AF-javascript-%E6%A1%86%E6%9E%B6-%E6%95%99%E7%A8%8B)
+- [第一节：认识Angular 2.0](#%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AE%A4%E8%AF%86angular-20)
+  - [前言](#%E5%89%8D%E8%A8%80)
+  - [环境配置要求](#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82)
+  - [第一个小应用 Hello Angular](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%BA%94%E7%94%A8-hello-angular)
+  - [第一个组件](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
+  - [一些基础概念](#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
+    - [什么是模块？](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9D%97)
+    - [引导过程](#%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B)
+- [第二节：用Form表单做一个登录控件](#%E7%AC%AC%E4%BA%8C%E8%8A%82%E7%94%A8form%E8%A1%A8%E5%8D%95%E5%81%9A%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E6%8E%A7%E4%BB%B6)
+  - [对于login组件的小改造](#%E5%AF%B9%E4%BA%8Elogin%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B0%8F%E6%94%B9%E9%80%A0)
+  - [建立一个服务去完成业务逻辑](#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%8E%BB%E5%AE%8C%E6%88%90%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)
+    - [什么是依赖性注入？](#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%9D%E8%B5%96%E6%80%A7%E6%B3%A8%E5%85%A5)
+  - [双向数据绑定](#%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A)
+  - [表单数据的验证](#%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E7%9A%84%E9%AA%8C%E8%AF%81)
+  - [验证结果的样式自定义](#%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89)
+  - [进一步的练习](#%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E7%BB%83%E4%B9%A0)
+- [第三节：建立一个待办事项应用](#%E7%AC%AC%E4%B8%89%E8%8A%82%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
+  - [建立routing的步骤](#%E5%BB%BA%E7%AB%8Brouting%E7%9A%84%E6%AD%A5%E9%AA%A4)
+  - [让待办事项变得有意义](#%E8%AE%A9%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%8F%98%E5%BE%97%E6%9C%89%E6%84%8F%E4%B9%89)
+  - [建立模拟web服务和异步操作](#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E6%8B%9Fweb%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
+- [第四节：进化！模块化你的应用](#%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%BF%9B%E5%8C%96%E6%A8%A1%E5%9D%97%E5%8C%96%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8)
+  - [一个复杂组件的分拆](#%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%86%E6%8B%86)
+  - [封装成独立模块](#%E5%B0%81%E8%A3%85%E6%88%90%E7%8B%AC%E7%AB%8B%E6%A8%A1%E5%9D%97)
+  - [更真实的web服务](#%E6%9B%B4%E7%9C%9F%E5%AE%9E%E7%9A%84web%E6%9C%8D%E5%8A%A1)
+  - [完善Todo应用](#%E5%AE%8C%E5%96%84todo%E5%BA%94%E7%94%A8)
+    - [TodoItem和TodoList组件](#todoitem%E5%92%8Ctodolist%E7%BB%84%E4%BB%B6)
+  - [填坑，完成漏掉的功能](#%E5%A1%AB%E5%9D%91%E5%AE%8C%E6%88%90%E6%BC%8F%E6%8E%89%E7%9A%84%E5%8A%9F%E8%83%BD)
+    - [用路由参数传递数据](#%E7%94%A8%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE)
+    - [批量修改和批量删除](#%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%92%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4)
+- [多用户版本的待办事项应用](#%E5%A4%9A%E7%94%A8%E6%88%B7%E7%89%88%E6%9C%AC%E7%9A%84%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
+  - [数据驱动开发](#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91)
+  - [验证用户账户的流程](#%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E7%9A%84%E6%B5%81%E7%A8%8B)
+    - [核心模块](#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97)
+    - [路由守卫](#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB)
+  - [用VSCode进行调试](#%E7%94%A8vscode%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Angular 2.x 从0到1 
 ## 史上最简单Angular 2.x教程，大叔都学会了
 
 作者：王芃 wpcfan@gmail.com
 标签（空格分隔）： 编程 前端 javascript 框架 教程
 ---
-* auto-gen TOC:
-{:toc}
+
 
 # 第一节：认识Angular 2.0
 ## 前言
