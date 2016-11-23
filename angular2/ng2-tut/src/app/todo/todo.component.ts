@@ -70,7 +70,7 @@ export class TodoComponent implements OnInit {
   clearCompleted(){
     const completed_todos = this.todos.filter(todo => todo.completed === true);
     const active_todos = this.todos.filter(todo => todo.completed === false);
-    completed_todos.map(todo => this.service.deleteTodoById(todo.id));
-    this.todos = [...active_todos];
+    Promise.all(completed_todos.map(todo => this.service.deleteTodoById(todo.id)))
+      .then(() => this.todos = [...active_todos]);
   }
 }
