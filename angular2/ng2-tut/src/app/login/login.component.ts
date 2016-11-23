@@ -1,27 +1,35 @@
+//login.component.ts
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   template: `
     <div>
-      <input #usernameRef type="text">
-      <input #passwordRef type="password">
-      <button (click)="onClick(usernameRef.value, passwordRef.value)">Login</button>
+      <input type="text"
+        [(ngModel)]="username"
+        />
+      <input type="password"
+        [(ngModel)]="password"
+        />
+      <button (click)="onClick()">Login</button>
     </div>
   `,
   styles: []
 })
 export class LoginComponent implements OnInit {
-  //在构造函数中将AuthService示例注入到成员变量service中
-  //而且我们不需要显式声明成员变量service了
+
+  username = '';
+  password = '';
+
   constructor(@Inject('auth') private service) {
   }
 
   ngOnInit() {
   }
 
-  onClick(username, password) {
-    console.log('auth result is: ' + this.service.loginWithCredentials(username, password));
+  onClick() {
+    console.log('auth result is: '
+      + this.service.loginWithCredentials(this.username, this.password));
   }
 
 }
