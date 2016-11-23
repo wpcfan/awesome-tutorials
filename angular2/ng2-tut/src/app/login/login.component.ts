@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-login',
   template: `
     <div>
-      <input type="text">
-      <button (click)="onClick()">Login</button>
+      <input #usernameRef type="text">
+      <button (click)="onClick(usernameRef.value)">Login</button>
     </div>
   `,
   styles: []
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick() {
-    console.log('button was clicked');
+  onClick(username) {
+    console.log(username);
   }
 }
