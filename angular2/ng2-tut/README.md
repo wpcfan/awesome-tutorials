@@ -246,6 +246,7 @@ import { AppModuleNgFactory } from './app.module.ngfactory';
 // 引导AppModuleNgFactory
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 ```
+本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap01/angular2/ng2-tut
 
 下一节我们再继续，记住大叔能学会的你也能。
 # 第二节：用Form表单做一个登录控件
