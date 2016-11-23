@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div>
       <input type="text">
-      <button>Login</button>
+      <button (click)="onClick()">Login</button>
     </div>
   `,
   styles: []
