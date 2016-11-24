@@ -1,5 +1,8 @@
 <section class="main" *ngIf="todos?.length > 0">
-  <input class="toggle-all" type="checkbox" (click)="onToggleAllTriggered()">
+  <div class="checkbox checkbox-primary toggle-all">
+    <input class="styled styled-primary" type="checkbox" (click)="onToggleAllTriggered()">
+    <label></label>
+  </div>
   <ul class="todo-list">
     <li *ngFor="let todo of todos" [class.completed]="todo.completed">
       <app-todo-item

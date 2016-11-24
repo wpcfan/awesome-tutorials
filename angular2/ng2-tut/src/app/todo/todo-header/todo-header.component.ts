@@ -17,7 +17,7 @@ export class TodoHeaderComponent {
   //detect the input value and output this to parent
   @Output() textChanges = new EventEmitter<string>();
   //detect the enter keyup event and output this to parent
-  @Output() onEnterUp = new EventEmitter<boolean>();
+  @Output() onEnterUp = new EventEmitter<string>();
 
   constructor(private elementRef: ElementRef) {
     const event$ = Observable.fromEvent(elementRef.nativeElement, 'keyup')
@@ -27,7 +27,7 @@ export class TodoHeaderComponent {
     event$.subscribe(input => this.textChanges.emit(input));
   }
   enterUp(){
-    this.onEnterUp.emit(true);
+    this.onEnterUp.emit(this.inputValue);
     this.inputValue = '';
   }
 }
