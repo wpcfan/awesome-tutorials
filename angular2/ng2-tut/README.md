@@ -78,49 +78,17 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 ![c1_s1_ng_new_hello-angular.png-51.7kB][13] 如上图所示，这个命令为我们新建了一个名为“hello-angular”的工程，进入该工程目录，键入 `code .` 可以打开IDE看到如下目录
 ![c1_s1_vscode_project_struct.png-300.1kB][14] 
 
-|-- .editorconfig //通用的编辑器配置文件，以后换IDE时可以保持一些设置的平滑迁移
-|-- .gitignore //需要Git忽略的文件列表
-|-- angular-cli.json //Angular-CLI配置文件
-|-- karma.conf.js //Karma单元测试配置文件
-|-- package.json //node打包文件
-|-- protractor.conf.js //端到端测试配置文件（集成测试）
-|-- README.md
-|-- tslint.json //代码Lint静态检查的配置
-|-- e2e //端到端测试代码目录
-|   |-- app.e2e-spec.ts
-|   |-- app.po.ts
-|   |-- tsconfig.json
-|-- src //源码
-    |-- favicon.ico //站点收藏图标
-    |-- index.html //入口页面
-    |-- main.ts //入口ts文件
-    |-- polyfills.ts //针对浏览器能力增强的polyfills引用文件
-    |-- styles.css //全局样式文件
-    |-- test.ts //测试入口文件
-    |-- tsconfig.json //TypeScript配置文件
-    |-- typings.d.ts //项目中使用的TypeScript类型定义引用文件
-    |-- app //应用目录
-    |   |-- app.component.css //引导性组件的样式文件
-    |   |-- app.component.html //引导性组件的HTML模板
-    |   |-- app.component.spec.ts //引导性组件测试文件
-    |   |-- app.component.ts //系统引导性组件
-    |   |-- app.module.ts //应用根模块
-    |   |-- index.ts //应用入口
-    |-- assets //站点资源文件夹
-    |   |-- .gitkeep
-    |-- environments
-        |-- environment.prod.ts //生产环境配置文件
-        |-- environment.ts //环境配置
+![image_1b2aksv68uhs3mf64j1h9st7o9.png-292.3kB][15]
 大概了解了文件目录结构后，我们重新回到命令行，在应用根目录键入 `ng serve` 可以看到应用编译打包后server运行在4200端口。
-![c1_s1_ng_serve.png-42.5kB][15]
+![c1_s1_ng_serve.png-42.5kB][16]
 打开浏览器输入 http://localhost:4200 即可看到程序运行成功啦！
-![c1_s1_project_1st_browser.png-135.7kB][16]
+![c1_s1_project_1st_browser.png-135.7kB][17]
 自动生成的太没有成就感了是不是，那么我们动手改一下吧。保持运行服务的命令窗口，然后进入VSCode，打开 `src/app/app.component.ts` 修改title，比如： `title = 'This is a hello-angular app';`，保存后返回浏览器看一下吧，结果已经更新了，这种热装载的特性使得开发变得很方便。
-![c1_s1_project_1st_browser_update.png-146.5kB][17]
+![c1_s1_project_1st_browser_update.png-146.5kB][18]
 
 ## 第一个组件
 那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
-![image_1b27r02qlo6f11f19qg1q9k1fclm.png-30.3kB][18]
+![image_1b27r02qlo6f11f19qg1q9k1fclm.png-30.3kB][19]
 angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
@@ -159,7 +127,7 @@ export class LoginComponent implements OnInit {
 <app-login></app-login>
 ```
 保存后返回浏览器，可以看到我们的第一个组件也显示出来了。
-![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][19]
+![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][20]
 
 ## 一些基础概念
 这里我们粗略介绍一些Angular的基础概念，这些基础概念在后面的章节中会更详细的讲解。
@@ -276,7 +244,7 @@ export class LoginComponent implements OnInit {
 }
 ```
 我们增加了一个文本输入框和一个按钮，保存后返回浏览器可以看到结果
-![c2_s1_input_button_added.png-109.6kB][20]
+![c2_s1_input_button_added.png-109.6kB][21]
 接下来我们尝试给Login按钮添加一个处理方法 `<button (click)="onClick()">Login</button>`。`(click)`表示我们要处理这个button的click事件，圆括号是说**发生此事件时，调用等号后面的表达式或函数**。等号后面的`onClick()`是我们自己定义在LoginComponent中的函数，这个名称你可以随便定成什么，不一定叫`onClick()`。下面我们就来定义这个函数，在LoginComponent中写一个叫`onClick()`的方法，内容很简单就是把“button was clicked”输出到Console。
 ```javascript
   onClick() {
@@ -284,7 +252,7 @@ export class LoginComponent implements OnInit {
   }
 ```
 返回浏览器，并按F12调出开发者工具。当你点击Login时，会发现Console窗口输出了我们期待的文字。
-![c2_s1_handle_click_method.png-141kB][21]
+![c2_s1_handle_click_method.png-141kB][22]
 那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用是的input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`
 ```javascript
 <div>
@@ -299,7 +267,7 @@ export class LoginComponent implements OnInit {
   }
 ```
 现在我们再看看结果是什么样子，在文本输入框中键入“hello”，点击Login按钮，观察Console窗口：hello被输出了。
-![c2_s1_input_button_ref.png-141.1kB][22]
+![c2_s1_input_button_ref.png-141.1kB][23]
 好了，现在我们再加一个密码输入框，然后改写onClick方法可以同时接收2个参数：用户名和密码。代码如下：
 ```javascript
 import { Component, OnInit } from '@angular/core';
@@ -329,7 +297,7 @@ export class LoginComponent implements OnInit {
 }
 ```
 看看结果吧，在浏览器中第一个输入框输入“wang”，第二个输入框输入“1234567”，观察Console窗口，Bingo！
-![c2_s1_username_password_ref.png-141.8kB][23]
+![c2_s1_username_password_ref.png-141.8kB][24]
 
 ## 建立一个服务去完成业务逻辑
 如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
@@ -555,10 +523,10 @@ export class LoginComponent implements OnInit {
     </div>
 ```
 注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
-![c2_s2_form_validation.png-8.5kB][24]
+![c2_s2_form_validation.png-8.5kB][25]
 
 我们是知道了验证的状态是什么，但是如果我们想知道验证失败的原因怎么办呢？我们只需要将`{{usernameRef.valid}}`替换成`{{usernameRef.errors | json}}`。`|`是管道操作符，用于将前面的结果通过管道输出成另一种格式，这里就是把errors对象输出成json格式的意思。看一下结果吧，返回的结果如下
-![c2_s2_form_validation_errors.png-11kB][25]
+![c2_s2_form_validation_errors.png-11kB][26]
 如果除了不能为空，我们为username再添加一个规则试试看呢，比如字符数不能少于3。
 ```html
       <input type="text"
@@ -568,7 +536,7 @@ export class LoginComponent implements OnInit {
         minlength="3"
         />
 ```
-![c2_s2_form_validation_errors_multiple.png-14.4kB][26]
+![c2_s2_form_validation_errors_multiple.png-14.4kB][27]
 现在我们试着把`{{表达式}}`替换成友好的错误提示，我们想在有错误发生时显示错误的提示信息。那么我们来改造一下template。
 ```html
     <div>
@@ -649,7 +617,7 @@ export class LoginComponent implements OnInit {
   }
 ```
 你会发现`formRef.value`中包括了表单所有填写项的值。
-![c2_s2_form_validation_form_submit.png-27.7kB][27]
+![c2_s2_form_validation_form_submit.png-27.7kB][28]
 有时候在表单项过多时我们需要对表单项进行分组，HTML中提供了`fieldset`标签用来处理。那么我们看看怎么和Angular2结合吧：
 ```html
     <div>
@@ -678,7 +646,7 @@ export class LoginComponent implements OnInit {
     </div>
 ```
 `<fieldset ngModelGroup="login">`意味着我们对于fieldset之内的数据都分组到了`login`对象中。
-![c2_s2_form_validation_fieldset.png-43.5kB][28]
+![c2_s2_form_validation_fieldset.png-43.5kB][29]
 接下来我们改写onSubmit方法用来替代onClick，因为看起来这两个按钮重复了，我们需要去掉onClick。首先去掉template中的`<button (click)="onClick()">Login</button>`，然后把`<button type="submit">`标签后的`Submit`文本替换成`Login`，最后改写onSubmit方法。
 ```javascript
   onSubmit(formValue) {
@@ -689,7 +657,7 @@ export class LoginComponent implements OnInit {
 在浏览器中试验一下吧，所有功能正常工作。
 ## 验证结果的样式自定义
 如果我们在开发工具中查看网页源码，可以看到
-![c2_s2_form_validation_form_styling.png-92.5kB][29]
+![c2_s2_form_validation_form_styling.png-92.5kB][30]
 用户名控件的HTML代码是下面的样子：在验证结果为false时input的样式是`ng-invalid`
 ```html
 <input 
@@ -725,9 +693,9 @@ export class LoginComponent implements OnInit {
   `]
 ```
 保存一下，返回浏览器可以看到，验证不通过时
-![c2_s2_form_validation_style_fail.png-8.9kB][30]
+![c2_s2_form_validation_style_fail.png-8.9kB][31]
 验证通过时是这样的：
-![c2_s2_form_validation_style_pass.png-4.6kB][31]
+![c2_s2_form_validation_style_pass.png-4.6kB][32]
 
 最后说一下，我们看到这样设置完样式后连form和fieldset都一起设置了，这是由于form和fieldset也在样式中应用了`.ng-valid`和`.ng-valid`，那怎么解决呢？只需要在`.ng-valid`加上`input`即可，它表明的是应用于input类型控件并且class引用了ng-invalid的元素。
 ```javascript
@@ -740,7 +708,7 @@ export class LoginComponent implements OnInit {
     }
   `]
 ```
-很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][32]和https://css-tricks.com/multiple-class-id-selectors/。
+很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][33]和https://css-tricks.com/multiple-class-id-selectors/。
 
 本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap02/angular2/ng2-tut
 
@@ -786,7 +754,7 @@ forRoot(routes: Routes, config?: ExtraOptions) : ModuleWithProviders
  - pathMatch：路径的字符匹配策略
  - children：子路由数组
 运行一下，我们会发现出错了
-![image_1b0hgdsiu87n1lha1kcahl51ckb9.png-233.2kB][33]
+![image_1b0hgdsiu87n1lha1kcahl51ckb9.png-233.2kB][34]
  这个错误看上去应该是对于''没有找到匹配的route，这是由于我们只定义了一个'login'，我们再试试在浏览器地址栏输入：`http://localhost:4200/login`。这次仍然出错，但错误信息变成了下面的样子，意思是我们没有找到一个outlet去加载LoginComponent。对的，这就引出了router outlet的概念，如果要显示对应路由的组件，我们需要一个插头（outlet）来装载组件。
 ```
 error_handler.js:48EXCEPTION: Uncaught (in promise): Error: Cannot find primary outlet to load 'LoginComponent'
@@ -887,7 +855,7 @@ export const routes: Routes = [
 ];
 ```
 在浏览器中键入`http://localhost:4200`可以看到自动跳转到了todo路径，并且我们的todo组件也显示出来了。
-![image_1b0k2ba0d1qqraa51mj51hpdpeo9.png-81kB][34]
+![image_1b0k2ba0d1qqraa51mj51hpdpeo9.png-81kB][35]
 
 我们希望的Todo页面应该有一个输入待办事项的输入框和一个显示待办事项状态的列表。那么我们先来定义一下todo的结构，todo应该有一个id用来唯一标识，还应该有一个desc用来描述这个todo是干什么的，再有一个completed用来标识是否已经完成。好了，我们来建立这个todo模型吧，在todo文件夹下新建一个文件`todo.model.ts`
 ```javascript
@@ -931,7 +899,7 @@ export class TodoComponent implements OnInit {
 </div>
 ```
 如上面代码所示，我们建立了一个文本输入框，这个输入框的值应该是新todo的描述（desc），我们想在用户按了回车键后进行添加操作（`(keyup.enter)="addTodo()`）。由于todos是个数组，所以我们利用一个循环将数组内容显示出来（`<li *ngFor="let todo of todos">{{ todo.desc }}</li>`）。好了让我们欣赏一下成果吧
-![image_1b0kgg9mnppf16pkip81b2hhbrm.png-90.1kB][35]
+![image_1b0kgg9mnppf16pkip81b2hhbrm.png-90.1kB][36]
 
 如果我们还记得之前提到的业务逻辑应该放在单独的service中，我们还可以做的更好一些。在todo文件夹内建立TodoService：`ng g s todo\todo`。上面的例子中所有创建的todo都是id为1的，这显然是一个大bug，我们看一下怎么处理。常见的不重复id创建方式有两种，一个是搞一个自增长数列，另一个是采用随机生成一组不可能重复的字符序列，常见的就是UUID了。我们来引入一个uuid的包：`npm i --save angular2-uuid`，由于这个包中已经含有了用于typescript的定义文件，这里就执行这一个命令就足够了。由于此时`Todo`对象的`id`已经是字符型了，请更改其声明为`id: string;`。
 然后修改service成下面的样子：
@@ -985,7 +953,7 @@ export class TodoComponent implements OnInit {
 }
 ```
 为了可以清晰的看到我们的成果，我们为chrome浏览器装一个插件，在chrome的地址栏中输入`chrome://extensions`，拉到最底部会看到一个“获取更多扩展程序”的链接，点击这个链接然后搜索“Angury”，安装即可。安装好后，按F12调出开发者工具，里面出现一个叫“Angury”的tab。
-![image_1b0kr7gpn17td7v1p4s1qucuu313.png-273.8kB][36]
+![image_1b0kr7gpn17td7v1p4s1qucuu313.png-273.8kB][37]
 我们可以看到id这时候被设置成了一串字符，这个就是UUID了。
 
 ## 建立模拟web服务和异步操作
@@ -1607,13 +1575,13 @@ body {
 }
 ```
 现在我们看看成果吧，现在好看多了
-![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][37]
+![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][38]
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap03/angular2/ng2-tut
 
 # 第四节：进化！模块化你的应用
 ## 一个复杂组件的分拆
 上一节的末尾我偷懒的甩出了大量代码，可能你看起来都有点晕了，这就是典型的一个功能经过一段时间的需求累积后，代码也不可避免的臃肿起来。现在我们看看怎么分拆一下吧。
-![image_1b11kjibcelb6upnb21su41dilm.png-59.5kB][38]
+![image_1b11kjibcelb6upnb21su41dilm.png-59.5kB][39]
 我们的应用似乎可以分为Header，Main和Footer几部分。首先我们来建立一个新的Component，键入`ng g c todo/todo-footer`。然后将`src\app\todo\todo.component.html`中的`<footer>...</footer>`段落剪切到`src\app\todo\todo-footer\todo-footer.component.html`中。
 ```html
   <footer class="footer" *ngIf="todos?.length > 0">
@@ -2203,7 +2171,7 @@ export class AppModule { }
 另外打开一个命令窗口，进入工程目录，输入`json-server ./src/app/todo/todo-data.json`
 
 欣赏一下成果吧
-![image_1b12b5v4onlm16ai1bdn7pu143e9.png-165.7kB][39]
+![image_1b12b5v4onlm16ai1bdn7pu143e9.png-165.7kB][40]
 ## 完善Todo应用
 在结束本节前，我们得给Todo应用收个尾，还差一些功能没完成：
 
@@ -2359,7 +2327,7 @@ export class TodoListComponent {
 ### 用路由参数传递数据
 首先看一下过滤器，在Footer中我们有三个过滤器：All，Active和Completed，点击任何一个过滤器，我们只想显示过滤后的数据。
 
-![image_1b17mtibdkjn105l1ojl1dgr9il9.png-6.5kB][40]
+![image_1b17mtibdkjn105l1ojl1dgr9il9.png-6.5kB][41]
 
 这个功能其实有几种可以实现的方式，第一种我们可以按照之前讲过的组件间传递数据的方式设置一个`@Output`的事件发射器来实现。但本节中我们采用另一种方式，通过路由传递参数来实现。Angular2可以给路由添加参数，最简单的一种方式是比如/todo是我们的TodoComponent处理的路径，如果希望携带一个filter参数的话，可以在路由定义中写成
 ```javascript
@@ -2438,9 +2406,9 @@ export class TodoListComponent {
   }
 ```
 至此大功告成，我们来看看效果吧。现在输入`http://localhost:4200/todo`进入后观察浏览器地址栏，看到了吧，路径自动被修改成了`http://localhost:4200/todo/ALL`，我们的在跟路由中定义的重定向起作用了！
-![image_1b17o06nv10ob13d6pb1f5613pnm.png-137.8kB][41]
+![image_1b17o06nv10ob13d6pb1f5613pnm.png-137.8kB][42]
 现在，试着点击其中某个todo更改其完成状态，然后点击Active，我们看到不光路径变了，数据也按照我们期待的方式更新了。
-![image_1b17o6qjlb31grg1o7edjm1q4l13.png-128kB][42]
+![image_1b17o6qjlb31grg1o7edjm1q4l13.png-128kB][43]
 
 ### 批量修改和批量删除
 ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的过程。
@@ -2495,7 +2463,7 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
   }
 ```
 先保存一下，点击一下输入框左边的下箭头图标或者右下角的“Clear Completed”，看看效果
-![image_1b1c8if181tld15hlj531aasi8a9.png-140kB][43]
+![image_1b1c8if181tld15hlj531aasi8a9.png-140kB][44]
 大功告成！慢着，等一下，哪里好像不太对。让我们回过头再看看`toggleAll`方法和`clearCompleted`方法。目前的实现方式有个明显问题，那就是现在的处理方式又变成同步的了（`this.todos.forEach()`是个同步方法），如果我们的处理逻辑比较复杂的话，现在的实现方式会导致UI没有响应。但是如果不这么做的话，对于一系列的异步操作我们怎么处理呢？`Promise.all(iterable)`就是应对这种情况的，它适合把一系列的Promise一起处理，直到所有的Promise都处理完（或者是异常时reject），之后也返回一个Promise，里面是所有的返回值。
 ```javascript
 let p1 = Promise.resolve(3);
@@ -3033,11 +3001,11 @@ export class CoreModule {
 ```
 现在应该已经ok了，我们来看看效果：
 用户密码不匹配时，显示`password not match`
-![image_1b23h2m601puv1q9664c52c1jem9.png-7.2kB][44]
+![image_1b23h2m601puv1q9664c52c1jem9.png-7.2kB][45]
 用户不存在时，显示`user not found`
-![image_1b23h3l811dn4g9h16qu1jm11htbm.png-5.6kB][45]
+![image_1b23h3l811dn4g9h16qu1jm11htbm.png-5.6kB][46]
  直接在浏览器地址栏输入`http://localhost:4200/todo`，你会发现被重新导航到了`login`。输入正确的用户名密码后，我们被导航到了todo，现在每个用户都可以创建属于自己的待办事项了。
- ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][46]
+ ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][47]
 
 ## 路由模块化
 Angular团队推荐把路由模块化，这样便于使业务逻辑和路由松耦合。虽然目前在我们的应用中感觉用处不大，但按官方推荐的方式还是和大家一起改造一下吧。删掉原有的`app.routes.ts`和`todo.routes.ts`。添加`app-routing.module.ts`:
@@ -3099,9 +3067,9 @@ export class TodoRoutingModule { }
 
 ## 用VSCode进行调试
 有读者问如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
-![image_1b23hjd3rble1nb11u7i19qgjqb1g.png-170.5kB][47]
+![image_1b23hjd3rble1nb11u7i19qgjqb1g.png-170.5kB][48]
 然后点击最左边的倒数第二个按钮
-![image_1b23htavu19i412obd751h8kusj1t.png-72.5kB][48]
+![image_1b23htavu19i412obd751h8kusj1t.png-72.5kB][49]
 如果是第一次使用的话，齿轮图标上会有个红点，点击选择`debugger for chrome`，vscode会帮你创建一个配置文件，这个文件位于`\.vscode\launch.json`是debugger的配置文件，请改写成下面的样子。注意如果是MacOSX或者Linux，请把`userDataDir`替换成对应的临时目录，另外把`"webpack:///C:*":"C:/*"`替换成`"webpack:///*": "/*"`，这句是因为angular-cli是采用webpack打包的，如果没有使用angular-cli不需要添加这句。
 ```
 {
@@ -3142,9 +3110,11 @@ export class TodoRoutingModule { }
 }
 ```
 现在你可以试着在源码中设置一个断点，点击debug视图中的debug按钮，可以尝试右键点击变量把它放到监视中看看变量值或者逐步调试应用。
-![image_1b23igfkdhn71ug71cng3in94t2a.png-400.1kB][49]
+![image_1b23igfkdhn71ug71cng3in94t2a.png-400.1kB][50]
 
 本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
+
+第六节：
 
 
   [1]: https://angular.io/
@@ -3161,38 +3131,39 @@ export class TodoRoutingModule { }
   [12]: https://www.jetbrains.com/webstorm/
   [13]: http://static.zybuluo.com/wpcfan/zrmu59kvd6986hbojldvzu4t/c1_s1_ng_new_hello-angular.png
   [14]: http://static.zybuluo.com/wpcfan/hwsg3a6eashfnxhodwgzmd6r/c1_s1_vscode_project_struct.png
-  [15]: http://static.zybuluo.com/wpcfan/4xrvfcelykg9dbmft73rm3ym/c1_s1_ng_serve.png
-  [16]: http://static.zybuluo.com/wpcfan/1fhyangnbqqjemxr5md4qa2p/c1_s1_project_1st_browser.png
-  [17]: http://static.zybuluo.com/wpcfan/00ujvqg9m6ir0km0nzp54x4d/c1_s1_project_1st_browser_update.png
-  [18]: http://static.zybuluo.com/wpcfan/cemx8k69lys6xcjtecvgns3o/image_1b27r02qlo6f11f19qg1q9k1fclm.png
-  [19]: http://static.zybuluo.com/wpcfan/hykairb7gc7indb3ytousn2r/image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png
-  [20]: http://static.zybuluo.com/wpcfan/g2c5iklgoiefb4gwf032ewy3/c2_s1_input_button_added.png
-  [21]: http://static.zybuluo.com/wpcfan/vguefg9j7ogiyrnqyymb0tkd/c2_s1_handle_click_method.png
-  [22]: http://static.zybuluo.com/wpcfan/6v6bvj0yj60rrei7y8bhk0t3/c2_s1_input_button_ref.png
-  [23]: http://static.zybuluo.com/wpcfan/opkt3h9vqpne88q3e988oghr/c2_s1_username_password_ref.png
-  [24]: http://static.zybuluo.com/wpcfan/ep2fv9smcl6wpesjd9lyymn5/c2_s2_form_validation.png
-  [25]: http://static.zybuluo.com/wpcfan/r5or515a7vbbaegcumt1szrg/c2_s2_form_validation_errors.png
-  [26]: http://static.zybuluo.com/wpcfan/o1581cncbnl7zi8hvhvo9vn4/c2_s2_form_validation_errors_multiple.png
-  [27]: http://static.zybuluo.com/wpcfan/vngx0hc0nusbyyfzhb1tfjro/c2_s2_form_validation_form_submit.png
-  [28]: http://static.zybuluo.com/wpcfan/vy66ed38x1rr3686bkzbbcfy/c2_s2_form_validation_fieldset.png
-  [29]: http://static.zybuluo.com/wpcfan/cvugsjs3o68u9aeb30xvwsr2/c2_s2_form_validation_form_styling.png
-  [30]: http://static.zybuluo.com/wpcfan/b7kn9wpntcooxbucnddg59xg/c2_s2_form_validation_style_fail.png
-  [31]: http://static.zybuluo.com/wpcfan/t85mj8zde5zgjxwymtbvh6mg/c2_s2_form_validation_style_pass.png
-  [32]: http://www.w3schools.com/cssref/css_selectors.asp
-  [33]: http://static.zybuluo.com/wpcfan/8jg6bdnos6i7an84mt1zqoov/image_1b0hgdsiu87n1lha1kcahl51ckb9.png
-  [34]: http://static.zybuluo.com/wpcfan/s7fmz6gcsek66kc5y2729j10/image_1b0k2ba0d1qqraa51mj51hpdpeo9.png
-  [35]: http://static.zybuluo.com/wpcfan/slqndbbtc8v2chwgtfb5cmoc/image_1b0kgg9mnppf16pkip81b2hhbrm.png
-  [36]: http://static.zybuluo.com/wpcfan/vuqanfa8jbnt6hwqmtdr05bc/image_1b0kr7gpn17td7v1p4s1qucuu313.png
-  [37]: http://static.zybuluo.com/wpcfan/m9xxtfp9xebdrsv4tfl1oihj/image_1b11jlmes1nithths9q1n8ijqg9.png
-  [38]: http://static.zybuluo.com/wpcfan/b0daucv4po2molx9kff47efe/image_1b11kjibcelb6upnb21su41dilm.png
-  [39]: http://static.zybuluo.com/wpcfan/crrogqqkksstx3ztoh2mk1bi/image_1b12b5v4onlm16ai1bdn7pu143e9.png
-  [40]: http://static.zybuluo.com/wpcfan/3im2e8fi5fhgxy2olfg6kp3x/image_1b17mtibdkjn105l1ojl1dgr9il9.png
-  [41]: http://static.zybuluo.com/wpcfan/3t0c5c4q1o0n7t5d0rflx9zd/image_1b17o06nv10ob13d6pb1f5613pnm.png
-  [42]: http://static.zybuluo.com/wpcfan/2s1k9xfhfwo4ya6gc1kyi8sg/image_1b17o6qjlb31grg1o7edjm1q4l13.png
-  [43]: http://static.zybuluo.com/wpcfan/kd81ovbb5t1tix59oyft2doy/image_1b1c8if181tld15hlj531aasi8a9.png
-  [44]: http://static.zybuluo.com/wpcfan/8bm5aa4ux233zro0vpqh9oun/image_1b23h2m601puv1q9664c52c1jem9.png
-  [45]: http://static.zybuluo.com/wpcfan/f2z6lh68bsymwnqhbb6z8ovf/image_1b23h3l811dn4g9h16qu1jm11htbm.png
-  [46]: http://static.zybuluo.com/wpcfan/y5ar6642glaj2y0jbtsjp75n/image_1b23hdv51l621elh1uucsri32213.png
-  [47]: http://static.zybuluo.com/wpcfan/xpf46qrbe9wrdwi2d5r1rp4s/image_1b23hjd3rble1nb11u7i19qgjqb1g.png
-  [48]: http://static.zybuluo.com/wpcfan/0b7dqnyzc2a50z5jvohr2nxz/image_1b23htavu19i412obd751h8kusj1t.png
-  [49]: http://static.zybuluo.com/wpcfan/p7dr7hd1wkwcz1rn9bdlmlrm/image_1b23igfkdhn71ug71cng3in94t2a.png
+  [15]: http://static.zybuluo.com/wpcfan/djkgkmm92yjakfp1tf53a8tu/image_1b2aksv68uhs3mf64j1h9st7o9.png
+  [16]: http://static.zybuluo.com/wpcfan/4xrvfcelykg9dbmft73rm3ym/c1_s1_ng_serve.png
+  [17]: http://static.zybuluo.com/wpcfan/1fhyangnbqqjemxr5md4qa2p/c1_s1_project_1st_browser.png
+  [18]: http://static.zybuluo.com/wpcfan/00ujvqg9m6ir0km0nzp54x4d/c1_s1_project_1st_browser_update.png
+  [19]: http://static.zybuluo.com/wpcfan/cemx8k69lys6xcjtecvgns3o/image_1b27r02qlo6f11f19qg1q9k1fclm.png
+  [20]: http://static.zybuluo.com/wpcfan/hykairb7gc7indb3ytousn2r/image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png
+  [21]: http://static.zybuluo.com/wpcfan/g2c5iklgoiefb4gwf032ewy3/c2_s1_input_button_added.png
+  [22]: http://static.zybuluo.com/wpcfan/vguefg9j7ogiyrnqyymb0tkd/c2_s1_handle_click_method.png
+  [23]: http://static.zybuluo.com/wpcfan/6v6bvj0yj60rrei7y8bhk0t3/c2_s1_input_button_ref.png
+  [24]: http://static.zybuluo.com/wpcfan/opkt3h9vqpne88q3e988oghr/c2_s1_username_password_ref.png
+  [25]: http://static.zybuluo.com/wpcfan/ep2fv9smcl6wpesjd9lyymn5/c2_s2_form_validation.png
+  [26]: http://static.zybuluo.com/wpcfan/r5or515a7vbbaegcumt1szrg/c2_s2_form_validation_errors.png
+  [27]: http://static.zybuluo.com/wpcfan/o1581cncbnl7zi8hvhvo9vn4/c2_s2_form_validation_errors_multiple.png
+  [28]: http://static.zybuluo.com/wpcfan/vngx0hc0nusbyyfzhb1tfjro/c2_s2_form_validation_form_submit.png
+  [29]: http://static.zybuluo.com/wpcfan/vy66ed38x1rr3686bkzbbcfy/c2_s2_form_validation_fieldset.png
+  [30]: http://static.zybuluo.com/wpcfan/cvugsjs3o68u9aeb30xvwsr2/c2_s2_form_validation_form_styling.png
+  [31]: http://static.zybuluo.com/wpcfan/b7kn9wpntcooxbucnddg59xg/c2_s2_form_validation_style_fail.png
+  [32]: http://static.zybuluo.com/wpcfan/t85mj8zde5zgjxwymtbvh6mg/c2_s2_form_validation_style_pass.png
+  [33]: http://www.w3schools.com/cssref/css_selectors.asp
+  [34]: http://static.zybuluo.com/wpcfan/8jg6bdnos6i7an84mt1zqoov/image_1b0hgdsiu87n1lha1kcahl51ckb9.png
+  [35]: http://static.zybuluo.com/wpcfan/s7fmz6gcsek66kc5y2729j10/image_1b0k2ba0d1qqraa51mj51hpdpeo9.png
+  [36]: http://static.zybuluo.com/wpcfan/slqndbbtc8v2chwgtfb5cmoc/image_1b0kgg9mnppf16pkip81b2hhbrm.png
+  [37]: http://static.zybuluo.com/wpcfan/vuqanfa8jbnt6hwqmtdr05bc/image_1b0kr7gpn17td7v1p4s1qucuu313.png
+  [38]: http://static.zybuluo.com/wpcfan/m9xxtfp9xebdrsv4tfl1oihj/image_1b11jlmes1nithths9q1n8ijqg9.png
+  [39]: http://static.zybuluo.com/wpcfan/b0daucv4po2molx9kff47efe/image_1b11kjibcelb6upnb21su41dilm.png
+  [40]: http://static.zybuluo.com/wpcfan/crrogqqkksstx3ztoh2mk1bi/image_1b12b5v4onlm16ai1bdn7pu143e9.png
+  [41]: http://static.zybuluo.com/wpcfan/3im2e8fi5fhgxy2olfg6kp3x/image_1b17mtibdkjn105l1ojl1dgr9il9.png
+  [42]: http://static.zybuluo.com/wpcfan/3t0c5c4q1o0n7t5d0rflx9zd/image_1b17o06nv10ob13d6pb1f5613pnm.png
+  [43]: http://static.zybuluo.com/wpcfan/2s1k9xfhfwo4ya6gc1kyi8sg/image_1b17o6qjlb31grg1o7edjm1q4l13.png
+  [44]: http://static.zybuluo.com/wpcfan/kd81ovbb5t1tix59oyft2doy/image_1b1c8if181tld15hlj531aasi8a9.png
+  [45]: http://static.zybuluo.com/wpcfan/8bm5aa4ux233zro0vpqh9oun/image_1b23h2m601puv1q9664c52c1jem9.png
+  [46]: http://static.zybuluo.com/wpcfan/f2z6lh68bsymwnqhbb6z8ovf/image_1b23h3l811dn4g9h16qu1jm11htbm.png
+  [47]: http://static.zybuluo.com/wpcfan/y5ar6642glaj2y0jbtsjp75n/image_1b23hdv51l621elh1uucsri32213.png
+  [48]: http://static.zybuluo.com/wpcfan/xpf46qrbe9wrdwi2d5r1rp4s/image_1b23hjd3rble1nb11u7i19qgjqb1g.png
+  [49]: http://static.zybuluo.com/wpcfan/0b7dqnyzc2a50z5jvohr2nxz/image_1b23htavu19i412obd751h8kusj1t.png
+  [50]: http://static.zybuluo.com/wpcfan/p7dr7hd1wkwcz1rn9bdlmlrm/image_1b23igfkdhn71ug71cng3in94t2a.png
