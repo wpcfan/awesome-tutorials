@@ -52,8 +52,8 @@ a.selected {
     border-color: rgba(175, 47, 47, 0.2);
 }
 a.active {
-    color: rgba(175, 47, 47, 0.2);
-    font: bold;
+    color: white;
+    background-color: rgba(175, 47, 47, 0.2);
     border: 2px solid rgba(175, 47, 47, 0.2);
 }
 .clear-completed,
