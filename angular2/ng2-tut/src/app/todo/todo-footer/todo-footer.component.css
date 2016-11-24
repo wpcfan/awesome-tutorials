@@ -1,7 +1,7 @@
 .footer {
     color: #777;
     padding: 10px 15px;
-    height: 20px;
+    height: 35px;
     text-align: center;
     border-top: 1px solid #e6e6e6;
 }
@@ -34,10 +34,10 @@
     right: 0;
     left: 0;
 }
-.filters li {
+li {
     display: inline;
 }
-.filters li a {
+a {
     color: inherit;
     margin: 3px;
     padding: 3px 7px;
@@ -45,11 +45,16 @@
     border: 1px solid transparent;
     border-radius: 3px;
 }
-.filters li a:hover {
+li a:hover {
     border-color: rgba(175, 47, 47, 0.1);
 }
-.filters li a.selected {
+a.selected {
     border-color: rgba(175, 47, 47, 0.2);
+}
+a.active {
+    color: rgba(175, 47, 47, 0.2);
+    font: bold;
+    border: 2px solid rgba(175, 47, 47, 0.2);
 }
 .clear-completed,
 html .clear-completed:active {
