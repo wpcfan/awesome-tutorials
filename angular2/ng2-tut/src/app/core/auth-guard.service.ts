@@ -1,32 +1,31 @@
 import { Injectable, Inject } from '@angular/core';
 import {
   CanActivate,
-  CanActivateChild,
+  CanLoad,
   Router,
+  Route,
   ActivatedRouteSnapshot,
   RouterStateSnapshot }    from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AuthGuardService implements CanActivate, CanActivateChild {
+export class AuthGuardService implements CanActivate, CanLoad {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    @Inject('auth') private authService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let url: string = state.url;
 
-    return this.checkLogin(url);
+    return this.authService.getAuth()
+      .map(auth => !auth.hasError);
   }
-  checkLogin(url: string): boolean {
-    if (localStorage.getItem('userId') !== null) { return true; }
+  canLoad(route: Route): Observable<boolean> {
+    let url = `/${route.path}`;
 
-    // Store the attempted URL for redirecting
-    localStorage.setItem('redirectUrl', url);
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login']);
-    return false;
-  }
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivate(route, state);
+    return this.authService.getAuth()
+      .map(auth => !auth.hasError);
   }
 }

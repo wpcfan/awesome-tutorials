@@ -10,7 +10,7 @@ export class User {
   password: string;
 }
 export class Auth {
-  user: User;
+  user?: User;
   hasError: boolean;
   errMsg: string;
   redirectUrl: string;
