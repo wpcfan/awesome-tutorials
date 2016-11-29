@@ -3,7 +3,6 @@ import { Http, Headers, Response } from '@angular/http';
 
 import { ReplaySubject, Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 import { Auth } from '../domain/entities';
 
 @Injectable()
