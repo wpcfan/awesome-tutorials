@@ -3535,6 +3535,7 @@ export class AppRoutingModule {}
 现在打开浏览器欣赏一下我们的成果。
 ![image_1b2o9tso51ald1u0e1nr59gi119i9.png-66.5kB][62]
 
+本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap06/angular2/ng2-tut
 
   [1]: https://angular.io/
   [2]: http://www.typescriptlang.org/
