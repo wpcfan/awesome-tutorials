@@ -3114,7 +3114,196 @@ export class TodoRoutingModule { }
 
 本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
 
-第六节：
+# 第六节：使用第三方样式库及模块优化
+
+## 生产环境初体验
+用angular-cli建立生产环境是非常简单的，只需输入`ng build --prod --aot`即可。--prod会使用生产环境的配置文件，--aot会使用AOT替代JIT进行编译。现在实验一下
+![image_1b2m0102o1d721c438jr18r9f889.png-238.5kB][51]
+仔细看一下命令行输出，我们应该可以猜到angular移除了一些没有用到的类库（Google称之为Shaking过程），对js和css等进行了压缩等优化工作。angular在我们的项目根目录下建立了一个`dist`文件夹，用于生产环境的文件就输出在这个文件夹了。
+![image_1b2m07bdvqk91aaodsd16pd2kuv.png-116.5kB][52]
+我们安装一个http-server，`npm i -g http-server`，然后在dist目录键入`http-server .`。打开浏览器进入`http://localhost:8080`，我们会看到网页打开了。但如果打开console，或者试着登录一下，你会发现存在很多错误。
+![image_1b2m0l4teqja2f016s61g5o14261c.png-158.4kB][53]
+这是由于angular-cli当前的bug产生的，目前需要对路由做hash处理。
+```
+...
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true })
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+...
+```
+只需在`app-routing.module.ts`中为RouterModule配置`{ useHash: true }`的属性即可。这样的话angular会在url上加上一个`#`，比如login的url现在是`http://localhost:8080/#/login`。这样改动后，功能又好用了。以后我们项目如果需要发布到生产环境的，大家利用angular-cli可以很方便的处理了。然后下面我们回到开发环境，请关掉8080端口的http服务器，并删掉dist。
+
+## 第三方样式库
+之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][54]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][55]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][56]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
+```html
+<mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
+  <mdl-layout-header>
+    <mdl-layout-header-row>
+      <mdl-layout-title>Awesome Todos</mdl-layout-title>
+      <mdl-layout-spacer></mdl-layout-spacer>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link">Logout</a>
+      </nav>
+    </mdl-layout-header-row>
+  </mdl-layout-header>
+  <mdl-layout-drawer>
+    <mdl-layout-title>Title</mdl-layout-title>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link">Link</a>
+    </nav>
+  </mdl-layout-drawer>
+  <mdl-layout-content class="content">
+    <router-outlet></router-outlet>
+  </mdl-layout-content>
+</mdl-layout>
+```
+这段代码里面mdl开头的标签都是我们刚引入的组件库封装的组件，具体的用法可以去 http://mseemann.io/angular2-mdl/ 参考文档资料。`<mdl-layout></mdl-layout>`是一个布局组件，`mdl-layout-fixed-header`是一个可以让header固定在页面顶部的属性，`mdl-layout-header-seamed`是要header没有阴影。`mdl-layout-header`是一个顶部组件，`mdl-layout-header-row`是在顶部组件中形成一行的容器。`mdl-layout-spacer`是一个占位的组件，它会把组件剩余位置占满，防止出现错位。`mdl-layout-drawer`是一个抽屉组件，和Android的标准应用类似，点击顶部菜单图标会从侧面滑出一个菜单。别忘了在AppModule中引入
+```
+...
+import { MdlModule } from 'angular2-mdl';
+...
+@NgModule({
+  ...
+  imports: [
+    ...
+    MdlModule,
+    ...
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+我们为了使用，还需要对颜色做个定制，这个定制需要使用一种CSS的预编译技术叫[SASS][57]，需要建立一个`src\styles.scss`，然后定义Material Design的颜色，具体颜色名字的定义是在Google调色板类中定义的，可以去这里[查看][58]。
+```scss
+@import "~angular2-mdl/scss/color-definitions";
+
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-amber-A200;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
+
+@import '~angular2-mdl/scss/material-design-lite';
+```
+由于我们使用的CLI并不知道我们采用了预编译的css，所以需要改一下`angular-cli.json`，把styles改写成下面的样子
+```
+"styles": [
+        "styles.scss"
+      ],
+```
+保存后打开浏览器看一下效果：
+![image_1b2g0jju71mdsnd3k2v174k7129.png-11.5kB][59]
+我们接下来改造一下login的模板
+```
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <mdl-textfield
+      type="text"
+      label="Username..."
+      name="username"
+      floating-label
+      required
+      [(ngModel)]="username"
+      #usernameRef="ngModel"
+      >
+    </mdl-textfield>
+    <div *ngIf="auth?.hasError" >
+      {{auth?.errMsg}}
+    </div>
+    <mdl-textfield
+      type="password"
+      label="Password..."
+      name="password"
+      floating-label
+      required
+      [(ngModel)]="password"
+      #passwordRef="ngModel">
+    </mdl-textfield>
+    <button 
+      mdl-button mdl-button-type="raised" 
+      mdl-colored="primary" 
+      mdl-ripple type="submit">
+      Login
+    </button>
+  </form>
+</div>
+```
+由于采用了符合Material Design的组件，我们就不需要原来的用于验证的`div`了。
+![image_1b2g1csop1684jfghpphffui9m.png-17kB][60]
+下面看一下Todo，原来我们在css中用了svg来改写复选框的样子，现在我们试试用mdl来做。在`todo-list.component.html`中把ToggleAll改写成下面的样子
+```html
+<mdl-icon-toggle class="toggle-all" [mdl-ripple]="true" (click)="onToggleAllTriggered()">expand_more</mdl-icon-toggle>
+```
+这个标签是把一个图标做成可复选框的效果，这里用到了Google的icon font，所以需要在`index.html`中引入
+```html
+<!doctype html>
+<html>
+<head>
+  ...
+  <link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons">
+</head>
+<body>
+  <app-root>Loading...</app-root>
+</body>
+</html>
+```
+我们用了科大的镜像，因为Google的产品，你懂的。
+当然TodoItem模板中的checkbox也需要改造成
+```html
+<mdl-icon-toggle (click)="toggle()" [(ngModel)]="isChecked">check_circle</mdl-icon-toggle>
+```
+Todo变成下面的样子，也还不错啊~~
+![image_1b2g1e0261mkmtp61kjm6f94g513.png-81.7kB][61]
+
+## 模块优化
+现在仔细看一下我们的各个模块定义，发现我们不断地重复引入了`CommonModule`、`FormsModule`、`MdlModule`，这些如果在大部分的组件中都会用到话，我们不妨建立一个SharedModule （`src\app\shared\shared.module.ts`）
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MdlModule } from 'angular2-mdl';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    MdlModule
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    MdlModule
+  ]
+})
+export class SharedModule { }
+```
+这个模块的作用是把常用的组件和模块打包起来（虽然现在没有组件，只是把常用的模块导入又导出），这样在其他模块中只需引入这个模块即可，比如TodoModule现在看起来是下面的样子：
+```javascript
+...
+import { SharedModule } from '../shared/shared.module';
+...
+@NgModule({
+  imports: [
+    SharedModule,
+    ...
+  ],
+  declarations: [
+    TodoComponent,
+    ...
+  ],
+  providers: [
+    {provide: 'todoService', useClass: TodoService}
+    ],
+})
+export class TodoModule {}
+```
+## 多个不同组件间的通信
 
 
   [1]: https://angular.io/
@@ -3167,3 +3356,14 @@ export class TodoRoutingModule { }
   [48]: http://static.zybuluo.com/wpcfan/xpf46qrbe9wrdwi2d5r1rp4s/image_1b23hjd3rble1nb11u7i19qgjqb1g.png
   [49]: http://static.zybuluo.com/wpcfan/0b7dqnyzc2a50z5jvohr2nxz/image_1b23htavu19i412obd751h8kusj1t.png
   [50]: http://static.zybuluo.com/wpcfan/p7dr7hd1wkwcz1rn9bdlmlrm/image_1b23igfkdhn71ug71cng3in94t2a.png
+  [51]: http://static.zybuluo.com/wpcfan/enoypw8hkt4rs5qpwby7fey3/image_1b2m0102o1d721c438jr18r9f889.png
+  [52]: http://static.zybuluo.com/wpcfan/km6fx7cleicpzpuqn681my0m/image_1b2m07bdvqk91aaodsd16pd2kuv.png
+  [53]: http://static.zybuluo.com/wpcfan/df0pajt5bei3pbw0b854a2n1/image_1b2m0l4teqja2f016s61g5o14261c.png
+  [54]: https://github.com/angular/material2 "Material 2"
+  [55]: https://getmdl.io
+  [56]: https://github.com/mseemann/angular2-mdl
+  [57]: http://sass-lang.com/
+  [58]: http://mseemann.io/angular2-mdl/theme
+  [59]: http://static.zybuluo.com/wpcfan/d01y1qp5ke1mvm56b4s7db7m/image_1b2g0jju71mdsnd3k2v174k7129.png
+  [60]: http://static.zybuluo.com/wpcfan/c8s2lzrgia8kc0iouy3gcuwu/image_1b2g1csop1684jfghpphffui9m.png
+  [61]: http://static.zybuluo.com/wpcfan/tu60u4nrupshfjhmz8xnvr8o/image_1b2g1e0261mkmtp61kjm6f94g513.png
