@@ -41,6 +41,11 @@
     - [路由守卫](#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB)
   - [路由模块化](#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96)
   - [用VSCode进行调试](#%E7%94%A8vscode%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95)
+- [第六节：使用第三方样式库及模块优化](#%E7%AC%AC%E5%85%AD%E8%8A%82%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93%E5%8F%8A%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
+  - [生产环境初体验](#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%88%9D%E4%BD%93%E9%AA%8C)
+  - [第三方样式库](#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93)
+  - [模块优化](#%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
+  - [多个不同组件间的通信](#%E5%A4%9A%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -3304,6 +3309,231 @@ import { SharedModule } from '../shared/shared.module';
 export class TodoModule {}
 ```
 ## 多个不同组件间的通信
+下面我们要实现这样一个功能：在用户未登录时，顶部菜单中只有Login一个链接可见，用户登录后，顶部菜单中有三个链接，一个是Todo，一个是用户个人信息，另一个是Logout。按这个需求将顶部菜单改造成如下：
+```html
+<!--src\app\app.component.html-->
+<mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
+  <mdl-layout-header>
+    <mdl-layout-header-row>
+      <mdl-layout-title>{{title}}</mdl-layout-title>
+      <mdl-layout-spacer></mdl-layout-spacer>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation" *ngIf="auth?.user?.username !== null">
+        <a class="mdl-navigation__link" routerLink="todo">Todos</a>
+      </nav>
+      <nav class="mdl-navigation" *ngIf="auth?.user?.username !== null">
+        <a class="mdl-navigation__link" routerLink="profile">{{auth.user.username}}</a>
+      </nav>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" *ngIf="auth?.user?.username === null" (click)="login()">
+          Login
+        </a>
+        <a class="mdl-navigation__link" *ngIf="auth?.user?.username !== null" (click)="logout()">
+          Logout
+        </a>
+      </nav>
+    </mdl-layout-header-row>
+  </mdl-layout-header>
+  <mdl-layout-drawer>
+    <mdl-layout-title>{{title}}</mdl-layout-title>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link">Link</a>
+    </nav>
+  </mdl-layout-drawer>
+  <mdl-layout-content class="content">
+    <router-outlet></router-outlet>
+  </mdl-layout-content>
+</mdl-layout>
+```
+这样改造完后的页面结构是顶部菜单只加载一次，底下的内容随着不同路由显示不同内容。但如果我们要在login后顶部菜单也随之改变的话，我们一定要实现某种通信机制。前面我们讲过EventEmiiter，当然我们可以将整个页面当成父控件，顶部菜单是子控件的形式，但这时你发现由于我们是用路由插座（`<router-outlet></router-outlet>`） l来显示内容的，所以无法采用子控件的形式传递信息。
+
+这种情况就要引入Rx了，rx的学习门槛较高，也不是本教程的重点，但我还是这里尝试着解释一下。Rx是响应式编程的利器，它的学习门槛来自于思维方式的转变，从传统的编程思维转成流式思维：Rx总体来看是一个数据流或信号流，所有的操作符都是为了对这个流进行控制。写Rx时要对系统数据或信号的完整逻辑流程先想清楚，然后就比较好写了。
+
+其实在Angular2中，Rx是无处不在的，还记得我们之前总用到toPromise()这个方法吗？其实这个方法是给不太熟悉Rx的同学用的，Angular本身返回的就是Observable。我们现在把UserService改成Rx版本
+```javascript
+import { Injectable } from '@angular/core';
+
+import { Http, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+
+import { User } from '../domain/entities';
+
+@Injectable()
+export class UserService {
+
+  private api_url = 'http://localhost:3000/users';
+
+  constructor(private http: Http) { }
+
+  getUser(userId: number): Observable<User> {
+    const url = `${this.api_url}/${userId}`;
+    return this.http.get(url)
+              .map(res => res.json() as User);
+  }
+  findUser(username: string): Observable<User> {
+    const url = `${this.api_url}/?username=${username}`;
+    return this.http.get(url)
+              .map(res => {
+                let users = res.json() as User[];
+                return (users.length>0) ? users[0] : null;
+              });
+  }
+}
+```
+大家可能注意到了，其实有没有Promise都无所谓，大概的写法也是类似的，只不过返回的是Observable。这里改了之后，相关调用的地方都要改一下，比如LoginComponent：
+```javascript
+import { Component, Inject } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Auth } from '../domain/entities';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+
+  username = '';
+  password = '';
+  auth: Auth;
+  constructor(@Inject('auth') private service, private router: Router) { }
+
+  onSubmit(){
+    this.service
+      .loginWithCredentials(this.username, this.password)
+      .subscribe(auth => {
+        this.auth = Object.assign({}, auth);
+        if(!auth.hasError){
+          this.router.navigate(['todo']);
+        }
+      });
+  }
+}
+```
+AuthService也需要改写一下
+```javascript
+import { Injectable, Inject } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
+
+import { ReplaySubject, Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { Auth } from '../domain/entities';
+
+@Injectable()
+export class AuthService {
+  auth: Auth = {hasError: true, redirectUrl: '', errMsg: 'not logged in'};
+  subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
+  constructor(private http: Http, @Inject('user') private userService) {
+  }
+  getAuth(): Observable<Auth> {
+    return this.subject.asObservable();
+  }
+  unAuth(): void {
+    this.auth = Object.assign(
+      {},
+      this.auth,
+      {user: null, hasError: true, redirectUrl: '', errMsg: 'not logged in'});
+    this.subject.next(this.auth);
+  }
+  loginWithCredentials(username: string, password: string): Observable<Auth> {
+    return this.userService
+      .findUser(username)
+      .map(user => {
+        let auth = new Auth();
+        if (null === user){
+          auth.user = null;
+          auth.hasError = true;
+          auth.errMsg = 'user not found';
+        } else if (password === user.password) {
+          auth.user = user;
+          auth.hasError = false;
+          auth.errMsg = null;
+        } else {
+          auth.user = null;
+          auth.hasError = true;
+          auth.errMsg = 'password not match';
+        }
+        this.auth = Object.assign({}, auth);
+        this.subject.next(this.auth);
+        return this.auth;
+      });
+  }
+}
+```
+这里注意到我们引入了一个新概念：Subject。Subject 既是Observer（观察者）也是Observable（被观察对象）。这里采用Subject的原因是我们在Login时改变了Auth的属性，但由于这个Login方法是Login页面显性调用的，其他需要观察Auth变化的地方调用的是getAuth()方法。这样的话，我们需要在Auth发生变化时推送变化出去，我们在loginWithCredentials方法中以`this.subject.next(this.auth);`写入其变化，在getAuth()中用`return this.subject.asObservable();`将Subject转换成Observable。
+```
+Auth:{}     Auth{user: {id: 1...}}     没有Auth数据发射了
+|============|===========================|=====
+登录前      登录后                     todo路由守卫激活
+```
+但为什么是ReplaySubject呢？我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕，CanActivate检查时会发现没有Auth数据。这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
+
+下面我们改写路由守卫
+```
+import { Injectable, Inject } from '@angular/core';
+import {
+  CanActivate,
+  CanLoad,
+  Router,
+  Route,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot }    from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class AuthGuardService implements CanActivate, CanLoad {
+
+  constructor(
+    private router: Router,
+    @Inject('auth') private authService) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    let url: string = state.url;
+
+    return this.authService.getAuth()
+      .map(auth => !auth.hasError);
+  }
+  canLoad(route: Route): Observable<boolean> {
+    let url = `/${route.path}`;
+
+    return this.authService.getAuth()
+      .map(auth => !auth.hasError);
+  }
+}
+```
+这里你会发现多了一个canLoad方法，canActivate是用于是否可以进入某个url，而canLoad是决定是否加载某个url对应的模块。所以需要再改下路由
+```
+import { NgModule }     from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './core/auth-guard.service';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'todo',
+    redirectTo: 'todo/ALL',
+    canLoad: [AuthGuardService]
+  }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true })
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule {}
+```
+现在打开浏览器欣赏一下我们的成果。
+![image_1b2o9tso51ald1u0e1nr59gi119i9.png-66.5kB][62]
 
 
   [1]: https://angular.io/
@@ -3367,3 +3597,4 @@ export class TodoModule {}
   [59]: http://static.zybuluo.com/wpcfan/d01y1qp5ke1mvm56b4s7db7m/image_1b2g0jju71mdsnd3k2v174k7129.png
   [60]: http://static.zybuluo.com/wpcfan/c8s2lzrgia8kc0iouy3gcuwu/image_1b2g1csop1684jfghpphffui9m.png
   [61]: http://static.zybuluo.com/wpcfan/tu60u4nrupshfjhmz8xnvr8o/image_1b2g1e0261mkmtp61kjm6f94g513.png
+  [62]: http://static.zybuluo.com/wpcfan/nks5h5wn6cf3mcjmxem301mm/image_1b2o9tso51ald1u0e1nr59gi119i9.png
