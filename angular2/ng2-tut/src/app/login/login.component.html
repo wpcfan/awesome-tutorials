@@ -1,32 +1,56 @@
-<div>
-  <form (ngSubmit)="onSubmit()">
-    <mdl-textfield
-      type="text"
-      label="Username..."
-      name="username"
-      floating-label
-      required
-      [(ngModel)]="username"
-      #usernameRef="ngModel"
-      >
-    </mdl-textfield>
+<div
+  class="mdl-grid mdl-grid--no-spacing login-container"
+  [ngStyle]="{'background-image': 'url(' + photo + ')'}">
+  <mdl-layout-spacer
+    class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
+  </mdl-layout-spacer>
+  <form
+    class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone login-form"
+    (ngSubmit)="onSubmit()"
+    >
+    <p>
+      <mdl-textfield
+        type="text"
+        label="Username..."
+        name="username"
+        floating-label
+        required
+        [(ngModel)]="username"
+        #usernameRef="ngModel"
+        >
+      </mdl-textfield>
+    </p>
     <div *ngIf="auth?.hasError" >
-      {{auth?.errMsg}}
+      {{auth.errMsg}}
     </div>
-    <mdl-textfield
-      type="password"
-      label="Password..."
-      name="password"
-      floating-label
-      required
-      [(ngModel)]="password"
-      #passwordRef="ngModel">
-    </mdl-textfield>
-    <button
-      mdl-button mdl-button-type="raised"
-      mdl-colored="primary"
-      mdl-ripple type="submit">
-      Login
-    </button>
+    <p>
+      <mdl-textfield
+        type="password"
+        label="Password..."
+        name="password"
+        floating-label
+        required
+        [(ngModel)]="password"
+        #passwordRef="ngModel">
+      </mdl-textfield>
+    </p>
+    <p>
+      <button
+        mdl-button mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple type="submit"
+        [@loginState]="loginBtnState"
+        (mouseenter)="toggleLoginState(true)"
+        (mouseleave)="toggleLoginState(false)">
+        Login
+      </button>
+      <button
+        mdl-button
+        mdl-colored="accent"
+        (click)="register($event)">
+        Register
+      </button>
+    </p>
   </form>
+  <mdl-layout-spacer></mdl-layout-spacer>
 </div>

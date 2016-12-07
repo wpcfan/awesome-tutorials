@@ -1,0 +1,43 @@
+<form [formGroup]="form">
+  <h3 class="mdl-dialog__title">Register</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield
+      #firstElement
+      type="text"
+      label="Username"
+      formControlName="username"
+      floating-label>
+    </mdl-textfield>
+    <br/>
+    <div formGroupName="passwords" #passwordsRef>
+      <mdl-textfield
+        type="password"
+        label="Password"
+        formControlName="password"
+        floating-label>
+      </mdl-textfield>
+      <br/>
+      <mdl-textfield
+        type="password"
+        label="Repeat Password"
+        formControlName="repeatPassword"
+        floating-label>
+      </mdl-textfield>
+    </div>
+  </div>
+  <div class="status-bar">
+    <p class="mdl-color-text--primary">{{statusMessage}}</p>
+    <mdl-spinner [active]="processingRegister"></mdl-spinner>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button
+      type="button"
+      mdl-button
+      (click)="register()"
+      [disabled]="!form.valid || processingRegister"
+      mdl-button-type="raised"
+      mdl-colored="primary" mdl-ripple>
+      Register
+    </button>
+  </div>
+</form>

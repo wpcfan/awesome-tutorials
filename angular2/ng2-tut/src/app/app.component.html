@@ -1,4 +1,4 @@
-<mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
+<mdl-layout mdl-layout-fixed-header>
   <mdl-layout-header>
     <mdl-layout-header-row>
       <mdl-layout-title>{{title}}</mdl-layout-title>
@@ -8,7 +8,7 @@
         <a class="mdl-navigation__link" routerLink="todo">Todos</a>
       </nav>
       <nav class="mdl-navigation" *ngIf="auth?.user?.username !== null">
-        <a class="mdl-navigation__link" routerLink="profile">{{auth.user.username}}</a>
+        <a class="mdl-navigation__link">{{auth.user.username}}</a>
       </nav>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" *ngIf="auth?.user?.username === null" (click)="login()">

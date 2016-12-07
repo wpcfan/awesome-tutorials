@@ -57,8 +57,10 @@
 ---
 [TOC]
 
-# 第一节：认识Angular 2.0
-## 前言
+# 前言 -- 一个大叔码农的Angular2创世纪
+作为一个出生于70年代的大叔，我在软件这个领域已经摸爬滚打了16年：从程序员、项目经理、产品经理、项目总监到部门管理等各个角色都体验过。
+# 第一天：认识Angular 2.0
+## Angular2简介
 [Angular 2][1] 是Google推出的一个跨平台全终端的框架，和目前比较火的React和Vue.js相比，有如下优点：
 
  1. 由于Google的目的是推出一个完整解决方案，所以官方默认提供的类库（比如routing，http，依赖性注入（DI）等）非常完整，无需自己选择。React的一大痛点就是选择太多导致在配置寻找组件和类库的过程中消耗太多精力，当然从另一方面看这也是其优势，选择众多且自由。
@@ -223,7 +225,7 @@ platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap01/angular2/ng2-tut
 
 下一节我们再继续，记住大叔能学会的你也能。
-# 第二节：用Form表单做一个登录控件
+# 第二天：用Form表单做一个登录控件
 ## 对于login组件的小改造
 在 `hello-angular\src\app\login\login.component.ts` 中更改其模板为下面的样子
 ```javascript
@@ -723,7 +725,7 @@ export class LoginComponent implements OnInit {
  - 练习2：如果我们想在输入框聚焦时把默认文字清除掉，该怎么做？
  - 练习3：如果我们想把默认文字颜色设置成浅灰色该怎么做？
 
-# 第三节：建立一个待办事项应用
+# 第三天：建立一个待办事项应用
 
 这一章我们会建立一个更复杂的待办事项应用，当然我们的登录功能也还保留，这样的话我们的应用就有了多个相对独立的功能模块。以往的web应用根据不同的功能跳转到不同的功能页面。但目前前端的趋势是开发一个SPA（Single Page Application 单页应用），所以其实我们应该把这种跳转叫视图切换：根据不同的路径显示不同的组件。那我们怎么处理这种视图切换呢？幸运的是，我们无需寻找第三方组件，Angular官方内建了自己的路由模块。
 
@@ -1059,7 +1061,7 @@ export class TodoService {
 ```
 上面的代码我们看到定义了一个`api_url = 'api/todos'`，你可能会问这个是怎么来的？其实这个我们改写成`api_url = 'blablabla/nahnahnah'`也无所谓，因为这个内存web服务的机理是拦截web访问，也就是说随便什么地址都可以，内存web服务会拦截这个地址并解析你的请求是否满足RESTful API的要求。
 
-简单来说RESTful API中GET请求用于查询，PUT用于更新，DELETE用于删除，POST用于添加。比如如果url是api/todos，那么
+简单来说RESTful API中以“名词”来标识资源，比如todos；以don“动词”标识操作，比如：GET请求用于查询，PUT用于更新，DELETE用于删除，POST用于添加。比如如果url是api/todos，那么
 
  - 查询所有待办事项：以GET方法访问`api/todos`
  - 查询单个待办事项：以GET方法访问`api/todos/id`，比如id是1，那么访问`api/todos/1`
@@ -1166,7 +1168,7 @@ export class TodoService {
   }
 }
 ```
-然后更新`src\app\todo\todo.component.ts`
+上面的代码中可以看到对应Restful API的各个“动词”，angular 2.x 提供了一系列对应名称的方法，非常简单易用。然后更新`src\app\todo\todo.component.ts`
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo.service';
@@ -1583,7 +1585,7 @@ body {
 ![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][38]
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap03/angular2/ng2-tut
 
-# 第四节：进化！模块化你的应用
+# 第四天：进化！模块化你的应用
 ## 一个复杂组件的分拆
 上一节的末尾我偷懒的甩出了大量代码，可能你看起来都有点晕了，这就是典型的一个功能经过一段时间的需求累积后，代码也不可避免的臃肿起来。现在我们看看怎么分拆一下吧。
 ![image_1b11kjibcelb6upnb21su41dilm.png-59.5kB][39]
@@ -2107,7 +2109,7 @@ export class AppModule { }
 ```
 而且此时我们注意到其实没有任何一个地方目前还需引用`<app-todo></app-todo>`了，这就是说我们可以安全地把`selector: 'app-todo',`从Todo组件中的`@Component`修饰符中删除了。
 ## 更真实的web服务
-这里我们不想再使用内存Web服务了，因为如果使用，我们无法将其封装在TodoModule中。所以我们使用一个更“真”的web服务：json-server。使用`npm install -g json-server`安装json-server。然后在todo目录下建立`todo-data.json`
+这里我们不想再使用内存Web服务了，所以我们使用一个更“真”的web服务：json-server。使用`npm install -g json-server`安装json-server。然后在todo目录下建立`todo-data.json`。这个json-server的牛逼之处在于可以根据一个或多个json数据建立一个完整的web服务，提供Restful的API形式。比内存Web服务好的地方在于，我们可以通过浏览器或一些工具（比如Postman）检验API的有效性和数据传递。
 ```javascript
 {
   "todos": [
@@ -2139,7 +2141,7 @@ export class AppModule { }
 // private api_url = 'api/todos';
   private api_url = 'http://localhost:3000/todos';
 ```
-并将addTodo和getTodos中then语句中的 `res.json().data`替换成`res.json()`。在AppModule中删掉内存web服务相关的语句。
+现在我们的json结构并不在data节点下了，所以请将addTodo和getTodos中then语句中的 `res.json().data`替换成`res.json()`。在AppModule中删掉内存web服务相关的语句。
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -2304,7 +2306,7 @@ export class TodoListComponent {
   }
 }
 ```
-上面代码中有一个新东东，就是在`todos()`方法前我们看到有`set`和`get`两个访问修饰符。这个是由于我们如果把todos当成一个成员变量给出的话，在设置后如果父组件的todos数组改变了，子组件并不知道这个变化，从而不能更新子组件本身的内容。所以我们把todos做成了方法，而且通过get和set修饰成属性方法，也就是说从模板中引用的话可以写成`{{todos}}`。通过标记`set todos()`为`@Input`我们可以监视父组件的数据变化。
+上面代码中有一个新东东，就是在`todos()`方法前我们看到有`set`和`get`两个访问修饰符。这个是由于我们如果把todos当成一个成员变量给出的话，在设置后如果父组件的todos数组改变了，子组件并不知道这个变化，从而不能更新子组件本身的内容。所以我们把todos做成了方法，而且通过get和set修饰成属性方法，也就是说从模板中引用的话可以写成`{{todos}}`。通过标记`set todos()`为`@Input`我们可以监视父组件的数据变化。也就是说如果只定义一个输入型属性的话，那么这个属性是“只写”的，如果要检测父组件给设置的值的变化，我们需要读，所以要提供读和写两个方法。
 
 现在回过头来看一下`todo.component.html`，我们看到`(onRemoveTodo)="removeTodo($event)"`，这句是为了处理子组件（TodoList）的输出型参数（onRemoveTodo），而$event其实就是这个事件反射器携带的参数（这里是`todo:Todo`）。我们通过这种机制完成组件间的数据交换。
 ```html
@@ -2538,8 +2540,8 @@ toggleTodo(todo: Todo): Promise<void> {
 
 本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap04/angular2/ng2-tut
 
-# 第五节：多用户版本的待办事项应用
-第四节我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
+# 第五天：多用户版本的待办事项应用
+第四天我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
 但可惜我们目前的LoginComponent还是个实验品，很多功能的缺失，我们是先去做Login呢，还是利用现有的Todo对象先试验一下呢？我个人的习惯是先进行试验。
 
 ## 数据驱动开发
@@ -3119,7 +3121,7 @@ export class TodoRoutingModule { }
 
 本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
 
-# 第六节：使用第三方样式库及模块优化
+# 第六天：使用第三方样式库及模块优化
 
 ## 生产环境初体验
 用angular-cli建立生产环境是非常简单的，只需输入`ng build --prod --aot`即可。--prod会使用生产环境的配置文件，--aot会使用AOT替代JIT进行编译。现在实验一下
@@ -3462,11 +3464,11 @@ export class AuthService {
 ```
 这里注意到我们引入了一个新概念：Subject。Subject 既是Observer（观察者）也是Observable（被观察对象）。这里采用Subject的原因是我们在Login时改变了Auth的属性，但由于这个Login方法是Login页面显性调用的，其他需要观察Auth变化的地方调用的是getAuth()方法。这样的话，我们需要在Auth发生变化时推送变化出去，我们在loginWithCredentials方法中以`this.subject.next(this.auth);`写入其变化，在getAuth()中用`return this.subject.asObservable();`将Subject转换成Observable。
 ```
-Auth:{}     Auth{user: {id: 1...}}     没有Auth数据发射了
-|============|===========================|=====
-登录前      登录后                     todo路由守卫激活
+getAuth() Auth:{}  Auth{user: {id: 1...}} getAuth()-没有Auth数据发射了
+|==========|==============|===========================|=====
+导航栏    登录前          登录后              todo路由守卫激活
 ```
-但为什么是ReplaySubject呢？我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕，CanActivate检查时会发现没有Auth数据。这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
+但为什么是ReplaySubject呢？我们共有2处需要监听Auth的变化：一处是导航栏，导航栏会依据不同的Auth值来显示/隐藏不同菜单；另一处是todo的路由守卫，它会依据Auth是否有错误来判断是否允许进入该路由url。我们来以时间维度分析一下流程：我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕（因为我们在loginWithCredentials中写入了变化值），CanActivate检查时会发现没有Auth数据。这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
 
 下面我们改写路由守卫
 ```
@@ -3533,7 +3535,70 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 现在打开浏览器欣赏一下我们的成果。
-![image_1b2o9tso51ald1u0e1nr59gi119i9.png-66.5kB][62]
+![改造后的首页登录后效果图][62]
+
+本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap06/angular2/ng2-tut
+
+# 第七天：给组件带来活力
+这节我们的主题是“专注酷炫一百年”；-）其实...没那么夸张了，但我们还是要在这一节了解MDL css框架、Angular2 内建的动画特性、更复杂的组件和概括一下Angular2的组件生命周期。
+## 更炫的登陆页
+大家不知道有没有试用过bing（必应）搜索引擎（在Google无法访问的情况下，bing的英文搜索还是不错的选择），这个搜索引擎的主页很有特点：每日都会有一张非常好看的图作为背景。
+![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][63]
+我们想做的一个特效呢是类似地给登陆页增加一个背景，但更酷的一点是，我们的背景每隔3秒会自动替换一张。由于涉及到布局，我们先来熟悉一下CSS的框架设计。
+### 响应式的CSS框架
+目前主流的响应式css框架都有网格的概念，在我们现在使用的MDL（Material Design Lite）框架中叫做grid。在MDL中，一个页面在PC浏览器上的宽度有12个格子，在平板上有8个格子，在手机上有4个格子
+
+![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][64]
+```html
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+  <div class="mdl-cell mdl-cell--1-col">1</div>
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col">4</div>
+  <div class="mdl-cell mdl-cell--4-col">4</div>
+  <div class="mdl-cell mdl-cell--4-col">4</div>
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col">6</div>
+  <div class="mdl-cell mdl-cell--4-col">4</div>
+  <div class="mdl-cell mdl-cell--2-col">2</div>
+</div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">6 (8 tablet)</div>
+  <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet">4 (6 tablet)</div>
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">2 (4 phone)</div>
+</div>
+```
+
+你可以尝试把浏览器的窗口缩小，让宽度变窄，调整到一定程度后你会发现，布局改变了，变成了下面的样子，这就是同样的代码在平板上的效果。
+![image_1b36lq1ikh3vnfkadg8rpnrm13.png-59.4kB][65]
+
+## 自带动画技能的Angular2
+Angular2的目标是一站式解决方案，当然会自带动画技能。
+
+## 更复杂的组件--嵌含（Transclude）组件
+
+## Angular 2的组件生命周期
+
+## 测试与发布
+
+# 番外：Rx--隐藏在Angular 2.x中利剑
+## Rx再体验
+
+## 常见操作
+
+## Angular2中的内建支持
 
 
   [1]: https://angular.io/
@@ -3598,3 +3663,6 @@ export class AppRoutingModule {}
   [60]: http://static.zybuluo.com/wpcfan/c8s2lzrgia8kc0iouy3gcuwu/image_1b2g1csop1684jfghpphffui9m.png
   [61]: http://static.zybuluo.com/wpcfan/tu60u4nrupshfjhmz8xnvr8o/image_1b2g1e0261mkmtp61kjm6f94g513.png
   [62]: http://static.zybuluo.com/wpcfan/nks5h5wn6cf3mcjmxem301mm/image_1b2o9tso51ald1u0e1nr59gi119i9.png
+  [63]: http://static.zybuluo.com/wpcfan/rpvxg5kcdy1gs6pka50wieda/image_1b36ghm4o179516kdikkbc14qp9.png
+  [64]: http://static.zybuluo.com/wpcfan/fwq8nslpo6j6g4dwv534xhfy/image_1b36l1ajl1qqm1t091m89gbe1cr7m.png
+  [65]: http://static.zybuluo.com/wpcfan/d749paatwa3if5lagm9sbg86/image_1b36lq1ikh3vnfkadg8rpnrm13.png
