@@ -50,6 +50,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Angular 2.x 从0到1 
+
 ## 史上最简单Angular 2.x教程，大叔都学会了
 
 作者：王芃 wpcfan@gmail.com
@@ -57,10 +58,18 @@
 ---
 [TOC]
 
+---
+
 # 前言 -- 一个大叔码农的Angular2创世纪
+
 作为一个出生于70年代的大叔，我在软件这个领域已经摸爬滚打了16年：从程序员、项目经理、产品经理、项目总监到部门管理等各个角色都体验过。
-# 第一天：认识Angular 2.0
+
+---
+
+# 第一章：认识Angular 2.0
+
 ## Angular2简介
+
 [Angular 2][1] 是Google推出的一个跨平台全终端的框架，和目前比较火的React和Vue.js相比，有如下优点：
 
  1. 由于Google的目的是推出一个完整解决方案，所以官方默认提供的类库（比如routing，http，依赖性注入（DI）等）非常完整，无需自己选择。React的一大痛点就是选择太多导致在配置寻找组件和类库的过程中消耗太多精力，当然从另一方面看这也是其优势，选择众多且自由。
@@ -72,6 +81,7 @@
 但总体来讲，个人认为Angular2更适合从原生App开发或后端Java/.Net等转型过来开发前端的程序员，因为它的开发模型更接近于传统强类型语言的模式，加上官方内建的组件和类库比较完整，有[官方中文站][6]点，学习曲线要低一些。有过Angular 1.x 开发经验的同学要注意了，虽然只有一个版本号的差距，但2.x和1.x是完全不同的，不要奢望1.x的应用会平滑迁移到2.x。
 
 ## 环境配置要求
+
 Angular2需要[node.js][7]和npm，我们下面的例子需要node.js 6.x.x和npm 3.x.x，请使用 `node -v` 和 `npm -v` 来检查。由于众所周知的原因，http://npmjs.org 的站点访问经常不是很顺畅，这里给出一个由淘宝团队维护的国内镜像 http://npm.taobao.org/ 。安装好node后，请输入`npm config set registry https://registry.npm.taobao.org`
 
 和[官方快速起步文档][8]给出的例子不同，我们下面要使用Angular团队目前正在开发中的一个工具--[Angular CLI][9] 。这是一个类似于React CLI和Ember CLI的命令行工具，用于快速构建Angular2的应用。它的优点是进一步屏蔽了很多配置的步骤、自动按官方推荐的模式进行代码组织、自动生成组件/服务等模板以及更方便的发布和测试代码。由于目前这个工具还在beta阶段，安装时请使用 `npm install -g angular-cli@latest` 命令。
@@ -81,21 +91,33 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 安装完以上这些工具，开发环境就部署好了，下面我们将开始Angular2的探险之旅。
 
 ## 第一个小应用 Hello Angular
+
 那么现在开启一个terminal（命令行窗口），键入 `ng new hello-angular`
-![c1_s1_ng_new_hello-angular.png-51.7kB][13] 如上图所示，这个命令为我们新建了一个名为“hello-angular”的工程，进入该工程目录，键入 `code .` 可以打开IDE看到如下目录
+
+![c1_s1_ng_new_hello-angular.png-51.7kB][13] 
+
+如上图所示，这个命令为我们新建了一个名为“hello-angular”的工程，进入该工程目录，键入 `code .` 可以打开IDE看到如下目录
+
 ![c1_s1_vscode_project_struct.png-300.1kB][14] 
 
 ![image_1b2aksv68uhs3mf64j1h9st7o9.png-292.3kB][15]
+
 大概了解了文件目录结构后，我们重新回到命令行，在应用根目录键入 `ng serve` 可以看到应用编译打包后server运行在4200端口。
 ![c1_s1_ng_serve.png-42.5kB][16]
 打开浏览器输入 http://localhost:4200 即可看到程序运行成功啦！
+
 ![c1_s1_project_1st_browser.png-135.7kB][17]
+
 自动生成的太没有成就感了是不是，那么我们动手改一下吧。保持运行服务的命令窗口，然后进入VSCode，打开 `src/app/app.component.ts` 修改title，比如： `title = 'This is a hello-angular app';`，保存后返回浏览器看一下吧，结果已经更新了，这种热装载的特性使得开发变得很方便。
+
 ![c1_s1_project_1st_browser_update.png-146.5kB][18]
 
 ## 第一个组件
+
 那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
+
 ![image_1b27r02qlo6f11f19qg1q9k1fclm.png-30.3kB][19]
+
 angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
@@ -134,11 +156,15 @@ export class LoginComponent implements OnInit {
 <app-login></app-login>
 ```
 保存后返回浏览器，可以看到我们的第一个组件也显示出来了。
+
 ![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][20]
 
 ## 一些基础概念
+
 这里我们粗略介绍一些Angular的基础概念，这些基础概念在后面的章节中会更详细的讲解。
+
 ### 什么是模块？
+
 简单来说模块就是提供相对独立功能的功能块，每块聚焦于一个特定业务领域。Angular内建的很多库是以模块形式提供的，比如FormsModule封装了表单处理，HttpModule封装了Http的处理等等。每个Angular应用至少有一个模块类 —— *根模块*，我们将通过引导根模块来启动应用。按照约定，根模块的类名叫做AppModule，被放在 `app.module.ts` 文件中。我们这个例子中的根模块位于 `hello-angular\src\app\app.module.ts`
 
 ```javascript
@@ -191,7 +217,9 @@ bootstrap指明哪个组件为引导性组件（本案例中的AppComponent）�
 </body>
 </html>
 ```
+
 ### 引导过程
+
 Angular2通过在main.ts中引导AppModule来启动应用。针对不同的平台，Angular提供了很多引导选项。下面的代码是通过即时（JiT）编译器动态引导，一般在进行开发调试时，默认采用这种方式。
 
 ```javascript
@@ -225,8 +253,13 @@ platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap01/angular2/ng2-tut
 
 下一节我们再继续，记住大叔能学会的你也能。
-# 第二天：用Form表单做一个登录控件
+
+---
+
+# 第二章：用Form表单做一个登录控件
+
 ## 对于login组件的小改造
+
 在 `hello-angular\src\app\login\login.component.ts` 中更改其模板为下面的样子
 ```javascript
 import { Component, OnInit } from '@angular/core';
@@ -251,7 +284,9 @@ export class LoginComponent implements OnInit {
 }
 ```
 我们增加了一个文本输入框和一个按钮，保存后返回浏览器可以看到结果
+
 ![c2_s1_input_button_added.png-109.6kB][21]
+
 接下来我们尝试给Login按钮添加一个处理方法 `<button (click)="onClick()">Login</button>`。`(click)`表示我们要处理这个button的click事件，圆括号是说**发生此事件时，调用等号后面的表达式或函数**。等号后面的`onClick()`是我们自己定义在LoginComponent中的函数，这个名称你可以随便定成什么，不一定叫`onClick()`。下面我们就来定义这个函数，在LoginComponent中写一个叫`onClick()`的方法，内容很简单就是把“button was clicked”输出到Console。
 ```javascript
   onClick() {
@@ -259,7 +294,9 @@ export class LoginComponent implements OnInit {
   }
 ```
 返回浏览器，并按F12调出开发者工具。当你点击Login时，会发现Console窗口输出了我们期待的文字。
+
 ![c2_s1_handle_click_method.png-141kB][22]
+
 那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用是的input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`
 ```javascript
 <div>
@@ -304,9 +341,11 @@ export class LoginComponent implements OnInit {
 }
 ```
 看看结果吧，在浏览器中第一个输入框输入“wang”，第二个输入框输入“1234567”，观察Console窗口，Bingo！
+
 ![c2_s1_username_password_ref.png-141.8kB][24]
 
 ## 建立一个服务去完成业务逻辑
+
 如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
 
 下面我们为这个service添加一个方法，你可能注意到这里我们为这个方法指定了返回类型和参数类型。这就是TypeScript带来的好处，有了类型约束，你在别处调用这个方法时，如果给出的参数类型或返回类型不正确，IDE就可以直接告诉你错了。
@@ -329,6 +368,7 @@ export class AuthService {
 等一下，这个service虽然被创建了，但仍然无法在Component中使用。当然你可以在Component中import这个服务，然后实例化后使用，但是这样做并不好，仍然时一个紧耦合的模式，Angular2提供了一种依赖性注入（Dependency Injection）的方法。
 
 ### 什么是依赖性注入？
+
 如果不使用DI（依赖性注入）的时候，我们自然的想法是这样的，在`login.component.ts`中import引入AuthService，在构造中初始化service，在onClick中调用service。
 ```javascript
 import { Component, OnInit } from '@angular/core';
@@ -449,7 +489,9 @@ export class LoginComponent implements OnInit {
 
 }
 ```
+
 ## 双向数据绑定
+
 接下来的问题是我们是否只能通过这种方式进行表现层和逻辑之间的数据交换呢？如果我们希望在组件内对数据进行操作后再反馈到界面怎么处理呢？Angular2提供了一个双向数据绑定的机制。这个机制是这样的，在组件中提供成员数据变量，然后在模板中引用这个数据变量。我们来改造一下`login.component.ts`，首先在class中声明2个数据变量username和password。
 ```javascript
   username = "";
@@ -513,6 +555,7 @@ export class LoginComponent implements OnInit {
 ```
 
 ## 表单数据的验证
+
 通常情况下，表单的数据是有一定的规则的，我们需要依照其规则对输入的数据做验证以及反馈验证结果。Angular2中对表单验证有非常完善的支持，我们继续上面的例子，在`login`组件中，我们定义了一个用户名和密码的输入框，现在我们来为它们加上规则。首先我们定义一下规则，用户名和密码都是必须输入的，也就是不能为空。更改`login.component.ts`中的模板为下面的样子
 ```html
     <div>
@@ -530,10 +573,13 @@ export class LoginComponent implements OnInit {
     </div>
 ```
 注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
+
 ![c2_s2_form_validation.png-8.5kB][25]
 
 我们是知道了验证的状态是什么，但是如果我们想知道验证失败的原因怎么办呢？我们只需要将`{{usernameRef.valid}}`替换成`{{usernameRef.errors | json}}`。`|`是管道操作符，用于将前面的结果通过管道输出成另一种格式，这里就是把errors对象输出成json格式的意思。看一下结果吧，返回的结果如下
+
 ![c2_s2_form_validation_errors.png-11kB][26]
+
 如果除了不能为空，我们为username再添加一个规则试试看呢，比如字符数不能少于3。
 ```html
       <input type="text"
@@ -543,7 +589,9 @@ export class LoginComponent implements OnInit {
         minlength="3"
         />
 ```
+
 ![c2_s2_form_validation_errors_multiple.png-14.4kB][27]
+
 现在我们试着把`{{表达式}}`替换成友好的错误提示，我们想在有错误发生时显示错误的提示信息。那么我们来改造一下template。
 ```html
     <div>
@@ -624,7 +672,9 @@ export class LoginComponent implements OnInit {
   }
 ```
 你会发现`formRef.value`中包括了表单所有填写项的值。
+
 ![c2_s2_form_validation_form_submit.png-27.7kB][28]
+
 有时候在表单项过多时我们需要对表单项进行分组，HTML中提供了`fieldset`标签用来处理。那么我们看看怎么和Angular2结合吧：
 ```html
     <div>
@@ -662,9 +712,13 @@ export class LoginComponent implements OnInit {
   }
 ```
 在浏览器中试验一下吧，所有功能正常工作。
+
 ## 验证结果的样式自定义
+
 如果我们在开发工具中查看网页源码，可以看到
+
 ![c2_s2_form_validation_form_styling.png-92.5kB][30]
+
 用户名控件的HTML代码是下面的样子：在验证结果为false时input的样式是`ng-invalid`
 ```html
 <input 
@@ -700,8 +754,11 @@ export class LoginComponent implements OnInit {
   `]
 ```
 保存一下，返回浏览器可以看到，验证不通过时
+
 ![c2_s2_form_validation_style_fail.png-8.9kB][31]
+
 验证通过时是这样的：
+
 ![c2_s2_form_validation_style_pass.png-4.6kB][32]
 
 最后说一下，我们看到这样设置完样式后连form和fieldset都一起设置了，这是由于form和fieldset也在样式中应用了`.ng-valid`和`.ng-valid`，那怎么解决呢？只需要在`.ng-valid`加上`input`即可，它表明的是应用于input类型控件并且class引用了ng-invalid的元素。
@@ -717,6 +774,45 @@ export class LoginComponent implements OnInit {
 ```
 很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][33]和https://css-tricks.com/multiple-class-id-selectors/。
 
+## 组件样式
+
+刚刚我们其实已经使用了组件样式，这里简单介绍一下什么是组件样式。对于我们写的每个Angular组件来说，除了定义HTML模板之外，我们还要定义用于模板的 CSS 样式、指定任意的选择器、规则和媒体查询。
+
+实现方式之一，是在组件的元数据中设置styles属性。styles属性可以接受一个包含 CSS 代码的字符串数组。通常我们只给它一个字符串就行了，就像我们在LoginComponent中做的那样。
+
+```javascript
+@Component({
+  selector: 'app-login',
+  template: `
+    <div>
+      <input type="text"
+        [(ngModel)]="username"
+        />
+      <input type="password"
+        [(ngModel)]="password"
+        />
+      <button (click)="onClick()">Login</button>
+    </div>
+  `,
+  styles: [`
+    input.ng-invalid{
+      border: 3px solid red;
+    }
+    input.ng-valid{
+      border: 3px solid green;
+    }
+  `]
+})
+```
+组件样式在很多方面都不同于传统的全局性样式。我们放在组件样式中的选择器，只会应用在组件自身的模板中。上面这个例子中的input选择器只会对 LoginComponent模板中的`<input>`标签生效，而对应用中其它地方的`<input>`元素毫无影响。
+
+这种模块化相对于CSS的传统工作方式有如下优点：
+
+ 1. CSS 类名和选择器是控件范围的。属于组件内部的，它不会和应用中其它地方的类名和选择器出现冲突。
+ 2. 我们组件的样式不会因为别的地方修改了样式而被意外改变。
+ 3. 我们可以让每个组件的CSS代码和它的TypeScript、HTML代码放在一起，这将促成清爽整洁的项目结构。
+ 4. 修改或移除组件的CSS代码时，不用搜索整个应用来看它有没有被别处用到。
+
 本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap02/angular2/ng2-tut
 
 ## 进一步的练习
@@ -725,7 +821,9 @@ export class LoginComponent implements OnInit {
  - 练习2：如果我们想在输入框聚焦时把默认文字清除掉，该怎么做？
  - 练习3：如果我们想把默认文字颜色设置成浅灰色该怎么做？
 
-# 第三天：建立一个待办事项应用
+---
+
+# 第三章：建立一个待办事项应用
 
 这一章我们会建立一个更复杂的待办事项应用，当然我们的登录功能也还保留，这样的话我们的应用就有了多个相对独立的功能模块。以往的web应用根据不同的功能跳转到不同的功能页面。但目前前端的趋势是开发一个SPA（Single Page Application 单页应用），所以其实我们应该把这种跳转叫视图切换：根据不同的路径显示不同的组件。那我们怎么处理这种视图切换呢？幸运的是，我们无需寻找第三方组件，Angular官方内建了自己的路由模块。
 
@@ -760,8 +858,13 @@ forRoot(routes: Routes, config?: ExtraOptions) : ModuleWithProviders
  - redirectTo：重定向到某个path，使用场景的话，比如在用户输入不存在的路径时重定向到首页。
  - pathMatch：路径的字符匹配策略
  - children：子路由数组
+
+### 路由插座
+
 运行一下，我们会发现出错了
+
 ![image_1b0hgdsiu87n1lha1kcahl51ckb9.png-233.2kB][34]
+
  这个错误看上去应该是对于''没有找到匹配的route，这是由于我们只定义了一个'login'，我们再试试在浏览器地址栏输入：`http://localhost:4200/login`。这次仍然出错，但错误信息变成了下面的样子，意思是我们没有找到一个outlet去加载LoginComponent。对的，这就引出了router outlet的概念，如果要显示对应路由的组件，我们需要一个插头（outlet）来装载组件。
 ```
 error_handler.js:48EXCEPTION: Uncaught (in promise): Error: Cannot find primary outlet to load 'LoginComponent'
@@ -791,7 +894,9 @@ Error: Cannot find primary outlet to load 'LoginComponent'
       }
     ])
 ```
-注意路径配置的**顺序**是非常重要的，Angular2使用“先匹配优先”的原则，也就是说如果一个路径可以同时匹配几个路径配置的规则的话，以第一个匹配的规则为准。
+注意路径配置的**顺序**是非常重要的，Angular2使用“先匹配优先”的原则，也就是说如果一个路径可以同时匹配几个路径配置的规则的话，以第一个匹配的规则为准。现在打开浏览器试验一下，我们的功能又恢复了正常。
+
+### 分离路由定义
 
 但是现在还有一点小不爽，就是直接在`app.modules.ts`中定义路径并不是很好的方式，因为随着路径定义的复杂，这部分最好还是用单独的文件来定义。现在我们新建一个文件`src\app\app.routes.ts`，将上面在`app.modules.ts`中定义的路径删除并在`app.routes.ts`中重新定义。
 ```javascript
@@ -842,8 +947,8 @@ import { routing } from './app.routes';
 })
 export class AppModule { }
 ```
-## 让待办事项变得有意义
-现在我们来规划一下根路径''，对应根路径我们想建立一个todo组件，那么我们使用`ng g c todo`来生成组件，然后在`app.routes.ts`中加入路由定义，对于根路径我们不再需要重定向到登录了，我们把它改写成重定向到todo。
+
+现在我们来规划一下根路径`''`，对应根路径我们想建立一个todo组件，那么我们使用`ng g c todo`来生成组件，然后在`app.routes.ts`中加入路由定义，对于根路径我们不再需要重定向到登录了，我们把它改写成重定向到todo。
 ```javascript
 export const routes: Routes = [
   {
@@ -862,7 +967,10 @@ export const routes: Routes = [
 ];
 ```
 在浏览器中键入`http://localhost:4200`可以看到自动跳转到了todo路径，并且我们的todo组件也显示出来了。
+
 ![image_1b0k2ba0d1qqraa51mj51hpdpeo9.png-81kB][35]
+
+## 让待办事项变得有意义
 
 我们希望的Todo页面应该有一个输入待办事项的输入框和一个显示待办事项状态的列表。那么我们先来定义一下todo的结构，todo应该有一个id用来唯一标识，还应该有一个desc用来描述这个todo是干什么的，再有一个completed用来标识是否已经完成。好了，我们来建立这个todo模型吧，在todo文件夹下新建一个文件`todo.model.ts`
 ```javascript
@@ -906,9 +1014,20 @@ export class TodoComponent implements OnInit {
 </div>
 ```
 如上面代码所示，我们建立了一个文本输入框，这个输入框的值应该是新todo的描述（desc），我们想在用户按了回车键后进行添加操作（`(keyup.enter)="addTodo()`）。由于todos是个数组，所以我们利用一个循环将数组内容显示出来（`<li *ngFor="let todo of todos">{{ todo.desc }}</li>`）。好了让我们欣赏一下成果吧
+
 ![image_1b0kgg9mnppf16pkip81b2hhbrm.png-90.1kB][36]
 
-如果我们还记得之前提到的业务逻辑应该放在单独的service中，我们还可以做的更好一些。在todo文件夹内建立TodoService：`ng g s todo\todo`。上面的例子中所有创建的todo都是id为1的，这显然是一个大bug，我们看一下怎么处理。常见的不重复id创建方式有两种，一个是搞一个自增长数列，另一个是采用随机生成一组不可能重复的字符序列，常见的就是UUID了。我们来引入一个uuid的包：`npm i --save angular2-uuid`，由于这个包中已经含有了用于typescript的定义文件，这里就执行这一个命令就足够了。由于此时`Todo`对象的`id`已经是字符型了，请更改其声明为`id: string;`。
+### 隔离业务逻辑
+
+如果我们还记得之前提到的业务逻辑应该放在单独的service中，我们还可以做的更好一些。在todo文件夹内建立TodoService：`ng g s todo\todo`。上面的例子中所有创建的todo都是id为1的，这显然是一个大bug，我们看一下怎么处理。常见的不重复id创建方式有两种，一个是搞一个自增长数列，另一个是采用随机生成一组不可能重复的字符序列，常见的就是UUID了。
+
+我们来引入一个uuid的包：`npm i --save angular2-uuid`，由于这个包中已经含有了用于typescript的定义文件，这里就执行这一个命令就足够了。这里稍微提一下如何引入第三方JS类库，分几种情况：
+
+ 1. 如果类库的npm包中含有类型定义文件（查看`node_modules/第三方类库` 中是否有 `.d.ts` 后缀的文件），那么直接使用 `npm i --save 要引入包的名称`即可。
+ 2. 如果类库中没有类型定义文件，可先使用  `npm i --save 要引入包的名称` 正常安装，然后执行 `npm install @types/要引入包的名称 --save-dev`。这个命令是要在 `@types/` 搜索安装类型定义文件。
+ 3. 当然还是有可能找不到类型定义文件，这时还是可以使用的，但需要手动添加类型定义：首先在 `src/typings.d.ts` 中写 `declare module '要引入包的名称';`，然后在组件中可以这样引入 `import * as friendName from '要引入包的名称';`（`friendName`是个友好别名，起一个你认为符合你风格的名称就行），使用时就可以这样调用方法了 `friendName.method();`
+
+由于此时`Todo`对象的`id`已经是字符型了，请更改其声明为`id: string;`。
 然后修改service成下面的样子：
 ```javascript
 import { Injectable } from '@angular/core';
@@ -960,11 +1079,16 @@ export class TodoComponent implements OnInit {
 }
 ```
 为了可以清晰的看到我们的成果，我们为chrome浏览器装一个插件，在chrome的地址栏中输入`chrome://extensions`，拉到最底部会看到一个“获取更多扩展程序”的链接，点击这个链接然后搜索“Angury”，安装即可。安装好后，按F12调出开发者工具，里面出现一个叫“Angury”的tab。
+
 ![image_1b0kr7gpn17td7v1p4s1qucuu313.png-273.8kB][37]
+
 我们可以看到id这时候被设置成了一串字符，这个就是UUID了。
 
 ## 建立模拟web服务和异步操作
+
 实际的开发中我们的service是要和服务器api进行交互的，而不是现在这样简单的操作数组。但问题来了，现在没有web服务啊，难道真要自己开发一个吗？答案是可以做个假的，假作真时真亦假。我们在开发过程中经常会遇到这类问题，等待后端同学的进度是很痛苦的。所以Angular内建提供了一个可以快速建立测试用web服务的方法：内存 (in-memory) 服务器。
+
+### 构建数据模型
 
 一般来说，你需要知道自己对服务器的期望是什么，期待它返回什么样的数据，有了这个数据呢，我们就可以自己快速的建立一个内存服务器了。拿这个例子来看，我们可能需要一个这样的对象
 ```javascript
@@ -1012,6 +1136,9 @@ export class InMemoryTodoDbService implements InMemoryDbService {
   }
 }
 ```
+
+### 实现内存web服务
+
 可以看到，我们创建了一个实现`InMemoryDbService`的内存数据库，这个数据库其实也就是把数组传入进去。接下来我们要更改`src\app\app.module.ts`，加入类引用和对应的模块声明：
 ```javascript
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -1061,6 +1188,8 @@ export class TodoService {
 ```
 上面的代码我们看到定义了一个`api_url = 'api/todos'`，你可能会问这个是怎么来的？其实这个我们改写成`api_url = 'blablabla/nahnahnah'`也无所谓，因为这个内存web服务的机理是拦截web访问，也就是说随便什么地址都可以，内存web服务会拦截这个地址并解析你的请求是否满足RESTful API的要求。
 
+### 内存服务器提供的Restful API
+
 简单来说RESTful API中以“名词”来标识资源，比如todos；以don“动词”标识操作，比如：GET请求用于查询，PUT用于更新，DELETE用于删除，POST用于添加。比如如果url是api/todos，那么
 
  - 查询所有待办事项：以GET方法访问`api/todos`
@@ -1087,6 +1216,7 @@ export class TodoService {
   }
 ```
 这里面的前半部分应该还是好理解的：`this.service.addTodo(this.desc)`是调用service的对应方法而已，但后半部分是什么鬼？`...`这个貌似省略号的东东是ES7中计划提供的Object Spread操作符，它的功能是将对象或数组“打散，拍平”。这么说可能还是不懂，举例子吧：
+
 ```javascript
 let arr = [1,2,3];
 let arr2 = [...arr]; 
@@ -1105,6 +1235,9 @@ let arr6 = [-1, ...arr5, 3];
 // arr6 变成了[-1, 0, 1, 2, 3]
 ```
 所以呢我们上面的`this.todos = [...this.todos, todo];`相当于为todos增加一个新元素，和push很像，那为什么不用push呢？因为这样构造出来的对象是全新的，而不是引用的，在现代编程中一个明显的趋势是不要在过程中改变输入的参数。第二个原因是这样做会带给我们极大的便利性和编程的一致性。下面通过给我们的例子添加几个功能，我们来一起体会一下。
+
+### Angular2内建的Http方法
+
 首先更改`src\app\todo\todo.service.ts`
 ```javascript
 //src\app\todo\todo.service.ts
@@ -1168,7 +1301,12 @@ export class TodoService {
   }
 }
 ```
-上面的代码中可以看到对应Restful API的各个“动词”，angular 2.x 提供了一系列对应名称的方法，非常简单易用。然后更新`src\app\todo\todo.component.ts`
+上面的代码中可以看到对应Restful API的各个“动词”，angular 2.x 提供了一系列对应名称的方法，非常简单易用。比如说在`deleteTodoById`方法中，我们要访问的API是`/todos/:id`，使用的HTTP方法是DELETE，那么我们就使用`this.http.delete(url, {headers: this.headers})`
+
+### 页面展现
+
+更新`src\app\todo\todo.component.ts`，调用我们新的service中的方法。有趣的是利用Object Spread操作符，我们看到代码风格更一致，逻辑也更容易理解了。
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo.service';
@@ -1226,7 +1364,7 @@ export class TodoComponent implements OnInit {
   }
 }
 ```
-更新模板文件`src\app\todo\todo.component.html`
+模板文件`src\app\todo\todo.component.html`需要把对应的功能体现在页面上，于是我们增加了toggleTodo（切换完成状态）的checkbox和removeTodo（删除待办事项）的button。
 ```html
 <section class="todoapp">
   <header class="header">
@@ -1582,11 +1720,17 @@ body {
 }
 ```
 现在我们看看成果吧，现在好看多了
+
 ![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][38]
+
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap03/angular2/ng2-tut
 
-# 第四天：进化！模块化你的应用
+---
+
+# 第四章：进化！模块化你的应用
+
 ## 一个复杂组件的分拆
+
 上一节的末尾我偷懒的甩出了大量代码，可能你看起来都有点晕了，这就是典型的一个功能经过一段时间的需求累积后，代码也不可避免的臃肿起来。现在我们看看怎么分拆一下吧。
 ![image_1b11kjibcelb6upnb21su41dilm.png-59.5kB][39]
 我们的应用似乎可以分为Header，Main和Footer几部分。首先我们来建立一个新的Component，键入`ng g c todo/todo-footer`。然后将`src\app\todo\todo.component.html`中的`<footer>...</footer>`段落剪切到`src\app\todo\todo-footer\todo-footer.component.html`中。
@@ -1637,6 +1781,8 @@ export class TodoFooterComponent implements OnInit {
 
 运行一下看看效果，应该一切正常！
 
+### 输入和输出属性
+
 类似的我们建立一个Header组件，键入`ng g c todo/todo-header`，同样的把下面的代码从`src\app\todo\todo.component.html`中剪切到`src\app\todo\todo-header\todo-header.component.html`中
 ```html
 <header class="header">
@@ -1677,6 +1823,7 @@ export class TodoFooterComponent implements OnInit {
 </header>
 ```
 记住子组件的模板是描述子组件自己长成什么样子，应该有哪些行为，这些东西和父组件没有任何关系。比如`todo-header.component.html`中的`placeholder`就是HTML标签Input中的一个属性，和父组件没有关联，如果我们不在`todo-header.component.ts`中声明`@Input() placeholder`，那么子组件就没有这个属性，在父组件中也无法设置这个属性。父组件中的声明为`@Input()`的属性才会成为子组件对外可见的属性，我们完全可以把`@Input() placeholder`声明为`@Input() hintText`，这样的话在引用header组件时，我们就需要这样写`<app-todo-header hintText="What do you want" ...`
+
 现在看一下`todo-header.component.ts`
 ```javascript
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
@@ -1715,7 +1862,7 @@ export class TodoHeaderComponent implements OnInit {
   }
 }
 ```
-下面我们来分析一下代码：
+分析一下代码：
 placeholder和delay作为2个输入型变量，这样`<app-todo-header>`标签中就可以设置这两个属性了。
 接下来我们看到了由`@Output`修饰的onTextChanges和onEnterUp，这两个顾名思义是分别处理文本变化和回车键抬起事件的，这两个变量呢都定义成了EventEmitter（事件发射器）。我们会在子组件的逻辑代码中以适当的条件去发射对应事件，而父组件会接收到这些事件。我们这里采用了2中方法来触发发射器
 
@@ -1999,7 +2146,9 @@ label[for='toggle-all'] {
     }
 }
 ```
+
 ## 封装成独立模块
+
 现在我们的todo目录下好多文件了，而且我们观察到这个功能相对很独立。这种情况下我们似乎没有必要将所有的组件都声明在根模块AppModule当中，因为类似像子组件没有被其他地方用到。Angular中提供了一种组织方式，那就是模块。模块和根模块很类似，我们先在todo目录下建一个文件`src\app\todo\todo.module.ts`
 ```javascript
 import { CommonModule } from '@angular/common';
@@ -2108,7 +2257,9 @@ import { routing } from './app.routes';
 export class AppModule { }
 ```
 而且此时我们注意到其实没有任何一个地方目前还需引用`<app-todo></app-todo>`了，这就是说我们可以安全地把`selector: 'app-todo',`从Todo组件中的`@Component`修饰符中删除了。
+
 ## 更真实的web服务
+
 这里我们不想再使用内存Web服务了，所以我们使用一个更“真”的web服务：json-server。使用`npm install -g json-server`安装json-server。然后在todo目录下建立`todo-data.json`。这个json-server的牛逼之处在于可以根据一个或多个json数据建立一个完整的web服务，提供Restful的API形式。比内存Web服务好的地方在于，我们可以通过浏览器或一些工具（比如Postman）检验API的有效性和数据传递。
 ```javascript
 {
@@ -2178,8 +2329,11 @@ export class AppModule { }
 另外打开一个命令窗口，进入工程目录，输入`json-server ./src/app/todo/todo-data.json`
 
 欣赏一下成果吧
+
 ![image_1b12b5v4onlm16ai1bdn7pu143e9.png-165.7kB][40]
+
 ## 完善Todo应用
+
 在结束本节前，我们得给Todo应用收个尾，还差一些功能没完成：
 
  - 从架构上来讲，我们似乎还可以进一步构建出TodoList和TodoItem两个组件
@@ -2329,9 +2483,11 @@ export class TodoListComponent {
 讲到这里大家可能要问是不是过度设计了，这么少的功能用得着这么设计吗？是的，本案例属于过度设计，但我们的目的是展示出更多的Angular实战方法和特性。
 
 ## 填坑，完成漏掉的功能
+
 现在我们还差几个功能：全部反转状态（ToggleAll），清除全部已完成任务（Clear Completed）和状态筛选器。我们的设计方针是逻辑功能放在TodoComponent中，而其他子组件只负责表现。这样的话，我们先来看看逻辑上应该怎么完成。
 
 ### 用路由参数传递数据
+
 首先看一下过滤器，在Footer中我们有三个过滤器：All，Active和Completed，点击任何一个过滤器，我们只想显示过滤后的数据。
 
 ![image_1b17mtibdkjn105l1ojl1dgr9il9.png-6.5kB][41]
@@ -2413,11 +2569,15 @@ export class TodoListComponent {
   }
 ```
 至此大功告成，我们来看看效果吧。现在输入`http://localhost:4200/todo`进入后观察浏览器地址栏，看到了吧，路径自动被修改成了`http://localhost:4200/todo/ALL`，我们的在跟路由中定义的重定向起作用了！
+
 ![image_1b17o06nv10ob13d6pb1f5613pnm.png-137.8kB][42]
+
 现在，试着点击其中某个todo更改其完成状态，然后点击Active，我们看到不光路径变了，数据也按照我们期待的方式更新了。
+
 ![image_1b17o6qjlb31grg1o7edjm1q4l13.png-128kB][43]
 
 ### 批量修改和批量删除
+
 ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的过程。
 在`todo-footer.component.html`中增加`Clear Completed`按钮的事件处理
 ```html
@@ -2470,7 +2630,9 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
   }
 ```
 先保存一下，点击一下输入框左边的下箭头图标或者右下角的“Clear Completed”，看看效果
+
 ![image_1b1c8if181tld15hlj531aasi8a9.png-140kB][44]
+
 大功告成！慢着，等一下，哪里好像不太对。让我们回过头再看看`toggleAll`方法和`clearCompleted`方法。目前的实现方式有个明显问题，那就是现在的处理方式又变成同步的了（`this.todos.forEach()`是个同步方法），如果我们的处理逻辑比较复杂的话，现在的实现方式会导致UI没有响应。但是如果不这么做的话，对于一系列的异步操作我们怎么处理呢？`Promise.all(iterable)`就是应对这种情况的，它适合把一系列的Promise一起处理，直到所有的Promise都处理完（或者是异常时reject），之后也返回一个Promise，里面是所有的返回值。
 ```javascript
 let p1 = Promise.resolve(3);
@@ -2540,11 +2702,15 @@ toggleTodo(todo: Todo): Promise<void> {
 
 本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap04/angular2/ng2-tut
 
-# 第五天：多用户版本的待办事项应用
-第四天我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
+---
+
+# 第五章：多用户版本的待办事项应用
+
+第四章我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
 但可惜我们目前的LoginComponent还是个实验品，很多功能的缺失，我们是先去做Login呢，还是利用现有的Todo对象先试验一下呢？我个人的习惯是先进行试验。
 
 ## 数据驱动开发
+
 按之前我们分析的，给todo加一个userId属性，我们手动给我们目前的数据加上userId属性吧。更改`todo\todo-data.json`为下面的样子：
 ```javascript
 {
@@ -2688,7 +2854,50 @@ export class User {
   password: string;
 }
 ```
+对于TodoService来说，我们可以做的就是按照刚才的逻辑进行改写：删除和切换状态的逻辑不用改，因为是用Todo的ID标识的。其他的要在访问的URL中加入userId的参数。添加用户的时候要把userId传入：
+
+```javscript
+  ...
+  addTodo(desc:string): Promise<Todo> {
+    let todo = {
+      id: UUID.UUID(),
+      desc: desc,
+      completed: false,
+      userId: this.userId
+    };
+    return this.http
+            .post(this.api_url, JSON.stringify(todo), {headers: this.headers})
+            .toPromise()
+            .then(res => res.json() as Todo)
+            .catch(this.handleError);
+  }
+  getTodos(): Promise<Todo[]>{
+    return this.http.get(`${this.api_url}?userId=${this.userId}`)
+              .toPromise()
+              .then(res => res.json() as Todo[])
+              .catch(this.handleError);
+  }
+  filterTodos(filter: string): Promise<Todo[]> {
+    switch(filter){
+      case 'ACTIVE': return this.http
+                        .get(`${this.api_url}?completed=false&userId=${this.userId}`)
+                        .toPromise()
+                        .then(res => res.json() as Todo[])
+                        .catch(this.handleError);
+      case 'COMPLETED': return this.http
+                          .get(`${this.api_url}?completed=true&userId=${this.userId}`)
+                          .toPromise()
+                          .then(res => res.json() as Todo[])
+                          .catch(this.handleError);
+      default:
+        return this.getTodos();
+    }
+  }
+  ...
+```
+
 ## 验证用户账户的流程
+
 我们来梳理一下用户验证的流程
 
  1. 存储要访问的URL
@@ -2707,6 +2916,7 @@ export class User {
 看到这里，你可能有些疑问，为什么我们不把UserService和AuthService合并呢？这是因为UserService是用于对用户的操作的，不光认证流程需要用到它，我们未来要实现的一系列功能都要用到它，比如注册用户，后台用户管理，以及主页要显示用户名称等。
 
 ### 核心模块
+
 根据这个逻辑流程，我们来组织一下代码。开始之前我们想把认证相关的代码组织在一个新的模块下，我们暂时叫它`core`吧。在`src\app`下新建一个`core`目录，然后在`core`下面新建一个`core.module.ts`
 ```
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
@@ -2728,6 +2938,7 @@ export class CoreModule {
 那么我们在什么时候会需要这样一个模块？比如在这个模块中我们可能会要提供用户服务（UserService），这样的服务系统各个地方都需要，但我们不希望它被创建多次，希望它是一个单例。再比如某些只应用于`AppComponent`模板的一次性组件，没有必要共享它们，然而如果把它们留在根目录，还是显得太乱了。我们可以通过这种形式隐藏它们的实现细节。然后通过根模块AppModule导入CoreModule来获取其能力。
 
 ### 路由守卫
+
 首先我们来看看Angular内建的路由守卫机制，在实际工作中我们常常会碰到下列需求：
 
  - 该用户可能无权导航到目标组件。 导航前需要用户先登录（认证）。
@@ -2891,7 +3102,7 @@ export class UserService {
         <div *ngIf="auth?.hasError">{{auth.errMsg}}</div>
 ```
 
-当然我们还得改造`src\app\login\login.component.ts`
+接下来我们还得改造`src\app\login\login.component.ts`
 
 ```javascript
 import { Component, OnInit, Inject } from '@angular/core';
@@ -3008,13 +3219,19 @@ export class CoreModule {
 ```
 现在应该已经ok了，我们来看看效果：
 用户密码不匹配时，显示`password not match`
+
 ![image_1b23h2m601puv1q9664c52c1jem9.png-7.2kB][45]
+
 用户不存在时，显示`user not found`
+
 ![image_1b23h3l811dn4g9h16qu1jm11htbm.png-5.6kB][46]
+
  直接在浏览器地址栏输入`http://localhost:4200/todo`，你会发现被重新导航到了`login`。输入正确的用户名密码后，我们被导航到了todo，现在每个用户都可以创建属于自己的待办事项了。
+ 
  ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][47]
 
 ## 路由模块化
+
 Angular团队推荐把路由模块化，这样便于使业务逻辑和路由松耦合。虽然目前在我们的应用中感觉用处不大，但按官方推荐的方式还是和大家一起改造一下吧。删掉原有的`app.routes.ts`和`todo.routes.ts`。添加`app-routing.module.ts`:
 ```javascript
 import { NgModule }     from '@angular/core';
@@ -3073,10 +3290,15 @@ export class TodoRoutingModule { }
 并分别在AppModule和TodoModule中引入路由模块。
 
 ## 用VSCode进行调试
+
 有读者问如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
+
 ![image_1b23hjd3rble1nb11u7i19qgjqb1g.png-170.5kB][48]
+
 然后点击最左边的倒数第二个按钮
+
 ![image_1b23htavu19i412obd751h8kusj1t.png-72.5kB][49]
+
 如果是第一次使用的话，齿轮图标上会有个红点，点击选择`debugger for chrome`，vscode会帮你创建一个配置文件，这个文件位于`\.vscode\launch.json`是debugger的配置文件，请改写成下面的样子。注意如果是MacOSX或者Linux，请把`userDataDir`替换成对应的临时目录，另外把`"webpack:///C:*":"C:/*"`替换成`"webpack:///*": "/*"`，这句是因为angular-cli是采用webpack打包的，如果没有使用angular-cli不需要添加这句。
 ```
 {
@@ -3117,19 +3339,29 @@ export class TodoRoutingModule { }
 }
 ```
 现在你可以试着在源码中设置一个断点，点击debug视图中的debug按钮，可以尝试右键点击变量把它放到监视中看看变量值或者逐步调试应用。
+
 ![image_1b23igfkdhn71ug71cng3in94t2a.png-400.1kB][50]
 
 本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
 
-# 第六天：使用第三方样式库及模块优化
+---
+
+# 第六章：使用第三方样式库及模块优化
 
 ## 生产环境初体验
+
 用angular-cli建立生产环境是非常简单的，只需输入`ng build --prod --aot`即可。--prod会使用生产环境的配置文件，--aot会使用AOT替代JIT进行编译。现在实验一下
+
 ![image_1b2m0102o1d721c438jr18r9f889.png-238.5kB][51]
+
 仔细看一下命令行输出，我们应该可以猜到angular移除了一些没有用到的类库（Google称之为Shaking过程），对js和css等进行了压缩等优化工作。angular在我们的项目根目录下建立了一个`dist`文件夹，用于生产环境的文件就输出在这个文件夹了。
+
 ![image_1b2m07bdvqk91aaodsd16pd2kuv.png-116.5kB][52]
+
 我们安装一个http-server，`npm i -g http-server`，然后在dist目录键入`http-server .`。打开浏览器进入`http://localhost:8080`，我们会看到网页打开了。但如果打开console，或者试着登录一下，你会发现存在很多错误。
+
 ![image_1b2m0l4teqja2f016s61g5o14261c.png-158.4kB][53]
+
 这是由于angular-cli当前的bug产生的，目前需要对路由做hash处理。
 ```
 ...
@@ -3146,6 +3378,7 @@ export class TodoRoutingModule { }
 只需在`app-routing.module.ts`中为RouterModule配置`{ useHash: true }`的属性即可。这样的话angular会在url上加上一个`#`，比如login的url现在是`http://localhost:8080/#/login`。这样改动后，功能又好用了。以后我们项目如果需要发布到生产环境的，大家利用angular-cli可以很方便的处理了。然后下面我们回到开发环境，请关掉8080端口的http服务器，并删掉dist。
 
 ## 第三方样式库
+
 之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][54]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][55]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][56]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
 ```html
 <mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
@@ -3205,7 +3438,9 @@ $color-accent-contrast: $color-dark-contrast;
       ],
 ```
 保存后打开浏览器看一下效果：
+
 ![image_1b2g0jju71mdsnd3k2v174k7129.png-11.5kB][59]
+
 我们接下来改造一下login的模板
 ```
 <div>
@@ -3242,7 +3477,9 @@ $color-accent-contrast: $color-dark-contrast;
 </div>
 ```
 由于采用了符合Material Design的组件，我们就不需要原来的用于验证的`div`了。
+
 ![image_1b2g1csop1684jfghpphffui9m.png-17kB][60]
+
 下面看一下Todo，原来我们在css中用了svg来改写复选框的样子，现在我们试试用mdl来做。在`todo-list.component.html`中把ToggleAll改写成下面的样子
 ```html
 <mdl-icon-toggle class="toggle-all" [mdl-ripple]="true" (click)="onToggleAllTriggered()">expand_more</mdl-icon-toggle>
@@ -3266,9 +3503,11 @@ $color-accent-contrast: $color-dark-contrast;
 <mdl-icon-toggle (click)="toggle()" [(ngModel)]="isChecked">check_circle</mdl-icon-toggle>
 ```
 Todo变成下面的样子，也还不错啊~~
+
 ![image_1b2g1e0261mkmtp61kjm6f94g513.png-81.7kB][61]
 
 ## 模块优化
+
 现在仔细看一下我们的各个模块定义，发现我们不断地重复引入了`CommonModule`、`FormsModule`、`MdlModule`，这些如果在大部分的组件中都会用到话，我们不妨建立一个SharedModule （`src\app\shared\shared.module.ts`）
 ```
 import { NgModule } from '@angular/core';
@@ -3310,7 +3549,9 @@ import { SharedModule } from '../shared/shared.module';
 })
 export class TodoModule {}
 ```
+
 ## 多个不同组件间的通信
+
 下面我们要实现这样一个功能：在用户未登录时，顶部菜单中只有Login一个链接可见，用户登录后，顶部菜单中有三个链接，一个是Todo，一个是用户个人信息，另一个是Logout。按这个需求将顶部菜单改造成如下：
 ```html
 <!--src\app\app.component.html-->
@@ -3412,7 +3653,7 @@ export class LoginComponent {
   }
 }
 ```
-AuthService也需要改写一下
+AuthService也需要改写成下面的样子。这里注意到我们引入了一个新概念：Subject。Subject 既是Observer（观察者）也是Observable（被观察对象）。这里采用Subject的原因是我们在Login时改变了Auth的属性，但由于这个Login方法是Login页面显性调用的，其他需要观察Auth变化的地方调用的是getAuth()方法。这样的话，我们需要在Auth发生变化时推送变化出去，我们在loginWithCredentials方法中以`this.subject.next(this.auth);`写入其变化，在getAuth()中用`return this.subject.asObservable();`将Subject转换成Observable。
 ```javascript
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
@@ -3462,13 +3703,13 @@ export class AuthService {
   }
 }
 ```
-这里注意到我们引入了一个新概念：Subject。Subject 既是Observer（观察者）也是Observable（被观察对象）。这里采用Subject的原因是我们在Login时改变了Auth的属性，但由于这个Login方法是Login页面显性调用的，其他需要观察Auth变化的地方调用的是getAuth()方法。这样的话，我们需要在Auth发生变化时推送变化出去，我们在loginWithCredentials方法中以`this.subject.next(this.auth);`写入其变化，在getAuth()中用`return this.subject.asObservable();`将Subject转换成Observable。
+但为什么是ReplaySubject呢？我们共有2处需要监听Auth的变化：一处是导航栏，导航栏会依据不同的Auth值来显示/隐藏不同菜单；另一处是todo的路由守卫，它会依据Auth是否有错误来判断是否允许进入该路由url。我们来以时间维度分析一下流程：我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕（因为我们在loginWithCredentials中写入了变化值），CanActivate检查时会发现没有Auth数据。
 ```
 getAuth() Auth:{}  Auth{user: {id: 1...}} getAuth()-没有Auth数据发射了
 |==========|==============|===========================|=====
 导航栏    登录前          登录后              todo路由守卫激活
 ```
-但为什么是ReplaySubject呢？我们共有2处需要监听Auth的变化：一处是导航栏，导航栏会依据不同的Auth值来显示/隐藏不同菜单；另一处是todo的路由守卫，它会依据Auth是否有错误来判断是否允许进入该路由url。我们来以时间维度分析一下流程：我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕（因为我们在loginWithCredentials中写入了变化值），CanActivate检查时会发现没有Auth数据。这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
+这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
 
 下面我们改写路由守卫
 ```
@@ -3535,20 +3776,26 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 现在打开浏览器欣赏一下我们的成果。
+
 ![改造后的首页登录后效果图][62]
 
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap06/angular2/ng2-tut
 
-# 第七天：给组件带来活力
+---
+
+# 第七章：给组件带来活力
+
 这节我们的主题是“专注酷炫一百年”；-）其实...没那么夸张了，但我们还是要在这一节了解MDL css框架、Angular2 内建的动画特性、更复杂的组件和概括一下Angular2的组件生命周期。
 ## 更炫的登陆页
 大家不知道有没有试用过bing（必应）搜索引擎（在Google无法访问的情况下，bing的英文搜索还是不错的选择），这个搜索引擎的主页很有特点：每日都会有一张非常好看的图作为背景。
-![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][63]
-我们想做的一个特效呢是类似地给登陆页增加一个背景，但更酷的一点是，我们的背景每隔3秒会自动替换一张。由于涉及到布局，我们先来熟悉一下CSS的框架设计。
-### 响应式的CSS框架
-目前主流的响应式css框架都有网格的概念，在我们现在使用的MDL（Material Design Lite）框架中叫做grid。在MDL中，一个页面在PC浏览器上的宽度有12个格子，在平板上有8个格子，在手机上有4个格子
 
-![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][64]
+![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][63]
+
+我们想做的一个特效呢是类似地给登陆页增加一个背景，但更酷的一点是，我们的背景每隔3秒会自动替换一张。由于涉及到布局，我们先来熟悉一下CSS的框架设计。
+
+### 响应式的CSS框架
+目前主流的响应式css框架都有网格的概念，在我们现在使用的MDL（Material Design Lite）框架中叫做grid。在MDL中，一个页面在PC浏览器上的展现宽度有12个格子（cell），在平板上有8个格子，在手机上有4个格子。即一个grid的一行在PC上是12个cell，在平板上是8个cell，在手机上是4个cell。如果一行中的cell数目大于限制数目（比如在PC上超过12个），MDL会做折行处理。标识一个grid容器也很简单，在对应标签加上`class="mdl-grid"`即可。类似的每个cell需要在对应标签内加上`class="mdl-cell"`。如果要定制化grid的话，我们需要给class添加多个样式类名，比如如果希望grid内是没有间隔的，可以写成`class="mdl-grid mdl-grid--no-spacing"`；如果希望添加更多自己的定义，类似的可以写成`mdl-grid my-grid-style`，然后在css中定义这个`my-grid-style`即可。
+
 ```html
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--1-col">1</div>
@@ -3580,20 +3827,470 @@ export class AppRoutingModule {}
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">2 (4 phone)</div>
 </div>
 ```
-
-你可以尝试把浏览器的窗口缩小，让宽度变窄，调整到一定程度后你会发现，布局改变了，变成了下面的样子，这就是同样的代码在平板上的效果。
+![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][64]
+你可以尝试把浏览器的窗口缩小，让宽度变窄，调整到一定程度后你会发现，布局改变了，变成了下面的样子，这就是同样的代码在平板上的效果。你会发现原本的第一行折成了两行，因为在平板上8个cell是一行。你可以试试继续把浏览器的宽度变窄，看看在手机上的效果。
 ![image_1b36lq1ikh3vnfkadg8rpnrm13.png-59.4kB][65]
 
-## 自带动画技能的Angular2
-Angular2的目标是一站式解决方案，当然会自带动画技能。
+下面我们看看怎么对Login页面做改造，首先在`form`外套一层`div`，并应用grid相关的css类，当然为了设置背景图，我们使用了一个angular属性ngStyle，这样让我们可以动态的改变背景图。grid里面我们仅有一个有实际内容的cell，就是form了，这个form在PC和平板上都占3个cell，在手机上占4个cell。但为了使这个form可以放在页面靠右的位置，我们添加了2个占位标签`mdl-layout-spacer`，标签的作用使将cell剩余的横向空间占满。
+```html
+<div
+  class="mdl-grid mdl-grid--no-spacing login-container"
+  [ngStyle]="{'background-image': 'url(' + photo + ')'}">
+  <mdl-layout-spacer
+    class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
+  </mdl-layout-spacer>
+  <form
+    class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone login-form"
+    (ngSubmit)="onSubmit()"
+    >
+    <!--...(这里省略掉其他控件的内容)-->
+  </form>
+  <mdl-layout-spacer></mdl-layout-spacer>
+</div>
+```
+在我们还没有找到可以动态配置的图片源之前，为了看看页面效果，我们可以先找一张图片放在`src\assets`目录下面，然后在LoginComponent中将其赋值给photo: `photo = '/assets/login_default_bg.jpg';`。接下来就看看现在的页面效果吧。
+![image_1b37me9ik1eba1ruq98s1n041siq9.png-3810.5kB][66]
 
-## 更复杂的组件--嵌含（Transclude）组件
+### 寻找免费的图片源
+
+当然我们可以找到一些免费的图片，然后存到本地来实现这个功能，但如果有一个海量的图片库，我们可以根据关键字搜索不同的图片不是更酷了吗？幸运的是Bing搜索是有API的，去 https://www.microsoft.com/cognitive-services/en-us/bing-image-search-api 点击`Get Started for free`后点选`Bing Image Search`申请获得一个API key即可。
+
+![image_1b36ncud0epmjsjsrjqds1tka9.png-1021.8kB][67]
+
+申请完毕后可以在`My Account`中看到你的key，默认是隐藏的，点击`Show`链接即可看到了，点击Copy链接可以拷贝key到剪贴板。
+
+![image_1b36npfqlhkq0l1fge1o8jon0m.png-109.8kB][68]
+
+Bing Image Search API的Request Url是:`https://api.cognitive.microsoft.com/bing/v5.0/images/search`，后面可以跟随一系列参数，其中q是必选参数，指明搜索的关键字。
+
+|参数|是否必选|类型|功能描述|
+|---|:---|:---:|---:|
+|q|是|string|搜索关键字|
+|count|否|number|返回的图片数量，实际返回值可能小于指定值|
+|offset|否|number|要跳过的结果数量|
+|mkt|否|string|从那个国家搜索，比如美国就是`en-US`|
+|safeSearch|否|string|应用过滤器过滤掉不良成人内容|
+
+知道了这些参数的意义后，我们可以在`login`目录下新建一个`BingImageService`：
+```javascript
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Image } from '../domain/entities';
+
+@Injectable()
+export class BingImageService {
+
+  imageUrl: string;
+  headers = new Headers({
+    'Content-Type': 'application/json',
+    //把你获得API key在这里替换掉下面的enter-your-api-key-here
+    'Ocp-Apim-Subscription-Key': 'enter-your-api-key-here'
+  });
+
+  constructor(private http: Http) {
+    const q = '北极+墙纸';
+    const baseUrl: string = `https://api.cognitive.microsoft.com/bing/v5.0/images/search`;
+    this.imageUrl = baseUrl + `?q=${q}&count=5&mkt=zh-CN&imageType=Photo&size=Large`;
+  }
+
+  getImageUrl(): Observable<Image[]>{
+    return this.http.get(this.imageUrl, { headers: this.headers })
+            .map(res => res.json().value as Image[])
+            .catch(this.handleError);
+  }
+  private handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
+}
+```
+然后在LoginComponent中即可调用这个服务，在得到返回的图片结果后我们就可以去替换掉默认本地图片的地址了。由于我们是得到一个图片地址的数组，所以我们还需要一个对这个数组中的每张图片做一个4秒的等待。而且我们还做了一个小处理 `i = (i + 1) % length;`，使得图片可以循环播放。注意到我们让LoginComponent实现了`OnDestroy`接口，这是由于我们希望在页面销毁时也同时销毁观察者的订阅，而不是让它一直跑在后台。
+
+```javascript
+//代码片段
+export class LoginComponent implements OnDestroy {
+
+  username = '';
+  password = '';
+  auth: Auth;
+  slides: Image[] = [];
+  photo = '/assets/login_default_bg.jpg';
+  subscription: Subscription;
+
+  constructor(
+    @Inject('auth') private authService,
+    @Inject('bing') private bingService,
+    private router: Router) {
+    this.bingService.getImageUrl()
+      .subscribe((images: Image[]) => {
+        this.slides = [...images];
+        this.rotateImages(this.slides);
+      });
+  }
+  ...
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+  rotateImages(arr: Image[]){
+    const length = arr.length
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % length;
+      this.photo = this.slides[i].contentUrl;
+    }, 4000);
+  }
+}
+```
+来喝杯咖啡，欣赏一下我们的成果吧！
+
+![每隔4秒换一张背景图的登录页面][69]
+
+![等待4秒后背景切换了][70]
+
+## 自带动画技能的Angular2
+
+Angular2的目标是一站式解决方案，当然会自带动画技能。动画会被定义在`@Component`描述性元数据中。在添加动画之前，先引入一些与动画有关的类库：
+```javascript
+import {
+  Component,
+  Inject,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  OnDestroy
+} from '@angular/core';
+```
+然后就可以在`@Component`元数据中去添加动画相关的元数据了，我们这里定义了一个叫`loginState`的动画触发器（trigger）。这个触发器会在`inactive`和`active`两个状态间转换。`scale(1.1)`是放缩比例，意味着我们对控件做了1.1倍的放大。这个动画的逻辑就是，当触发器处于`active`状态时，对应用这个触发器状态的控件做1.1倍放大处理。
+```javascript
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('loginState', [
+      state('inactive', style({
+        transform: 'scale(1)'
+      })),
+      state('active',   style({
+        transform: 'scale(1.1)'
+      })),
+      transition('inactive => active', animate('100ms ease-in')),
+      transition('active => inactive', animate('100ms ease-out'))
+    ])
+  ]
+})
+```
+我们刚刚定义了一个动画，但它还没有被用到任何地方。要想使用它，可以在模板中用`[@triggerName]="xxx"`的形式来把它附加到一个或多个元素上。
+```
+      <button
+        mdl-button mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple type="submit"
+        [@loginState]="loginBtnState"
+        (mouseenter)="toggleLoginState(true)"
+        (mouseleave)="toggleLoginState(false)">
+        Login
+      </button>
+```
+这里我们对Login这个按钮应用了`loginState`触发器，并且绑定这个触发器的状态值到一个成员变量`loginBtnState`。而且我们定义了在鼠标进入按钮区域和离开按钮区域时应该通过一个函数`toggleLoginState`来改变`loginBtnState`的值。在`LoginComponent`中定义这个方法即可，我们要实现的这个功能非常简单，一行代码就搞定了：
+
+```javascript
+  toggleLoginState(state: boolean){
+    this.loginBtnState = state ? 'active' : 'inactive';
+  }
+```
+试着将鼠标放在按钮上和离开按钮区域，看看按钮的变化的效果。
+
+![鼠标离开和进入按钮区域时不同的按钮大小][71]
+
+## 完成遗失已久的注册功能
+
+我们自从完成了基本的多用户待办事项后就没有增加注册功能，现在来填补这个缺憾吧。我们打算在点击登录页的Register按钮时弹出一个注册用户的对话框。
+
+![我们要实现的注册对话框效果][72]
+
+如果实现一个对话框，利用我们已经引入的`angular2-mdl`库，需要几个步骤：
+
+我们需要在`src\index.html`中增加一个“对话框插座”（`<dialog-outlet></dialog-outlet>`），就是在`<app-root>`下面添加即可。
+
+```html
+<!doctype html>
+<html>
+<head>
+...
+</head>
+<body>
+  <app-root>Loading...</app-root>
+  <dialog-outlet></dialog-outlet>
+</body>
+</html>
+```
+
+建立dialog页面：`angular2-mdl`中有很多方便内建对话框和声明式方式，但我们这里介绍一种定制化程度比较高，也略显复杂的方式。打开一个命令行终端，输入 `ng g c login/register-dialog`。
+
+对话框的模板比较简单，由一个用户名输入框、一个密码输入框、一个重复密码输入框、一个加载状态和一个注册按钮组成。其中我们希望按钮在表单验证正确后才可用，而且在处理注册过程中，按钮应该不可用。在处理注册过程中，应该有一个用户提示。
+```html
+<form [formGroup]="form">
+  <h3 class="mdl-dialog__title">Register</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield
+      #firstElement
+      type="text"
+      label="Username"
+      formControlName="username"
+      floating-label>
+    </mdl-textfield>
+    <br/>
+    <mdl-textfield
+      type="password"
+      label="Password"
+      formControlName="password"
+      floating-label>
+    </mdl-textfield>
+    <br/>
+    <mdl-textfield
+      type="password"
+      label="Repeat Password"
+      formControlName="repeatPassword"
+      floating-label>
+    </mdl-textfield>
+  </div>
+  <div class="status-bar">
+    <p class="mdl-color-text--primary">{{statusMessage}}</p>
+    <mdl-spinner [active]="processingRegister"></mdl-spinner>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button
+      type="button"
+      mdl-button
+      (click)="register()"
+      [disabled]="!form.valid || processingRegister"
+      mdl-button-type="raised"
+      mdl-colored="primary" mdl-ripple>
+      Register
+    </button>
+  </div>
+</form>
+```
+
+那么对应的组件文件中，我们这次没有使用双向绑定，而是完全采取表单的方式进行。这里介绍几个新面孔：
+
+ - FormBuilder：这个其实是一个工具类，用于快速构造一个表单。
+ - FormGroup：顾名思义是一组表单控件，一个表单可以有多个FormGroup，这个常常在比较复杂的表单中使用，用于更好的分类和控制。如果这一组中的任何一个控件验证失败，这个FormGroup的验证状态也是失败的。
+ - FormControl：跟踪表单控件的值和验证状态。
+
+Angular2 的FormControl中内置了常用的验证器（Validator），我们在这个例子中除此之外还给出了一个自定义的验证器 `passwordMatchValidator`，用于判断是否两次密码输入的是相同的。
+
+此外呢我们还用到了一个新修饰符 `@HostListener` ，这个修饰符是指我们要监听宿主（这里是浏览器）的某些动作和变化。比如本例中，我们想要用户在按Esc键时关闭对话框，但这个动作并不局限在某个控件上，只要用户点击了Esc我们就关闭对话框，这时我们就得监听宿主的 `keydown.esc` 事件了。
+```
+//省略掉Import代码段和修饰符代码段
+...
+export class RegisterDialogComponent{
+  @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
+  public form: FormGroup;
+  public processingRegister = false;
+  public statusMessage = '';
+  private subscription: Subscription;
+
+  constructor(
+    private dialog: MdlDialogReference,
+    private fb: FormBuilder,
+    private router: Router,
+    @Inject('auth') private authService) {
+      this.form = fb.group({
+        'username':  new FormControl('',  Validators.required),
+        'passwords': fb.group({
+          'password': new FormControl('', Validators.required),
+          'repeatPassword': new FormControl('', Validators.required)
+        },{validator: this.passwordMatchValidator})
+      });
+      // just if you want to be informed if the dialog is hidden
+      this.dialog.onHide().subscribe( (auth) => {
+        console.log('login dialog hidden');
+        if (auth) {
+          console.log('authenticated user', auth);
+        }
+      });
+      this.dialog.onVisible().subscribe( () => {
+        this.inputElement.setFocus();
+      });
+  }
+
+  passwordMatchValidator(group: FormGroup){
+    this.statusMessage = '';
+    let password = group.get('password').value;
+    let confirm = group.get('repeatPassword').value;
+
+    // Don't kick in until user touches both fields
+    if (password.pristine || confirm.pristine) {
+      return null;
+    }
+    if(password===confirm) {
+      return null;
+    }
+    return {'mismatch': true};
+  }
+
+  public register() {
+    this.processingRegister = true;
+    this.statusMessage = 'processing your registration ...';
+
+    this.subscription = this.authService
+      .register(
+        this.form.get('username').value,
+        this.form.get('passwords').get('password').value)
+      .subscribe( auth => {
+        this.processingRegister = false;
+        this.statusMessage = 'you are registered and will be signed in ...';
+        setTimeout( () => {
+          this.dialog.hide(auth);
+          this.router.navigate(['todo']);
+        }, 500);
+    }, err => {
+      this.processingRegister = false;
+      this.statusMessage = err.message;
+    });
+  }
+
+  @HostListener('keydown.esc')
+  public onEsc(): void {
+    if(this.subscription !== undefined)
+      this.subscription.unsubscribe();
+    this.dialog.hide();
+  }
+}
+```
+
+这样做完后，打开浏览器却发现报错了，这是由于我们未引入 `ReactiveFormsModule` 造成的， `FormGroup` 是由 `ReactiveFormsModule` 提供的，因此要在 `src\app\login\login.module.ts` 中引入这个模块。
+
+![未引入ReactiveForms引起的报错][73]
+
+### Restful API的实验
+
+现在还需要完成服务器端的API。和以前类似的，我们需要先实验一下json-server的API，确定各参数可行的条件下再进行编码。由于现在我们需要进行GET以外的操作，所以如果有专业工具来辅助会比较方便，这里推荐一个Chrome App：Postman，可以自行科学上网后在Chrome商店搜索安装。安装后点左上角的应用即可看到Postman了
+
+![Chrome应用：Postman][74]
+
+点击Postman，输入`http://localhost:3000/users`可以看到返回的json数据了
+
+![PostMan的功能区介绍][75]
+
+我们来试验一下新增一个用户，但这个时候我们已经给User的id定义成数字类型了，实在不想改成UUID了，怎么办呢？幸运的是json-server其实是很聪明的，如果在POST时你不给它传入id字段，它会认为这个id是自增长的。在Postman中将HTTP方法设成POST，在Headers中写上 `Content-Type` 和 `application/json`。然后在Body中选择 `raw` ，并写入
+
+```javascript
+{
+	"username": "testUser",
+	"password": "testPassword"
+}
+```
+
+点击Send后可以看到，新的id自动被写入了，这简直太方便了，也符合一般后端开发的套路。
+
+![用Postman测试自增长ID][76]
+
+知道这点后，我们着手写对应方法就很简单了，首先在 `UserService` 中添加addUser方法。
+
+```javascript
+  addUser(user: User): Observable<User>{
+    return this.http.post(this.api_url, JSON.stringify(user), {headers: this.headers})
+            .map(res => res.json() as User)
+            .catch(this.handleError);
+  }
+```
+
+在AuthService中添加一个register方法，正如我们刚刚实验的那样，我们只需构造一个没有id的User对象即可。当然我们要检查一下用户名是否存在，如果不存在的话才可以注册新用户。这里又碰到一个新的Rx方法 `switchMap`，是用来对原来流中的对象做变换后，发射变换后的流。用一个图示来表示我们下面代码的逻辑是这样的
+
+```
+                                  null               null
+                                   /                 /
+应用filter前：User=====User=====User=====...=====User======...
+应用filter后：==================User=====...=====User======...
+(把user===null的滤出来)          |                |
+应用switchMap后：              Auth======...======Auth=====... 
+
+```
+
+```javascript
+  register(username: string, password: string): Observable<Auth> {
+    let toAddUser = {
+      username: username,
+      password: password
+    };
+    return this.userService
+            .findUser(username)
+            .filter(user => user === null)
+            .switchMap(user => {
+              return this.userService.addUser(toAddUser).map(u => {
+                this.auth = Object.assign(
+                  {},
+                  { user: u, hasError: false, errMsg: null, redirectUrl: null}
+                );
+                this.subject.next(this.auth);
+                return this.auth;
+              });
+            });
+  }
+```
+
+打开浏览器，检查所有功能是否完整可用，正常情况下点Register你可以看到下面的界面，试着注册一个新用户，开始管理你的待办事项吧。
+
+![完成注册功能的页面][77]
 
 ## Angular 2的组件生命周期
 
-## 测试与发布
+![angular 2 的组件生命周期函数][78]
+
+每个组件都有一个被Angular管理的生命周期：Angular创建、渲染控件；创建、渲染子控件；当数据绑定属性改变时做检查；在把控件移除DOM之前销毁控件等等。
+
+Angular提供生命周期的“钩子”（Hook）以便于开发者可以得到这些关键过程的数据以及在这些过程中做出响应的能力。
+
+指令也有类似的生命周期“钩子”函数，除了一些组件特有的函数外。
+
+下面这段代码展现了如何利用 `ngOnInit` 这个钩子函数
+
+```javascript
+export class PeekABoo implements OnInit {
+  constructor(private logger: LoggerService) { }
+
+  // implement OnInit's `ngOnInit` method
+  ngOnInit() { this.logIt(`OnInit`); }
+
+  logIt(msg: string) {
+    this.logger.log(`#${nextId++} ${msg}`);
+  }
+}
+```
+
+钩子函数的接口 （比如上面例子中的 `OnInit` ） 从纯技术的角度来说不是必须的，这是由于Javascript本身没有接口这个概念，而Typescript最终是转换成Javascript的。
+
+Angular其实是通过检查指令或组件的类中是否定义了相关方法来进行的，比如上面例子中即使不实现 `OnInit` 接口，只要定义了 `ngOnInit()` 方法，Angular就会在对应的生命周期调用这个方法。但是还是推荐大家使用接口，因为强类型会给我们带来其他好处。
+
+|函数|应用范围|目的和触发时机|
+|---|---|---|
+|ngOnChanges|组件和指令|在ngInit之前触发，当Angular设置数据绑定属性或输入性属性时会得到一个包含当前和之前属性值的对象（SimpleChanges）|
+|ngOnInit|组件和指令|只调用一次，在设置完输入性属性后，通过这个函数初始化组件或指令|
+|ngDoCheck|组件和指令|在ngInit之后，每次检测到变化时触发，可以在此检查一些angular自身无法检查的变化|
+|ngAfterContentInit|组件|在ngDoCheck后触发，只调用一次，把要装载到组件视图的内容初始化后|
+|ngAfterContentChecked|组件|ngAfterContentInit之后每次ngDoCheck都会在之后触发ngAfterContentChecked，对要装载到组件视图的内容进行检查后|
+|ngAfterViewInit|组件|在第一个ngAfterContentInit被调用后触发，只调用一次，在angular初始化视图后响应|
+|ngAfterViewChecked|组件|在ngAfterViewInit后及每个ngAfterContentChecked后触发 |
+|ngOnDestroy|组件和指令|在组件或指令被销毁前，清理环境，可以在此处取消Observable的订阅|
+
+## 小结
+
+我们的Angular学习之旅从零开始到现在，完整的搭建了一个小应用。相信大家现在应该对Angular2有一个大概的认识了，而且也可以参与到正式的开发项目中去了。但Angular2作为一个完整框架，有很多细节我们是没有提到的，大家可以到官方文档 https://angular.cn/ 去查找和学习。
+
+本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap07/angular2/ng2-tut
+
+---
 
 # 番外：Rx--隐藏在Angular 2.x中利剑
+
+
+
 ## Rx再体验
 
 ## 常见操作
@@ -3666,3 +4363,16 @@ Angular2的目标是一站式解决方案，当然会自带动画技能。
   [63]: http://static.zybuluo.com/wpcfan/rpvxg5kcdy1gs6pka50wieda/image_1b36ghm4o179516kdikkbc14qp9.png
   [64]: http://static.zybuluo.com/wpcfan/fwq8nslpo6j6g4dwv534xhfy/image_1b36l1ajl1qqm1t091m89gbe1cr7m.png
   [65]: http://static.zybuluo.com/wpcfan/d749paatwa3if5lagm9sbg86/image_1b36lq1ikh3vnfkadg8rpnrm13.png
+  [66]: http://static.zybuluo.com/wpcfan/du7mdyjtiszhuusvo8acicp4/image_1b37me9ik1eba1ruq98s1n041siq9.png
+  [67]: http://static.zybuluo.com/wpcfan/r4fnf9io4dky0a3gp9oso82i/image_1b36ncud0epmjsjsrjqds1tka9.png
+  [68]: http://static.zybuluo.com/wpcfan/tv2fvnqqv12o1nnobd0ip64l/image_1b36npfqlhkq0l1fge1o8jon0m.png
+  [69]: http://static.zybuluo.com/wpcfan/a1gsg1mcsyd4r96bypd55nvd/image_1b38vhduajb5bng1o3a1f73ua79.png
+  [70]: http://static.zybuluo.com/wpcfan/z3ok1yhh8lsuxg1aub49qifr/image_1b3912qu9bbduuokqe12031853m.png
+  [71]: http://static.zybuluo.com/wpcfan/0pbxveqx8yjt9xyb23m941te/image_1b396i9rc1jg9hbsgj5e44sns13.png
+  [72]: http://static.zybuluo.com/wpcfan/yfppqsaemxgviktatn6l3jyh/image_1b39tfmnni8hsnnila1c5cj701g.png
+  [73]: http://static.zybuluo.com/wpcfan/4zesdanc1zzz9pv5684i6agp/image_1b3c404ni7qe1vv69uu6ubvhh9.png
+  [74]: http://static.zybuluo.com/wpcfan/cj4w92jxeoox33sn82xbjf4g/image_1b39uniimjrnv31kr7ajvei1t.png
+  [75]: http://static.zybuluo.com/wpcfan/6m32j6pmfzyx4uv52mhnjrl0/image_1b39v6ibl4peqcgmhckc4ka2a.png
+  [76]: http://static.zybuluo.com/wpcfan/qwga78sqyohp5syyemdjsva5/image_1b3a2in1k145g15rej8icr51i4p2n.png
+  [77]: http://static.zybuluo.com/wpcfan/sarm4ukcxyd8wrnqssdy6xr2/image_1b3c5t3g11edk83n1c1olrci739.png
+  [78]: http://static.zybuluo.com/wpcfan/jqvbexkvo0ubcu8ozhq7sjd5/image_1b3c6vnk21sj13831cec16n0gsnm.png
