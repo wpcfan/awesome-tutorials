@@ -22,8 +22,8 @@
   </mdl-layout-header>
   <mdl-layout-drawer>
     <mdl-layout-title>{{title}}</mdl-layout-title>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link">Link</a>
+    <nav class="mdl-navigation" *ngIf="auth?.user?.username !== null">
+      <a class="mdl-navigation__link" routerLink="todo">Todos</a>
     </nav>
   </mdl-layout-drawer>
   <mdl-layout-content class="content">
