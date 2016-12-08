@@ -1,0 +1,9 @@
+@import "~angular2-mdl/scss/color-definitions";
+
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-amber-A200;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
+
+@import '~angular2-mdl/scss/material-design-lite';
