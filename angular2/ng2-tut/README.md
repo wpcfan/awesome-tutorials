@@ -11,7 +11,11 @@
 
 # 前言 -- 一个大叔码农的Angular2创世纪
 
-作为一个出生于70年代的大叔，我在软件这个领域已经摸爬滚打了16年：从程序员、项目经理、产品经理、项目总监到部门管理等各个角色都体验过。
+作为一个出生于70年代的大叔，我在软件这个领域已经摸爬滚打了16年：从程序员、项目经理、产品经理、项目总监到部门管理等各个角色都体验过。深深地了解这个行业发展的速度之快是其他行业无法比拟的：从编程语言、各种平台、各种框架、设计模式到各类开源工具、组件林林种种，要学习的东西实在太多，变化太快。
+但万变不离其宗，名词变化虽多，但透射的本质其实是趋同的：那就是程序员受不了代码的折磨，千方百计的想让这个工作更简单，更能应对变化。比如说，面向对象编程（Object-Oriented Programming）理念的提出其实是牺牲了部分性能换来代码层次结构的清晰，因此也催生了C++，Java，C#等一系列优秀的面向对象编程语言；后来程序员们发现在实际的逻辑中，往往不是像对象树那样可以划分的那么清楚。还有一些类似安全、日志等功能其实是撒在系统各个角落的，然后，面向切面的编程（Aspect-Oriented Programming）应运而生。再后来一部分科学家发现现有的编程语言做分析或数据计算实在太麻烦，明明要计算的逻辑很清晰，却要用一大堆的对象封装赋值，函式编程（Functional Programming）出现了。最近几年被产品经理逼疯的程序员认为强类型语言改动起来太慢太繁琐，于是动态脚本类语言大行其道。
+但仔细分析一下，这些不是互斥的，其实好的元素都会被慢慢吸收到各自的语言、平台上面去的。比如C#、Java也采纳了函式编程的一些特点，比如Lamda表达式，.Net和Java平台上也拥有动态脚本语言。本书写的Angular2就是在JavaScript这种脚本语言基础上引入了TypeScript，进而可以享受面向对象编程和强类型语言的优点；引入了依赖性注入（Dependency Injection）这种在强类型语言中被证明非常有用的设计模式；通过引入Rx，让Javascript拥有了函式编程的能力。
+在本书中，我们通过做一个待办事项列表的小应用来逐渐体会这些优点。同时建议学习一些其他框架，比如React或Vue，参照后你会发现很多事情其实异曲同工。希望年轻的你和大叔的我一起学习，一起面对这个迅速成长的行业！
+										    王芃
 
 ---
 
@@ -76,11 +80,15 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 
 ## 第一个组件
 
-那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
+那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。
+
+是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
 
 ![CLI生成新组件][20]
 
-angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
+angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。
+
+Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
 
@@ -131,7 +139,9 @@ export class LoginComponent implements OnInit {
 
 ### 什么是模块？
 
-简单来说模块就是提供相对独立功能的功能块，每块聚焦于一个特定业务领域。Angular内建的很多库是以模块形式提供的，比如FormsModule封装了表单处理，HttpModule封装了Http的处理等等。每个Angular应用至少有一个模块类 —— *根模块*，我们将通过引导根模块来启动应用。按照约定，根模块的类名叫做AppModule，被放在 `app.module.ts` 文件中。我们这个例子中的根模块位于 `hello-angular\src\app\app.module.ts`
+简单来说模块就是提供相对独立功能的功能块，每块聚焦于一个特定业务领域。Angular内建的很多库是以模块形式提供的，比如FormsModule封装了表单处理，HttpModule封装了Http的处理等等。
+
+每个Angular应用至少有一个模块类 —— *根模块*，我们将通过引导根模块来启动应用。按照约定，根模块的类名叫做AppModule，被放在 `app.module.ts` 文件中。我们这个例子中的根模块位于 `hello-angular\src\app\app.module.ts`
 
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
@@ -167,6 +177,7 @@ imports引入了3个辅助模块：
  - HttpModule提供Http请求和响应的服务
 
 providers列出会在此模块中“注入”的服务（Service），关于依赖性注入会在后面章节中详细解释。
+
 bootstrap指明哪个组件为引导性组件（本案例中的AppComponent）。当Angular引导应用时，它会在DOM中渲染这个引导性组件，并把结果放进index.html的该组件的元素标签中（本案例中的app-root）。
 ```html
 <!doctype html>
@@ -254,7 +265,9 @@ export class LoginComponent implements OnInit {
 
 ![第一个组件][22]
 
-接下来我们尝试给Login按钮添加一个处理方法 `<button (click)="onClick()">Login</button>`。`(click)`表示我们要处理这个button的click事件，圆括号是说**发生此事件时，调用等号后面的表达式或函数**。等号后面的`onClick()`是我们自己定义在LoginComponent中的函数，这个名称你可以随便定成什么，不一定叫`onClick()`。下面我们就来定义这个函数，在LoginComponent中写一个叫`onClick()`的方法，内容很简单就是把“button was clicked”输出到Console。
+接下来我们尝试给Login按钮添加一个处理方法 `<button (click)="onClick()">Login</button>`。`(click)`表示我们要处理这个button的click事件，圆括号是说**发生此事件时，调用等号后面的表达式或函数**。等号后面的`onClick()`是我们自己定义在LoginComponent中的函数，这个名称你可以随便定成什么，不一定叫`onClick()`。
+
+下面我们就来定义这个函数，在LoginComponent中写一个叫`onClick()`的方法，内容很简单就是把“button was clicked”输出到Console。
 
 ```javascript
   onClick() {
@@ -323,7 +336,9 @@ export class LoginComponent implements OnInit {
 
 ## 建立一个服务去完成业务逻辑
 
-如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
+如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。
+
+那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
 
 下面我们为这个service添加一个方法，你可能注意到这里我们为这个方法指定了返回类型和参数类型。这就是TypeScript带来的好处，有了类型约束，你在别处调用这个方法时，如果给出的参数类型或返回类型不正确，IDE就可以直接告诉你错了。
 
@@ -442,7 +457,9 @@ providers是一个数组，这个数组呢其实是把你想要注入到其他�
 providers:[AuthService]
 ```
 
-而是给出了一个对象，里面有两个属性，provide和useClass，provide定义了这个服务的名称，有需要注入这个服务的就引用这个名称就好。useClass指明这个名称对应的服务是一个类，本例中就是AuthService了。这样定义好之后，我们就可以在任意组件中注入这个依赖了。下面我们改动一下`login.component.ts`，去掉头部的`import { AuthService } from '../core/auth.service';`和组件修饰器中的providers，更改其构造函数为
+而是给出了一个对象，里面有两个属性，provide和useClass，provide定义了这个服务的名称，有需要注入这个服务的就引用这个名称就好。useClass指明这个名称对应的服务是一个类，本例中就是AuthService了。这样定义好之后，我们就可以在任意组件中注入这个依赖了。
+
+下面我们改动一下`login.component.ts`，去掉头部的`import { AuthService } from '../core/auth.service';`和组件修饰器中的providers，更改其构造函数为
 
 ```javascript
 constructor(@Inject('auth') private service) {
@@ -574,7 +591,11 @@ console.log('auth result is: '
     </div>
 ```
 
-`[(ngModel)]="username"`这个看起来很别扭，稍微解释一下，方括号[]的作用是说把等号后面当成表达式来解析而不是当成字符串，如果我们去掉方括号那就等于说是直接给这个ngModel赋值成“username”这个字符串了。方括号的含义是单向绑定，就是说我们在组件中给model赋的值会设置到HTML的input控件中。`[()]`是双向绑定的意思，就是说HTML对应控件的状态的改变会反射设置到组件的model中。ngModel是FormModule中提供的指令，它负责从Domain Model（这里就是username或password，以后我们可用绑定更复杂的对象）中创建一个FormControl的实例，并将这个实例和表单的控件绑定起来。同样的对于click事件的处理，我们不需要传入参数了，因为其调用的是刚刚我们改造的组件中的onClick方法。现在我们保存文件后打开浏览器看一下，效果和上一节的应该一样的。本节的完整代码如下：
+`[(ngModel)]="username"`这个看起来很别扭，稍微解释一下，方括号[]的作用是说把等号后面当成表达式来解析而不是当成字符串，如果我们去掉方括号那就等于说是直接给这个ngModel赋值成“username”这个字符串了。方括号的含义是单向绑定，就是说我们在组件中给model赋的值会设置到HTML的input控件中。
+
+`[()]`是双向绑定的意思，就是说HTML对应控件的状态的改变会反射设置到组件的model中。ngModel是FormModule中提供的指令，它负责从Domain Model（这里就是username或password，以后我们可用绑定更复杂的对象）中创建一个FormControl的实例，并将这个实例和表单的控件绑定起来。
+
+同样的对于click事件的处理，我们不需要传入参数了，因为其调用的是刚刚我们改造的组件中的onClick方法。现在我们保存文件后打开浏览器看一下，效果和上一节的应该一样的。本节的完整代码如下：
 
 ```javascript
 //login.component.ts
@@ -634,7 +655,9 @@ export class LoginComponent implements OnInit {
     </div>
 ```
 
-注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
+注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。
+
+这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
 
 ![表单验证状态][26]
 
@@ -884,6 +907,7 @@ export class LoginComponent implements OnInit {
   `]
 })
 ```
+
 组件样式在很多方面都不同于传统的全局性样式。我们放在组件样式中的选择器，只会应用在组件自身的模板中。上面这个例子中的input选择器只会对 LoginComponent模板中的`<input>`标签生效，而对应用中其它地方的`<input>`元素毫无影响。
 
 这种模块化相对于CSS的传统工作方式有如下优点：
@@ -927,10 +951,13 @@ export class LoginComponent implements OnInit {
     ])
   ],
 ```
+
 注意到这个形式和其他的比如BrowserModule、FormModule和HTTPModule表现形式好像不太一样，这里解释一下，forRoot其实是一个静态的工厂方法，它返回的仍然是Module，下面的是Angular API文档给出的`RouterModule.forRoot`的定义。
-```
+
+```javascript
 forRoot(routes: Routes, config?: ExtraOptions) : ModuleWithProviders
 ```
+
 为什么叫forRoot呢？因为这个路由定义是应用在应用根部的，你可能猜到了还有一个工厂方法叫forChild，后面我们会详细讲。接下来我们看一下forRoot接收的参数，参数看起来是一个数组，每个数组元素是一个`{path: 'xxx', component: XXXComponent}`这个样子的对象。这个数组就叫做路由定义（RouteConfig）数组，每个数组元素就叫路由定义，目前我们只有一个路由定义。路由定义这个对象包括若干属性：
 
  - path：路由器会用它来匹配路由中指定的路径和浏览器地址栏中的当前路径，如 /login 。 
@@ -1610,6 +1637,7 @@ export class TodoFooterComponent implements OnInit {
 ```
 
 这段代码看起来有点麻烦，主要原因是我们好像不但需要给子组件输入什么，而且希望子组件给父组件要输出一些东西，比如输入框的值和按下回车键的消息等。当然你可能猜到了，Angular2里面有`@Input()`就相应的有`@Output()`修饰符。
+
 我们希望输入框的占位文字（没有输入的情况下显示的默认文字）是一个输入型的参数，在回车键抬起时可以发射一个事件给父组件，同时我们也希望在输入框输入文字时父组件能够得到这个字符串。也就是说父组件调用子组件时看起来是下面的样子，相当于我们自定义的组件中提供一些事件，父组件调用时可以写自己的事件处理方法，而$event就是子组件发射的事件对象：
 
 ```
@@ -1647,7 +1675,9 @@ export class TodoFooterComponent implements OnInit {
 </header>
 ```
 
-记住子组件的模板是描述子组件自己长成什么样子，应该有哪些行为，这些东西和父组件没有任何关系。比如`todo-header.component.html`中的`placeholder`就是HTML标签Input中的一个属性，和父组件没有关联，如果我们不在`todo-header.component.ts`中声明`@Input() placeholder`，那么子组件就没有这个属性，在父组件中也无法设置这个属性。父组件中的声明为`@Input()`的属性才会成为子组件对外可见的属性，我们完全可以把`@Input() placeholder`声明为`@Input() hintText`，这样的话在引用header组件时，我们就需要这样写`<app-todo-header hintText="What do you want" ...`
+牢记子组件的模板是描述子组件自己长成什么样子，应该有哪些行为，这些东西和父组件没有任何关系。比如`todo-header.component.html`中的`placeholder`就是HTML标签Input中的一个属性，和父组件没有关联，如果我们不在`todo-header.component.ts`中声明`@Input() placeholder`，那么子组件就没有这个属性，在父组件中也无法设置这个属性。
+
+父组件中的声明为`@Input()`的属性才会成为子组件对外可见的属性，我们完全可以把`@Input() placeholder`声明为`@Input() hintText`，这样的话在引用header组件时，我们就需要这样写`<app-todo-header hintText="What do you want" ...`
 
 现在看一下`todo-header.component.ts`
 
@@ -2072,7 +2102,9 @@ import { TodoService } from './todo.service';
 export class TodoModule {}
 ```
 
-注意一点，我们没有引入BrowserModule，而是引入了CommonModule。导入 BrowserModule 会让该模块公开的所有组件、指令和管道在 AppModule 下的任何组件模板中直接可用，而不需要额外的繁琐步骤。CommonModule 提供了很多应用程序中常用的指令，包括 NgIf 和 NgFor 等。BrowserModule 导入了 CommonModule 并且 重新导出 了它。 最终的效果是：只要导入 BrowserModule 就自动获得了 CommonModule 中的指令。几乎所有要在浏览器中使用的应用的 **根模块** （ AppModule ）都应该从 @angular/platform-browser 中导入 BrowserModule 。在其它任何模块中都 **不要导入** BrowserModule，应该改成导入 CommonModule 。 它们需要通用的指令。它们不需要重新初始化全应用级的提供商。
+注意一点，我们没有引入BrowserModule，而是引入了CommonModule。导入 BrowserModule 会让该模块公开的所有组件、指令和管道在 AppModule 下的任何组件模板中直接可用，而不需要额外的繁琐步骤。CommonModule 提供了很多应用程序中常用的指令，包括 NgIf 和 NgFor 等。BrowserModule 导入了 CommonModule 并且 重新导出 了它。 最终的效果是：只要导入 BrowserModule 就自动获得了 CommonModule 中的指令。
+
+几乎所有要在浏览器中使用的应用的 **根模块** （ AppModule ）都应该从 @angular/platform-browser 中导入 BrowserModule 。在其它任何模块中都 **不要导入** BrowserModule，应该改成导入 CommonModule 。 它们需要通用的指令。它们不需要重新初始化全应用级的提供商。
 由于和根模块很类似，我们就不展开讲了。需要做的事情是把`TodoComponent`中的`TodoService`改成用`@Inject('todoService')`来注入。但是注意一点，我们需要模块自己的路由定义。我们在todo目录下建立一个`todo.routes.ts`的文件，和根目录下的类似。
 
 ```javascript
@@ -2112,8 +2144,7 @@ export const routes: Routes = [
 export const routing = RouterModule.forRoot(routes);
 ```
 
-注意到我们去掉了TodoComponent的依赖，而且更改todo路径定义为redirecTo到todo路径，但没有给出组件，这叫做“无组件路由”，也就是说后面的事情是TodoModule负责的。
-此时我们就可以去掉AppModule中引用的Todo相关的组件了。
+注意到我们去掉了TodoComponent的依赖，而且更改todo路径定义为redirecTo到todo路径，但没有给出组件，这叫做“无组件路由”，也就是说后面的事情是TodoModule负责的。此时我们就可以去掉AppModule中引用的Todo相关的组件了。
 
 ```
 import { BrowserModule } from '@angular/platform-browser';
@@ -2157,6 +2188,7 @@ export class AppModule { }
 ## 更真实的web服务
 
 这里我们不想再使用内存Web服务了，所以我们使用一个更“真”的web服务：json-server。使用`npm install -g json-server`安装json-server。然后在todo目录下建立`todo-data.json`。这个json-server的牛逼之处在于可以根据一个或多个json数据建立一个完整的web服务，提供Restful的API形式。比内存Web服务好的地方在于，我们可以通过浏览器或一些工具（比如Postman）检验API的有效性和数据传递。
+
 ```javascript
 {
   "todos": [
@@ -2183,6 +2215,7 @@ export class AppModule { }
   ]
 }
 ```
+
 在`src\app\todo\todo.service.ts`中更改
 ```javascript
 // private api_url = 'api/todos';
@@ -2238,6 +2271,7 @@ export class AppModule { }
  - 清理已完成项目
 
 ### TodoItem和TodoList组件
+
 在命令行窗口键入`ng g c todo/todo-item`，angular-cli会十分聪明的帮你在todo目录下建好TodoItem组件，并且在TodoModule中声明。一般来说，如果要生成某个模块下的组件，输入`ng g c 模块名称/组件名称`。 好的，类似的我们再建立一个TodoList控件，`ng g c todo/todo-list`。我们希望未来的`todo.component.html`是下面这个样子的
 ```html
 <section class="todoapp">
@@ -2363,7 +2397,9 @@ export class TodoListComponent {
 }
 ```
 
-上面代码中有一个新东东，就是在`todos()`方法前我们看到有`set`和`get`两个访问修饰符。这个是由于我们如果把todos当成一个成员变量给出的话，在设置后如果父组件的todos数组改变了，子组件并不知道这个变化，从而不能更新子组件本身的内容。所以我们把todos做成了方法，而且通过get和set修饰成属性方法，也就是说从模板中引用的话可以写成`{{todos}}`。通过标记`set todos()`为`@Input`我们可以监视父组件的数据变化。也就是说如果只定义一个输入型属性的话，那么这个属性是“只写”的，如果要检测父组件给设置的值的变化，我们需要读，所以要提供读和写两个方法。
+上面代码中有一个新东东，就是在`todos()`方法前我们看到有`set`和`get`两个访问修饰符。这个是由于我们如果把todos当成一个成员变量给出的话，在设置后如果父组件的todos数组改变了，子组件并不知道这个变化，从而不能更新子组件本身的内容。所以我们把todos做成了方法，而且通过get和set修饰成属性方法，也就是说从模板中引用的话可以写成`{{todos}}`。
+
+通过标记`set todos()`为`@Input`我们可以监视父组件的数据变化。也就是说如果只定义一个输入型属性的话，那么这个属性是“只写”的，如果要检测父组件给设置的值的变化，我们需要读，所以要提供读和写两个方法。
 
 现在回过头来看一下`todo.component.html`，我们看到`(onRemoveTodo)="removeTodo($event)"`，这句是为了处理子组件（TodoList）的输出型参数（onRemoveTodo），而$event其实就是这个事件反射器携带的参数（这里是`todo:Todo`）。我们通过这种机制完成组件间的数据交换。
 
@@ -2561,7 +2597,9 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
 
 ![完成Clear Completed功能][46]
 
-大功告成！慢着，等一下，哪里好像不太对。让我们回过头再看看`toggleAll`方法和`clearCompleted`方法。目前的实现方式有个明显问题，那就是现在的处理方式又变成同步的了（`this.todos.forEach()`是个同步方法），如果我们的处理逻辑比较复杂的话，现在的实现方式会导致UI没有响应。但是如果不这么做的话，对于一系列的异步操作我们怎么处理呢？`Promise.all(iterable)`就是应对这种情况的，它适合把一系列的Promise一起处理，直到所有的Promise都处理完（或者是异常时reject），之后也返回一个Promise，里面是所有的返回值。
+大功告成！慢着，等一下，哪里好像不太对。让我们回过头再看看`toggleAll`方法和`clearCompleted`方法。目前的实现方式有个明显问题，那就是现在的处理方式又变成同步的了（`this.todos.forEach()`是个同步方法），如果我们的处理逻辑比较复杂的话，现在的实现方式会导致UI没有响应。
+
+但是如果不这么做的话，对于一系列的异步操作我们怎么处理呢？`Promise.all(iterable)`就是应对这种情况的，它适合把一系列的Promise一起处理，直到所有的Promise都处理完（或者是异常时reject），之后也返回一个Promise，里面是所有的返回值。
 
 ```javascript
 let p1 = Promise.resolve(3);
@@ -2615,7 +2653,9 @@ toggleTodo(todo: Todo): Promise<void> {
   }
 ```
 
-现在再去试试效果，应该一切功能正常。当然这个版本其实还是有问题的，本质上还是在循环调用`toggleTodo`和`removeTodo`，这样做会导致多次进行HTTP连接，所以最佳策略应该是请服务器后端同学增加一个批处理的API给我们。但是服务器端的编程不是本教程的范畴，这里就不展开了，大家只需记住如果在生产环境中切记要减少HTTP请求的次数和缩减发送数据包的大小。说到减小HTTP交互数据的大小的话，我们的`todo.service.ts`中可以对`toggleTodo`方法做点改造。原来的put方法是将整个todo数据上传，但其实我们只改动了`todo.completed`属性。如果你的web api是符合REST标准的话，我们可以用Http的`PATCH`方法而不是`PUT`方法，`PATCH`方法会只上传变化的数据。
+现在再去试试效果，应该一切功能正常。当然这个版本其实还是有问题的，本质上还是在循环调用`toggleTodo`和`removeTodo`，这样做会导致多次进行HTTP连接，所以最佳策略应该是请服务器后端同学增加一个批处理的API给我们。但是服务器端的编程不是本教程的范畴，这里就不展开了，大家只需记住如果在生产环境中切记要减少HTTP请求的次数和缩减发送数据包的大小。
+
+说到减小HTTP交互数据的大小的话，我们的`todo.service.ts`中可以对`toggleTodo`方法做点改造。原来的put方法是将整个todo数据上传，但其实我们只改动了`todo.completed`属性。如果你的web api是符合REST标准的话，我们可以用Http的`PATCH`方法而不是`PUT`方法，`PATCH`方法会只上传变化的数据。
 
 ```javascript
   // It was PUT /todos/:id before
@@ -2640,7 +2680,9 @@ toggleTodo(todo: Todo): Promise<void> {
 
 # 第五章：多用户版本的待办事项应用
 
-第四章我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
+第四章我们完成的Todo的基本功能看起来还不错，但是有个大问题，就是每个用户看到的都是一样的待办事项，我们希望的是每个用户拥有自己的待办事项列表。
+
+我们来分析一下怎么做，如果每个todo对象带一个UserId属性是不是可以解决呢？好像可以，逻辑大概是这样：用户登录后转到/todo，TodoComponent得到当前用户的UserId，然后调用TodoService中的方法，传入当前用户的UserId，TodoService中按UserId去筛选当前用户的Todos。
 但可惜我们目前的LoginComponent还是个实验品，很多功能的缺失，我们是先去做Login呢，还是利用现有的Todo对象先试验一下呢？我个人的习惯是先进行试验。
 
 ## 数据驱动开发
@@ -2880,7 +2922,8 @@ export class CoreModule {
   }
 ```
 
-注意到这个模块和其他模块不太一样，原因是我们希望**只在应用启动时导入它一次，而不会在其它地方导入它。**在模块的构造函数中我们会要求Angular把CoreModule注入自身，这看起来像一个危险的循环注入。不过，`@SkipSelf`装饰器意味着*在当前注入器的所有祖先注入器中寻找CoreModule。*如果该构造函数在我们所期望的AppModule中运行，就没有任何祖先注入器能够提供CoreModule的实例，于是注入器会放弃查找。默认情况下，当注入器找不到想找的提供商时，会抛出一个错误。 但`@Optional`装饰器表示找不到该服务也无所谓。 于是注入器会返回null，parentModule参数也就被赋成了空值，而构造函数没有任何异常。
+注意到这个模块和其他模块不太一样，原因是我们希望**只在应用启动时导入它一次，而不会在其它地方导入它。**在模块的构造函数中我们会要求Angular把CoreModule注入自身，这看起来像一个危险的循环注入。不过，`@SkipSelf`装饰器意味着*在当前注入器的所有祖先注入器中寻找CoreModule。*如果该构造函数在我们所期望的AppModule中运行，就没有任何祖先注入器能够提供CoreModule的实例，于是注入器会放弃查找。默认情况下，当注入器找不到想找的提供商时，会抛出一个错误。但`@Optional`装饰器表示找不到该服务也无所谓。 于是注入器会返回null，parentModule参数也就被赋成了空值，而构造函数没有任何异常。
+
 那么我们在什么时候会需要这样一个模块？比如在这个模块中我们可能会要提供用户服务（UserService），这样的服务系统各个地方都需要，但我们不希望它被创建多次，希望它是一个单例。再比如某些只应用于`AppComponent`模板的一次性组件，没有必要共享它们，然而如果把它们留在根目录，还是显得太乱了。我们可以通过这种形式隐藏它们的实现细节。然后通过根模块AppModule导入CoreModule来获取其能力。
 
 ### 路由守卫
@@ -3254,7 +3297,7 @@ export class TodoRoutingModule { }
 
 ## 用VSCode进行调试
 
-有读者问如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
+我们一直都没讲如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
 
 ![VS Code Chome 调试插件][50]
 
@@ -3351,7 +3394,11 @@ export class TodoRoutingModule { }
 
 ## 第三方样式库
 
-之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][57]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][58]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][59]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
+之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][57]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。
+
+除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][58]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。
+
+我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][59]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
 
 ```html
 <mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
@@ -3377,7 +3424,9 @@ export class TodoRoutingModule { }
 </mdl-layout>
 ```
 
-这段代码里面mdl开头的标签都是我们刚引入的组件库封装的组件，具体的用法可以去 http://mseemann.io/angular2-mdl/ 和 https://getmdl.io  参考文档资料。`<mdl-layout></mdl-layout>`是一个布局组件，`mdl-layout-fixed-header`是一个可以让header固定在页面顶部的属性，`mdl-layout-header-seamed`是要header没有阴影。`mdl-layout-header`是一个顶部组件，`mdl-layout-header-row`是在顶部组件中形成一行的容器。`mdl-layout-spacer`是一个占位的组件，它会把组件剩余位置占满，防止出现错位。`mdl-layout-drawer`是一个抽屉组件，和Android的标准应用类似，点击顶部菜单图标会从侧面滑出一个菜单。别忘了在AppModule中引入
+这段代码里面mdl开头的标签都是我们刚引入的组件库封装的组件，具体的用法可以去 http://mseemann.io/angular2-mdl/ 和 https://getmdl.io  参考文档资料。
+
+`<mdl-layout></mdl-layout>`是一个布局组件，`mdl-layout-fixed-header`是一个可以让header固定在页面顶部的属性，`mdl-layout-header-seamed`是要header没有阴影。`mdl-layout-header`是一个顶部组件，`mdl-layout-header-row`是在顶部组件中形成一行的容器。`mdl-layout-spacer`是一个占位的组件，它会把组件剩余位置占满，防止出现错位。`mdl-layout-drawer`是一个抽屉组件，和Android的标准应用类似，点击顶部菜单图标会从侧面滑出一个菜单。别忘了在AppModule中引入
 
 ```javascript
 ...
@@ -3817,14 +3866,17 @@ export class AppRoutingModule {}
 # 第七章：给组件带来活力
 
 这节我们的主题是“专注酷炫一百年”；-）其实...没那么夸张了，但我们还是要在这一节了解MDL css框架、Angular2 内建的动画特性、更复杂的组件和概括一下Angular2的组件生命周期。
+
 ## 更炫的登陆页
+
 大家不知道有没有试用过bing（必应）搜索引擎（在Google无法访问的情况下，bing的英文搜索还是不错的选择），这个搜索引擎的主页很有特点：每日都会有一张非常好看的图作为背景。
 
-![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][67]
+![bing搜索的首页有每日一图][67]
 
 我们想做的一个特效呢是类似地给登陆页增加一个背景，但更酷的一点是，我们的背景每隔3秒会自动替换一张。由于涉及到布局，我们先来熟悉一下CSS的框架设计。
 
 ### 响应式的CSS框架
+
 目前主流的响应式css框架都有网格的概念，在我们现在使用的MDL（Material Design Lite）框架中叫做grid。在MDL中，一个页面在PC浏览器上的展现宽度有12个格子（cell），在平板上有8个格子，在手机上有4个格子。即一个grid的一行在PC上是12个cell，在平板上是8个cell，在手机上是4个cell。如果一行中的cell数目大于限制数目（比如在PC上超过12个），MDL会做折行处理。标识一个grid容器也很简单，在对应标签加上`class="mdl-grid"`即可。类似的每个cell需要在对应标签内加上`class="mdl-cell"`。如果要定制化grid的话，我们需要给class添加多个样式类名，比如如果希望grid内是没有间隔的，可以写成`class="mdl-grid mdl-grid--no-spacing"`；如果希望添加更多自己的定义，类似的可以写成`mdl-grid my-grid-style`，然后在css中定义这个`my-grid-style`即可。
 
 ```html
@@ -3858,9 +3910,12 @@ export class AppRoutingModule {}
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">2 (4 phone)</div>
 </div>
 ```
-![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][68]
+
+![响应式布局在PC浏览器的展现][68]
+
 你可以尝试把浏览器的窗口缩小，让宽度变窄，调整到一定程度后你会发现，布局改变了，变成了下面的样子，这就是同样的代码在平板上的效果。你会发现原本的第一行折成了两行，因为在平板上8个cell是一行。你可以试试继续把浏览器的宽度变窄，看看在手机上的效果。
-![image_1b36lq1ikh3vnfkadg8rpnrm13.png-59.4kB][69]
+
+![响应式布局在小窗口时的变化][69]
 
 下面我们看看怎么对Login页面做改造，首先在`form`外套一层`div`，并应用grid相关的css类，当然为了设置背景图，我们使用了一个angular属性ngStyle，这样让我们可以动态的改变背景图。grid里面我们仅有一个有实际内容的cell，就是form了，这个form在PC和平板上都占3个cell，在手机上占4个cell。但为了使这个form可以放在页面靠右的位置，我们添加了2个占位标签`mdl-layout-spacer`，标签的作用使将cell剩余的横向空间占满。
 
@@ -3882,7 +3937,8 @@ export class AppRoutingModule {}
 ```
 
 在我们还没有找到可以动态配置的图片源之前，为了看看页面效果，我们可以先找一张图片放在`src\assets`目录下面，然后在LoginComponent中将其赋值给photo: `photo = '/assets/login_default_bg.jpg';`。接下来就看看现在的页面效果吧。
-![image_1b37me9ik1eba1ruq98s1n041siq9.png-3810.5kB][70]
+
+![在asset目录配置图片资源][70]
 
 ### 寻找免费的图片源
 
@@ -3939,7 +3995,9 @@ export class BingImageService {
   }
 }
 ```
-然后在LoginComponent中即可调用这个服务，在得到返回的图片结果后我们就可以去替换掉默认本地图片的地址了。由于我们是得到一个图片地址的数组，所以我们还需要一个对这个数组中的每张图片做一个4秒的等待。而且我们还做了一个小处理 `i = (i + 1) % length;`，使得图片可以循环播放。注意到我们让LoginComponent实现了`OnDestroy`接口，这是由于我们希望在页面销毁时也同时销毁观察者的订阅，而不是让它一直跑在后台。
+然后在LoginComponent中即可调用这个服务，在得到返回的图片结果后我们就可以去替换掉默认本地图片的地址了。由于我们是得到一个图片地址的数组，所以我们还需要一个对这个数组中的每张图片做一个4秒的等待。而且我们还做了一个小处理 `i = (i + 1) % length;`，使得图片可以循环播放。
+
+注意到我们让LoginComponent实现了`OnDestroy`接口，这是由于我们希望在页面销毁时也同时销毁观察者的订阅，而不是让它一直跑在后台。
 
 ```javascript
 //代码片段
@@ -4071,6 +4129,7 @@ import {
 建立dialog页面：`angular2-mdl`中有很多方便内建对话框和声明式方式，但我们这里介绍一种定制化程度比较高，也略显复杂的方式。打开一个命令行终端，输入 `ng g c login/register-dialog`。
 
 对话框的模板比较简单，由一个用户名输入框、一个密码输入框、一个重复密码输入框、一个加载状态和一个注册按钮组成。其中我们希望按钮在表单验证正确后才可用，而且在处理注册过程中，按钮应该不可用。在处理注册过程中，应该有一个用户提示。
+
 ```html
 <form [formGroup]="form">
   <h3 class="mdl-dialog__title">Register</h3>
@@ -4960,7 +5019,272 @@ export class PlaygroundComponent {
 
 ### Rx版本的Todo
 
+这一节我们通过改造我们的待办事项应用来进一步体会Rx的威力。首先我们把TodoService中原来采用的Promise方式都替换成Observable的方式。
+
+在进行改动之前，我们来重新分析一下逻辑：我们原有的实现方式中，组件中保留了一个todos数组的本地拷贝，服务器API逻辑在Service中完成。其实组件最好不关心逻辑，即使是本地拷贝的逻辑，也不应该放到组件中。组件本身的数据都是监听Service中的数据变化而得到的。
+
+那么我们应该在Service中建立本地的内存“数据库”，我们叫它 `dataStore` 吧。这个“数据库”中只有一个“表”：todos。
+
+```javascript
+//TodoService.ts
+  private dataStore: {  // todos的内存“数据库”
+    todos: Todo[]
+  };
+```
+
+为了让组件可以监听到这个数据的变化，我们需要一个Observable，但是在Service中我们还需要写入变化，这样的话，我们选择一个既是Observable又是Observer的对象，在Rx中，Subject就是这样的对象：
+
+```javascript
+//TodoService.ts
+...
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+@Injectable()
+export class TodoService {
+    ...
+    private _todos: BehaviorSubject<Todo[]>; 
+    constructor(private http: Http, @Inject('auth') private authService) {
+        this.dataStore = { todos: [] };
+        this._todos = new BehaviorSubject<Todo[]>([]);
+    }
+    ...
+  get todos(){
+    return this._todos.asObservable();
+  }
+  ...
+```
+
+我们使用了一个BehaviorSubject，它的一个特点是存储了发射的最新的值，这样无论什么订阅者订阅时都会得到“当前值”。我们之前通过ReplaySubject也实现过类似功能，但Replay是可以缓存多个值的。
+
+我们在构造中分别初始化了 `dataStore` 和 `_todos`，然后提供了一个get的属性方法让其他订阅者可以订阅todos的变化。在这个属性方法中，我们把Subject转成了Observable（通过`.asObservable()`）。
+
+那么我们如何写入变化呢？拿增加一个代办事项（ `addTodo(desc:string)` ）的逻辑来看一下吧。
+
+```javascript
+  addTodo(desc:string){
+    let todoToAdd = {
+      id: UUID.UUID(),
+      desc: desc,
+      completed: false,
+      userId: this.userId
+    };
+    this.http
+      .post(this.api_url, JSON.stringify(todoToAdd), {headers: this.headers})
+      .map(res => res.json() as Todo)
+      .subscribe(todo => {
+        this.dataStore.todos = [...this.dataStore.todos, todo];
+        this._todos.next(Object.assign({}, this.dataStore).todos);
+      });
+  }
+```
+
+由于 `this.http.post` 返回的本身就是Observable，所以我们不再需要 `.toPromise()` 这个方法了。直接用 `map` 将response的数据流转换成Todo的数据流，然后更新本地数据，然后使用Subject的 `next` 方法（`this._todos.next`）把本地数据写入数据流。这个next的含义就是让推送一个新元素到数据流。
+
+按照这种逻辑，我们把整个 `TodoService` 改造成下面的样子。
+
+```javascript
+import { Injectable, Inject } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { UUID } from 'angular2-uuid';
+
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import { Todo } from '../domain/entities';
+
+@Injectable()
+export class TodoService {
+
+  private api_url = 'http://localhost:3000/todos';
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private userId: string;
+  private _todos: BehaviorSubject<Todo[]>; 
+  private dataStore: {  // todos的内存“数据库”
+    todos: Todo[]
+  };
+
+  constructor(private http: Http, @Inject('auth') private authService) {
+    this.authService.getAuth()
+      .filter(auth => auth.user != null)
+      .subscribe(auth => this.userId = auth.user.id);
+    this.dataStore = { todos: [] };
+    this._todos = new BehaviorSubject<Todo[]>([]);
+  }
+
+  get todos(){
+    return this._todos.asObservable();
+  }
+
+  // POST /todos
+  addTodo(desc:string){
+    let todoToAdd = {
+      id: UUID.UUID(),
+      desc: desc,
+      completed: false,
+      userId: this.userId
+    };
+    this.http
+      .post(this.api_url, JSON.stringify(todoToAdd), {headers: this.headers})
+      .map(res => res.json() as Todo)
+      .subscribe(todo => {
+        this.dataStore.todos = [...this.dataStore.todos, todo];
+        this._todos.next(Object.assign({}, this.dataStore).todos);
+      });
+  }
+  // PATCH /todos/:id 
+  toggleTodo(todo: Todo) {
+    const url = `${this.api_url}/${todo.id}`;
+    const i = this.dataStore.todos.indexOf(todo);
+    let updatedTodo = Object.assign({}, todo, {completed: !todo.completed});
+    return this.http
+      .patch(url, JSON.stringify({completed: !todo.completed}), {headers: this.headers})
+      .subscribe(_ => {
+        this.dataStore.todos = [
+          ...this.dataStore.todos.slice(0,i),
+          updatedTodo,
+          ...this.dataStore.todos.slice(i+1)
+        ];
+        this._todos.next(Object.assign({}, this.dataStore).todos);
+      });
+  }
+  // DELETE /todos/:id
+  deleteTodo(todo: Todo){
+    const url = `${this.api_url}/${todo.id}`;
+    const i = this.dataStore.todos.indexOf(todo);
+    this.http
+      .delete(url, {headers: this.headers})
+      .subscribe(_ => {
+        this.dataStore.todos = [
+          ...this.dataStore.todos.slice(0,i),
+          ...this.dataStore.todos.slice(i+1)
+        ];
+        this._todos.next(Object.assign({}, this.dataStore).todos);
+      });
+  }
+  // GET /todos
+  getTodos(){
+    this.http.get(`${this.api_url}?userId=${this.userId}`)
+      .map(res => res.json() as Todo[])
+      .do(t => console.log(t))
+      .subscribe(todos => this.updateStoreAndSubject(todos));
+  }
+  // GET /todos?completed=true/false
+  filterTodos(filter: string) {
+    switch(filter){
+      case 'ACTIVE': 
+        this.http
+          .get(`${this.api_url}?completed=false&userId=${this.userId}`)
+          .map(res => res.json() as Todo[])
+          .subscribe(todos => this.updateStoreAndSubject(todos));
+          break;
+      case 'COMPLETED': 
+        this.http
+          .get(`${this.api_url}?completed=true&userId=${this.userId}`)
+          .map(res => res.json() as Todo[])
+          .subscribe(todos => this.updateStoreAndSubject(todos));
+          break;
+      default:
+        this.getTodos();
+    }
+  }
+  toggleAll(){
+    this.dataStore.todos.forEach(todo => this.toggleTodo(todo));
+  }
+  clearCompleted(){
+    this.dataStore.todos
+      .filter(todo => todo.completed)
+      .forEach(todo => this.deleteTodo(todo));
+  }
+  private updateStoreAndSubject(todos) {
+    this.dataStore.todos = [...todos];
+    this._todos.next(Object.assign({}, this.dataStore).todos);
+  }
+}
+
+```
+
+接下来我们看一下 `src/app/todo/todo.component.ts`，由于大部分逻辑已经在 `TodoService` 中实现了，我们可以删除客户端的逻辑代码：
+
+```javascript
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { TodoService } from './todo.service';
+import { Todo } from '../domain/entities';
+
+import { Observable } from 'rxjs/Observable';
+
+@Component({
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.css']
+})
+export class TodoComponent implements OnInit {
+
+  todos : Observable<Todo[]>;
+
+  constructor(
+    @Inject('todoService') private service,
+    private route: ActivatedRoute,
+    private router: Router) {}
+
+  ngOnInit() {
+    this.route.params
+      .pluck('filter')
+      .subscribe(filter => {
+        this.service.filterTodos(filter);
+        this.todos = this.service.todos;
+      })
+  }
+  addTodo(desc: string) {
+    this.service.addTodo(desc);
+  }
+  toggleTodo(todo: Todo) {
+    this.service.toggleTodo(todo);
+  }
+  removeTodo(todo: Todo) {
+    this.service.deleteTodo(todo);
+  } 
+  toggleAll(){
+    this.service.toggleAll();
+  }
+  clearCompleted(){
+    this.service.clearCompleted();
+  }
+}
+
+```
+
+可以看到 `addTodo` 、 `toggleTodo` 、 `removeTodo` 、`toggleAll` 和 `clearCompleted` 基本上已经没有业务逻辑代码了，只是简单调用service的方法而已。
+
+还有一个比较明显的变化是，我们接收路由参数的方式也变成了Rx的方式，之前我们提过，像Angular2这种深度嵌合Rx的平台框架，几乎处处都有Rx的影子。
+
+当然，我们的组件中的todos变成了一个Observable，在构造时直接把Service的属性方法todos赋值上去了。这样改造后，我们只需改动模版的两行代码就大功告成了，那就是替换原有的`="todos..."`为 `= " todos | async"`。
+
+```html
+<div>
+  <app-todo-header
+    placeholder="What do you want"
+    (onEnterUp)="addTodo($event)" >
+  </app-todo-header>
+  <app-todo-list
+    [todos]="todos | async"
+    (onToggleAll)="toggleAll()"
+    (onRemoveTodo)="removeTodo($event)"
+    (onToggleTodo)="toggleTodo($event)"
+    >
+  </app-todo-list>
+  <app-todo-footer
+    [itemCount]="todos?.length | async"
+    (onClear)="clearCompleted()">
+  </app-todo-footer>
+</div>
+
+```
+
+启动浏览器看看吧，一切功能正常，代码更加简洁，逻辑更加清楚。
+
+![改造成的响应式Todo，所有功能一切正常][117]
+
 ### 拥有自动完成功能的输入下拉框
+
 
 ## 小结
 
@@ -5083,3 +5407,4 @@ export class PlaygroundComponent {
   [114]: http://static.zybuluo.com/wpcfan/2u8j3y5ewuqu55smx2ek25gi/image_1b3psq94lc031b5111mhgqc1ltu1g.png
   [115]: http://static.zybuluo.com/wpcfan/zw7jylvaagfo2a50jnwb2owf/image_1b3pug0tr18oeotp172p1pgqr4s2n.png
   [116]: http://static.zybuluo.com/wpcfan/xhjkqdq5pazdds7iarrbwwc3/image_1b3pun648fsd1u2d5nu1nv21bf3h.png
+  [117]: http://static.zybuluo.com/wpcfan/zivgv8dk2uobpk36rc5nan6l/image_1b3rggpls1ah5tdb1hlm13804op3u.png
