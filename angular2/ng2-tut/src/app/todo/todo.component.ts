@@ -3,13 +3,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TodoService } from './todo.service';
 import { Todo } from '../domain/entities';
 
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
 
-  todos : Todo[] = [];
+  todos : Observable<Todo[]>;
 
   constructor(
     @Inject('todoService') private service,
@@ -17,57 +19,29 @@ export class TodoComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      let filter = params['filter'];
-      this.filterTodos(filter);
-    });
+    this.route.params
+      .pluck('filter')
+      .subscribe(filter => {
+        this.service.filterTodos(filter);
+        this.todos = this.service.todos;
+      })
   }
-  addTodo(desc: string){
+  addTodo(desc: string) {
     this.service
-      .addTodo(desc)
-      .then(todo => {
-        this.todos = [...this.todos, todo];
-      });
+      .addTodo(desc);
   }
-  toggleTodo(todo: Todo): Promise<void> {
-    const i = this.todos.indexOf(todo);
-    return this.service
-      .toggleTodo(todo)
-      .then(t => {
-        this.todos = [
-          ...this.todos.slice(0,i),
-          t,
-          ...this.todos.slice(i+1)
-          ];
-        return null;
-      });
-  }
-  removeTodo(todo: Todo): Promise<void>  {
-    const i = this.todos.indexOf(todo);
-    return this.service
-      .deleteTodoById(todo.id)
-      .then(()=> {
-        this.todos = [
-          ...this.todos.slice(0,i),
-          ...this.todos.slice(i+1)
-        ];
-        return null;
-      });
-  }
-  filterTodos(filter: string): void{
+  toggleTodo(todo: Todo) {
     this.service
-      .filterTodos(filter)
-      .then(todos => this.todos = [...todos]);
+      .toggleTodo(todo);
   }
+  removeTodo(todo: Todo) {
+    this.service
+      .deleteTodo(todo);
+  } 
   toggleAll(){
-    Promise.all(this.todos.map(todo => this.toggleTodo(todo)));
+    this.service.toggleAll();
   }
   clearCompleted(){
-    const completed_todos = this.todos.filter(todo => todo.completed === true);
-    const active_todos = this.todos.filter(todo => todo.completed === false);
-    Promise.all(
-      completed_todos.map(
-        todo => this.service.deleteTodoById(todo.id)))
-      .then(() => this.todos = [...active_todos]);
+    this.service.clearCompleted();
   }
 }

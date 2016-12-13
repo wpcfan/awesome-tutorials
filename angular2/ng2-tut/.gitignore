@@ -16,6 +16,7 @@
 .c9/
 *.launch
 .settings/
+chromeDummyDir/
 
 # misc
 /.sass-cache

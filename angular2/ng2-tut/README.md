@@ -1,54 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Angular 2.x 从0到1](#angular-2x-%E4%BB%8E0%E5%88%B01)
-  - [史上最简单Angular 2.x教程，大叔都学会了](#%E5%8F%B2%E4%B8%8A%E6%9C%80%E7%AE%80%E5%8D%95angular-2x%E6%95%99%E7%A8%8B%E5%A4%A7%E5%8F%94%E9%83%BD%E5%AD%A6%E4%BC%9A%E4%BA%86)
-  - [标签（空格分隔）： 编程 前端 javascript 框架 教程](#%E6%A0%87%E7%AD%BE%E7%A9%BA%E6%A0%BC%E5%88%86%E9%9A%94-%E7%BC%96%E7%A8%8B-%E5%89%8D%E7%AB%AF-javascript-%E6%A1%86%E6%9E%B6-%E6%95%99%E7%A8%8B)
-- [第一节：认识Angular 2.0](#%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AE%A4%E8%AF%86angular-20)
-  - [前言](#%E5%89%8D%E8%A8%80)
-  - [环境配置要求](#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82)
-  - [第一个小应用 Hello Angular](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%BA%94%E7%94%A8-hello-angular)
-  - [第一个组件](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
-  - [一些基础概念](#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
-    - [什么是模块？](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9D%97)
-    - [引导过程](#%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B)
-- [第二节：用Form表单做一个登录控件](#%E7%AC%AC%E4%BA%8C%E8%8A%82%E7%94%A8form%E8%A1%A8%E5%8D%95%E5%81%9A%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E6%8E%A7%E4%BB%B6)
-  - [对于login组件的小改造](#%E5%AF%B9%E4%BA%8Elogin%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B0%8F%E6%94%B9%E9%80%A0)
-  - [建立一个服务去完成业务逻辑](#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%8E%BB%E5%AE%8C%E6%88%90%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)
-    - [什么是依赖性注入？](#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%9D%E8%B5%96%E6%80%A7%E6%B3%A8%E5%85%A5)
-  - [双向数据绑定](#%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A)
-  - [表单数据的验证](#%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E7%9A%84%E9%AA%8C%E8%AF%81)
-  - [验证结果的样式自定义](#%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89)
-  - [进一步的练习](#%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E7%BB%83%E4%B9%A0)
-- [第三节：建立一个待办事项应用](#%E7%AC%AC%E4%B8%89%E8%8A%82%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
-  - [建立routing的步骤](#%E5%BB%BA%E7%AB%8Brouting%E7%9A%84%E6%AD%A5%E9%AA%A4)
-  - [让待办事项变得有意义](#%E8%AE%A9%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%8F%98%E5%BE%97%E6%9C%89%E6%84%8F%E4%B9%89)
-  - [建立模拟web服务和异步操作](#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E6%8B%9Fweb%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
-- [第四节：进化！模块化你的应用](#%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%BF%9B%E5%8C%96%E6%A8%A1%E5%9D%97%E5%8C%96%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8)
-  - [一个复杂组件的分拆](#%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%86%E6%8B%86)
-  - [封装成独立模块](#%E5%B0%81%E8%A3%85%E6%88%90%E7%8B%AC%E7%AB%8B%E6%A8%A1%E5%9D%97)
-  - [更真实的web服务](#%E6%9B%B4%E7%9C%9F%E5%AE%9E%E7%9A%84web%E6%9C%8D%E5%8A%A1)
-  - [完善Todo应用](#%E5%AE%8C%E5%96%84todo%E5%BA%94%E7%94%A8)
-    - [TodoItem和TodoList组件](#todoitem%E5%92%8Ctodolist%E7%BB%84%E4%BB%B6)
-  - [填坑，完成漏掉的功能](#%E5%A1%AB%E5%9D%91%E5%AE%8C%E6%88%90%E6%BC%8F%E6%8E%89%E7%9A%84%E5%8A%9F%E8%83%BD)
-    - [用路由参数传递数据](#%E7%94%A8%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE)
-    - [批量修改和批量删除](#%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%92%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4)
-- [第五节：多用户版本的待办事项应用](#%E7%AC%AC%E4%BA%94%E8%8A%82%E5%A4%9A%E7%94%A8%E6%88%B7%E7%89%88%E6%9C%AC%E7%9A%84%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
-  - [数据驱动开发](#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91)
-  - [验证用户账户的流程](#%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E7%9A%84%E6%B5%81%E7%A8%8B)
-    - [核心模块](#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97)
-    - [路由守卫](#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB)
-  - [路由模块化](#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96)
-  - [用VSCode进行调试](#%E7%94%A8vscode%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95)
-- [第六节：使用第三方样式库及模块优化](#%E7%AC%AC%E5%85%AD%E8%8A%82%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93%E5%8F%8A%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
-  - [生产环境初体验](#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%88%9D%E4%BD%93%E9%AA%8C)
-  - [第三方样式库](#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93)
-  - [模块优化](#%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
-  - [多个不同组件间的通信](#%E5%A4%9A%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Angular 2.x 从0到1 
 
 ## 史上最简单Angular 2.x教程，大叔都学会了
@@ -78,7 +27,14 @@
  4. 支持[NativeScript][4]甚至[ReactNative][5]等进行原生Android/iOS应用开发（React支持React Native）
  5. 支持服务器端渲染（React也支持）
 
-但总体来讲，个人认为Angular2更适合从原生App开发或后端Java/.Net等转型过来开发前端的程序员，因为它的开发模型更接近于传统强类型语言的模式，加上官方内建的组件和类库比较完整，有[官方中文站][6]点，学习曲线要低一些。有过Angular 1.x 开发经验的同学要注意了，虽然只有一个版本号的差距，但2.x和1.x是完全不同的，不要奢望1.x的应用会平滑迁移到2.x。
+但总体来讲，个人认为Angular2更适合从原生App开发或后端Java/.Net等转型过来开发前端的程序员，因为它的开发模型更接近于传统强类型语言的模式，加上官方内建的组件和类库比较完整，有[官方中文网站 https://angular.cn ][6]，学习曲线要低一些。有过Angular 1.x 开发经验的同学要注意了，虽然只有一个版本号的差距，但2.x和1.x是完全不同的，不要奢望1.x的应用会平滑迁移到2.x。
+
+Angular 支持大多数常用浏览器，包括下列版本：
+
+|Chrome|Firefox|Edge|IE|Safari|iOS|Android|IE Mobile|
+|---|---|---|---|---|---|---|---|---|---|
+|45以上|40以上|13以上|9以上|7以上|7以上|4.1以上|11以上|
+
 
 ## 环境配置要求
 
@@ -94,33 +50,40 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 
 那么现在开启一个terminal（命令行窗口），键入 `ng new hello-angular`
 
-![c1_s1_ng_new_hello-angular.png-51.7kB][13] 
+![angular-cli创建新项目][13] 
 
 如上图所示，这个命令为我们新建了一个名为“hello-angular”的工程，进入该工程目录，键入 `code .` 可以打开IDE看到如下目录
 
-![c1_s1_vscode_project_struct.png-300.1kB][14] 
+![VSCode管理工程][14] 
 
-![image_1b2aksv68uhs3mf64j1h9st7o9.png-292.3kB][15]
+使用Mac的用户可能发现找不到我们刚才使用的命令行的 `code`，您需要通过IDE安装一下，点击F1，输入install，即可看到“在Path中安装code命令”，选择之后就ok了。
+
+![Mac用户需要安装命令行][15]
+
+![文件目录结构][16]
 
 大概了解了文件目录结构后，我们重新回到命令行，在应用根目录键入 `ng serve` 可以看到应用编译打包后server运行在4200端口。
-![c1_s1_ng_serve.png-42.5kB][16]
+
+![使用ng serve运行应用][17]
+
 打开浏览器输入 http://localhost:4200 即可看到程序运行成功啦！
 
-![c1_s1_project_1st_browser.png-135.7kB][17]
+![第一次运行应用][18]
 
 自动生成的太没有成就感了是不是，那么我们动手改一下吧。保持运行服务的命令窗口，然后进入VSCode，打开 `src/app/app.component.ts` 修改title，比如： `title = 'This is a hello-angular app';`，保存后返回浏览器看一下吧，结果已经更新了，这种热装载的特性使得开发变得很方便。
 
-![c1_s1_project_1st_browser_update.png-146.5kB][18]
+![第一次小修改][19]
 
 ## 第一个组件
 
 那么我们来为我们的app增加一个Component吧，在命令行窗口输入 `ng generate component login --inline-template --inline-style` 。 顾名思义，参数generate是用来生成文件的，参数component是说明我们要生成一个组件，login呢是我们的组件名称，你可以自己想个其他有意思的名字。后面的两个参数是告诉angular-cli：生成组件时，请把组件的HTML模板和CSS样式和组件放在同一个文件中（其实分开文件更清晰，但第一个例子我们还是采用inline方式了）。是不是感觉这个命令行太长了？幸运的是Angular团队也这么想，所以你可以把上面的命令改写成 `ng g c login -it -is` ,也就是说可以用generate的首字母g来代替generate，用component的首字母c来代替component，类似的`--inline-template`的两个词分别取首字母变成`-it`
 
-![image_1b27r02qlo6f11f19qg1q9k1fclm.png-30.3kB][19]
+![CLI生成新组件][20]
 
 angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 
@@ -146,18 +109,21 @@ export class LoginComponent implements OnInit {
 
 }
 ```
+
 那么这个组件建成后，我们怎么使用呢？注意上面的代码中@Component修饰配置中的 `selector: 'app-login'`，这意味着我们可以在其他组件的template中使用 `<app-login></app-login>` 来引用我们的这个组件。
 
 现在我们打开 `hello-angular\src\app\app.component.html` 加入我们的组件引用
+
 ```html
 <h1>
   {{title}}
 </h1>
 <app-login></app-login>
 ```
+
 保存后返回浏览器，可以看到我们的第一个组件也显示出来了。
 
-![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][20]
+![image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png-19kB][21]
 
 ## 一些基础概念
 
@@ -191,6 +157,7 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppModule { }
 ```
+
 @NgModule装饰器用来为模块定义元数据。declarations列出了应用中的顶层组件，包括引导性组件AppComponent和我们刚刚创建的LoginComponent。在module里面声明的组件在module范围内都可以直接使用，也就是说在同一module里面的任何Component都可以在其模板文件中直接使用声明的组件，就想我们在AppComponent的模板末尾加上 `<app-login></app-login>` 一样。
 
 imports引入了3个辅助模块：
@@ -285,34 +252,43 @@ export class LoginComponent implements OnInit {
 ```
 我们增加了一个文本输入框和一个按钮，保存后返回浏览器可以看到结果
 
-![c2_s1_input_button_added.png-109.6kB][21]
+![第一个组件][22]
 
 接下来我们尝试给Login按钮添加一个处理方法 `<button (click)="onClick()">Login</button>`。`(click)`表示我们要处理这个button的click事件，圆括号是说**发生此事件时，调用等号后面的表达式或函数**。等号后面的`onClick()`是我们自己定义在LoginComponent中的函数，这个名称你可以随便定成什么，不一定叫`onClick()`。下面我们就来定义这个函数，在LoginComponent中写一个叫`onClick()`的方法，内容很简单就是把“button was clicked”输出到Console。
+
 ```javascript
   onClick() {
     console.log('button was clicked');
   }
 ```
+
 返回浏览器，并按F12调出开发者工具。当你点击Login时，会发现Console窗口输出了我们期待的文字。
 
-![c2_s1_handle_click_method.png-141kB][22]
+![Chrome开发者工具][23]
 
-那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用是的input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`
-```javascript
+那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用是的input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`：
+
+```html
 <div>
   <input #usernameRef type="text">
   <button (click)="onClick(usernameRef.value)">Login</button>
 </div>
 ```
+
 在Component内部的onClick方法也要随之改写成一个接受username的方法
+
 ```javascript
   onClick(username) {
     console.log(username);
   }
 ```
+
 现在我们再看看结果是什么样子，在文本输入框中键入“hello”，点击Login按钮，观察Console窗口：hello被输出了。
-![c2_s1_input_button_ref.png-141.1kB][23]
+
+![Console窗口][24]
+
 好了，现在我们再加一个密码输入框，然后改写onClick方法可以同时接收2个参数：用户名和密码。代码如下：
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 
@@ -340,15 +316,17 @@ export class LoginComponent implements OnInit {
 
 }
 ```
+
 看看结果吧，在浏览器中第一个输入框输入“wang”，第二个输入框输入“1234567”，观察Console窗口，Bingo！
 
-![c2_s1_username_password_ref.png-141.8kB][24]
+![元素引用的使用][25]
 
 ## 建立一个服务去完成业务逻辑
 
 如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
 
 下面我们为这个service添加一个方法，你可能注意到这里我们为这个方法指定了返回类型和参数类型。这就是TypeScript带来的好处，有了类型约束，你在别处调用这个方法时，如果给出的参数类型或返回类型不正确，IDE就可以直接告诉你错了。
+
 ```javascript
 import { Injectable } from '@angular/core';
 
@@ -365,11 +343,13 @@ export class AuthService {
 
 }
 ```
+
 等一下，这个service虽然被创建了，但仍然无法在Component中使用。当然你可以在Component中import这个服务，然后实例化后使用，但是这样做并不好，仍然时一个紧耦合的模式，Angular2提供了一种依赖性注入（Dependency Injection）的方法。
 
 ### 什么是依赖性注入？
 
 如果不使用DI（依赖性注入）的时候，我们自然的想法是这样的，在`login.component.ts`中import引入AuthService，在构造中初始化service，在onClick中调用service。
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 //引入AuthService
@@ -405,12 +385,14 @@ export class LoginComponent implements OnInit {
 
 }
 ```
+
 这么做呢也可以跑起来，但存在几个问题：
 
  - 由于实例化是在组件中进行的，意味着我们如果更改service的构造函数的话，组件也需要更改。
  - 如果我们以后需要开发、测试和生产环境配置不同的AuthService，以这种方式实现会非常不方便。
 
 下面我们看看如果使用DI是什么样子的，首先我们需要在组件的修饰器中配置AuthService，然后在组件的构造函数中使用参数进行依赖注入。
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
@@ -443,24 +425,32 @@ export class LoginComponent implements OnInit {
 
 }
 ```
+
 看到这里你会发现我们仍然需要import相关的服务，这是import是要将类型引入进来，而provider里面会配置这个类型的实例。当然即使这样还是不太爽，可不可以不引入AuthService呢？答案是可以。
 
 我们看一下`app.module.ts`，这个根模块文件中我们发现也有个providers，根模块中的这个providers是配置在模块中全局可用的service或参数的。
+
 ```javascript
 providers: [
     {provide: 'auth',  useClass: AuthService}
     ]
 ```
+
 providers是一个数组，这个数组呢其实是把你想要注入到其他组件中的服务配置在这里。大家注意到我们这里的写法和上面优点区别，没有直接写成
+
 ```javascript
 providers:[AuthService]
 ```
+
 而是给出了一个对象，里面有两个属性，provide和useClass，provide定义了这个服务的名称，有需要注入这个服务的就引用这个名称就好。useClass指明这个名称对应的服务是一个类，本例中就是AuthService了。这样定义好之后，我们就可以在任意组件中注入这个依赖了。下面我们改动一下`login.component.ts`，去掉头部的`import { AuthService } from '../core/auth.service';`和组件修饰器中的providers，更改其构造函数为
+
 ```javascript
-onstructor(@Inject('auth') private service) {
+constructor(@Inject('auth') private service) {
   }
 ```
+
 我们去掉了service的类型声明，但加了一个修饰符`@Inject('auth')`，这个修饰符的意思是请到系统配置中找到名称为`auth`的那个依赖注入到我修饰的变量中。当然这样改完后你会发现`Inject`这个修饰符系统不识别，我们需要在`@angular/core`中引用这个修饰符，现在`login.component.ts`看起来应该是下面这个样子
+
 ```javascript
 import { Component, OnInit, Inject } from '@angular/core';
 
@@ -490,20 +480,88 @@ export class LoginComponent implements OnInit {
 }
 ```
 
+注意依赖性注入**不是**仅仅为Service服务的，任何的类都可以通过这种方式提供和注入，它提供了一种解耦的方式，通过Providers提供，通过constructor注入。：
+
+```javascript
+constructor(userService: UserService) {
+  userService.addUser({username: 'wang', password:'1234'});
+}
+```
+
+注入器从哪得到的依赖？它可能在自己内部容器里已经有该依赖了。如果它没有，也能在提供商的帮助下新建一个。提供商就是一个用于交付服务的配方，它被关联到一个令牌。Angular会使用一些自带的提供商来初始化这些注入器。我们必须自行注册属于自己的提供商，通常用组件或者指令元数据中的providers数组进行注册。简单的类提供商是最典型的例子。只要在providers数值里面提到该类就可以了。
+
+```javascript
+providers: [ AuthService, UserService ]
+```
+
+除了上面那种最简单的提供方式之外，我们还可以以令牌方式提供。我们通常在构造函数里面，为参数指定类型，让Angular来处理依赖注入。该参数类型就是依赖注入器所需的令牌。Angular把该令牌传给注入器，然后把得到的结果赋给参数。下面是一个典型的例子
+
+```javascript
+providers: [
+    { provide: 'auth', useClass: AuthService },
+    { provide: 'user', useClass: UserService },
+    { provide: BASE_URL,  useValue:   'http://localhost:3000/todos' },
+    AuthGuardService
+    ]
+```
+
+我们发现providers数组是由一系列的provide对象构成的，这个对象是`{provide: ..., useClass: ...}`或者`{provide: ..., useValue: ...}`形式的。我们把第一个属性叫令牌，第二个属性叫定义对象。这两种形式分别对应**类供应商**和**值供应商**。
+
+值供应商通常用来进行运行期常量设置，比如网站的基础地址和功能标志等。那么最简单那种情形是怎么回事呢？比如：`providers: [ AuthGuardService ]`，其实这是一个语法糖，等价于`{provide: AuthGuardService, useClass:    AuthGuardService}` 。
+
+```
+{ provide: BASE_URL,  useValue:   'http://localhost:3000/todos' }
+```
+
+这个例子和其他的好像还是不太一样，BASE_URL不是个字符串对象也不是一个类对象。这是我们创建的一个令牌，这样创建的令牌拥有一个友好的名字，但不会与其它的同名令牌发生冲突。
+
+```javascript
+import { OpaqueToken } from '@angular/core';
+
+export const BASE_URL = new OpaqueToken('BASE_URL');
+```
+
+当然还有另外两种情形，一种叫别名提供商，我们为同一个对象起了不同的别名。
+
+```javascript
+{ provide: MinimalLogger, useExisting: LoggerService },
+```
+
+另一种叫工厂提供商，提供商通过调用工厂函数来新建一个依赖对象，如下例所示。
+
+```javascript
+{ provide: HELLO, useFactory:  helloFactory(2), deps: [Greeting, HelloService] }
+```
+
+使用这项技术，可以用包含了一些依赖服务和本地状态输入的工厂函数来建立一个依赖对象。helloFactory自身不是提供商工厂函数。真正的提供商工厂函数是helloFactory返回的函数。
+
+```javascript
+export function helloFactory(take: number) {
+  return (greeting: Greeting, helloService: HelloService): string => {
+    /* ... */
+  };
+};
+```
+
 ## 双向数据绑定
 
 接下来的问题是我们是否只能通过这种方式进行表现层和逻辑之间的数据交换呢？如果我们希望在组件内对数据进行操作后再反馈到界面怎么处理呢？Angular2提供了一个双向数据绑定的机制。这个机制是这样的，在组件中提供成员数据变量，然后在模板中引用这个数据变量。我们来改造一下`login.component.ts`，首先在class中声明2个数据变量username和password。
+
 ```javascript
   username = "";
   password = "";
 ```
+
 然后去掉`onClick`方法的参数，并将内部的语句改造成如下样子：
+
 ```javascript
 console.log('auth result is: '
       + this.service.loginWithCredentials(this.username, this.password));
 ```
+
 去掉参数的原因是双向绑定后，我们通过数据成员变量就可以知道用户名和密码了，不需要在传递参数了。而成员变量的引用方式是`this.成员变量`。
 然后我们来改造模板：
+
 ```html
     <div>
       <input type="text"
@@ -515,7 +573,9 @@ console.log('auth result is: '
       <button (click)="onClick()">Login</button>
     </div>
 ```
+
 `[(ngModel)]="username"`这个看起来很别扭，稍微解释一下，方括号[]的作用是说把等号后面当成表达式来解析而不是当成字符串，如果我们去掉方括号那就等于说是直接给这个ngModel赋值成“username”这个字符串了。方括号的含义是单向绑定，就是说我们在组件中给model赋的值会设置到HTML的input控件中。`[()]`是双向绑定的意思，就是说HTML对应控件的状态的改变会反射设置到组件的model中。ngModel是FormModule中提供的指令，它负责从Domain Model（这里就是username或password，以后我们可用绑定更复杂的对象）中创建一个FormControl的实例，并将这个实例和表单的控件绑定起来。同样的对于click事件的处理，我们不需要传入参数了，因为其调用的是刚刚我们改造的组件中的onClick方法。现在我们保存文件后打开浏览器看一下，效果和上一节的应该一样的。本节的完整代码如下：
+
 ```javascript
 //login.component.ts
 import { Component, OnInit, Inject } from '@angular/core';
@@ -557,6 +617,7 @@ export class LoginComponent implements OnInit {
 ## 表单数据的验证
 
 通常情况下，表单的数据是有一定的规则的，我们需要依照其规则对输入的数据做验证以及反馈验证结果。Angular2中对表单验证有非常完善的支持，我们继续上面的例子，在`login`组件中，我们定义了一个用户名和密码的输入框，现在我们来为它们加上规则。首先我们定义一下规则，用户名和密码都是必须输入的，也就是不能为空。更改`login.component.ts`中的模板为下面的样子
+
 ```html
     <div>
       <input required type="text"
@@ -572,13 +633,14 @@ export class LoginComponent implements OnInit {
       <button (click)="onClick()">Login</button>
     </div>
 ```
+
 注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
 
-![c2_s2_form_validation.png-8.5kB][25]
+![表单验证状态][26]
 
 我们是知道了验证的状态是什么，但是如果我们想知道验证失败的原因怎么办呢？我们只需要将`{{usernameRef.valid}}`替换成`{{usernameRef.errors | json}}`。`|`是管道操作符，用于将前面的结果通过管道输出成另一种格式，这里就是把errors对象输出成json格式的意思。看一下结果吧，返回的结果如下
 
-![c2_s2_form_validation_errors.png-11kB][26]
+![管道输出][27]
 
 如果除了不能为空，我们为username再添加一个规则试试看呢，比如字符数不能少于3。
 ```html
@@ -590,9 +652,10 @@ export class LoginComponent implements OnInit {
         />
 ```
 
-![c2_s2_form_validation_errors_multiple.png-14.4kB][27]
+![多规则验证][28]
 
 现在我们试着把`{{表达式}}`替换成友好的错误提示，我们想在有错误发生时显示错误的提示信息。那么我们来改造一下template。
+
 ```html
     <div>
       <input type="text"
@@ -612,6 +675,7 @@ export class LoginComponent implements OnInit {
       <button (click)="onClick()">Login</button>
     </div>
 ```
+
 `ngIf`也是一个Angular2的指令，顾名思义，是用于做条件判断的。`*ngIf="usernameRef.errors?.required"`的意思是当`usernameRef.errors.required`为`true`时显示`div`标签。那么那个`?`是干嘛的呢？因为`errors`可能是个null，如果这个时候调用`errors`的`required`属性肯定会引发异常，那么`?`就是标明`errors`可能为空，在其为空时就不用调用后面的属性了。
 
 如果我们把用户名和密码整个看成一个表单的话，我们应该把它们放在一对`<form></form>`标签中，类似的加入一个表单的引用`formRef`。
@@ -636,7 +700,9 @@ export class LoginComponent implements OnInit {
       </form>
     </div>
 ```
+
 这时运行后会发现原本好用的代码出错了，这是由于如果在一个大的表单中，ngModel会注册成Form的一个子控件，注册子控件需要一个name，这要求我们显式的指定对应控件的name，因此我们需要为`input`增加name属性
+
 ```html
     <div>
       <form #formRef="ngForm">
@@ -666,16 +732,19 @@ export class LoginComponent implements OnInit {
 首先为form增加一个表单提交事件的处理
 `<form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">`。
 然后在组件中增加一个`onSubmit`方法
+
 ```javascript
   onSubmit(formValue) {
     console.log(formValue);
   }
 ```
+
 你会发现`formRef.value`中包括了表单所有填写项的值。
 
-![c2_s2_form_validation_form_submit.png-27.7kB][28]
+![表单引用][29]
 
 有时候在表单项过多时我们需要对表单项进行分组，HTML中提供了`fieldset`标签用来处理。那么我们看看怎么和Angular2结合吧：
+
 ```html
     <div>
       <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
@@ -702,8 +771,11 @@ export class LoginComponent implements OnInit {
       </form>
     </div>
 ```
+
 `<fieldset ngModelGroup="login">`意味着我们对于fieldset之内的数据都分组到了`login`对象中。
-![c2_s2_form_validation_fieldset.png-43.5kB][29]
+
+![表单验证][30]
+
 接下来我们改写onSubmit方法用来替代onClick，因为看起来这两个按钮重复了，我们需要去掉onClick。首先去掉template中的`<button (click)="onClick()">Login</button>`，然后把`<button type="submit">`标签后的`Submit`文本替换成`Login`，最后改写onSubmit方法。
 ```javascript
   onSubmit(formValue) {
@@ -717,9 +789,10 @@ export class LoginComponent implements OnInit {
 
 如果我们在开发工具中查看网页源码，可以看到
 
-![c2_s2_form_validation_form_styling.png-92.5kB][30]
+![验证的样式][31]
 
-用户名控件的HTML代码是下面的样子：在验证结果为false时input的样式是`ng-invalid`
+用户名控件的HTML代码是下面的样子：在验证结果为false时input的样式是`ng-invalid`：
+
 ```html
 <input 
     name="username" 
@@ -730,7 +803,9 @@ export class LoginComponent implements OnInit {
     ng-reflect-minlength="3" 
     ng-reflect-name="username">
 ```
-类似的可以实验一下，填入一些字符满足验证要求之后，看input的HTML是下面的样子：在验证结果为true时input的样式是`ng-valid`
+
+类似的可以实验一下，填入一些字符满足验证要求之后，看input的HTML是下面的样子：在验证结果为true时input的样式是`ng-valid`：
+
 ```html
 <input 
     name="username" 
@@ -742,7 +817,9 @@ export class LoginComponent implements OnInit {
     ng-reflect-minlength="3" 
     ng-reflect-name="username">
 ```
+
 知道这个后，我们可以自定义不同验证状态下的控件样式。在组件的修饰符中把styles数组改写一下：
+
 ```javascript
   styles: [`
     .ng-invalid{
@@ -753,15 +830,17 @@ export class LoginComponent implements OnInit {
     }
   `]
 ```
+
 保存一下，返回浏览器可以看到，验证不通过时
 
-![c2_s2_form_validation_style_fail.png-8.9kB][31]
+![验证失败的样式][32]
 
 验证通过时是这样的：
 
-![c2_s2_form_validation_style_pass.png-4.6kB][32]
+![验证通过的样式][33]
 
 最后说一下，我们看到这样设置完样式后连form和fieldset都一起设置了，这是由于form和fieldset也在样式中应用了`.ng-valid`和`.ng-valid`，那怎么解决呢？只需要在`.ng-valid`加上`input`即可，它表明的是应用于input类型控件并且class引用了ng-invalid的元素。
+
 ```javascript
   styles: [`
     input.ng-invalid{
@@ -772,7 +851,8 @@ export class LoginComponent implements OnInit {
     }
   `]
 ```
-很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][33]和https://css-tricks.com/multiple-class-id-selectors/。
+
+很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][34]和https://css-tricks.com/multiple-class-id-selectors/。
 
 ## 组件样式
 
@@ -863,9 +943,10 @@ forRoot(routes: Routes, config?: ExtraOptions) : ModuleWithProviders
 
 运行一下，我们会发现出错了
 
-![image_1b0hgdsiu87n1lha1kcahl51ckb9.png-233.2kB][34]
+![没有路由插座导致的报错][35]
 
  这个错误看上去应该是对于''没有找到匹配的route，这是由于我们只定义了一个'login'，我们再试试在浏览器地址栏输入：`http://localhost:4200/login`。这次仍然出错，但错误信息变成了下面的样子，意思是我们没有找到一个outlet去加载LoginComponent。对的，这就引出了router outlet的概念，如果要显示对应路由的组件，我们需要一个插头（outlet）来装载组件。
+ 
 ```
 error_handler.js:48EXCEPTION: Uncaught (in promise): Error: Cannot find primary outlet to load 'LoginComponent'
 Error: Cannot find primary outlet to load 'LoginComponent'
@@ -880,7 +961,9 @@ Error: Cannot find primary outlet to load 'LoginComponent'
     at SafeSubscriber.__tryOrSetError (http://localhost:4200/main.bundle.js:42013:16)
     at SafeSubscriber.next (http://localhost:4200/main.bundle.js:41955:27)
 ```
-下面我们把`<router-outlet></router-outlet>`写在`src\app\app.component.html`的末尾，地址栏输入`http://localhost:4200/login`重新看看浏览器中的效果吧，我们的应用应该正常显示了。但如果输入`http://localhost:4200`时仍然是有异常出现的，我们需要添加一个路由定义来处理。输入`http://localhost:4200`时相对于根路径的path应该是空，即''。而我们这时希望将用户仍然引导到登录页面，这就是`redirectTo: 'login'`的作用。`pathMatch: 'full'`的意思是必须完全符合路径的要求，也就是说`http://localhost:4200/1`是不会匹配到这个规则的，必须严格是`http://localhost:4200`
+
+下面我们把`<router-outlet></router-outlet>`写在`src\app\app.component.html`的末尾，地址栏输入`http://localhost:4200/login`重新看看浏览器中的效果吧，我们的应用应该正常显示了。但如果输入`http://localhost:4200`时仍然是有异常出现的，我们需要添加一个路由定义来处理。输入`http://localhost:4200`时相对于根路径的path应该是空，即''。而我们这时希望将用户仍然引导到登录页面，这就是`redirectTo: 'login'`的作用。`pathMatch: 'full'`的意思是必须完全符合路径的要求，也就是说`http://localhost:4200/1`是不会匹配到这个规则的，必须严格是`http://localhost:4200`：
+
 ```javascript
     RouterModule.forRoot([
       {
@@ -894,11 +977,13 @@ Error: Cannot find primary outlet to load 'LoginComponent'
       }
     ])
 ```
+
 注意路径配置的**顺序**是非常重要的，Angular2使用“先匹配优先”的原则，也就是说如果一个路径可以同时匹配几个路径配置的规则的话，以第一个匹配的规则为准。现在打开浏览器试验一下，我们的功能又恢复了正常。
 
 ### 分离路由定义
 
 但是现在还有一点小不爽，就是直接在`app.modules.ts`中定义路径并不是很好的方式，因为随着路径定义的复杂，这部分最好还是用单独的文件来定义。现在我们新建一个文件`src\app\app.routes.ts`，将上面在`app.modules.ts`中定义的路径删除并在`app.routes.ts`中重新定义。
+
 ```javascript
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -917,7 +1002,9 @@ export const routes: Routes = [
 
 export const routing = RouterModule.forRoot(routes);
 ```
+
 接下来我们在`app.modules.ts`中引入routing，`import { routing } from './app.routes';`，然后在imports数组里添加routing，现在我们的`app.modules.ts`看起来是下面这个样子。
+
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -949,6 +1036,7 @@ export class AppModule { }
 ```
 
 现在我们来规划一下根路径`''`，对应根路径我们想建立一个todo组件，那么我们使用`ng g c todo`来生成组件，然后在`app.routes.ts`中加入路由定义，对于根路径我们不再需要重定向到登录了，我们把它改写成重定向到todo。
+
 ```javascript
 export const routes: Routes = [
   {
@@ -966,13 +1054,15 @@ export const routes: Routes = [
   }
 ];
 ```
+
 在浏览器中键入`http://localhost:4200`可以看到自动跳转到了todo路径，并且我们的todo组件也显示出来了。
 
-![image_1b0k2ba0d1qqraa51mj51hpdpeo9.png-81kB][35]
+![Todo组件][36]
 
 ## 让待办事项变得有意义
 
-我们希望的Todo页面应该有一个输入待办事项的输入框和一个显示待办事项状态的列表。那么我们先来定义一下todo的结构，todo应该有一个id用来唯一标识，还应该有一个desc用来描述这个todo是干什么的，再有一个completed用来标识是否已经完成。好了，我们来建立这个todo模型吧，在todo文件夹下新建一个文件`todo.model.ts`
+我们希望的Todo页面应该有一个输入待办事项的输入框和一个显示待办事项状态的列表。那么我们先来定义一下todo的结构，todo应该有一个id用来唯一标识，还应该有一个desc用来描述这个todo是干什么的，再有一个completed用来标识是否已经完成。好了，我们来建立这个todo模型吧，在todo文件夹下新建一个文件`todo.model.ts`：
+
 ```javascript
 export class Todo {
   id: number;
@@ -980,7 +1070,9 @@ export class Todo {
   completed: boolean;
 }
 ```
+
 然后我们应该改造一下todo组件了，引入刚刚建立好的todo对象，并且建立一个todos数组作为所有todo的集合，一个desc是当前添加的新的todo的内容。当然我们还需要一个addTodo方法把新的todo加到todos数组中。这里我们暂且写一个漏洞百出的版本。
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
@@ -1004,7 +1096,9 @@ export class TodoComponent implements OnInit {
   }
 }
 ```
+
 然后我们改造一下`src\app\todo\todo.component.html`
+
 ```html
 <div>
   <input type="text" [(ngModel)]="desc" (keyup.enter)="addTodo()">
@@ -1013,9 +1107,10 @@ export class TodoComponent implements OnInit {
   </ul>
 </div>
 ```
+
 如上面代码所示，我们建立了一个文本输入框，这个输入框的值应该是新todo的描述（desc），我们想在用户按了回车键后进行添加操作（`(keyup.enter)="addTodo()`）。由于todos是个数组，所以我们利用一个循环将数组内容显示出来（`<li *ngFor="let todo of todos">{{ todo.desc }}</li>`）。好了让我们欣赏一下成果吧
 
-![image_1b0kgg9mnppf16pkip81b2hhbrm.png-90.1kB][36]
+![有实际意义的Todo][37]
 
 ### 隔离业务逻辑
 
@@ -1029,6 +1124,7 @@ export class TodoComponent implements OnInit {
 
 由于此时`Todo`对象的`id`已经是字符型了，请更改其声明为`id: string;`。
 然后修改service成下面的样子：
+
 ```javascript
 import { Injectable } from '@angular/core';
 import {Todo} from './todo.model';
@@ -1052,7 +1148,9 @@ export class TodoService {
   }
 }
 ```
+
 当然我们还要把组件中的代码改成使用service的
+
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
@@ -1078,9 +1176,10 @@ export class TodoComponent implements OnInit {
   }
 }
 ```
-为了可以清晰的看到我们的成果，我们为chrome浏览器装一个插件，在chrome的地址栏中输入`chrome://extensions`，拉到最底部会看到一个“获取更多扩展程序”的链接，点击这个链接然后搜索“Angury”，安装即可。安装好后，按F12调出开发者工具，里面出现一个叫“Angury”的tab。
 
-![image_1b0kr7gpn17td7v1p4s1qucuu313.png-273.8kB][37]
+为了可以清晰的看到我们的成果，我们为chrome浏览器装一个插件，在chrome的地址栏中输入`chrome://extensions`，拉到最底部会看到一个“获取更多扩展程序”的链接，点击这个链接然后搜索“Augury”，安装即可。安装好后，按F12调出开发者工具，里面出现一个叫“Augury”的tab。
+
+![Auguary可以是一个专门针对Angular的Chrome插件][38]
 
 我们可以看到id这时候被设置成了一串字符，这个就是UUID了。
 
@@ -1091,6 +1190,7 @@ export class TodoComponent implements OnInit {
 ### 构建数据模型
 
 一般来说，你需要知道自己对服务器的期望是什么，期待它返回什么样的数据，有了这个数据呢，我们就可以自己快速的建立一个内存服务器了。拿这个例子来看，我们可能需要一个这样的对象
+
 ```javascript
 class Todo {
   id: string;
@@ -1098,7 +1198,9 @@ class Todo {
   completed: boolean;
 }
 ```
+
 对应的JSON应该是这样的
+
 ```javascript
 {
   "data": [
@@ -1120,8 +1222,10 @@ class Todo {
   ]
 }
 ```
+
 首先我们需要安装`angular-in-memory-web-api`，输入`npm install --save angular-in-memory-web-api`
-然后在Todo文件夹下创建一个文件`src\app\todo\todo-data.ts`
+然后在Todo文件夹下创建一个文件`src\app\todo\todo-data.ts`：
+
 ```javascript
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Todo } from './todo.model';
@@ -1140,13 +1244,16 @@ export class InMemoryTodoDbService implements InMemoryDbService {
 ### 实现内存web服务
 
 可以看到，我们创建了一个实现`InMemoryDbService`的内存数据库，这个数据库其实也就是把数组传入进去。接下来我们要更改`src\app\app.module.ts`，加入类引用和对应的模块声明：
+
 ```javascript
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTodoDbService } from './todo/todo-data';
 ```
+
 然后在imports数组中紧挨着`HttpModule`加上`InMemoryWebApiModule.forRoot(InMemoryTodoDbService),`。
 
 现在我们在service中试着调用我们的“假web服务”吧
+
 ```javascript
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -1186,6 +1293,7 @@ export class TodoService {
   }
 }
 ```
+
 上面的代码我们看到定义了一个`api_url = 'api/todos'`，你可能会问这个是怎么来的？其实这个我们改写成`api_url = 'blablabla/nahnahnah'`也无所谓，因为这个内存web服务的机理是拦截web访问，也就是说随便什么地址都可以，内存web服务会拦截这个地址并解析你的请求是否满足RESTful API的要求。
 
 ### 内存服务器提供的Restful API
@@ -1205,6 +1313,7 @@ export class TodoService {
 还要一点需要强调的是：在用内存Web服务时，一定要注意`res.json().data`中的data属性必须要有，因为内存web服务坑爹的在返回的json中加了data对象，你真正要得到的json是在这个data里面。
 
 下一步我们来更改Todo组件的addTodo方法以便可以使用我们新的异步http方法
+
 ```javascript
   addTodo(){
     this.service
@@ -1215,6 +1324,7 @@ export class TodoService {
       });
   }
 ```
+
 这里面的前半部分应该还是好理解的：`this.service.addTodo(this.desc)`是调用service的对应方法而已，但后半部分是什么鬼？`...`这个貌似省略号的东东是ES7中计划提供的Object Spread操作符，它的功能是将对象或数组“打散，拍平”。这么说可能还是不懂，举例子吧：
 
 ```javascript
@@ -1234,11 +1344,13 @@ let arr5 = [0, 1, 2];
 let arr6 = [-1, ...arr5, 3];
 // arr6 变成了[-1, 0, 1, 2, 3]
 ```
+
 所以呢我们上面的`this.todos = [...this.todos, todo];`相当于为todos增加一个新元素，和push很像，那为什么不用push呢？因为这样构造出来的对象是全新的，而不是引用的，在现代编程中一个明显的趋势是不要在过程中改变输入的参数。第二个原因是这样做会带给我们极大的便利性和编程的一致性。下面通过给我们的例子添加几个功能，我们来一起体会一下。
 
 ### Angular2内建的Http方法
 
-首先更改`src\app\todo\todo.service.ts`
+首先更改`src\app\todo\todo.service.ts`：
+
 ```javascript
 //src\app\todo\todo.service.ts
 import { Injectable } from '@angular/core';
@@ -1301,6 +1413,7 @@ export class TodoService {
   }
 }
 ```
+
 上面的代码中可以看到对应Restful API的各个“动词”，angular 2.x 提供了一系列对应名称的方法，非常简单易用。比如说在`deleteTodoById`方法中，我们要访问的API是`/todos/:id`，使用的HTTP方法是DELETE，那么我们就使用`this.http.delete(url, {headers: this.headers})`
 
 ### 页面展现
@@ -1364,7 +1477,9 @@ export class TodoComponent implements OnInit {
   }
 }
 ```
+
 模板文件`src\app\todo\todo.component.html`需要把对应的功能体现在页面上，于是我们增加了toggleTodo（切换完成状态）的checkbox和removeTodo（删除待办事项）的button。
+
 ```html
 <section class="todoapp">
   <header class="header">
@@ -1396,332 +1511,25 @@ export class TodoComponent implements OnInit {
   </footer>
 </section
 ```
-更新组件的css样式:`src\app\todo\todo.component.css`
+
+更新组件的css样式: `src\app\todo\todo.component.css` 和 `src\styles.css`，这两个文件比较大，可以到下面列出的本节代码中去查看。
+
+其中`src\app\todo\todo.component.css`有一段代码稍微讲一下，这段代码把复选框原本的方块替换成SVG格式的图片，以便实现比较炫酷的效果。
+
 ```css
-.todoapp {
-    background: #fff;
-    margin: 130px 0 40px 0;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-                0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-.todoapp input::-webkit-input-placeholder {
-    font-style: italic;
-    font-weight: 300;
-    color: #e6e6e6;
-}
-.todoapp input::-moz-placeholder {
-    font-style: italic;
-    font-weight: 300;
-    color: #e6e6e6;
-}
-.todoapp input::input-placeholder {
-    font-style: italic;
-    font-weight: 300;
-    color: #e6e6e6;
-}
-.todoapp h1 {
-    position: absolute;
-    top: -155px;
-    width: 100%;
-    font-size: 100px;
-    font-weight: 100;
-    text-align: center;
-    color: rgba(175, 47, 47, 0.15);
-    -webkit-text-rendering: optimizeLegibility;
-    -moz-text-rendering: optimizeLegibility;
-    text-rendering: optimizeLegibility;
-}
-.new-todo,
-.edit {
-    position: relative;
-    margin: 0;
-    width: 100%;
-    font-size: 24px;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: 1.4em;
-    border: 0;
-    color: inherit;
-    padding: 6px;
-    border: 1px solid #999;
-    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.new-todo {
-    padding: 16px 16px 16px 60px;
-    border: none;
-    background: rgba(0, 0, 0, 0.003);
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-}
-.main {
-    position: relative;
-    z-index: 2;
-    border-top: 1px solid #e6e6e6;
-}
-label[for='toggle-all'] {
-    display: none;
-}
-.toggle-all {
-    position: absolute;
-    top: -55px;
-    left: -12px;
-    width: 60px;
-    height: 34px;
-    text-align: center;
-    border: none; /* Mobile Safari */
-}
-.toggle-all:before {
-    content: '❯';
-    font-size: 22px;
-    color: #e6e6e6;
-    padding: 10px 27px 10px 27px;
-}
-.toggle-all:checked:before {
-    color: #737373;
-}
-.todo-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-.todo-list li {
-    position: relative;
-    font-size: 24px;
-    border-bottom: 1px solid #ededed;
-}
-.todo-list li:last-child {
-    border-bottom: none;
-}
-.todo-list li.editing {
-    border-bottom: none;
-    padding: 0;
-}
-.todo-list li.editing .edit {
-    display: block;
-    width: 506px;
-    padding: 12px 16px;
-    margin: 0 0 0 43px;
-}
-.todo-list li.editing .view {
-    display: none;
-}
-.todo-list li .toggle {
-    text-align: center;
-    width: 40px;
-    /* auto, since non-WebKit browsers doesn't support input styling */
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    border: none; /* Mobile Safari */
-    -webkit-appearance: none;
-    appearance: none;
-}
+...
 .todo-list li .toggle:after {
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
 }
 .todo-list li .toggle:checked:after {
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
-.todo-list li label {
-    word-break: break-all;
-    padding: 15px 60px 15px 15px;
-    margin-left: 45px;
-    display: block;
-    line-height: 1.2;
-    transition: color 0.4s;
-}
-.todo-list li.completed label {
-    color: #d9d9d9;
-    text-decoration: line-through;
-}
-.todo-list li .destroy {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
-    font-size: 30px;
-    color: #cc9a9a;
-    margin-bottom: 11px;
-    transition: color 0.2s ease-out;
-}
-.todo-list li .destroy:hover {
-    color: #af5b5e;
-}
-.todo-list li .destroy:after {
-    content: '×';
-}
-.todo-list li:hover .destroy {
-    display: block;
-}
-.todo-list li .edit {
-    display: none;
-}
-.todo-list li.editing:last-child {
-    margin-bottom: -1px;
-}
-.footer {
-    color: #777;
-    padding: 10px 15px;
-    height: 20px;
-    text-align: center;
-    border-top: 1px solid #e6e6e6;
-}
-.footer:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 50px;
-    overflow: hidden;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-                0 8px 0 -3px #f6f6f6,
-                0 9px 1px -3px rgba(0, 0, 0, 0.2),
-                0 16px 0 -6px #f6f6f6,
-                0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
-.todo-count {
-    float: left;
-    text-align: left;
-}
-.todo-count strong {
-    font-weight: 300;
-}
-.filters {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    left: 0;
-}
-.filters li {
-    display: inline;
-}
-.filters li a {
-    color: inherit;
-    margin: 3px;
-    padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 3px;
-}
-.filters li a:hover {
-    border-color: rgba(175, 47, 47, 0.1);
-}
-.filters li a.selected {
-    border-color: rgba(175, 47, 47, 0.2);
-}
-.clear-completed,
-html .clear-completed:active {
-    float: right;
-    position: relative;
-    line-height: 20px;
-    text-decoration: none;
-    cursor: pointer;
-}
-.clear-completed:hover {
-    text-decoration: underline;
-}
-/*
-    Hack to remove background from Mobile Safari.
-    Can't use it globally since it destroys checkboxes in Firefox
-*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    .toggle-all,
-    .todo-list li .toggle {
-        background: none;
-    }
-    .todo-list li .toggle {
-        height: 40px;
-    }
-    .toggle-all {
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
-        -webkit-appearance: none;
-        appearance: none;
-    }
-}
-@media (max-width: 430px) {
-    .footer {
-        height: 50px;
-    }
-    .filters {
-        bottom: 10px;
-    }
-}
+...
 ```
-更新`src\styles.css`为如下
-```css
-/* You can add global styles to this file, and also import other style files */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: none;
-    font-size: 100%;
-    vertical-align: baseline;
-    font-family: inherit;
-    font-weight: inherit;
-    color: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-body {
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.4em;
-    background: #f5f5f5;
-    color: #4d4d4d;
-    min-width: 230px;
-    max-width: 550px;
-    margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 300;
-}
-:focus {
-    outline: 0;
-}
-.hidden {
-    display: none;
-}
-.info {
-    margin: 65px auto 0;
-    color: #bfbfbf;
-    font-size: 10px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    text-align: center;
-}
-.info p {
-    line-height: 1;
-}
-.info a {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 400;
-}
-.info a:hover {
-    text-decoration: underline;
-}
-```
+
 现在我们看看成果吧，现在好看多了
 
-![image_1b11jlmes1nithths9q1n8ijqg9.png-78.9kB][38]
+![带样式的待办事项][39]
 
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap03/angular2/ng2-tut
 
@@ -1731,9 +1539,12 @@ body {
 
 ## 一个复杂组件的分拆
 
-上一节的末尾我偷懒的甩出了大量代码，可能你看起来都有点晕了，这就是典型的一个功能经过一段时间的需求累积后，代码也不可避免的臃肿起来。现在我们看看怎么分拆一下吧。
-![image_1b11kjibcelb6upnb21su41dilm.png-59.5kB][39]
+上一节的末尾我们堆砌了大量代码，可能你看起来都有点晕了，这就是典型的一个功能经过一段时间的需求累积后，代码也不可避免的臃肿起来。现在我们看看怎么分拆一下吧。
+
+![页面的功能区划分][40]
+
 我们的应用似乎可以分为Header，Main和Footer几部分。首先我们来建立一个新的Component，键入`ng g c todo/todo-footer`。然后将`src\app\todo\todo.component.html`中的`<footer>...</footer>`段落剪切到`src\app\todo\todo-footer\todo-footer.component.html`中。
+
 ```html
   <footer class="footer" *ngIf="todos?.length > 0">
     <span class="todo-count">
@@ -1747,7 +1558,9 @@ body {
     <button class="clear-completed">Clear completed</button>
   </footer>
 ```
+
 观察上面的代码，我们看到似乎所有的变量都是`todos?.length`，这提醒我们其实对于Footer来说，我们并不需要传入todos，而只需要给出一个item计数即可。那么我们来把所有的`todos?.length`改成`itemCount`。
+
 ```html
 <footer class="footer" *ngIf="itemCount > 0">
   <span class="todo-count">
@@ -1761,7 +1574,9 @@ body {
   <button class="clear-completed">Clear completed</button>
 </footer>
 ```
+
 这样的话也就是说如果在`src\app\todo\todo.component.html`中我们可以用`<app-todo-footer [itemCount]="todos?.length"></app-todo-footer>`去传递todo项目计数给Footer即可。所以在`src\app\todo\todo.component.html`中刚才我们剪切掉代码的位置加上这句吧。当然，如果要让父组件可以传递值给子组件，我们还需要在子组件中声明一下。`@Input()`是输入型绑定的修饰符，用于把数据从父组件传到子组件。
+
 ```javascript
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -1781,26 +1596,33 @@ export class TodoFooterComponent implements OnInit {
 
 运行一下看看效果，应该一切正常！
 
+![分拆footer之后的待办事项列表][41]
+
 ### 输入和输出属性
 
 类似的我们建立一个Header组件，键入`ng g c todo/todo-header`，同样的把下面的代码从`src\app\todo\todo.component.html`中剪切到`src\app\todo\todo-header\todo-header.component.html`中
+
 ```html
 <header class="header">
   <h1>Todos</h1>
   <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="desc" (keyup.enter)="addTodo()">
 </header>
 ```
+
 这段代码看起来有点麻烦，主要原因是我们好像不但需要给子组件输入什么，而且希望子组件给父组件要输出一些东西，比如输入框的值和按下回车键的消息等。当然你可能猜到了，Angular2里面有`@Input()`就相应的有`@Output()`修饰符。
 我们希望输入框的占位文字（没有输入的情况下显示的默认文字）是一个输入型的参数，在回车键抬起时可以发射一个事件给父组件，同时我们也希望在输入框输入文字时父组件能够得到这个字符串。也就是说父组件调用子组件时看起来是下面的样子，相当于我们自定义的组件中提供一些事件，父组件调用时可以写自己的事件处理方法，而$event就是子组件发射的事件对象：
-```html
+
+```
 <app-todo-header 
     placeholder="What do you want"
     (onTextChanges)="onTextChanges($event)"
     (onEnterUp)="addTodo()" >
 </app-todo-header>
 ```
+
 但是第三个需求也就是“在输入框输入文字时父组件能够得到这个字符串”，这个有点问题，如果每输入一个字符都要回传给父组件的话，系统会过于频繁进行这种通信，有可能会有性能的问题。那么我们希望可以有一个类似滤波器的东东，它可以过滤掉一定时间内的事件。因此我们定义一个输入型参数delay。
-```html
+
+```
 <app-todo-header 
     placeholder="What do you want"
     delay="400"
@@ -1808,8 +1630,10 @@ export class TodoFooterComponent implements OnInit {
     (onEnterUp)="addTodo()" >
 </app-todo-header>
 ```
+
 现在的标签引用应该是上面这个样子，但我们只是策划了它看起来是什么样子，还没有做呢。我们一起动手看看怎么做吧。
 `todo-header.component.html`的模板中我们调整了一些变量名和参数以便让大家不混淆子组件自己的模板和父组件中引用子组件的模板片段。
+
 ```html
 //todo-header.component.html
 <header class="header">
@@ -1822,9 +1646,11 @@ export class TodoFooterComponent implements OnInit {
     (keyup.enter)="enterUp()">
 </header>
 ```
+
 记住子组件的模板是描述子组件自己长成什么样子，应该有哪些行为，这些东西和父组件没有任何关系。比如`todo-header.component.html`中的`placeholder`就是HTML标签Input中的一个属性，和父组件没有关联，如果我们不在`todo-header.component.ts`中声明`@Input() placeholder`，那么子组件就没有这个属性，在父组件中也无法设置这个属性。父组件中的声明为`@Input()`的属性才会成为子组件对外可见的属性，我们完全可以把`@Input() placeholder`声明为`@Input() hintText`，这样的话在引用header组件时，我们就需要这样写`<app-todo-header hintText="What do you want" ...`
 
 现在看一下`todo-header.component.ts`
+
 ```javascript
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
@@ -1862,6 +1688,7 @@ export class TodoHeaderComponent implements OnInit {
   }
 }
 ```
+
 分析一下代码：
 placeholder和delay作为2个输入型变量，这样`<app-todo-header>`标签中就可以设置这两个属性了。
 接下来我们看到了由`@Output`修饰的onTextChanges和onEnterUp，这两个顾名思义是分别处理文本变化和回车键抬起事件的，这两个变量呢都定义成了EventEmitter（事件发射器）。我们会在子组件的逻辑代码中以适当的条件去发射对应事件，而父组件会接收到这些事件。我们这里采用了2中方法来触发发射器
@@ -1869,13 +1696,15 @@ placeholder和delay作为2个输入型变量，这样`<app-todo-header>`标签�
  - enterUp：这个是比较常规的方法，在`todo-header.component.html`中我们定义了`(keyup.enter)="enterUp()"`，所以在组件的enterUp方法中，我们直接让onEnterUp发射了对应事件。
  - 构造器中使用Rx：这里涉及了很多新知识，首先我们注入了ElementRef，这个是一个Angular中需要谨慎使用的对象，因为它可以让你直接操作DOM，也就是HTML的元素和事件。同时我们使用了Rx（响应式对象），Rx是一个很复杂的话题，这里我们不展开了，但我们主要是利用Observable去观察HTML中的keyup事件，然后在这个事件流中做一个转换把输入框的值发射出来（map），应用一个时间的滤波器（debounceTime），然后应用一个筛选器（distinctUntilChanged）。这里由于这个事件的发射条件是依赖于输入时的当时条件，我们没有办法按前面的以模板事件触发做处理。
 最后需要在`todo.component.ts`中加入对header输出参数发射事件的处理
+
 ```javascript
   onTextChanges(value) {
     this.desc = value;
   }
 ```
  
-最后由于组件分拆后，我们希望也分拆一下css，这里就直接给代码了
+最后由于组件分拆后，我们希望也分拆一下css， `todo-header.component.css` ， `todo-footer.component.css` 和 `todo.component.css` 都需要更新。
+
 `todo-header.component.css`的样式如下：
 ```css
 h1 {
@@ -1905,8 +1734,7 @@ input::input-placeholder {
     font-weight: 300;
     color: #e6e6e6;
 }
-.new-todo,
-.edit {
+.new-todo {
     position: relative;
     margin: 0;
     width: 100%;
@@ -1930,6 +1758,7 @@ input::input-placeholder {
     box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
 ```
+
 `todo-footer.component.css`的样式如下
 ```css
 .footer {
@@ -1985,8 +1814,7 @@ input::input-placeholder {
 .filters li a.selected {
     border-color: rgba(175, 47, 47, 0.2);
 }
-.clear-completed,
-html .clear-completed:active {
+.clear-completed:active {
     float: right;
     position: relative;
     line-height: 20px;
@@ -1996,16 +1824,10 @@ html .clear-completed:active {
 .clear-completed:hover {
     text-decoration: underline;
 }
-@media (max-width: 430px) {
-    .footer {
-        height: 50px;
-    }
-    .filters {
-        bottom: 10px;
-    }
-}
 ```
+
 当然上述代码要从`todo.component.css`中删除，现在的`todo.component.css`看起来是这个样子
+
 ```css
 .todoapp {
     background: #fff;
@@ -2126,30 +1948,98 @@ label[for='toggle-all'] {
 .toggle-all:checked:before {
     color: #737373;
 }
-/*
-    Hack to remove background from Mobile Safari.
-    Can't use it globally since it destroys checkboxes in Firefox
-*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    .toggle-all,
-    .todo-list li .toggle {
-        background: none;
-    }
-    .todo-list li .toggle {
-        height: 40px;
-    }
-    .toggle-all {
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
-        -webkit-appearance: none;
-        appearance: none;
-    }
+```
+
+### CSS样式的一点小说明
+
+上一张我们讲了组件CSS样式，这一章我们进一步讲一下。我们有几种方式来把样式加入组件：
+
+ 1. 内联在模板的 HTML 中 
+ 2. 设置styles或styleUrls元数据 
+ 3. 通过 CSS 文件导入
+
+第一种方式我们也可以把它们放到 `<style>` 标签中来直接在 `HTML` 模板中嵌入样式。
+
+```javascript
+@Component({
+  selector: 'hello-app',
+  template: `
+    <style>
+      button {
+        background-color: white;
+        border: 1px solid #777;
+      }
+    </style>
+    <h3>Controls</h3>
+    <button (click)="activate()">Activate</button>
+  `
+})
+export class HelloAppComponent {
+/* . . . */
 }
 ```
+
+第二种方式中我们可以给`@Component`装饰器添加一个styles数组型属性。这个数组中的每一个字符串（通常也只有一个）定义一份 CSS。
+
+```javascript
+@Component({
+  selector: 'hello-app',
+  template: `
+    <h1>Hello World</h1>
+    <app-hello-main></app-hello-main>`,
+  styles: ['h1 { font-weight: normal; }']
+})
+export class HelloAppComponent {
+/* . . . */
+}
+```
+
+或者使用URL指定样式文件
+
+```javascript
+@Component({
+  selector: 'hello-app',
+  template: `
+    <h1>Hello World</h1>
+    <app-hello-main></app-hello-main>`,
+  styleUrls: ['app/hello-app.component.css']
+})
+export class HelloAppComponent {
+/* . . . */
+}
+```
+
+第三种方式是通过在组件的 HTML 模板中嵌入`<link>`标签或通过标准的 CSS  `@import` 规则来把其它 CSS 文件导入到我们的 CSS 文件中。
+
+```javascript
+@Component({
+  selector: 'hello-app',
+  template: `
+    <link rel="stylesheet" href="app/hello-app.component.css">
+    <h3>Todos</h3>`
+})
+```
+
+像styleUrls标签一样，这个link标签的href指向的URL也是 **相对于应用的根目录的** ，而不是组件文件。
+
+通过CSS的`import`引入的URL 是 **相对于我们执行导入操作的 CSS 文件的** ，这点需要注意。
+
+```css
+@import 'hello-app-blablabla.css';
+```
+
+### 控制视图的封装模式
+
+我们前面提过了，组件的CSS样式被封装进了自己的视图中，而不会影响到应用程序的其它部分。而控制视图的封装模式分为：原生 (Native)、仿真 (Emulated) 和无 (None)
+
+- Native模式：完全隔离，外面的样式无法影响组件，组件里面的样式也无法影响外面。
+- Emulated模式（默认值）：全局样式可以影响组件，但组件样式无法影响外层。
+- None意味着完全消除隔离特性，全局样式可以影响组件，组件样式也可以影响外层。这种情况下 Angular 不使用视图封装。Angular 会把CSS添加到全局样式中。而不会应用上前面讨论过的那些作用域规则、隔离和保护等。从本质上来说，这跟把组件的样式直接放进 HTML 是一样的。
 
 ## 封装成独立模块
 
 现在我们的todo目录下好多文件了，而且我们观察到这个功能相对很独立。这种情况下我们似乎没有必要将所有的组件都声明在根模块AppModule当中，因为类似像子组件没有被其他地方用到。Angular中提供了一种组织方式，那就是模块。模块和根模块很类似，我们先在todo目录下建一个文件`src\app\todo\todo.module.ts`
+
 ```javascript
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -2181,8 +2071,10 @@ import { TodoService } from './todo.service';
 })
 export class TodoModule {}
 ```
+
 注意一点，我们没有引入BrowserModule，而是引入了CommonModule。导入 BrowserModule 会让该模块公开的所有组件、指令和管道在 AppModule 下的任何组件模板中直接可用，而不需要额外的繁琐步骤。CommonModule 提供了很多应用程序中常用的指令，包括 NgIf 和 NgFor 等。BrowserModule 导入了 CommonModule 并且 重新导出 了它。 最终的效果是：只要导入 BrowserModule 就自动获得了 CommonModule 中的指令。几乎所有要在浏览器中使用的应用的 **根模块** （ AppModule ）都应该从 @angular/platform-browser 中导入 BrowserModule 。在其它任何模块中都 **不要导入** BrowserModule，应该改成导入 CommonModule 。 它们需要通用的指令。它们不需要重新初始化全应用级的提供商。
 由于和根模块很类似，我们就不展开讲了。需要做的事情是把`TodoComponent`中的`TodoService`改成用`@Inject('todoService')`来注入。但是注意一点，我们需要模块自己的路由定义。我们在todo目录下建立一个`todo.routes.ts`的文件，和根目录下的类似。
+
 ```javascript
 import { Routes, RouterModule } from '@angular/router';
 import { TodoComponent } from './todo.component';
@@ -2195,7 +2087,9 @@ export const routes: Routes = [
 ];
 export const routing = RouterModule.forChild(routes);
 ```
+
 这里我们只定义了一个路由就是“todo”，另外一点和根路由不一样的是`export const routing = RouterModule.forChild(routes);`，我们用的是`forChild`而不是`forRoot`，因为`forRoot`只能用于根目录，所有非根模块的其他模块路由都只能用`forChild`。下面就得更改根路由了，`src\app\app.routes.ts`看起来是这个样子：
+
 ```javascript
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -2217,8 +2111,10 @@ export const routes: Routes = [
 ];
 export const routing = RouterModule.forRoot(routes);
 ```
+
 注意到我们去掉了TodoComponent的依赖，而且更改todo路径定义为redirecTo到todo路径，但没有给出组件，这叫做“无组件路由”，也就是说后面的事情是TodoModule负责的。
 此时我们就可以去掉AppModule中引用的Todo相关的组件了。
+
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -2330,7 +2226,7 @@ export class AppModule { }
 
 欣赏一下成果吧
 
-![image_1b12b5v4onlm16ai1bdn7pu143e9.png-165.7kB][40]
+![Angury插件][42]
 
 ## 完善Todo应用
 
@@ -2344,7 +2240,6 @@ export class AppModule { }
 ### TodoItem和TodoList组件
 在命令行窗口键入`ng g c todo/todo-item`，angular-cli会十分聪明的帮你在todo目录下建好TodoItem组件，并且在TodoModule中声明。一般来说，如果要生成某个模块下的组件，输入`ng g c 模块名称/组件名称`。 好的，类似的我们再建立一个TodoList控件，`ng g c todo/todo-list`。我们希望未来的`todo.component.html`是下面这个样子的
 ```html
-//todo.component.html
 <section class="todoapp">
   <app-todo-header
     placeholder="What do you want"
@@ -2361,6 +2256,7 @@ export class AppModule { }
 </section>
 ```
 那么TodoItem哪儿去了呢？TodoItem是TodoList的子组件，TodoItem的模板应该是todos循环内的一个todo的模板。TodoList的HTML模板看起来应该是下面的样子：
+
 ```html
 <section class="main" *ngIf="todos?.length > 0">
   <input class="toggle-all" type="checkbox">
@@ -2376,7 +2272,9 @@ export class AppModule { }
   </ul>
 </section>
 ```
+
 那么我们先从最底层的TodoItem看，这个组件怎么剥离出来？首先来看`todo-item.component.html`
+
 ```html
 <div class="view">
   <input class="toggle" type="checkbox" (click)="toggle()" [checked]="isChecked">
@@ -2384,6 +2282,7 @@ export class AppModule { }
   <button class="destroy" (click)="remove(); $event.stopPropagation()"></button>
 </div>
 ```
+
 我们需要确定有哪些输入型和输出型参数
 
  - isChecked：输入型参数，用来确定是否被选中，由父组件（TodoList）设置
@@ -2415,6 +2314,7 @@ export class TodoItemComponent{
 }
 ```
 建立好TodoItem后，我们再来看TodoList，还是从模板看一下
+
 ```html
 <section class="main" *ngIf="todos?.length > 0">
   <input class="toggle-all" type="checkbox">
@@ -2430,7 +2330,9 @@ export class TodoItemComponent{
   </ul>
 </section>
 ```
+
 TodoList需要一个输入型参数todos，由父组件（TodoComponent）指定，TodoList本身不需要知道这个数组是怎么来的，它和TodoItem只是负责显示而已。当然我们由于在TodoList里面还有TodoITem子组件，而且TodoList本身不会处理这个输出型参数，所以我们需要把子组件的输出型参数再传递给TodoComponent进行处理。
+
 ```javascript
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../todo.model';
@@ -2460,11 +2362,12 @@ export class TodoListComponent {
   }
 }
 ```
+
 上面代码中有一个新东东，就是在`todos()`方法前我们看到有`set`和`get`两个访问修饰符。这个是由于我们如果把todos当成一个成员变量给出的话，在设置后如果父组件的todos数组改变了，子组件并不知道这个变化，从而不能更新子组件本身的内容。所以我们把todos做成了方法，而且通过get和set修饰成属性方法，也就是说从模板中引用的话可以写成`{{todos}}`。通过标记`set todos()`为`@Input`我们可以监视父组件的数据变化。也就是说如果只定义一个输入型属性的话，那么这个属性是“只写”的，如果要检测父组件给设置的值的变化，我们需要读，所以要提供读和写两个方法。
 
 现在回过头来看一下`todo.component.html`，我们看到`(onRemoveTodo)="removeTodo($event)"`，这句是为了处理子组件（TodoList）的输出型参数（onRemoveTodo），而$event其实就是这个事件反射器携带的参数（这里是`todo:Todo`）。我们通过这种机制完成组件间的数据交换。
+
 ```html
-//todo.component.html
 <section class="todoapp">
   <app-todo-header
     placeholder="What do you want"
@@ -2480,6 +2383,7 @@ export class TodoListComponent {
   <app-todo-footer [itemCount]="todos?.length"></app-todo-footer>
 </section>
 ```
+
 讲到这里大家可能要问是不是过度设计了，这么少的功能用得着这么设计吗？是的，本案例属于过度设计，但我们的目的是展示出更多的Angular实战方法和特性。
 
 ## 填坑，完成漏掉的功能
@@ -2490,16 +2394,19 @@ export class TodoListComponent {
 
 首先看一下过滤器，在Footer中我们有三个过滤器：All，Active和Completed，点击任何一个过滤器，我们只想显示过滤后的数据。
 
-![image_1b17mtibdkjn105l1ojl1dgr9il9.png-6.5kB][41]
+![待办事项的过滤器][43]
 
 这个功能其实有几种可以实现的方式，第一种我们可以按照之前讲过的组件间传递数据的方式设置一个`@Output`的事件发射器来实现。但本节中我们采用另一种方式，通过路由传递参数来实现。Angular2可以给路由添加参数，最简单的一种方式是比如/todo是我们的TodoComponent处理的路径，如果希望携带一个filter参数的话，可以在路由定义中写成
+
 ```javascript
   {
     path: 'todo/:filter',
     component: TodoComponent
   }
 ```
+
 这个`:filter`是一个参数表达式，也就是说例如`todo/ACTIVE`就意味着参数`filter='ACTIVE'`。看上去有点像子路由，但这里我们使用一个组件去处理不同路径的，所以`todo/`后面的数据就被当作路由参数来对待了。这样的话就比较简单了，我们在`todo-footer.component.html`中把几个过滤器指向的路径写一下，注意这里和需要使用Angular2特有的路由链接指令（routerLink）
+
 ```html
   <ul class="filters">
     <li><a routerLink="/todo/ALL">All</a></li>
@@ -2507,30 +2414,39 @@ export class TodoListComponent {
     <li><a routerLink="/todo/COMPLETED">Completed</a></li>
   </ul>
 ```
+
 当然我们还需要在`todo.routes.ts`中增加路由参数到路由数组中
+
 ```javascript
   {
     path: 'todo/:filter',
     component: TodoComponent
   }
 ```
+
 根路由定义也需要改写一下，因为原来todo不带参数时，我们直接重定向到todo模块即可，但现在有参数的话应该重定向到默认参数是“ALL”的路径；
+
 ```javascript
   {
     path: 'todo',
     redirectTo: 'todo/ALL'
   }
 ```
+
 现在打开`todo.component.ts`看看怎么接收这个参数：
 1. 引入路由对象 `import { Router, ActivatedRoute, Params } from '@angular/router';`
 2. 在构造中注入`ActivatedRoute`和`Router`
+
+
 ```javascript
   constructor(
     @Inject('todoService') private service,
     private route: ActivatedRoute,
     private router: Router) {}
 ```
+
 然后在`ngOnInit()`中添加下面的代码，一般的逻辑代码如果需要在`ngOnInit()`中调用。
+
 ```javascript
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
@@ -2539,7 +2455,9 @@ export class TodoListComponent {
     });
   }
 ```
+
 从`this.route.params`返回的是一个Observable，里面包含着所以传递的参数，当然我们这个例子很简单只有一个，就是刚才定义的`filter`。当然我们需要在组件内添加对各种filter处理的方法：调用service中的处理方法后对todos数组进行操作。组件中原有的getTodos方法已经没有用了，删掉吧。
+
 ```javascript
   filterTodos(filter: string): void{
     this.service
@@ -2547,6 +2465,7 @@ export class TodoListComponent {
       .then(todos => this.todos = [...todos]);
   }
 ```
+
 最后我们看看在`todo.service.ts`中我们如何实现这个方法
 
 ```javascript
@@ -2568,18 +2487,20 @@ export class TodoListComponent {
     }
   }
 ```
+
 至此大功告成，我们来看看效果吧。现在输入`http://localhost:4200/todo`进入后观察浏览器地址栏，看到了吧，路径自动被修改成了`http://localhost:4200/todo/ALL`，我们的在跟路由中定义的重定向起作用了！
 
-![image_1b17o06nv10ob13d6pb1f5613pnm.png-137.8kB][42]
+![路由重定向][44]
 
 现在，试着点击其中某个todo更改其完成状态，然后点击Active，我们看到不光路径变了，数据也按照我们期待的方式更新了。
 
-![image_1b17o6qjlb31grg1o7edjm1q4l13.png-128kB][43]
+![待办事项过滤器仍然好用][45]
 
 ### 批量修改和批量删除
 
 ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的过程。
 在`todo-footer.component.html`中增加`Clear Completed`按钮的事件处理
+
 ```html
 <button class="clear-completed" (click)="onClick()">Clear completed</button>
 ```
@@ -2593,18 +2514,24 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
   }
 ...
 ```
+
 类似的，ToggleAll位于TodoList中，所以在`todo-list.component.html`中为其增加点击事件
+
 ```html
 <input class="toggle-all" type="checkbox" (click)="onToggleAllTriggered()">
 ```
+
 在`todo-list.component.ts`中增加一个输出型参数onToggleAll和onToggleAllTriggered的方法
+
 ```javascript
   @Output() onToggleAll = new EventEmitter<boolean>();
   onToggleAllTriggered() {
     this.onToggleAll.emit(true);
   }
 ```
+
 在父组件模板中添加子组件中刚刚声明的新属性，在`todo.component.html`中为app-todo-list和app-todo-footer添加属性：
+
 ```html
   ...
   <app-todo-list
@@ -2618,6 +2545,7 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
   </app-todo-footer>
   ...
 ```
+
 最后在父组件（`todo.component.ts`）中添加对应的处理方法。最直觉的做法是循环数组，执行已有的`toggleTodo(todo: Todo)`和`removeTodo(todo: Todo)`。我们更改一下`todo.component.ts`，增加下面两个方法：
 ```javascript
   toggleAll(){
@@ -2631,9 +2559,10 @@ ToggleAll和ClearCompleted的功能其实是一个批量修改和批量删除的
 ```
 先保存一下，点击一下输入框左边的下箭头图标或者右下角的“Clear Completed”，看看效果
 
-![image_1b1c8if181tld15hlj531aasi8a9.png-140kB][44]
+![完成Clear Completed功能][46]
 
 大功告成！慢着，等一下，哪里好像不太对。让我们回过头再看看`toggleAll`方法和`clearCompleted`方法。目前的实现方式有个明显问题，那就是现在的处理方式又变成同步的了（`this.todos.forEach()`是个同步方法），如果我们的处理逻辑比较复杂的话，现在的实现方式会导致UI没有响应。但是如果不这么做的话，对于一系列的异步操作我们怎么处理呢？`Promise.all(iterable)`就是应对这种情况的，它适合把一系列的Promise一起处理，直到所有的Promise都处理完（或者是异常时reject），之后也返回一个Promise，里面是所有的返回值。
+
 ```javascript
 let p1 = Promise.resolve(3);
 let p2 = 1337;
@@ -2645,7 +2574,9 @@ Promise.all([p1, p2, p3]).then(values => {
   console.log(values); // [3, 1337, "foo"] 
 });
 ```
+
 但是还有个问题，我们目前的`toggleTodo(todo: Todo)`和`removeTodo(todo: Todo)`并不返回Promise，所以也需要小改造一下：
+
 ```javascript
 //todo.component.ts片段
 toggleTodo(todo: Todo): Promise<void> {
@@ -2683,7 +2614,9 @@ toggleTodo(todo: Todo): Promise<void> {
       .then(() => this.todos = [...active_todos]);
   }
 ```
+
 现在再去试试效果，应该一切功能正常。当然这个版本其实还是有问题的，本质上还是在循环调用`toggleTodo`和`removeTodo`，这样做会导致多次进行HTTP连接，所以最佳策略应该是请服务器后端同学增加一个批处理的API给我们。但是服务器端的编程不是本教程的范畴，这里就不展开了，大家只需记住如果在生产环境中切记要减少HTTP请求的次数和缩减发送数据包的大小。说到减小HTTP交互数据的大小的话，我们的`todo.service.ts`中可以对`toggleTodo`方法做点改造。原来的put方法是将整个todo数据上传，但其实我们只改动了`todo.completed`属性。如果你的web api是符合REST标准的话，我们可以用Http的`PATCH`方法而不是`PUT`方法，`PATCH`方法会只上传变化的数据。
+
 ```javascript
   // It was PUT /todos/:id before
   // But we will use PATCH /todos/:id instead
@@ -2698,6 +2631,7 @@ toggleTodo(todo: Todo): Promise<void> {
             .catch(this.handleError);
   }
 ```
+
 最后其实Todo的所有子组件其实都没有用到ngInit，所以不必实现NgInit接口，可以去掉ngInit方法和相关的接口引用。
 
 本节代码： https://github.com/wpcfan/awesome-tutorials/tree/chap04/angular2/ng2-tut
@@ -2748,8 +2682,10 @@ toggleTodo(todo: Todo): Promise<void> {
   ]
 }
 ```
+
 如果你还没有启动json-server的话让我们启动它: `json-server ./src/app/todo/todo-data.json`，然后打开浏览器在地址栏输入`http://localhost:3000/todos/?userId=2`你会看到只有`userId=2`的json被输出了
-```
+
+```javascript
 [
   {
     "id": "5894a12f-dae1-5ab0-5761-1371ba4f703e",
@@ -2765,16 +2701,20 @@ toggleTodo(todo: Todo): Promise<void> {
   }
 ]
 ```
+
 有兴趣的话可以再试试`http://localhost:3000/todos/?userId=2&completed=false`或其他组合查询。现在`todo`有了`userId`字段，但我们还没有User对象，User的json表现形式看起来应该是这样：
-```
+
+```javascript
     {
       "id": 1,
       "username": "wang",
       "password": "1234"
     }
 ```
+
 当然这个表现形式有很多问题，比如密码是明文的，这些问题我们先不管，但大概样子是类似的。那么现在如果要建立User数据库的话，我们应该新建一个`user-data.json`
-```
+
+```javascript
 {
   "users": [
     {
@@ -2790,9 +2730,10 @@ toggleTodo(todo: Todo): Promise<void> {
   ]
 }
 ```
+
 但这样做的话感觉单独为其建一个文件有点不值得，我们干脆把user和todo数据都放在一个文件吧，现在删除`./src/app/todo/todo-data.json`删除，在`src\app`下面新建一个`data.json`
+
 ```javascript
-//src\app\data.json
 {
   "todos": [
     {
@@ -2840,7 +2781,9 @@ toggleTodo(todo: Todo): Promise<void> {
   ]
 }
 ```
+
 当然有了数据，我们就得有对应的对象，基于同样的理由，我们把所有的entity对象都放在一个文件：删除`src\app\todo\todo.model.ts`，在`src\app`下新建一个目录domain，然后在domain下新建一个`entities.ts`，请别忘了更新所有的引用。
+
 ```javascript
 export class Todo {
   id: string;
@@ -2854,9 +2797,10 @@ export class User {
   password: string;
 }
 ```
+
 对于TodoService来说，我们可以做的就是按照刚才的逻辑进行改写：删除和切换状态的逻辑不用改，因为是用Todo的ID标识的。其他的要在访问的URL中加入userId的参数。添加用户的时候要把userId传入：
 
-```javscript
+```javascript
   ...
   addTodo(desc:string): Promise<Todo> {
     let todo = {
@@ -2918,7 +2862,8 @@ export class User {
 ### 核心模块
 
 根据这个逻辑流程，我们来组织一下代码。开始之前我们想把认证相关的代码组织在一个新的模块下，我们暂时叫它`core`吧。在`src\app`下新建一个`core`目录，然后在`core`下面新建一个`core.module.ts`
-```
+
+```javascript
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @NgModule({
@@ -2934,6 +2879,7 @@ export class CoreModule {
     }
   }
 ```
+
 注意到这个模块和其他模块不太一样，原因是我们希望**只在应用启动时导入它一次，而不会在其它地方导入它。**在模块的构造函数中我们会要求Angular把CoreModule注入自身，这看起来像一个危险的循环注入。不过，`@SkipSelf`装饰器意味着*在当前注入器的所有祖先注入器中寻找CoreModule。*如果该构造函数在我们所期望的AppModule中运行，就没有任何祖先注入器能够提供CoreModule的实例，于是注入器会放弃查找。默认情况下，当注入器找不到想找的提供商时，会抛出一个错误。 但`@Optional`装饰器表示找不到该服务也无所谓。 于是注入器会返回null，parentModule参数也就被赋成了空值，而构造函数没有任何异常。
 那么我们在什么时候会需要这样一个模块？比如在这个模块中我们可能会要提供用户服务（UserService），这样的服务系统各个地方都需要，但我们不希望它被创建多次，希望它是一个单例。再比如某些只应用于`AppComponent`模板的一次性组件，没有必要共享它们，然而如果把它们留在根目录，还是显得太乱了。我们可以通过这种形式隐藏它们的实现细节。然后通过根模块AppModule导入CoreModule来获取其能力。
 
@@ -2959,6 +2905,8 @@ export class CoreModule {
 在分层路由的每个级别上，我们都可以设置多个守卫。路由器会先按照从最深的子路由**由下往上**检查的顺序来检查`CanDeactivate`守护条件。然后它会按照**从上到下**的顺序检查`CanActivate`守卫。如果任何守卫返回`false`，其它尚未完成的守卫会被取消，这样整个导航就被取消了。
 
 本例中我们希望用户未登录前不能访问todo，那么需要使用`CanActivate`
+
+
 ```javascript
 import { AuthGuardService } from '../core/auth-guard.service';
 const routes: Routes = [
@@ -2971,6 +2919,7 @@ const routes: Routes = [
 ```
 
 当然光这么写是没有用的，下面我们来建立一个`AuthGuardService`，命令行中键入`ng g s core/auth-guard`（angular-cli对于Camel写法的文件名是采用`-`来分隔每个大写的词）。
+
 ```javascript
 import { Injectable, Inject } from '@angular/core';
 import {
@@ -3001,7 +2950,9 @@ export class AuthGuardService implements CanActivate {
   }
 }
 ```
-观察上面代码，我们发现本地存储的userId的存在与否决定了用户是否已登录的状态，这当然是一个漏洞百出的实现，但我们暂且不去管它。现在我们要在登录时把这个状态值写进去。我们新建一个登录鉴权的`AuthService`：`ng g s core/auth`
+
+观察上面代码，我们发现本地存储的userId的存在与否决定了用户是否已登录的状态，这当然是一个漏洞百出的实现，但我们暂且不去管它。现在我们要在登录时把这个状态值写进去。我们新建一个登录鉴权的`AuthService`：`ng g s core/auth`：
+
 ```javascript
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
@@ -3045,6 +2996,7 @@ export class AuthService {
   }
 }
 ```
+
 注意到我们返回了一个Auth对象，这是因为我们要知道几件事：
 
  - 用户最初要导航的页面URL 
@@ -3052,6 +3004,7 @@ export class AuthService {
  - 如果发生错误的话，是什么错误，我们需要反馈给用户
 
 这个Auth对象同样在`src\app\domain\entities.ts`中声明
+
 ```javascript
 export class Auth {
   user: User;
@@ -3061,7 +3014,8 @@ export class Auth {
 }
 ```
 
-当然我们还得实现UserService：`ng g s user`
+当然我们还得实现UserService：`ng g s user`：
+
 ```javascript
 import { Injectable } from '@angular/core';
 
@@ -3095,6 +3049,7 @@ export class UserService {
 ```
 
 这段代码比较简单，就不细讲了。下面我们改造一下`src\app\login\login.component.html`，在原来用户名的验证信息下加入，用于显示用户不存在或者密码不对的情况
+
 ```html
         <div *ngIf="usernameRef.errors?.required">this is required</div>
         <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charactors</div>
@@ -3102,7 +3057,7 @@ export class UserService {
         <div *ngIf="auth?.hasError">{{auth.errMsg}}</div>
 ```
 
-接下来我们还得改造`src\app\login\login.component.ts`
+接下来我们还得改造`src\app\login\login.component.ts`：
 
 ```javascript
 import { Component, OnInit, Inject } from '@angular/core';
@@ -3142,7 +3097,8 @@ export class LoginComponent implements OnInit {
 }
 ```
 
-然后我们别忘了在core模块中声明我们的服务`src\app\core\core.module.ts`
+然后我们别忘了在core模块中声明我们的服务`src\app\core\core.module.ts`：
+
 ```javascript
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -3168,7 +3124,9 @@ export class CoreModule {
   }
 }
 ```
+
 最后我们得改写一下`TodoService`，因为我们访问的URL变了，要传递的数据也有些变化
+
 ```javascript
 //todo.service.ts代码片段
   // POST /todos
@@ -3217,22 +3175,24 @@ export class CoreModule {
     }
   }
 ```
+
 现在应该已经ok了，我们来看看效果：
 用户密码不匹配时，显示`password not match`
 
-![image_1b23h2m601puv1q9664c52c1jem9.png-7.2kB][45]
+![用户密码不匹配时提示][47]
 
 用户不存在时，显示`user not found`
 
-![image_1b23h3l811dn4g9h16qu1jm11htbm.png-5.6kB][46]
+![用户不存在的提示][48]
 
  直接在浏览器地址栏输入`http://localhost:4200/todo`，你会发现被重新导航到了`login`。输入正确的用户名密码后，我们被导航到了todo，现在每个用户都可以创建属于自己的待办事项了。
  
- ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][47]
+ ![image_1b23hdv51l621elh1uucsri32213.png-51.1kB][49]
 
 ## 路由模块化
 
 Angular团队推荐把路由模块化，这样便于使业务逻辑和路由松耦合。虽然目前在我们的应用中感觉用处不大，但按官方推荐的方式还是和大家一起改造一下吧。删掉原有的`app.routes.ts`和`todo.routes.ts`。添加`app-routing.module.ts`:
+
 ```javascript
 import { NgModule }     from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -3264,7 +3224,9 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 ```
-以及`src\app\todo\todo-routing.module.ts`
+
+以及`src\app\todo\todo-routing.module.ts`：
+
 ```javascript
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -3287,20 +3249,22 @@ const routes: Routes = [
 export class TodoRoutingModule { }
 
 ```
+
 并分别在AppModule和TodoModule中引入路由模块。
 
 ## 用VSCode进行调试
 
 有读者问如何用vscode进行debug，这章我们来介绍一下。首先需要安装一个vscode插件，点击左侧最下面的图标或者“在查看菜单中选择命令面板，输入install，选择扩展：安装扩展”，然后输入“debugger for chrome”回车，点击安装即可。
 
-![image_1b23hjd3rble1nb11u7i19qgjqb1g.png-170.5kB][48]
+![VS Code Chome 调试插件][50]
 
 然后点击最左边的倒数第二个按钮
 
-![image_1b23htavu19i412obd751h8kusj1t.png-72.5kB][49]
+![debug profile创建][51]
 
 如果是第一次使用的话，齿轮图标上会有个红点，点击选择`debugger for chrome`，vscode会帮你创建一个配置文件，这个文件位于`\.vscode\launch.json`是debugger的配置文件，请改写成下面的样子。注意如果是MacOSX或者Linux，请把`userDataDir`替换成对应的临时目录，另外把`"webpack:///C:*":"C:/*"`替换成`"webpack:///*": "/*"`，这句是因为angular-cli是采用webpack打包的，如果没有使用angular-cli不需要添加这句。
-```
+
+```javascript
 {
     "version": "0.2.0",
     "configurations": [
@@ -3338,9 +3302,15 @@ export class TodoRoutingModule { }
     ]
 }
 ```
+
 现在你可以试着在源码中设置一个断点，点击debug视图中的debug按钮，可以尝试右键点击变量把它放到监视中看看变量值或者逐步调试应用。
 
-![image_1b23igfkdhn71ug71cng3in94t2a.png-400.1kB][50]
+![在VSCODE中 Debug][52]
+
+在笔者写书的时间点，由于一些问题（可能是zone.js引起的异常），启动VSCode debug时可能会自动进入一个断点，只要点击继续就可以了，并不影响调试。
+
+![可能由于Angular的zone.js引起的异常][53]
+
 
 本章完整代码见： https://github.com/wpcfan/awesome-tutorials/tree/chap05/angular2/ng2-tut
 
@@ -3352,18 +3322,19 @@ export class TodoRoutingModule { }
 
 用angular-cli建立生产环境是非常简单的，只需输入`ng build --prod --aot`即可。--prod会使用生产环境的配置文件，--aot会使用AOT替代JIT进行编译。现在实验一下
 
-![image_1b2m0102o1d721c438jr18r9f889.png-238.5kB][51]
+![执行生产环境编译][54]
 
 仔细看一下命令行输出，我们应该可以猜到angular移除了一些没有用到的类库（Google称之为Shaking过程），对js和css等进行了压缩等优化工作。angular在我们的项目根目录下建立了一个`dist`文件夹，用于生产环境的文件就输出在这个文件夹了。
 
-![image_1b2m07bdvqk91aaodsd16pd2kuv.png-116.5kB][52]
+![生产环境输出的文件][55]
 
 我们安装一个http-server，`npm i -g http-server`，然后在dist目录键入`http-server .`。打开浏览器进入`http://localhost:8080`，我们会看到网页打开了。但如果打开console，或者试着登录一下，你会发现存在很多错误。
 
-![image_1b2m0l4teqja2f016s61g5o14261c.png-158.4kB][53]
+![由于未配置Hash造成的错误][56]
 
 这是由于angular-cli当前的bug产生的，目前需要对路由做hash处理。
-```
+
+```javascript
 ...
 @NgModule({
   imports: [
@@ -3375,11 +3346,13 @@ export class TodoRoutingModule { }
 })
 ...
 ```
+
 只需在`app-routing.module.ts`中为RouterModule配置`{ useHash: true }`的属性即可。这样的话angular会在url上加上一个`#`，比如login的url现在是`http://localhost:8080/#/login`。这样改动后，功能又好用了。以后我们项目如果需要发布到生产环境的，大家利用angular-cli可以很方便的处理了。然后下面我们回到开发环境，请关掉8080端口的http服务器，并删掉dist。
 
 ## 第三方样式库
 
-之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][54]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][55]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][56]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
+之前我们使用的是自己为各个组件写样式，其实angular团队有一套官方的符合Material Design的内建组件库：[https://github.com/angular/material2][57]（这个库还属于早期阶段，很多控件不可用，所以大家可以关注，但现阶段不建议在生产环境中使用）。除了官方之外，目前有大量的比较成熟的样式库，比如bootstrap，material-design-lite等。我们这节课以material-design-lite来看一下怎么使用。[Material Desing Lite][58]是Google为web开发的一套基于Material Design的样式库。由于是Google开发的，所以你要去访问之前要科学上网。我们当然可以直接使用官方的css样式库，但是有好心人已经帮我们封装成了比较好用的[组件模块][59]了，组件模块的好处是可以使模板写起来更简洁，而且易于扩展。现在打开一个terminal输入`npm install --save angular2-mdl`。然后在你需要使用MDL组件的模块中引入MdlModule。我们首先希望改造一下我们的AppComponent，目前它只有一句简陋的文字输出。
+
 ```html
 <mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
   <mdl-layout-header>
@@ -3403,8 +3376,10 @@ export class TodoRoutingModule { }
   </mdl-layout-content>
 </mdl-layout>
 ```
-这段代码里面mdl开头的标签都是我们刚引入的组件库封装的组件，具体的用法可以去 http://mseemann.io/angular2-mdl/ 参考文档资料。`<mdl-layout></mdl-layout>`是一个布局组件，`mdl-layout-fixed-header`是一个可以让header固定在页面顶部的属性，`mdl-layout-header-seamed`是要header没有阴影。`mdl-layout-header`是一个顶部组件，`mdl-layout-header-row`是在顶部组件中形成一行的容器。`mdl-layout-spacer`是一个占位的组件，它会把组件剩余位置占满，防止出现错位。`mdl-layout-drawer`是一个抽屉组件，和Android的标准应用类似，点击顶部菜单图标会从侧面滑出一个菜单。别忘了在AppModule中引入
-```
+
+这段代码里面mdl开头的标签都是我们刚引入的组件库封装的组件，具体的用法可以去 http://mseemann.io/angular2-mdl/ 和 https://getmdl.io  参考文档资料。`<mdl-layout></mdl-layout>`是一个布局组件，`mdl-layout-fixed-header`是一个可以让header固定在页面顶部的属性，`mdl-layout-header-seamed`是要header没有阴影。`mdl-layout-header`是一个顶部组件，`mdl-layout-header-row`是在顶部组件中形成一行的容器。`mdl-layout-spacer`是一个占位的组件，它会把组件剩余位置占满，防止出现错位。`mdl-layout-drawer`是一个抽屉组件，和Android的标准应用类似，点击顶部菜单图标会从侧面滑出一个菜单。别忘了在AppModule中引入
+
+```javascript
 ...
 import { MdlModule } from 'angular2-mdl';
 ...
@@ -3419,8 +3394,10 @@ import { MdlModule } from 'angular2-mdl';
 })
 export class AppModule { }
 ```
-我们为了使用，还需要对颜色做个定制，这个定制需要使用一种CSS的预编译技术叫[SASS][57]，需要建立一个`src\styles.scss`，然后定义Material Design的颜色，具体颜色名字的定义是在Google调色板类中定义的，可以去这里[查看][58]。
-```scss
+
+我们为了使用，还需要对颜色做个定制，这个定制需要使用一种CSS的预编译技术叫[SASS][60]，需要建立一个`src\styles.scss`，然后定义Material Design的颜色，具体颜色名字的定义是在Google调色板类中定义的，可以去  [http://mseemann.io/angular2-mdl/theme][61] 查看。
+
+```css
 @import "~angular2-mdl/scss/color-definitions";
 
 $color-primary: $palette-blue-500;
@@ -3431,18 +3408,26 @@ $color-accent-contrast: $color-dark-contrast;
 
 @import '~angular2-mdl/scss/material-design-lite';
 ```
+
+![Material Design 调色板][62]
+
+Material Design中区分主色（Primary）和配色（Accent），比如像图中的颜色搭配，主色是blue，在scss中我们可以让 `$color-primary: $palette-blue-500;`，`500` 是指的颜色深度，如果想更深一些就指定成600，900等，可以自己实验一下。类似的配色pink，就可以让 `$color-accent: $palette-pink-300;`。那么 `$color-primary-dark` 是什么意思呢，顾名思义是更深的主色的意思，Material Design的主要设计目标也是以色彩和动画的变化来给用户不同的体验，所以主色尽量不要过深，因为还有更深的主色需要定义。
+
 由于我们使用的CLI并不知道我们采用了预编译的css，所以需要改一下`angular-cli.json`，把styles改写成下面的样子
-```
+
+```javascript
 "styles": [
         "styles.scss"
       ],
 ```
+
 保存后打开浏览器看一下效果：
 
-![image_1b2g0jju71mdsnd3k2v174k7129.png-11.5kB][59]
+![image_1b2g0jju71mdsnd3k2v174k7129.png-11.5kB][63]
 
 我们接下来改造一下login的模板
-```
+
+```html
 <div>
   <form (ngSubmit)="onSubmit()">
     <mdl-textfield
@@ -3476,15 +3461,19 @@ $color-accent-contrast: $color-dark-contrast;
   </form>
 </div>
 ```
+
 由于采用了符合Material Design的组件，我们就不需要原来的用于验证的`div`了。
 
-![image_1b2g1csop1684jfghpphffui9m.png-17kB][60]
+![采用Material Design风格的表单控件][64]
 
 下面看一下Todo，原来我们在css中用了svg来改写复选框的样子，现在我们试试用mdl来做。在`todo-list.component.html`中把ToggleAll改写成下面的样子
+
 ```html
 <mdl-icon-toggle class="toggle-all" [mdl-ripple]="true" (click)="onToggleAllTriggered()">expand_more</mdl-icon-toggle>
 ```
+
 这个标签是把一个图标做成可复选框的效果，这里用到了Google的icon font，所以需要在`index.html`中引入
+
 ```html
 <!doctype html>
 <html>
@@ -3497,19 +3486,22 @@ $color-accent-contrast: $color-dark-contrast;
 </body>
 </html>
 ```
+
 我们用了科大的镜像，因为Google的产品，你懂的。
 当然TodoItem模板中的checkbox也需要改造成
+
 ```html
 <mdl-icon-toggle (click)="toggle()" [(ngModel)]="isChecked">check_circle</mdl-icon-toggle>
 ```
 Todo变成下面的样子，也还不错啊~~
 
-![image_1b2g1e0261mkmtp61kjm6f94g513.png-81.7kB][61]
+![清爽的TodoList][65]
 
 ## 模块优化
 
 现在仔细看一下我们的各个模块定义，发现我们不断地重复引入了`CommonModule`、`FormsModule`、`MdlModule`，这些如果在大部分的组件中都会用到话，我们不妨建立一个SharedModule （`src\app\shared\shared.module.ts`）
-```
+
+```javascript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -3529,7 +3521,9 @@ import { MdlModule } from 'angular2-mdl';
 })
 export class SharedModule { }
 ```
+
 这个模块的作用是把常用的组件和模块打包起来（虽然现在没有组件，只是把常用的模块导入又导出），这样在其他模块中只需引入这个模块即可，比如TodoModule现在看起来是下面的样子：
+
 ```javascript
 ...
 import { SharedModule } from '../shared/shared.module';
@@ -3550,9 +3544,34 @@ import { SharedModule } from '../shared/shared.module';
 export class TodoModule {}
 ```
 
+### 关于模块的最佳实践
+
+Angular团队对于共享特性模块有如下建议
+
+ - 坚持在shared目录中创建名叫SharedModule的特性模块（例如在app/shared/shared.module.ts中定义SharedModule）。
+ - 坚持把可能被应用其它特性模块使用的公共组件、指令和管道放在SharedModule中，这些资产倾向于共享自己的新实例（而不是单例）。
+ - 坚持在SharedModule中导入所有模块都需要的资产（例如CommonModule和FormsModule）。
+ - 坚持在SharedModule中声明所有组件、指令和管道。
+ - 坚持从SharedModule中导出其它特性模块所需的全部符号。
+ - **避免**在SharedModule中指定应用级的单例服务提供商。但如果是故意设计的单例也可以，不过还是要小心。
+
+很显然，我们的共享模块还没有全部做到，大家可以作为练习自己试验一下。
+
+同样的对于核心特性模块，官方的建议是
+
+- 坚持把那些“只用一次”的类收集到CoreModule中，并对外隐藏它们的实现细节。简化的AppModule会导入CoreModule，并且把它作为整个应用的总指挥。
+- 坚持在core目录下创建一个名叫CoreModule的特性模块（例如在app/core/core.module.ts中定义CoreModule）。
+- 坚持把一个要共享给整个应用的单例服务放进CoreModule中（例如ExceptionService和LoggerService）。
+- 坚持导入CoreModule中的资产所需要的全部模块（例如CommonModule和FormsModule）。
+- 坚持把应用级、只用一次的组件收集到CoreModule中。 只在应用启动时从AppModule中导入它一次，以后再也不要导入它（例如NavComponent和SpinnerComponent等）。
+- 坚持从CoreModule中导出AppModule需导入的所有符号，使它们在所有特性模块中可用。
+- 坚持防范多次导入CoreModule，并通过添加守卫逻辑来尽快失败。
+- **避免**在AppModule之外的任何地方导入CoreModule
+ 
 ## 多个不同组件间的通信
 
 下面我们要实现这样一个功能：在用户未登录时，顶部菜单中只有Login一个链接可见，用户登录后，顶部菜单中有三个链接，一个是Todo，一个是用户个人信息，另一个是Logout。按这个需求将顶部菜单改造成如下：
+
 ```html
 <!--src\app\app.component.html-->
 <mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
@@ -3588,11 +3607,13 @@ export class TodoModule {}
   </mdl-layout-content>
 </mdl-layout>
 ```
+
 这样改造完后的页面结构是顶部菜单只加载一次，底下的内容随着不同路由显示不同内容。但如果我们要在login后顶部菜单也随之改变的话，我们一定要实现某种通信机制。前面我们讲过EventEmiiter，当然我们可以将整个页面当成父控件，顶部菜单是子控件的形式，但这时你发现由于我们是用路由插座（`<router-outlet></router-outlet>`） l来显示内容的，所以无法采用子控件的形式传递信息。
 
 这种情况就要引入Rx了，rx的学习门槛较高，也不是本教程的重点，但我还是这里尝试着解释一下。Rx是响应式编程的利器，它的学习门槛来自于思维方式的转变，从传统的编程思维转成流式思维：Rx总体来看是一个数据流或信号流，所有的操作符都是为了对这个流进行控制。写Rx时要对系统数据或信号的完整逻辑流程先想清楚，然后就比较好写了。
 
 其实在Angular2中，Rx是无处不在的，还记得我们之前总用到toPromise()这个方法吗？其实这个方法是给不太熟悉Rx的同学用的，Angular本身返回的就是Observable。我们现在把UserService改成Rx版本
+
 ```javascript
 import { Injectable } from '@angular/core';
 
@@ -3624,7 +3645,9 @@ export class UserService {
   }
 }
 ```
+
 大家可能注意到了，其实有没有Promise都无所谓，大概的写法也是类似的，只不过返回的是Observable。这里改了之后，相关调用的地方都要改一下，比如LoginComponent：
+
 ```javascript
 import { Component, Inject } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -3653,7 +3676,9 @@ export class LoginComponent {
   }
 }
 ```
+
 AuthService也需要改写成下面的样子。这里注意到我们引入了一个新概念：Subject。Subject 既是Observer（观察者）也是Observable（被观察对象）。这里采用Subject的原因是我们在Login时改变了Auth的属性，但由于这个Login方法是Login页面显性调用的，其他需要观察Auth变化的地方调用的是getAuth()方法。这样的话，我们需要在Auth发生变化时推送变化出去，我们在loginWithCredentials方法中以`this.subject.next(this.auth);`写入其变化，在getAuth()中用`return this.subject.asObservable();`将Subject转换成Observable。
+
 ```javascript
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
@@ -3703,16 +3728,20 @@ export class AuthService {
   }
 }
 ```
+
 但为什么是ReplaySubject呢？我们共有2处需要监听Auth的变化：一处是导航栏，导航栏会依据不同的Auth值来显示/隐藏不同菜单；另一处是todo的路由守卫，它会依据Auth是否有错误来判断是否允许进入该路由url。我们来以时间维度分析一下流程：我们在执行登录时，如果鉴权成功，会导航到某个路由（这里是todo），这时会引发CanActivate的检查，而此时最新的Auth已经发射完毕（因为我们在loginWithCredentials中写入了变化值），CanActivate检查时会发现没有Auth数据。
+
 ```
 getAuth() Auth:{}  Auth{user: {id: 1...}} getAuth()-没有Auth数据发射了
 |==========|==============|===========================|=====
 导航栏    登录前          登录后              todo路由守卫激活
 ```
+
 这种情况下我们需要缓存最近的一份Auth数据，无论谁，什么时间订阅，只要没有更新的数据，我们就推送最近的一份给它，这就是ReplaySubject的意义所在。
 
 下面我们改写路由守卫
-```
+
+```javascript
 import { Injectable, Inject } from '@angular/core';
 import {
   CanActivate,
@@ -3745,8 +3774,10 @@ export class AuthGuardService implements CanActivate, CanLoad {
   }
 }
 ```
+
 这里你会发现多了一个canLoad方法，canActivate是用于是否可以进入某个url，而canLoad是决定是否加载某个url对应的模块。所以需要再改下路由
-```
+
+```javascript
 import { NgModule }     from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -3777,7 +3808,7 @@ export class AppRoutingModule {}
 ```
 现在打开浏览器欣赏一下我们的成果。
 
-![改造后的首页登录后效果图][62]
+![改造后的首页登录后效果图][66]
 
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap06/angular2/ng2-tut
 
@@ -3789,7 +3820,7 @@ export class AppRoutingModule {}
 ## 更炫的登陆页
 大家不知道有没有试用过bing（必应）搜索引擎（在Google无法访问的情况下，bing的英文搜索还是不错的选择），这个搜索引擎的主页很有特点：每日都会有一张非常好看的图作为背景。
 
-![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][63]
+![image_1b36ghm4o179516kdikkbc14qp9.png-2737.5kB][67]
 
 我们想做的一个特效呢是类似地给登陆页增加一个背景，但更酷的一点是，我们的背景每隔3秒会自动替换一张。由于涉及到布局，我们先来熟悉一下CSS的框架设计。
 
@@ -3827,11 +3858,12 @@ export class AppRoutingModule {}
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">2 (4 phone)</div>
 </div>
 ```
-![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][64]
+![image_1b36l1ajl1qqm1t091m89gbe1cr7m.png-49.6kB][68]
 你可以尝试把浏览器的窗口缩小，让宽度变窄，调整到一定程度后你会发现，布局改变了，变成了下面的样子，这就是同样的代码在平板上的效果。你会发现原本的第一行折成了两行，因为在平板上8个cell是一行。你可以试试继续把浏览器的宽度变窄，看看在手机上的效果。
-![image_1b36lq1ikh3vnfkadg8rpnrm13.png-59.4kB][65]
+![image_1b36lq1ikh3vnfkadg8rpnrm13.png-59.4kB][69]
 
 下面我们看看怎么对Login页面做改造，首先在`form`外套一层`div`，并应用grid相关的css类，当然为了设置背景图，我们使用了一个angular属性ngStyle，这样让我们可以动态的改变背景图。grid里面我们仅有一个有实际内容的cell，就是form了，这个form在PC和平板上都占3个cell，在手机上占4个cell。但为了使这个form可以放在页面靠右的位置，我们添加了2个占位标签`mdl-layout-spacer`，标签的作用使将cell剩余的横向空间占满。
+
 ```html
 <div
   class="mdl-grid mdl-grid--no-spacing login-container"
@@ -3848,18 +3880,19 @@ export class AppRoutingModule {}
   <mdl-layout-spacer></mdl-layout-spacer>
 </div>
 ```
+
 在我们还没有找到可以动态配置的图片源之前，为了看看页面效果，我们可以先找一张图片放在`src\assets`目录下面，然后在LoginComponent中将其赋值给photo: `photo = '/assets/login_default_bg.jpg';`。接下来就看看现在的页面效果吧。
-![image_1b37me9ik1eba1ruq98s1n041siq9.png-3810.5kB][66]
+![image_1b37me9ik1eba1ruq98s1n041siq9.png-3810.5kB][70]
 
 ### 寻找免费的图片源
 
 当然我们可以找到一些免费的图片，然后存到本地来实现这个功能，但如果有一个海量的图片库，我们可以根据关键字搜索不同的图片不是更酷了吗？幸运的是Bing搜索是有API的，去 https://www.microsoft.com/cognitive-services/en-us/bing-image-search-api 点击`Get Started for free`后点选`Bing Image Search`申请获得一个API key即可。
 
-![image_1b36ncud0epmjsjsrjqds1tka9.png-1021.8kB][67]
+![申请Bing Image API][71]
 
 申请完毕后可以在`My Account`中看到你的key，默认是隐藏的，点击`Show`链接即可看到了，点击Copy链接可以拷贝key到剪贴板。
 
-![image_1b36npfqlhkq0l1fge1o8jon0m.png-109.8kB][68]
+![查找API Key][72]
 
 Bing Image Search API的Request Url是:`https://api.cognitive.microsoft.com/bing/v5.0/images/search`，后面可以跟随一系列参数，其中q是必选参数，指明搜索的关键字。
 
@@ -3872,6 +3905,7 @@ Bing Image Search API的Request Url是:`https://api.cognitive.microsoft.com/bing
 |safeSearch|否|string|应用过滤器过滤掉不良成人内容|
 
 知道了这些参数的意义后，我们可以在`login`目录下新建一个`BingImageService`：
+
 ```javascript
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
@@ -3942,11 +3976,12 @@ export class LoginComponent implements OnDestroy {
   }
 }
 ```
+
 来喝杯咖啡，欣赏一下我们的成果吧！
 
-![每隔4秒换一张背景图的登录页面][69]
+![每隔4秒换一张背景图的登录页面][73]
 
-![等待4秒后背景切换了][70]
+![等待4秒后背景切换了][74]
 
 ## 自带动画技能的Angular2
 
@@ -3964,6 +3999,7 @@ import {
 } from '@angular/core';
 ```
 然后就可以在`@Component`元数据中去添加动画相关的元数据了，我们这里定义了一个叫`loginState`的动画触发器（trigger）。这个触发器会在`inactive`和`active`两个状态间转换。`scale(1.1)`是放缩比例，意味着我们对控件做了1.1倍的放大。这个动画的逻辑就是，当触发器处于`active`状态时，对应用这个触发器状态的控件做1.1倍放大处理。
+
 ```javascript
 @Component({
   selector: 'app-login',
@@ -3983,8 +4019,10 @@ import {
   ]
 })
 ```
+
 我们刚刚定义了一个动画，但它还没有被用到任何地方。要想使用它，可以在模板中用`[@triggerName]="xxx"`的形式来把它附加到一个或多个元素上。
-```
+
+```html
       <button
         mdl-button mdl-button-type="raised"
         mdl-colored="primary"
@@ -3995,6 +4033,7 @@ import {
         Login
       </button>
 ```
+
 这里我们对Login这个按钮应用了`loginState`触发器，并且绑定这个触发器的状态值到一个成员变量`loginBtnState`。而且我们定义了在鼠标进入按钮区域和离开按钮区域时应该通过一个函数`toggleLoginState`来改变`loginBtnState`的值。在`LoginComponent`中定义这个方法即可，我们要实现的这个功能非常简单，一行代码就搞定了：
 
 ```javascript
@@ -4004,13 +4043,13 @@ import {
 ```
 试着将鼠标放在按钮上和离开按钮区域，看看按钮的变化的效果。
 
-![鼠标离开和进入按钮区域时不同的按钮大小][71]
+![鼠标离开和进入按钮区域时不同的按钮大小][75]
 
 ## 完成遗失已久的注册功能
 
 我们自从完成了基本的多用户待办事项后就没有增加注册功能，现在来填补这个缺憾吧。我们打算在点击登录页的Register按钮时弹出一个注册用户的对话框。
 
-![我们要实现的注册对话框效果][72]
+![我们要实现的注册对话框效果][76]
 
 如果实现一个对话框，利用我们已经引入的`angular2-mdl`库，需要几个步骤：
 
@@ -4085,7 +4124,8 @@ import {
 Angular2 的FormControl中内置了常用的验证器（Validator），我们在这个例子中除此之外还给出了一个自定义的验证器 `passwordMatchValidator`，用于判断是否两次密码输入的是相同的。
 
 此外呢我们还用到了一个新修饰符 `@HostListener` ，这个修饰符是指我们要监听宿主（这里是浏览器）的某些动作和变化。比如本例中，我们想要用户在按Esc键时关闭对话框，但这个动作并不局限在某个控件上，只要用户点击了Esc我们就关闭对话框，这时我们就得监听宿主的 `keydown.esc` 事件了。
-```
+
+```javascript
 //省略掉Import代码段和修饰符代码段
 ...
 export class RegisterDialogComponent{
@@ -4166,17 +4206,17 @@ export class RegisterDialogComponent{
 
 这样做完后，打开浏览器却发现报错了，这是由于我们未引入 `ReactiveFormsModule` 造成的， `FormGroup` 是由 `ReactiveFormsModule` 提供的，因此要在 `src\app\login\login.module.ts` 中引入这个模块。
 
-![未引入ReactiveForms引起的报错][73]
+![未引入ReactiveForms引起的报错][77]
 
 ### Restful API的实验
 
 现在还需要完成服务器端的API。和以前类似的，我们需要先实验一下json-server的API，确定各参数可行的条件下再进行编码。由于现在我们需要进行GET以外的操作，所以如果有专业工具来辅助会比较方便，这里推荐一个Chrome App：Postman，可以自行科学上网后在Chrome商店搜索安装。安装后点左上角的应用即可看到Postman了
 
-![Chrome应用：Postman][74]
+![Chrome应用：Postman][78]
 
 点击Postman，输入`http://localhost:3000/users`可以看到返回的json数据了
 
-![PostMan的功能区介绍][75]
+![PostMan的功能区介绍][79]
 
 我们来试验一下新增一个用户，但这个时候我们已经给User的id定义成数字类型了，实在不想改成UUID了，怎么办呢？幸运的是json-server其实是很聪明的，如果在POST时你不给它传入id字段，它会认为这个id是自增长的。在Postman中将HTTP方法设成POST，在Headers中写上 `Content-Type` 和 `application/json`。然后在Body中选择 `raw` ，并写入
 
@@ -4189,7 +4229,7 @@ export class RegisterDialogComponent{
 
 点击Send后可以看到，新的id自动被写入了，这简直太方便了，也符合一般后端开发的套路。
 
-![用Postman测试自增长ID][76]
+![用Postman测试自增长ID][80]
 
 知道这点后，我们着手写对应方法就很简单了，首先在 `UserService` 中添加addUser方法。
 
@@ -4237,11 +4277,11 @@ export class RegisterDialogComponent{
 
 打开浏览器，检查所有功能是否完整可用，正常情况下点Register你可以看到下面的界面，试着注册一个新用户，开始管理你的待办事项吧。
 
-![完成注册功能的页面][77]
+![完成注册功能的页面][81]
 
 ## Angular 2的组件生命周期
 
-![angular 2 的组件生命周期函数][78]
+![angular 2 的组件生命周期函数][82]
 
 每个组件都有一个被Angular管理的生命周期：Angular创建、渲染控件；创建、渲染子控件；当数据绑定属性改变时做检查；在把控件移除DOM之前销毁控件等等。
 
@@ -4279,23 +4319,652 @@ Angular其实是通过检查指令或组件的类中是否定义了相关方法�
 |ngAfterViewChecked|组件|在ngAfterViewInit后及每个ngAfterContentChecked后触发 |
 |ngOnDestroy|组件和指令|在组件或指令被销毁前，清理环境，可以在此处取消Observable的订阅|
 
-## 小结
-
-我们的Angular学习之旅从零开始到现在，完整的搭建了一个小应用。相信大家现在应该对Angular2有一个大概的认识了，而且也可以参与到正式的开发项目中去了。但Angular2作为一个完整框架，有很多细节我们是没有提到的，大家可以到官方文档 https://angular.cn/ 去查找和学习。
-
 本节代码：https://github.com/wpcfan/awesome-tutorials/tree/chap07/angular2/ng2-tut
 
 ---
 
 # 番外：Rx--隐藏在Angular 2.x中利剑
 
+Rx（Reactive Extension -- 响应式扩展 http://reactivex.io）最近在各个领域都非常火。其实Rx这个货是微软在好多年前针对C#写的一个开源类库，但好多年都不温不火，一直到Netflix针对Java平台做出了RxJava版本后才在开源社区热度飞速蹿升。
 
+这里还有个小故事，Netflix之所以做RxJava完全是一个偶然。个中缘由是由于Netflix的系统越做越复杂，大家都绞尽脑汁琢磨怎么才能从这些复杂逻辑的地狱中把系统拯救出来。一天，一个从微软跳槽过来的员工和主管说，我们原来在微软做的一个叫Rx的东东挺好的，可以非常简单的处理这些逻辑。主管理都没理，心想微软那套东西肯定又臃肿又不好用，从来没听说过微软有什么好的开源产品。但那位前微软的哥们锲而不舍，非常执着，不断和组内员工和主管游说，宣传这个Rx思想有多牛X。终于有一天，大家受不了了，说，这么着吧，给你个机会，你给大家仔细讲讲这个Rx，我们讨论看看到底适不适合。于是这哥们一顿喷，把大家都惊住了，微软竟然有这么好的东西。但是这东西是.Net的，怎么办呢，那就写一个吧（此处略去高山仰止的3000字）。
+
+八卦讲完，进入正题，那么什么叫响应式编程呢？这里引用一下Wikipedia的解释：
+
+> 英文原文：In computing, reactive programming is a programming paradigm oriented around data flows and the propagation of change. This means that it should be possible to express static or dynamic data flows with ease in the programming languages used, and that the underlying execution model will automatically propagate changes through the data flow.
+> 
+> 我的翻译：在计算领域，响应式编程一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。
+
+这都说的什么啊？没关系，概念永远是抽象的，我们来举几个例子。比如说在传统的编程中 `a=b+c`，表示将表达式的结果赋给a，而之后改变b或c 的值不会影响a。但在响应式编程中，a的值会随着b或c的更新而更新。
+
+![传统编程中b,c的变化不会影响a][83]
+
+那么用响应式编程方法写出来就是这个样子，可以看到随着b和c的变化a也会随之变化。
+
+![响应式编程版本的a=b+c][84]
+
+看出来一些不一样的思维方式了吗？响应式编程需要描述数据流，而不是单个点的数据变量，我们需要把数据的每个变化汇聚成一个数据流。如果说传统编程方式是基于离散的点，那么响应式编程就是线。
+
+上面的代码虽然很短，但体现出Rx的一些特点
+
+1. Lamda表达式，对，就是那个看上去像箭头的东西 `=>` 。你可以把它想象成一个数据流的指向，我们从箭头左方取得数据流，在右方做一系列处理后或者输出成另一个数据流或者做一些其他对于数据的操作。
+2. 操作符：这个例子中的 `from`, `zip` 都是操作符。Rx中有太多的操作符，从大类上讲分为：创建类操作符、变换类操作符、过滤类操作符、合并类操作符、错误处理类操作符、工具类操作符、条件型操作符、数学和聚集类操作符、连接型操作符等等。
 
 ## Rx再体验
 
+还是从例子开始，我们逐渐的来熟悉Rx。
+为了更直观的看到Rx的效果，推荐大家去JSBin这个在线Javascript IDE http://jsbin.com 去实验我们下面的练习。这个IDE非常方便，一共有5个功能窗口：HTML、CSS、Javascript、Console和Output
+
+![JSBin在线IDE][85]
+
+首先在HTML中引入Rx类库，然后定义一个id为todo的文本输入框：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.7/dist/global/Rx.umd.js"></script>
+</head>
+<body>
+<input id="todo" type="text"/>
+</body>
+</html>
+```
+
+在Javascript标签中选择 `ES6/Babel`，因为这样可以直接使用ES6的语法，在文本框中输入以下javascript。在RxJS领域一般在Observable类型的变量后面加上`$`标识这是一个“流变量”（由英文Stream得来，Observable就是一个Stream，所以用`$`标识），不是必须的，但是属于约定俗成。
+
+```javascript
+let todo = document.getElementById('todo');
+let input$ = Rx.Observable.fromEvent(todo, 'keyup');
+input$.subscribe(input => console.log(input.target.value));
+```
+
+如果Console窗口默认没有打开的话，请点击 `Console` 标签，然后选中右侧的 `Run with JS` 旁边的Auto-run js复选框。在Output窗口中应该可以看到一个文本输入框，在这个输入框中输入任意你要试验的字符，观察Console
+
+![Console和Output窗口][86]
+
+这几行代码很简单：首先我们得到HTML中id为todo的输入框对象，然后定义一个观察者对象将todo这个输入框的keyup事件转换成一个数据流，最后订阅这个数据流并在console中输出我们接收到的input事件的值。我们从这个例子中可以观察到几个现象：
+
+1. 数据流：你每次在输入框中输入时都会有新的数据被推送过来。本例中，你会发现连续输入“1，2，3，4”，在console的输出是“1，12，123，1234”，也就是说每次keyup事件我们都得到了完整的输入框中的值。而且这个数据流是无限的，只要我们不停止订阅，它就会一直在那里待命。
+2. 我们观察的是todo上发生的keyup这个事件，那如果我一直按着某个键不放会怎么样呢？你的猜测是对的，一直按着的时候，数据流没有更新，直到你抬起按键为止（你看到截图里面有2条一模一样的含有多个5的数据是因为我用的Surface Pro截图时的快捷键也被截获了，但由于是控制键所以文字内容没有改变）
+
+![一直按着5不放几秒之后的输出][87]
+
+如果观察的足够仔细的话，你会发现console中输出的值其实是 `input.target.value`，我们观察的对象其实是id为todo的这个对象上发生的keyup事件（`Rx.Observable.fromEvent(todo, 'keyup')`）。那么其实在订阅的代码段中的input其实是keyup事件才对。好，我们看看到底是什么，将 `console.log(input.target.value)` 改写成 `console.log(input)`，看看会怎样呢？是的，我们得到的确实是KeyboardEvent
+
+![事件被输出到Console][88]
+
+不太过瘾？那么我们再来做几个小练习，首先将代码改成下面的样子，其实不用我讲，你应该也可以猜得到，这是要过滤出 `keyCode=32` 的事件，keyCode是Ascii码，那么这就是要把空格滤出来
+
+```javascript
+let todo = document.getElementById('todo');
+let input$ = Rx.Observable.fromEvent(todo, 'keyup');
+input$
+  .filter(ev=>ev.keyCode===32)
+  .subscribe(ev=>console.log(ev.target.value));
+```
+
+结果我们看到了，按123456789都没有反应，直到按了空格
+
+![只在空格键抬起时触发的数据流][89]
+
+你可能一直在奇怪，我们最终只对输入框的值有兴趣，能不能数据流只传值过来呢？当然可以，使用map这个变换类操作符就可以完成这个转换了
+
+```javascript
+let todo = document.getElementById('todo');
+let input$ = Rx.Observable.fromEvent(todo, 'keyup');
+input$
+  .map(ev=>ev.target.value)
+  .subscribe(value=>console.log(value));
+```
+
+map这个操作符做的事情就是允许你对原数据流中的每一个元素应用一个函数，然后返回并形成一个新的数据流，这个数据流中的每一个元素都是原来的数据流中的元素应用函数后的值。比如下面的例子，对于原数据流中的每个数应用一个函数10*x，也就是扩大了10倍，形成一个新的数据流。
+
+![map变换操作符][90]
+
 ## 常见操作
 
+最常见的两个操作符我们上面已经了解了，我们继续再来认识新的操作符。类似 `.map(ev=>ev.target.value)` 的场景太多了，以至于rxjs团队搞出来一个专门的操作符来应对，这个操作符就是 `pluck`。这个操作符专业从事从一系列嵌套的属性种把值提取出来形成新的流。比如上面的例子可以改写成下面的代码，效果是一样的。那么如果其中某个属性为空怎么办？这个操作符负责返回一个 `undefined` 作为值加入流中。
+
+```javascript
+let todo = document.getElementById('todo');
+let input$ = Rx.Observable.fromEvent(todo, 'keyup');
+input$
+  .pluck('target', 'value')
+  .subscribe(value=>console.log(value));
+```
+
+下面我们稍微给我们的页面加点料，除了输入框再加一个按钮
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.7/dist/global/Rx.umd.js"></script>
+</head>
+<body>
+  <input id="todo" type="text"/>
+  <button id="addBtn">Add</button>
+</body>
+</html>
+```
+
+在Javascript中我们同样方法得到按钮的DOM对象以及声明对此按钮点击事件的观察者：
+
+```javascript
+let addBtn = document.getElementById('addBtn');
+let buttonClick$ = Rx.Observable
+                      .fromEvent(addBtn, 'click')
+                      .mapTo('clicked');
+```
+
+由于点击事件没有什么可见的值，所以我们利用一个操作符叫 `mapTo` 把对应的每次点击转换成字符 `clicked`。其实它也是一个 `map` 的简化操作。
+
+![mapTo操作符将每次点击转换成一个][91]
+
+### 合并类操作符
+
+#### combineLatest操作符
+
+既然现在我们已经有了两个流，应该试验一下合并类操作符了，先来试试 `combineLatest`，我们合并了按钮点击事件的数据流和文本框输入事件的数据流，并且返回一个对象，这个对象有两个属性，第一个是按钮事件数据流的值，第二个是文本输入事件数据流的值。也就是说应该是类似 `{ ev: 'clicked', input: '1'}` 这样的结构。
+
+```javascript
+Rx.Observable.combineLatest(buttonClick$, input$, (ev, input)=>{
+  return {
+    ev: ev,
+    input: input
+  }
+})
+  .subscribe(value => console.log(value))
+
+```
+
+那看看结果如何，在文本输入框输入1，没反应，再输入2，还是没反应
+
+![CombineLatest实验一：先输入文本][92]
+
+那我们点击一下按钮试试，这回有结果了，但有点没明白为什么是12，输入的数据流应该是： `1，12，...` 但那个1怎么丢了呢？
+
+![CombineLatest实验二：点击按钮][93]
+
+再来文本框输入3，4看看，这回倒是都出来了
+
+![CombineLatest实验二：再次输入][94]
+
+我们来解释一下combineLatest的机制就会明白了，如下图所示，上面的2条线是2个源数据流（我们分别叫它们源1和源2吧），经过combineLatest操作符后产生了最下面的数据流（我们称它为结果流）。
+
+当源1的数据流发射时，源2没有数据，这时候结果流也不会有数据产生，当源2发射第一个数据（图中A）后，combineLatest操作符做的处理是，把A和源1的最近产生的数据（图中2）组合在一起，形成结果流的第一个数据（图中2A）。当源2产生第二个数据（图中B）时，源1这时没有新的数据产生，那么还是用源1中最新的数据（图中2）和源2中最新的数据（图中B）组合。
+
+也就是说 `combineLatest` 操作符其实是在组合2个源数据流中选择最新的2个数据进行配对，如果其中一个源之前没有任何数据产生，那么结果流也不会产生数据。
+
+![CombineLatest操作符][95]
+
+讲到这里，有童鞋会问，原理是明白了，但什么样的实际需求会需要这个操作符呢？其实有很多，我这里只举一个小例子，现在健身这么热，比如说我们做一个简单的BMI计算器，BMI的计算公式是：体重（公斤）／（身高*身高）（米*米）。那么我们在页面给出两个输入框和一个用于显示结果的div：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.7/dist/global/Rx.umd.js"></script>
+</head>
+<body>
+  Weight: <input type="number" id="weight"> kg
+  <br/>
+  Height: <input type="number" id="height"> cm
+  <br/>
+  Your BMI is <div id="bmi"></div>
+</body>
+</html>
+```
+
+那么在JS中，我们想要达成的结果是只有两个输入框都有值的时候才能开始计算BMI，这时你发现combineLatest的逻辑不要太顺溜啊。
+
+```javascript
+let weight = document.getElementById('weight');
+let height = document.getElementById('height');
+let bmi = document.getElementById('bmi');
+
+let weight$ = Rx.Observable
+                .fromEvent(weight, 'input')
+                .pluck('target', 'value');
+
+let height$ = Rx.Observable
+                .fromEvent(height, 'input')
+                .pluck('target', 'value');
+
+let bmi$ = Rx.Observable
+              .combineLatest(weight$, height$, (w, h) => w/(h*h/100/100));
+
+bmi$.subscribe(b => bmi.innerHTML=b);
+```
+
+![简单的BMI计算器][96]
+
+#### zip操作符
+
+除了 `combineLatest` ，Rxjs还提供了多个合并类的操作符，我们再试验一个 `zip` 操作符。 `zip` 和 `combineLatest` 非常像，但重要的区别点在于 `zip` 严格的需要多个源数据流中的每一个的相同顺序的元素配对。
+
+比如说还是上面的例子，`zip` 要求源1的第一个数据和源2的第一个数据组成一对，产生结果流的第一个数据；源1的第二个数据和源2的第二个数据组成一对，产生结果流的第二个数据。而 `combineLatest` 不需要等待另一个源数据流产生数据，只要有一个产生，结果流就会产生。 
+
+![zip操作符有对齐的特性][97]
+
+`zip` 这个词在英文中有拉链的意思，记住这个有助于我们理解这个操作符，就像拉链一样，它需要拉链两边的齿一一对应。从效果角度上讲，这个操作符有减缓发射速度的作用，因为它会等待合并序列中最慢的那个。
+
+下面我们还是看个例子，在我写第七章的使用Bing Image API变换背景时，我最开始的想法是取得图片数组后，把这个数组中的元素每隔一段时间发送出去一个，这样组件端就不用关心图片变化的逻辑，只要服务发射一个地址，我就加载就行了。我就是用zip来实现的，我们在这个逻辑中有2个源数据流：基于一个数组生成的数据流以及一个时间间隔数据流。前者的发射速度非常快，后者则速度均匀，我们希望按后者的速度对齐前者，以达到每隔一段时间发射前者的数据的目的。
+
+```javascript
+   yieldByInterval(items, time) {
+     return Observable.from(items).zip(
+       Observable.interval(time),
+       (item, index) => item
+     );
+   }
+```
+
+为了更好的让大家体会，我改写一个纯javascript版本，可以在JSBin上面直接跑的，它的本质逻辑和上面讲的相同：
+
+```javascript
+let greetings = ['Hello', 'How are you', 'How are you doing'];
+let time = 3000;
+let item$ = Rx.Observable.from(greetings);
+let interval$ = Rx.Observable.interval(time);
+
+Rx.Observable.zip(
+    item$,
+    interval$,
+    (item, index) => {
+      return {
+        item: item,
+        index: index
+      }
+    }
+  )
+  .subscribe(result => 
+             console.log(
+              'item: ' + result.item + 
+              ' index: ' + result.index + 
+              ' at ' + new Date()));
+
+```
+
+我们看到结果如下图所示，每隔3000毫秒，数组中的欢迎文字被输出一次。
+
+![zip操作符示例][98]
+
+这两个操作符应该是Rx中最常用的2个合并类操作符了。其他的操作符大家可以去 http://reactivex.io/documentation/operators.html 查看，注意不是所有的操作符RxJS都有。而且RxJS 5.0 目前整体的趋势是减少不必要的以及冗余的操作符，所以我们只介绍最常用的一些操作符。
+
+### 创建类操作符
+
+通常来讲，Rx团队不鼓励新手自己从0开始创建Observable，因为状态太复杂，会遗漏一些问题。Rx鼓励的是通过已有的大量创建类转换操作符来去建立Observable。我们其实之前已经见过一些了，包括 `from` 和 `fromEvent`。
+
+#### from操作符
+
+`from` 可以支持从数组、类似数组的对象、Promise、iterable 对象或类似Observable的对象（其实这个主要指ES2015中的Observable）来创建一个Observable。
+
+这个操作符应该是可以创建Observable的操作符中最常使用的一个，因为它几乎可以把任何对象转换成Observable。
+
+```javascript
+var array = [10, 20, 30];
+var result$ = Rx.Observable.from(array);
+result$.subscribe(x => console.log(x));
+```
+
+![from转换一个数组为Observable][99]
+
+#### fromEvent操作符
+
+这个操作符是专门为事件转换成Observable而制作的，非常强大且方便。对于前端来说，这个方法用于处理各种DOM中的事件再方便不过了。
+
+```javascript
+var click$ = Rx.Observable.fromEvent(document, 'click');
+click$.subscribe(x => console.log(x));
+```
+
+![fromEvent转换事件为Observable][100]
+
+#### fromEventPattern
+
+我们经常会遇到一些已有的代码，这些代码和类库往往不受我们的控制，无法重构或代价太大。我们需要在这种情况下可以利用Rx的话，就需要大量的可以从原有的代码中可以转换的方法。addXXXHandler和removeXXXHandler就是大家以前经常使用的一种模式，那么在Rx中也提供了对应的方法可以转换，那就是
+
+```javascript
+function addClickHandler(handler) {
+  document.addEventListener('click', handler);
+}
+
+function removeClickHandler(handler) {
+  document.removeEventListener('click', handler);
+}
+
+var click$ = Rx.Observable.fromEventPattern(
+  addClickHandler,
+  removeClickHandler
+);
+click$.subscribe(x => console.log(x));
+```
+
+![fromEventPattern专门处理addHandler/removeHandler][101]
+
+#### defer操作符
+
+`defer` 是直到有订阅者之后才创建Observable，而且它为每个订阅者都会这样做，也就是说其实每个订阅者都是接收到自己的单独数据流序列。
+
+![defer操作符为每个订阅者单纯创建序列][102]
+
+```javascript
+Rx.Observable.defer(()=>{
+  let result = doHeavyJob();
+  return result?'success':'failed';
+})
+  .subscribe(x=>console.log(x))
+
+function doHeavyJob(){
+  setTimeout(function() {console.log('doing something');}, 2000);
+  return true;
+}
+```
+
+![defer惰性创建Observable][103]
+
+#### Interval
+
+Rx提供内建的可以创建和计时器相关的Observable方法，第一个是Interval，它可以在指定时间间隔发送整数的自增长序列。
+
+![Interval在指定时间间隔发送整数序列][104]
+
+例如下面代码，我们每隔500毫秒发送一个整数，这个数列是无穷的，我们取前三个好了：
+
+```javascript
+let source = Rx.Observable
+    .interval(500 /* ms */)
+    .take(3);
+
+let subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });
+```
+
+那么输出是
+
+![Interval每隔500毫秒发送一个整数，取前三个的结果][105]
+
+这里大家可能注意到我们没有采用箭头的方式，而是用传统的写法，写了 `function(x){...}` ，哪种方式其实都可以，箭头方式会更简单。
+
+另一个需要注意的地方是，在subscribe方法中我们多了2个参数：一个处理异常，一个处理完成。Rx认为所有的数据流会有三个状态：next，error和completed。这三个函数就是分别处理这三种状态的，当然如果我们不写某个状态的处理，也就意味着我们认为此状态不需要特别处理。而且有些序列是没有completed状态的，因为是无限序列。本例中，如果我们去掉 `.take(3)` 那么completed是永远无法触发的。
+
+#### Timer
+
+下面我们来看看Timer，一共有2种形式的Timer，一种是指定时间后返回一个序列中只有一个元素（值为0）的Observable。
+
+```javascript
+//这里指定一开始的delay时间
+//也可以输入一个Date，比如“2016-12-31 20:00:00”
+//这样变成了在指定的时间触发
+let source = Rx.Observable.timer(2000);
+
+let subscription = source.subscribe(
+    x => console.log('Next: ' + x),
+    err => console.log('Error: ' + err),
+    () => console.log('Completed'));
+```
+
+![不指定间隔时间时，Timer只发射1个元素][106]
+
+第二种Timer很类似于Interval。除了第一个参数是一开始的延迟时间，第二个参数是间隔时间，也就是说，在一开始的延迟时间后，每隔一段时间就会返回一个整数序列。这个和Interval基本一样除了Timer可以指定什么时间开始（延迟时间）。
+
+```javascript
+var source = Rx.Observable.timer(2000, 100)
+    .take(3);
+    
+var subscription = source.subscribe(
+    x => console.log('Next: ' + x),
+    err => console.log('Error: ' + err),
+    () => console.log('Completed'));
+```
+
+![第二种Timer和Interval很类似][107]
+
+当然还有其他创建类的操作符，大家可以去 http://reactivex.io/documentation/operators 查阅自行试验一下。
+
+### 过滤类操作符
+
+之前我们见过好几个过滤类操作符：filter，distinct，take和debounce。
+
+#### filter
+
+Filter操作只允许数据流中满足其predicate测试的元素发射出去，这个predicate函数接受3个参数：
+
+1. 原始数据流元素
+2. 索引，这个是指该元素在源数据流中的位置（从0开始）
+3. 源Observable对象
+
+如下的代码将0-5中偶数过滤出来：
+
+```javascript
+let source = Rx.Observable.range(0, 5)
+  .filter(function (x, idx, obs) {
+    return x % 2 === 0;
+  });
+
+let subscription = source.subscribe(
+    x => console.log('Next: ' + x),
+    err => console.log('Error: ' + err),
+    () => console.log('Completed'));
+```
+
+![Filter是可以依据一个函数来过滤数据流][108]
+
+#### debounceTime
+
+对于一些发射频率比较高的数据流，我们有时会想给它安个“整流器”。比如在一个搜索框中，输入一些字符后希望出现一些搜索建议，这是个非常好的功能，很多时候可以减少用户的输入。
+
+但是由于这些搜索建议需要联网完成数据的传递，如果太频繁操作的话，对于用户的数据流量和服务器的性能承载都是有副作用的。所以我们一般希望在用户连续快速输入时不去搜索，而是等待有相对较长的间隔时再去搜索。
+
+下面的代码从输入上做了这样的一个“整流器”，滤掉了间隔时间小于400毫米的输入事件（输入本身不受影响），只有用户出现较明显的停顿时才把输入值发射出来。
+
+```javascript
+let todo = document.getElementById('todo');
+let input$ = Rx.Observable.fromEvent(todo, 'keyup');
+input$
+  .debounceTime(400)
+  .subscribe(input => console.log(input.target.value));
+```
+
+快速输入“12345”，在这种情况下得到的是一条数据
+
+![快速输入12345得到一条数据][109]
+
+但如果不应用debounceTime，我们得到5条记录
+
+![不应用debounceTime的结果][110]
+
+其他的过滤类操作符也很有趣，比如Distinct就是可以把重复的元素过滤掉，skip就可以跳过几个元素等等，可以自行研究，这里就不一一举例了。
+
+Rx的操作符实在太多了，我只能列举一些较常见的给大家介绍一下，其他的建议大家去官方文档学习。
+
 ## Angular2中的内建支持
+
+Angular2中对于Rx的支持是怎么样的呢？先试验一下吧，简单粗暴的一个组件模版页面
+
+```html
+<p>
+  {{clock}}
+</p>
+```
+
+和在组件中定义一个简单粗暴的成员变量
+
+```javascript
+import { Component } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css']
+})
+export class PlaygroundComponent{
+  clock = Observable.interval(1000);
+
+  constructor() { }
+
+}
+
+```
+
+搞定！打开浏览器，显示了一个 `[object Object]`，晕倒。
+
+![直接把Observable对象显示在页面中的效果：啥也没有][111]
+
+当然经过前面的学习，我们知道Observable是个异步数据流，我们可以把代码改写一下，在订阅方法中去赋值就一切ok了。
+
+```javascript
+import { Component } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css']
+})
+export class PlaygroundComponent{
+  clock: number;
+
+  constructor() { 
+    Observable.interval(1000)
+      .subscribe(value => this.clock= value)
+  }
+
+}
+
+```
+
+![利用subscribe赋值成功显示的效果][112]
+
+但是这样做还是有一个问题，我们加入一个do操作符，在每次订阅前去记录就会发现一些问题。当我们离开页面再回来，每次进入都会创建一个新的订阅，，但原有的没有释放。
+
+```javascript
+Observable.interval(1000)
+      .do(_ => console.log('observable created'))
+      .subscribe(value => this.clock= value);
+```
+
+观察console中在‘observable created’之前的数字和页面显示的数字，大概是页面每增加1，console的数字增加2，这说明我们后面运行着2个订阅。
+
+![原有的订阅没有释放掉][113]
+
+原因是我们没有在页面销毁时取消订阅，那么我们利用生命周期的onDestroy来完成这一步：
+
+```javascript
+import { Component, OnDestroy } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/observable/interval';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css']
+})
+export class PlaygroundComponent implements OnDestroy{
+  clock: number;
+  subscription: Subscription;
+
+  constructor() { 
+    this.subscription = Observable.interval(1000)
+      .do(_ => console.log('observable created'))
+      .subscribe(value => this.clock= value);
+  }
+
+  ngOnDestroy(){
+    if(this.subscription !== undefined)
+      this.subscription.unsubscribe();
+  }
+}
+
+```
+
+现在再来观察，同样进入并离开再进入页面后，页面每增加1，console也会增加1。
+
+![通过onDestory中unsubscribe来防止内存泄露][114]
+
+### Async管道
+
+现在看起来还是挺麻烦的，有没有更简单的方法呢？答案当然是肯定的：Angular2提供一个管道叫：async，有了这个管道，我们无需管理琐碎的取消订阅，以及订阅了。
+
+让我们回到最开始的简单粗暴版本，模版文件稍微改写一下
+
+```html
+<p>
+  {{ clock | async }}
+</p>
+```
+
+这个 `| async` 是什么东东？async是Angular2提供的一种转换器，叫管道（Pipe）。
+
+每个应用开始的时候差不多都是一些简单任务：获取数据、转换它们，然后把它们显示给用户。一旦取到数据，我们可以把它们原始值的结果直接显示。 但这种做法很少能有好的用户体验。比如，几乎每个人都更喜欢简单的日期格式，几月几号星期几，而不是原始字符串格式 —— Fri Apr 15 1988 00:00:00 GMT-0700 (Pacific Daylight Time)。通过管道我们可以把不友好的值转换成友好的值显示在页面中。
+
+Angular内置了一些管道，比如DatePipe、UpperCasePipe、LowerCasePipe、CurrencyPipe和PercentPipe。它们全都可以直接用在任何模板中。Async管道也是内置管道之一。
+
+当然这样在页面写完管道后，我们的组件版本也回归了简单粗暴版本:
+
+```javascript
+import { Component, OnDestroy } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css']
+})
+export class PlaygroundComponent {
+  clock = Observable.interval(1000).do(_=>console.log('observable created'));
+
+  constructor() { }
+
+}
+
+```
+
+现在打开浏览器，看一下页面的效果
+
+![使用async pipe的版本][115]
+
+你做这个试验时很可能会遭遇一个错误，说async pipe无法找到
+
+![aync pipe无法找到的错误][116]
+
+这种情况一般是由于CommonModule没有导入造成的，遇到这种错误，请导入CommonModule。
+
+### Rx版本的Todo
+
+### 拥有自动完成功能的输入下拉框
+
+## 小结
+
+我们的Angular学习之旅从零开始到现在，完整的搭建了一个小应用。相信大家现在应该对Angular2有一个大概的认识了，而且也可以参与到正式的开发项目中去了。但Angular2作为一个完整框架，有很多细节我们是没有提到的，大家可以到官方文档 https://angular.cn/ 去查找和学习。
 
 
   [1]: https://angular.io/
@@ -4312,67 +4981,105 @@ Angular其实是通过检查指令或组件的类中是否定义了相关方法�
   [12]: https://www.jetbrains.com/webstorm/
   [13]: http://static.zybuluo.com/wpcfan/zrmu59kvd6986hbojldvzu4t/c1_s1_ng_new_hello-angular.png
   [14]: http://static.zybuluo.com/wpcfan/hwsg3a6eashfnxhodwgzmd6r/c1_s1_vscode_project_struct.png
-  [15]: http://static.zybuluo.com/wpcfan/djkgkmm92yjakfp1tf53a8tu/image_1b2aksv68uhs3mf64j1h9st7o9.png
-  [16]: http://static.zybuluo.com/wpcfan/4xrvfcelykg9dbmft73rm3ym/c1_s1_ng_serve.png
-  [17]: http://static.zybuluo.com/wpcfan/1fhyangnbqqjemxr5md4qa2p/c1_s1_project_1st_browser.png
-  [18]: http://static.zybuluo.com/wpcfan/00ujvqg9m6ir0km0nzp54x4d/c1_s1_project_1st_browser_update.png
-  [19]: http://static.zybuluo.com/wpcfan/cemx8k69lys6xcjtecvgns3o/image_1b27r02qlo6f11f19qg1q9k1fclm.png
-  [20]: http://static.zybuluo.com/wpcfan/hykairb7gc7indb3ytousn2r/image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png
-  [21]: http://static.zybuluo.com/wpcfan/g2c5iklgoiefb4gwf032ewy3/c2_s1_input_button_added.png
-  [22]: http://static.zybuluo.com/wpcfan/vguefg9j7ogiyrnqyymb0tkd/c2_s1_handle_click_method.png
-  [23]: http://static.zybuluo.com/wpcfan/6v6bvj0yj60rrei7y8bhk0t3/c2_s1_input_button_ref.png
-  [24]: http://static.zybuluo.com/wpcfan/opkt3h9vqpne88q3e988oghr/c2_s1_username_password_ref.png
-  [25]: http://static.zybuluo.com/wpcfan/ep2fv9smcl6wpesjd9lyymn5/c2_s2_form_validation.png
-  [26]: http://static.zybuluo.com/wpcfan/r5or515a7vbbaegcumt1szrg/c2_s2_form_validation_errors.png
-  [27]: http://static.zybuluo.com/wpcfan/o1581cncbnl7zi8hvhvo9vn4/c2_s2_form_validation_errors_multiple.png
-  [28]: http://static.zybuluo.com/wpcfan/vngx0hc0nusbyyfzhb1tfjro/c2_s2_form_validation_form_submit.png
-  [29]: http://static.zybuluo.com/wpcfan/vy66ed38x1rr3686bkzbbcfy/c2_s2_form_validation_fieldset.png
-  [30]: http://static.zybuluo.com/wpcfan/cvugsjs3o68u9aeb30xvwsr2/c2_s2_form_validation_form_styling.png
-  [31]: http://static.zybuluo.com/wpcfan/b7kn9wpntcooxbucnddg59xg/c2_s2_form_validation_style_fail.png
-  [32]: http://static.zybuluo.com/wpcfan/t85mj8zde5zgjxwymtbvh6mg/c2_s2_form_validation_style_pass.png
-  [33]: http://www.w3schools.com/cssref/css_selectors.asp
-  [34]: http://static.zybuluo.com/wpcfan/8jg6bdnos6i7an84mt1zqoov/image_1b0hgdsiu87n1lha1kcahl51ckb9.png
-  [35]: http://static.zybuluo.com/wpcfan/s7fmz6gcsek66kc5y2729j10/image_1b0k2ba0d1qqraa51mj51hpdpeo9.png
-  [36]: http://static.zybuluo.com/wpcfan/slqndbbtc8v2chwgtfb5cmoc/image_1b0kgg9mnppf16pkip81b2hhbrm.png
-  [37]: http://static.zybuluo.com/wpcfan/vuqanfa8jbnt6hwqmtdr05bc/image_1b0kr7gpn17td7v1p4s1qucuu313.png
-  [38]: http://static.zybuluo.com/wpcfan/m9xxtfp9xebdrsv4tfl1oihj/image_1b11jlmes1nithths9q1n8ijqg9.png
-  [39]: http://static.zybuluo.com/wpcfan/b0daucv4po2molx9kff47efe/image_1b11kjibcelb6upnb21su41dilm.png
-  [40]: http://static.zybuluo.com/wpcfan/crrogqqkksstx3ztoh2mk1bi/image_1b12b5v4onlm16ai1bdn7pu143e9.png
-  [41]: http://static.zybuluo.com/wpcfan/3im2e8fi5fhgxy2olfg6kp3x/image_1b17mtibdkjn105l1ojl1dgr9il9.png
-  [42]: http://static.zybuluo.com/wpcfan/3t0c5c4q1o0n7t5d0rflx9zd/image_1b17o06nv10ob13d6pb1f5613pnm.png
-  [43]: http://static.zybuluo.com/wpcfan/2s1k9xfhfwo4ya6gc1kyi8sg/image_1b17o6qjlb31grg1o7edjm1q4l13.png
-  [44]: http://static.zybuluo.com/wpcfan/kd81ovbb5t1tix59oyft2doy/image_1b1c8if181tld15hlj531aasi8a9.png
-  [45]: http://static.zybuluo.com/wpcfan/8bm5aa4ux233zro0vpqh9oun/image_1b23h2m601puv1q9664c52c1jem9.png
-  [46]: http://static.zybuluo.com/wpcfan/f2z6lh68bsymwnqhbb6z8ovf/image_1b23h3l811dn4g9h16qu1jm11htbm.png
-  [47]: http://static.zybuluo.com/wpcfan/y5ar6642glaj2y0jbtsjp75n/image_1b23hdv51l621elh1uucsri32213.png
-  [48]: http://static.zybuluo.com/wpcfan/xpf46qrbe9wrdwi2d5r1rp4s/image_1b23hjd3rble1nb11u7i19qgjqb1g.png
-  [49]: http://static.zybuluo.com/wpcfan/0b7dqnyzc2a50z5jvohr2nxz/image_1b23htavu19i412obd751h8kusj1t.png
-  [50]: http://static.zybuluo.com/wpcfan/p7dr7hd1wkwcz1rn9bdlmlrm/image_1b23igfkdhn71ug71cng3in94t2a.png
-  [51]: http://static.zybuluo.com/wpcfan/enoypw8hkt4rs5qpwby7fey3/image_1b2m0102o1d721c438jr18r9f889.png
-  [52]: http://static.zybuluo.com/wpcfan/km6fx7cleicpzpuqn681my0m/image_1b2m07bdvqk91aaodsd16pd2kuv.png
-  [53]: http://static.zybuluo.com/wpcfan/df0pajt5bei3pbw0b854a2n1/image_1b2m0l4teqja2f016s61g5o14261c.png
-  [54]: https://github.com/angular/material2 "Material 2"
-  [55]: https://getmdl.io
-  [56]: https://github.com/mseemann/angular2-mdl
-  [57]: http://sass-lang.com/
-  [58]: http://mseemann.io/angular2-mdl/theme
-  [59]: http://static.zybuluo.com/wpcfan/d01y1qp5ke1mvm56b4s7db7m/image_1b2g0jju71mdsnd3k2v174k7129.png
-  [60]: http://static.zybuluo.com/wpcfan/c8s2lzrgia8kc0iouy3gcuwu/image_1b2g1csop1684jfghpphffui9m.png
-  [61]: http://static.zybuluo.com/wpcfan/tu60u4nrupshfjhmz8xnvr8o/image_1b2g1e0261mkmtp61kjm6f94g513.png
-  [62]: http://static.zybuluo.com/wpcfan/nks5h5wn6cf3mcjmxem301mm/image_1b2o9tso51ald1u0e1nr59gi119i9.png
-  [63]: http://static.zybuluo.com/wpcfan/rpvxg5kcdy1gs6pka50wieda/image_1b36ghm4o179516kdikkbc14qp9.png
-  [64]: http://static.zybuluo.com/wpcfan/fwq8nslpo6j6g4dwv534xhfy/image_1b36l1ajl1qqm1t091m89gbe1cr7m.png
-  [65]: http://static.zybuluo.com/wpcfan/d749paatwa3if5lagm9sbg86/image_1b36lq1ikh3vnfkadg8rpnrm13.png
-  [66]: http://static.zybuluo.com/wpcfan/du7mdyjtiszhuusvo8acicp4/image_1b37me9ik1eba1ruq98s1n041siq9.png
-  [67]: http://static.zybuluo.com/wpcfan/r4fnf9io4dky0a3gp9oso82i/image_1b36ncud0epmjsjsrjqds1tka9.png
-  [68]: http://static.zybuluo.com/wpcfan/tv2fvnqqv12o1nnobd0ip64l/image_1b36npfqlhkq0l1fge1o8jon0m.png
-  [69]: http://static.zybuluo.com/wpcfan/a1gsg1mcsyd4r96bypd55nvd/image_1b38vhduajb5bng1o3a1f73ua79.png
-  [70]: http://static.zybuluo.com/wpcfan/z3ok1yhh8lsuxg1aub49qifr/image_1b3912qu9bbduuokqe12031853m.png
-  [71]: http://static.zybuluo.com/wpcfan/0pbxveqx8yjt9xyb23m941te/image_1b396i9rc1jg9hbsgj5e44sns13.png
-  [72]: http://static.zybuluo.com/wpcfan/yfppqsaemxgviktatn6l3jyh/image_1b39tfmnni8hsnnila1c5cj701g.png
-  [73]: http://static.zybuluo.com/wpcfan/4zesdanc1zzz9pv5684i6agp/image_1b3c404ni7qe1vv69uu6ubvhh9.png
-  [74]: http://static.zybuluo.com/wpcfan/cj4w92jxeoox33sn82xbjf4g/image_1b39uniimjrnv31kr7ajvei1t.png
-  [75]: http://static.zybuluo.com/wpcfan/6m32j6pmfzyx4uv52mhnjrl0/image_1b39v6ibl4peqcgmhckc4ka2a.png
-  [76]: http://static.zybuluo.com/wpcfan/qwga78sqyohp5syyemdjsva5/image_1b3a2in1k145g15rej8icr51i4p2n.png
-  [77]: http://static.zybuluo.com/wpcfan/sarm4ukcxyd8wrnqssdy6xr2/image_1b3c5t3g11edk83n1c1olrci739.png
-  [78]: http://static.zybuluo.com/wpcfan/jqvbexkvo0ubcu8ozhq7sjd5/image_1b3c6vnk21sj13831cec16n0gsnm.png
+  [15]: http://static.zybuluo.com/wpcfan/2k52lgyw9say0bk0pzudz4qk/image_1b3i1ig2aqnq17ac1gk31lvtu579.png
+  [16]: http://static.zybuluo.com/wpcfan/djkgkmm92yjakfp1tf53a8tu/image_1b2aksv68uhs3mf64j1h9st7o9.png
+  [17]: http://static.zybuluo.com/wpcfan/4xrvfcelykg9dbmft73rm3ym/c1_s1_ng_serve.png
+  [18]: http://static.zybuluo.com/wpcfan/1fhyangnbqqjemxr5md4qa2p/c1_s1_project_1st_browser.png
+  [19]: http://static.zybuluo.com/wpcfan/00ujvqg9m6ir0km0nzp54x4d/c1_s1_project_1st_browser_update.png
+  [20]: http://static.zybuluo.com/wpcfan/cemx8k69lys6xcjtecvgns3o/image_1b27r02qlo6f11f19qg1q9k1fclm.png
+  [21]: http://static.zybuluo.com/wpcfan/hykairb7gc7indb3ytousn2r/image_1b27qsmhp1nlrb8g1uh6cp71qcj9.png
+  [22]: http://static.zybuluo.com/wpcfan/g2c5iklgoiefb4gwf032ewy3/c2_s1_input_button_added.png
+  [23]: http://static.zybuluo.com/wpcfan/vguefg9j7ogiyrnqyymb0tkd/c2_s1_handle_click_method.png
+  [24]: http://static.zybuluo.com/wpcfan/6v6bvj0yj60rrei7y8bhk0t3/c2_s1_input_button_ref.png
+  [25]: http://static.zybuluo.com/wpcfan/opkt3h9vqpne88q3e988oghr/c2_s1_username_password_ref.png
+  [26]: http://static.zybuluo.com/wpcfan/ep2fv9smcl6wpesjd9lyymn5/c2_s2_form_validation.png
+  [27]: http://static.zybuluo.com/wpcfan/r5or515a7vbbaegcumt1szrg/c2_s2_form_validation_errors.png
+  [28]: http://static.zybuluo.com/wpcfan/o1581cncbnl7zi8hvhvo9vn4/c2_s2_form_validation_errors_multiple.png
+  [29]: http://static.zybuluo.com/wpcfan/vngx0hc0nusbyyfzhb1tfjro/c2_s2_form_validation_form_submit.png
+  [30]: http://static.zybuluo.com/wpcfan/vy66ed38x1rr3686bkzbbcfy/c2_s2_form_validation_fieldset.png
+  [31]: http://static.zybuluo.com/wpcfan/cvugsjs3o68u9aeb30xvwsr2/c2_s2_form_validation_form_styling.png
+  [32]: http://static.zybuluo.com/wpcfan/b7kn9wpntcooxbucnddg59xg/c2_s2_form_validation_style_fail.png
+  [33]: http://static.zybuluo.com/wpcfan/t85mj8zde5zgjxwymtbvh6mg/c2_s2_form_validation_style_pass.png
+  [34]: http://www.w3schools.com/cssref/css_selectors.asp
+  [35]: http://static.zybuluo.com/wpcfan/8jg6bdnos6i7an84mt1zqoov/image_1b0hgdsiu87n1lha1kcahl51ckb9.png
+  [36]: http://static.zybuluo.com/wpcfan/s7fmz6gcsek66kc5y2729j10/image_1b0k2ba0d1qqraa51mj51hpdpeo9.png
+  [37]: http://static.zybuluo.com/wpcfan/slqndbbtc8v2chwgtfb5cmoc/image_1b0kgg9mnppf16pkip81b2hhbrm.png
+  [38]: http://static.zybuluo.com/wpcfan/vuqanfa8jbnt6hwqmtdr05bc/image_1b0kr7gpn17td7v1p4s1qucuu313.png
+  [39]: http://static.zybuluo.com/wpcfan/m9xxtfp9xebdrsv4tfl1oihj/image_1b11jlmes1nithths9q1n8ijqg9.png
+  [40]: http://static.zybuluo.com/wpcfan/b0daucv4po2molx9kff47efe/image_1b11kjibcelb6upnb21su41dilm.png
+  [41]: http://static.zybuluo.com/wpcfan/5xf7rkb3wyhxx51dbpjoha0b/image_1b3emaalc6bk1j168qkni215gj9.png
+  [42]: http://static.zybuluo.com/wpcfan/crrogqqkksstx3ztoh2mk1bi/image_1b12b5v4onlm16ai1bdn7pu143e9.png
+  [43]: http://static.zybuluo.com/wpcfan/3im2e8fi5fhgxy2olfg6kp3x/image_1b17mtibdkjn105l1ojl1dgr9il9.png
+  [44]: http://static.zybuluo.com/wpcfan/3t0c5c4q1o0n7t5d0rflx9zd/image_1b17o06nv10ob13d6pb1f5613pnm.png
+  [45]: http://static.zybuluo.com/wpcfan/2s1k9xfhfwo4ya6gc1kyi8sg/image_1b17o6qjlb31grg1o7edjm1q4l13.png
+  [46]: http://static.zybuluo.com/wpcfan/kd81ovbb5t1tix59oyft2doy/image_1b1c8if181tld15hlj531aasi8a9.png
+  [47]: http://static.zybuluo.com/wpcfan/8bm5aa4ux233zro0vpqh9oun/image_1b23h2m601puv1q9664c52c1jem9.png
+  [48]: http://static.zybuluo.com/wpcfan/f2z6lh68bsymwnqhbb6z8ovf/image_1b23h3l811dn4g9h16qu1jm11htbm.png
+  [49]: http://static.zybuluo.com/wpcfan/y5ar6642glaj2y0jbtsjp75n/image_1b23hdv51l621elh1uucsri32213.png
+  [50]: http://static.zybuluo.com/wpcfan/xpf46qrbe9wrdwi2d5r1rp4s/image_1b23hjd3rble1nb11u7i19qgjqb1g.png
+  [51]: http://static.zybuluo.com/wpcfan/0b7dqnyzc2a50z5jvohr2nxz/image_1b23htavu19i412obd751h8kusj1t.png
+  [52]: http://static.zybuluo.com/wpcfan/p7dr7hd1wkwcz1rn9bdlmlrm/image_1b23igfkdhn71ug71cng3in94t2a.png
+  [53]: http://static.zybuluo.com/wpcfan/r7juuikjd8mgwbjjoka4fi24/image_1b3erpn3016sl17i2vcnr3cg7lm.png
+  [54]: http://static.zybuluo.com/wpcfan/enoypw8hkt4rs5qpwby7fey3/image_1b2m0102o1d721c438jr18r9f889.png
+  [55]: http://static.zybuluo.com/wpcfan/km6fx7cleicpzpuqn681my0m/image_1b2m07bdvqk91aaodsd16pd2kuv.png
+  [56]: http://static.zybuluo.com/wpcfan/df0pajt5bei3pbw0b854a2n1/image_1b2m0l4teqja2f016s61g5o14261c.png
+  [57]: https://github.com/angular/material2 "Material 2"
+  [58]: https://getmdl.io
+  [59]: https://github.com/mseemann/angular2-mdl
+  [60]: http://sass-lang.com/
+  [61]: http://mseemann.io/angular2-mdl/theme
+  [62]: http://static.zybuluo.com/wpcfan/8hpn0dypdubf83zftj7rcqoz/image_1b3eq6qhv1kfo14ug1osh1nb5h3e9.png
+  [63]: http://static.zybuluo.com/wpcfan/d01y1qp5ke1mvm56b4s7db7m/image_1b2g0jju71mdsnd3k2v174k7129.png
+  [64]: http://static.zybuluo.com/wpcfan/c8s2lzrgia8kc0iouy3gcuwu/image_1b2g1csop1684jfghpphffui9m.png
+  [65]: http://static.zybuluo.com/wpcfan/tu60u4nrupshfjhmz8xnvr8o/image_1b2g1e0261mkmtp61kjm6f94g513.png
+  [66]: http://static.zybuluo.com/wpcfan/nks5h5wn6cf3mcjmxem301mm/image_1b2o9tso51ald1u0e1nr59gi119i9.png
+  [67]: http://static.zybuluo.com/wpcfan/rpvxg5kcdy1gs6pka50wieda/image_1b36ghm4o179516kdikkbc14qp9.png
+  [68]: http://static.zybuluo.com/wpcfan/fwq8nslpo6j6g4dwv534xhfy/image_1b36l1ajl1qqm1t091m89gbe1cr7m.png
+  [69]: http://static.zybuluo.com/wpcfan/d749paatwa3if5lagm9sbg86/image_1b36lq1ikh3vnfkadg8rpnrm13.png
+  [70]: http://static.zybuluo.com/wpcfan/du7mdyjtiszhuusvo8acicp4/image_1b37me9ik1eba1ruq98s1n041siq9.png
+  [71]: http://static.zybuluo.com/wpcfan/r4fnf9io4dky0a3gp9oso82i/image_1b36ncud0epmjsjsrjqds1tka9.png
+  [72]: http://static.zybuluo.com/wpcfan/tv2fvnqqv12o1nnobd0ip64l/image_1b36npfqlhkq0l1fge1o8jon0m.png
+  [73]: http://static.zybuluo.com/wpcfan/a1gsg1mcsyd4r96bypd55nvd/image_1b38vhduajb5bng1o3a1f73ua79.png
+  [74]: http://static.zybuluo.com/wpcfan/z3ok1yhh8lsuxg1aub49qifr/image_1b3912qu9bbduuokqe12031853m.png
+  [75]: http://static.zybuluo.com/wpcfan/0pbxveqx8yjt9xyb23m941te/image_1b396i9rc1jg9hbsgj5e44sns13.png
+  [76]: http://static.zybuluo.com/wpcfan/yfppqsaemxgviktatn6l3jyh/image_1b39tfmnni8hsnnila1c5cj701g.png
+  [77]: http://static.zybuluo.com/wpcfan/4zesdanc1zzz9pv5684i6agp/image_1b3c404ni7qe1vv69uu6ubvhh9.png
+  [78]: http://static.zybuluo.com/wpcfan/cj4w92jxeoox33sn82xbjf4g/image_1b39uniimjrnv31kr7ajvei1t.png
+  [79]: http://static.zybuluo.com/wpcfan/6m32j6pmfzyx4uv52mhnjrl0/image_1b39v6ibl4peqcgmhckc4ka2a.png
+  [80]: http://static.zybuluo.com/wpcfan/qwga78sqyohp5syyemdjsva5/image_1b3a2in1k145g15rej8icr51i4p2n.png
+  [81]: http://static.zybuluo.com/wpcfan/sarm4ukcxyd8wrnqssdy6xr2/image_1b3c5t3g11edk83n1c1olrci739.png
+  [82]: http://static.zybuluo.com/wpcfan/jqvbexkvo0ubcu8ozhq7sjd5/image_1b3c6vnk21sj13831cec16n0gsnm.png
+  [83]: http://static.zybuluo.com/wpcfan/7paaruzx7t2qawk9jw8qzqb0/image_1b3evrm0rk1c1kb11mh9st6kao1g.png
+  [84]: http://static.zybuluo.com/wpcfan/0sy27j23jkyqw7gbazdf5v95/image_1b3f17o21b9o16f1dr21nur12nq2n.png
+  [85]: http://static.zybuluo.com/wpcfan/8md686e6awhplbn27wyktc1r/image_1b3fa3qmrrbj14hhl9af241555m.png
+  [86]: http://static.zybuluo.com/wpcfan/t6n4jjppb7i27s3gd3k0n54d/image_1b3faklqvbjc1p4sdhr1bhu9vt13.png
+  [87]: http://static.zybuluo.com/wpcfan/0t8qcbb4jxnyyhzkbe1ngerk/image_1b3fglc3vgonb9d1ieagt71sq59.png
+  [88]: http://static.zybuluo.com/wpcfan/wvzuefr1g1hflifipzzytc36/image_1b3fh5bgtrjmfk211hvg5i17bam.png
+  [89]: http://static.zybuluo.com/wpcfan/w5svpj9wxm00577z5h3vxgcx/image_1b3figmk91fjv60dnjdprkhei13.png
+  [90]: http://static.zybuluo.com/wpcfan/nbj0pecdxxtakak50agu41op/image_1b3fk3qo612471ai71egg1i1515s31g.png
+  [91]: http://static.zybuluo.com/wpcfan/0w4nt3vkxv0yainw0wabm1bx/image_1b3hjgl1gqaklnj1qr31572j2c2a.png
+  [92]: http://static.zybuluo.com/wpcfan/bv632opol178ghdqn79e1lee/image_1b3hk0fov1g2aeeb1310j0kjp52n.png
+  [93]: http://static.zybuluo.com/wpcfan/ybxd8dfsayq3oe0jurid9qqe/image_1b3hk3ori2jt1svl6km1csh70c34.png
+  [94]: http://static.zybuluo.com/wpcfan/frdxvg3isp0ma0ict95ozhgv/image_1b3hka3a1rkp1n7b14ul2dlu23h.png
+  [95]: http://static.zybuluo.com/wpcfan/wk4gwatqc3edd8zks0j40lyw/image_1b3hj4e748enu99jnd1m9aa1g1t.png
+  [96]: http://static.zybuluo.com/wpcfan/e3syscof2mrqovk8r28h4sq4/image_1b3i9947b1edq1ffa40i1vsmlj16.png
+  [97]: http://static.zybuluo.com/wpcfan/yzvihbjat2l8jbodprpsxifp/image_1b3j8dn9p1072ohjhqv1ful1cmp.png
+  [98]: http://static.zybuluo.com/wpcfan/kgggh41asqvfqp6flxnzxs6d/image_1b3n526sd1vgp12df13s7ihj2b1j.png
+  [99]: http://static.zybuluo.com/wpcfan/vr3mn0ltkpzqbxbzets82b0w/image_1b3n7jn3t16tp1jej14ve8qh1gfe20.png
+  [100]: http://static.zybuluo.com/wpcfan/hiqajty1tlq4xkr5enst340n/image_1b3n7sopd1fmceco10ud1is1ub2d.png
+  [101]: http://static.zybuluo.com/wpcfan/walv43zw68z0mzxl5qkeyubi/image_1b3n7vtqc1jat2861f8k1e8i1r1d2q.png
+  [102]: http://static.zybuluo.com/wpcfan/3p780opb45pm3obvgrsew2jr/image_1b3ogpb371mli7ccdii4ebdhc9.png
+  [103]: http://static.zybuluo.com/wpcfan/ftcnqjgl43l36teutf39x10k/image_1b3ocltsq16br1ec19d72mbbsl37.png
+  [104]: http://static.zybuluo.com/wpcfan/jpku44htoy1zjjiy7eu77dju/image_1b3oib0fgf4p1ns1u7j1cm2pi7m.png
+  [105]: http://static.zybuluo.com/wpcfan/oxkyh4fd6h05rduw1b2fatwu/image_1b3oj0vlmh2s1hlr1nslj908a31j.png
+  [106]: http://static.zybuluo.com/wpcfan/0hmmxq9lbrggivbovf7mb2ae/image_1b3okg3fkh6l1t9bsum1kukor42d.png
+  [107]: http://static.zybuluo.com/wpcfan/m0b23nq3nft68wp929gnnwwz/image_1b3ok3b1f1r0vlku1sq7k6413p620.png
+  [108]: http://static.zybuluo.com/wpcfan/tgoo0p0u6t4gbrxgo272o2na/image_1b3p0ng7lhbh1vdnq1a10up6f52q.png
+  [109]: http://static.zybuluo.com/wpcfan/yuueok3tniz06zj5lptidztr/image_1b3p6ldg019851kgn1fa7fls146q37.png
+  [110]: http://static.zybuluo.com/wpcfan/iv36fzqpjfsco3wy6wt2akwk/image_1b3p6ntv310o0rifqj91kv41htb3k.png
+  [111]: http://static.zybuluo.com/wpcfan/rtgm2jlj5duf76pa1xyqy71o/image_1b3ppc1i216qj1707phb1kr672t9.png
+  [112]: http://static.zybuluo.com/wpcfan/glham35rwcyatdtvshljwpcl/image_1b3prc8sc6u51pj61qrm1tk3hbvm.png
+  [113]: http://static.zybuluo.com/wpcfan/k10mmbl9co5o7l9tffwm11mi/image_1b3psun3cjcpkrg13rp1knh1trk2a.png
+  [114]: http://static.zybuluo.com/wpcfan/2u8j3y5ewuqu55smx2ek25gi/image_1b3psq94lc031b5111mhgqc1ltu1g.png
+  [115]: http://static.zybuluo.com/wpcfan/zw7jylvaagfo2a50jnwb2owf/image_1b3pug0tr18oeotp172p1pgqr4s2n.png
+  [116]: http://static.zybuluo.com/wpcfan/xhjkqdq5pazdds7iarrbwwc3/image_1b3pun648fsd1u2d5nu1nv21bf3h.png

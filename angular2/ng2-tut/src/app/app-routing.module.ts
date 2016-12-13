@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'todo',
     redirectTo: 'todo/ALL',
     canLoad: [AuthGuardService]
+  },
+  {
+    path: 'playground',
+    loadChildren: 'app/playground/playground.module#PlaygroundModule',
   }
 ];
 
