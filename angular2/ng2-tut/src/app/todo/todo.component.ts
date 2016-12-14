@@ -27,16 +27,13 @@ export class TodoComponent implements OnInit {
       })
   }
   addTodo(desc: string) {
-    this.service
-      .addTodo(desc);
+    this.service.addTodo(desc);
   }
   toggleTodo(todo: Todo) {
-    this.service
-      .toggleTodo(todo);
+    this.service.toggleTodo(todo);
   }
   removeTodo(todo: Todo) {
-    this.service
-      .deleteTodo(todo);
+    this.service.deleteTodo(todo);
   } 
   toggleAll(){
     this.service.toggleAll();
