@@ -53,7 +53,7 @@ export class TodoService {
     const url = `${this.api_url}/${todo.id}`;
     const i = this.dataStore.todos.indexOf(todo);
     let updatedTodo = Object.assign({}, todo, {completed: !todo.completed});
-    return this.http
+    this.http
       .patch(url, JSON.stringify({completed: !todo.completed}), {headers: this.headers})
       .subscribe(_ => {
         this.dataStore.todos = [
