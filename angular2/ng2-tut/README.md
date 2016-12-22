@@ -1018,6 +1018,7 @@ Error: Cannot find primary outlet to load 'LoginComponent'
 ```javascript
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { ModuleWithProviders } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -1031,7 +1032,7 @@ export const routes: Routes = [
   }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
 ```
 
 接下来我们在`app.modules.ts`中引入routing，`import { routing } from './app.routes';`，然后在imports数组里添加routing，现在我们的`app.modules.ts`看起来是下面这个样子。
@@ -5290,6 +5291,8 @@ export class TodoComponent implements OnInit {
 ## 小结
 
 我们的Angular学习之旅从零开始到现在，完整的搭建了一个小应用。相信大家现在应该对Angular2有一个大概的认识了，而且也可以参与到正式的开发项目中去了。但Angular2作为一个完整框架，有很多细节我们是没有提到的，大家可以到官方文档 https://angular.cn/ 去查找和学习。
+
+本章代码：https://github.com/wpcfan/awesome-tutorials/tree/master/angular2/ng2-tut
 
 
   [1]: https://angular.io/

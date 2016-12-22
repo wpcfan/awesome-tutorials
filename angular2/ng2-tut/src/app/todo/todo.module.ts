@@ -25,7 +25,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     TodoListComponent
   ],
   providers: [
-    {provide: 'todoService', useClass: TodoService}
+    TodoService
     ],
 })
 export class TodoModule {}

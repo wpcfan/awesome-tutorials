@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule, JsonpModule } from '@angular/http';
 import { MdlModule } from 'angular2-mdl';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,14 +14,14 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    JsonpModule,
     MdlModule,
     CoreModule,
     AppRoutingModule,
     LoginModule,
     TodoModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+    ]
 })
 export class AppModule { }

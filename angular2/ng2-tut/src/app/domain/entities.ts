@@ -1,11 +1,11 @@
 export class Todo {
-  id: string;
+  id?: string;
   desc: string;
   completed: boolean;
-  userId: number;
+  userId?: number;
 }
 export class User {
-  id: number;
+  id?: number;
   username: string;
   password: string;
 }
