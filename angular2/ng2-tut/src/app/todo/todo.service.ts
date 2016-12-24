@@ -58,8 +58,8 @@ export class TodoService {
       .mapTo(updatedTodo)
       .subscribe(todo => {
         this.store$.dispatch({
-        type: TOGGLE_TODO, 
-        payload: updatedTodo
+          type: TOGGLE_TODO, 
+          payload: updatedTodo
         });
       });
   }
@@ -71,8 +71,8 @@ export class TodoService {
       .mapTo(Object.assign({}, todo))
       .subscribe(todo => {
         this.store$.dispatch({
-        type: REMOVE_TODO,
-        payload: todo
+          type: REMOVE_TODO,
+          payload: todo
         });
       });
   }

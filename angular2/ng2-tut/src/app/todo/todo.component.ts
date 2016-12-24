@@ -36,7 +36,7 @@ export class TodoComponent {
           const filter = value as string;
           this.store$.dispatch({type: filter});
         })
-        .switchMap(_ => this.store$.select('todoFilter'));
+        .flatMap(_ => this.store$.select('todoFilter'));
       this.todos = Observable.combineLatest(
         fetchData$,
         filterData$,
