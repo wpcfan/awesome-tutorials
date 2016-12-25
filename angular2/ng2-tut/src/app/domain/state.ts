@@ -1,8 +1,9 @@
-import { Todo } from './entities';
+import { Todo, Auth } from './entities';
 
-export { Todo }
+export { Todo, Auth }
 
 export interface AppState{
-    todos: Todo[],
-    visibilityFilter: string
+    todos: Todo[];
+    todoFilter: any;
+    auth: Auth;
 }

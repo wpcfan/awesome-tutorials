@@ -1,68 +1,74 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
-import { ReplaySubject, Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/switchMap';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { Auth } from '../domain/entities';
+import { AppState } from '../domain/state';
+import { UserService } from './user.service';
+import { Router } from '@angular/router';
+import {
+  LOGIN,
+  LOGIN_FAILED_NOT_EXISTED,
+  LOGIN_FAILED_NOT_MATCH,
+  LOGOUT,
+  REGISTER,
+  REGISTER_FAILED_EXISTED
+} from '../actions/auth.action'
 
 @Injectable()
 export class AuthService {
-  auth: Auth = {hasError: true, redirectUrl: '', errMsg: 'not logged in'};
-  subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
-  constructor(private http: Http, @Inject('user') private userService) {
+   
+  constructor(
+    private http: Http, 
+    private userService: UserService,
+    private store$: Store<AppState>,
+    private router: Router) {
   }
   getAuth(): Observable<Auth> {
-    return this.subject.asObservable();
+    return this.store$.select(appState => appState.auth);
   }
   unAuth(): void {
-    this.auth = Object.assign(
-      {},
-      this.auth,
-      {user: null, hasError: true, redirectUrl: '', errMsg: 'not logged in'});
-    this.subject.next(this.auth);
+    this.store$.dispatch({type: LOGOUT});
   }
-  register(username: string, password: string): Observable<Auth> {
+  register(username: string, password: string): void {
     let toAddUser = {
       username: username,
       password: password
     };
-    return this.userService
-            .findUser(username)
-            .filter(user => user === null)
-            .switchMap(user => {
-              return this.userService.addUser(toAddUser).map(u => {
-                this.auth = Object.assign(
-                  {},
-                  { user: u, hasError: false, errMsg: null, redirectUrl: null}
-                );
-                this.subject.next(this.auth);
-                return this.auth;
-              });
-            });
-  }
-  loginWithCredentials(username: string, password: string): Observable<Auth> {
-    return this.userService
+    this.userService
       .findUser(username)
-      .map(user => {
-        let auth = new Auth();
+      .subscribe(user => {
+        if(user != null) 
+          this.store$.dispatch({type: REGISTER_FAILED_EXISTED});
+        else
+          this.store$.dispatch({type: REGISTER, payload: {
+            user: toAddUser,
+            hasError: false,
+            errMsg: null,
+            redirectUrl: null
+          }});
+      });
+  }
+  loginWithCredentials(username: string, password: string): void {
+    this.userService
+      .findUser(username)
+      .subscribe(user => {
         if (null === user){
-          auth.user = null;
-          auth.hasError = true;
-          auth.errMsg = 'user not found';
-        } else if (password === user.password) {
-          auth.user = user;
-          auth.hasError = false;
-          auth.errMsg = null;
-        } else {
-          auth.user = null;
-          auth.hasError = true;
-          auth.errMsg = 'password not match';
+          this.store$.dispatch({type: LOGIN_FAILED_NOT_EXISTED});
         }
-        this.auth = Object.assign({}, auth);
-        this.subject.next(this.auth);
-        return this.auth;
+        else if(password !== user.password) {
+          this.store$.dispatch({type: LOGIN_FAILED_NOT_MATCH});
+        }
+        else{
+          this.store$.dispatch({type: LOGIN, payload: {
+            user: user,
+            hasError: false,
+            errMsg: null,
+            redirectUrl: null
+          }});
+          this.router.navigate(['todo']);
+        }
       });
   }
 }

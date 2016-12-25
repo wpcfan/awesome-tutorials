@@ -12,8 +12,8 @@ export class User {
 export class Auth {
   user?: User;
   hasError: boolean;
-  errMsg: string;
-  redirectUrl: string;
+  errMsg?: string;
+  redirectUrl?: string;
 }
 export class Image {
   contentUrl: string;

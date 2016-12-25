@@ -18,7 +18,7 @@ import { RegisterDialogComponent } from './register-dialog.component';
     ],
   entryComponents: [RegisterDialogComponent],
   providers: [
-    { provide: 'bing', useClass: BingImageService }
+    BingImageService
   ]
 })
 export class LoginModule { }

@@ -5,7 +5,8 @@ import { UUID } from 'angular2-uuid';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Todo } from '../domain/entities';
-
+import { AppState } from '../domain/state';
+import { AuthService } from '../core/auth.service';
 import {
   ADD_TODO,
   TOGGLE_TODO,
@@ -19,12 +20,12 @@ export class TodoService {
 
   private api_url = 'http://localhost:3000/todos';
   private headers = new Headers({'Content-Type': 'application/json'});
-  private userId: string;
+  private userId: number;
   
   constructor(
     private http: Http, 
-    @Inject('auth') private authService,
-    private store$: Store<Todo[]>
+    private authService: AuthService,
+    private store$: Store<AppState>
     ) {
     this.authService.getAuth()
       .filter(auth => auth.user != null)

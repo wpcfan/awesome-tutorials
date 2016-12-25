@@ -6,26 +6,30 @@ import {
   Route,
   ActivatedRouteSnapshot,
   RouterStateSnapshot }    from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AuthService } from './auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../domain/state';
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanLoad {
 
   constructor(
     private router: Router,
-    @Inject('auth') private authService) { }
+    private store$: Store<AppState>) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(
+    route: ActivatedRouteSnapshot, 
+    state: RouterStateSnapshot
+    ): Observable<boolean> {
     let url: string = state.url;
-
-    return this.authService.getAuth()
+    return this.store$.select(appState => appState.auth)
       .map(auth => !auth.hasError);
   }
   canLoad(route: Route): Observable<boolean> {
     let url = `/${route.path}`;
-
-    return this.authService.getAuth()
+    return this.store$.select(appState => appState.auth)
       .map(auth => !auth.hasError);
   }
 }

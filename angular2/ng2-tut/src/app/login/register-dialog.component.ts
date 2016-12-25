@@ -16,6 +16,7 @@ import {
 import { MdlTextFieldComponent } from 'angular2-mdl';
 import { MdlDialogReference } from 'angular2-mdl';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-register-dialog',
@@ -33,7 +34,7 @@ export class RegisterDialogComponent{
     private dialog: MdlDialogReference,
     private fb: FormBuilder,
     private router: Router,
-    @Inject('auth') private authService) {
+    private authService: AuthService) {
       this.form = fb.group({
         'username':  new FormControl('',  Validators.required),
         'passwords': fb.group({

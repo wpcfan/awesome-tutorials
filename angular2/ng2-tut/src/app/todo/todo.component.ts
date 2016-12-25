@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoService } from './todo.service';
 import { Todo } from '../domain/entities';
+import { AppState } from '../domain/state';
 import { Store } from '@ngrx/store';
 import {
   FETCH_FROM_API
@@ -20,7 +21,7 @@ export class TodoComponent {
   constructor(
     private service: TodoService,
     private route: ActivatedRoute,
-    private store$: Store<Todo[]>) {
+    private store$: Store<AppState>) {
       const fetchData$ = this.service.getTodos()
         .do(todos => {
           this.store$.dispatch({
