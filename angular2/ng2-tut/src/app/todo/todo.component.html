@@ -11,7 +11,8 @@
     >
   </app-todo-list>
   <app-todo-footer
-    [itemCount]="todos?.length | async"
+    [itemCount]="(todos | async).length "
     (onClear)="clearCompleted()">
   </app-todo-footer>
+  {{todos.length | async}}
 </div>

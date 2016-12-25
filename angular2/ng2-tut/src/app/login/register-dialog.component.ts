@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import { MdlTextFieldComponent } from 'angular2-mdl';
 import { MdlDialogReference } from 'angular2-mdl';
-import { Subscription } from 'rxjs/Subscription';
+
 import { AuthService } from '../core/auth.service';
 
 @Component({
@@ -28,7 +28,6 @@ export class RegisterDialogComponent{
   public form: FormGroup;
   public processingRegister = false;
   public statusMessage = '';
-  private subscription: Subscription;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -72,27 +71,20 @@ export class RegisterDialogComponent{
     this.processingRegister = true;
     this.statusMessage = 'processing your registration ...';
 
-    this.subscription = this.authService
+    this.authService
       .register(
         this.form.get('username').value,
-        this.form.get('passwords').get('password').value)
-      .subscribe( auth => {
-        this.processingRegister = false;
-        this.statusMessage = 'you are registered and will be signed in ...';
-        setTimeout( () => {
-          this.dialog.hide(auth);
-          this.router.navigate(['todo']);
-        }, 500);
-    }, err => {
-      this.processingRegister = false;
-      this.statusMessage = err.message;
-    });
+        this.form.get('passwords').get('password').value);
+    this.processingRegister = false;
+      this.statusMessage = 'you are registered and will be signed in ...';
+      setTimeout( () => {
+        this.dialog.hide();
+        this.router.navigate(['todo']);
+      }, 500);
   }
 
   @HostListener('keydown.esc')
   public onEsc(): void {
-    if(this.subscription !== undefined)
-      this.subscription.unsubscribe();
     this.dialog.hide();
   }
 }

@@ -4,17 +4,17 @@
       <mdl-layout-title>{{title}}</mdl-layout-title>
       <mdl-layout-spacer></mdl-layout-spacer>
       <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation" *ngIf="auth$.user !== null">
+      <nav class="mdl-navigation" *ngIf="!auth$.hasError">
         <a class="mdl-navigation__link" routerLink="todo">Todos</a>
       </nav>
-      <nav class="mdl-navigation" *ngIf="auth$.user !== null">
-        <a class="mdl-navigation__link">{{auth$.user?.username | async}}</a>
+      <nav class="mdl-navigation" *ngIf="!auth$.hasError">
+        <a class="mdl-navigation__link">{{(auth$ | async).user?.username}}</a>
       </nav>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" *ngIf="auth$.user === null" (click)="login()">
+        <a class="mdl-navigation__link" *ngIf="auth$.hasError" (click)="login()">
           Login
         </a>
-        <a class="mdl-navigation__link" *ngIf="auth$.user !== null" (click)="logout()">
+        <a class="mdl-navigation__link" *ngIf="!auth$.hasError" (click)="logout()">
           Logout
         </a>
       </nav>
@@ -22,7 +22,7 @@
   </mdl-layout-header>
   <mdl-layout-drawer>
     <mdl-layout-title>{{title}}</mdl-layout-title>
-    <nav class="mdl-navigation" *ngIf="auth$.user !== null">
+    <nav class="mdl-navigation" *ngIf="!auth$.hasError">
       <a class="mdl-navigation__link" routerLink="todo">Todos</a>
     </nav>
   </mdl-layout-drawer>
