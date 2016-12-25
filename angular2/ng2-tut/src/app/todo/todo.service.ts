@@ -4,8 +4,8 @@ import { UUID } from 'angular2-uuid';
 
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { Todo } from '../domain/entities';
-import { AppState } from '../domain/state';
+
+import { AppState, Todo } from '../domain/state';
 import { AuthService } from '../core/auth.service';
 import {
   ADD_TODO,
@@ -27,7 +27,7 @@ export class TodoService {
     private authService: AuthService,
     private store$: Store<AppState>
     ) {
-    this.authService.getAuth()
+    this.store$.select(appState => appState.auth)
       .filter(auth => auth.user != null)
       .subscribe(auth => this.userId = auth.user.id);
   }

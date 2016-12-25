@@ -3,8 +3,8 @@ import { Http, Headers, Response } from '@angular/http';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Auth } from '../domain/entities';
-import { AppState } from '../domain/state';
+
+import { AppState, Auth } from '../domain/state';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import {
