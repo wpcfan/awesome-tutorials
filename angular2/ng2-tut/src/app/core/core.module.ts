@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { AuthGuardService } from './auth-guard.service';
 
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { todoReducer, todoFilterReducer } from '../reducers/todo.reducer';
 import { authReducer } from '../reducers/auth.reducer';
@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   imports:[
     HttpModule,
-    JsonpModule,
     StoreModule.provideStore({ 
       todos: todoReducer, 
       todoFilter: todoFilterReducer,
