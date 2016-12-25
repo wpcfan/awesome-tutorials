@@ -4,15 +4,16 @@ import { UUID } from 'angular2-uuid';
 
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-
-import { AppState, Todo } from '../domain/state';
+import { Router } from '@angular/router';
+import { AppState, Todo, Auth } from '../domain/state';
 import { AuthService } from '../core/auth.service';
 import {
   ADD_TODO,
   TOGGLE_TODO,
   REMOVE_TODO,
   TOGGLE_ALL,
-  CLEAR_COMPLETED
+  CLEAR_COMPLETED,
+  FETCH_FROM_API
 } from '../actions/todo.action'
 
 @Injectable()
@@ -20,30 +21,32 @@ export class TodoService {
 
   private api_url = 'http://localhost:3000/todos';
   private headers = new Headers({'Content-Type': 'application/json'});
-  private userId: number;
-  
+  private auth$: Observable<number>;
+
   constructor(
     private http: Http, 
     private authService: AuthService,
+    private router: Router,
     private store$: Store<AppState>
     ) {
-    this.store$.select(appState => appState.auth)
-      .filter(auth => auth.user != null)
-      .subscribe(auth => this.userId = auth.user.id);
+    this.auth$ = this.store$.select(appState => appState.auth)
+      .filter(auth => auth.user !== null)
+      .map(auth => auth.user.id);
   }
 
   // POST /todos
   addTodo(desc:string): void{
-    let todoToAdd = {
-      id: UUID.UUID(),
-      desc: desc,
-      completed: false,
-      userId: this.userId
-    };
-    this.http
-      .post(this.api_url, JSON.stringify(todoToAdd), {headers: this.headers})
-      .map(res => res.json() as Todo)
-      .subscribe(todo => {
+    this.auth$.flatMap(userId => {
+      let todoToAdd = {
+        id: UUID.UUID(),
+        desc: desc,
+        completed: false,
+        userId: userId
+      };
+      return this.http
+        .post(this.api_url, JSON.stringify(todoToAdd), {headers: this.headers})
+        .map(res => res.json() as Todo);
+    }).subscribe(todo => {
         this.store$.dispatch({type: ADD_TODO, payload: todo});
       });
   }
@@ -78,7 +81,8 @@ export class TodoService {
   }
   // GET /todos
   getTodos(): Observable<Todo[]> {
-    return this.http.get(`${this.api_url}?userId=${this.userId}`)
+    return this.auth$
+      .flatMap(userId => this.http.get(`${this.api_url}?userId=${userId}`))
       .map(res => res.json() as Todo[]);
   }
   

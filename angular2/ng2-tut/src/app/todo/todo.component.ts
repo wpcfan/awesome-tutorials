@@ -23,13 +23,10 @@ export class TodoComponent {
     private route: ActivatedRoute,
     private store$: Store<AppState>) {
       const fetchData$ = this.service.getTodos()
-        .do(todos => {
-          this.store$.dispatch({
-            type: FETCH_FROM_API,
-            payload: todos
-          })
+        .flatMap(todos => {
+          this.store$.dispatch({type: FETCH_FROM_API, payload: todos});
+          return this.store$.select('todos')
         })
-        .concat(this.store$.select('todos'))
         .startWith([]);
       const filterData$ = this.route.params.pluck('filter')
         .do(value => {
