@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoService } from './todo.service';
 import { Todo } from '../domain/entities';
-import { UUID } from 'angular2-uuid';
 import { Store } from '@ngrx/store';
 import {
   FETCH_FROM_API
