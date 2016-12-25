@@ -3,7 +3,6 @@ import { Http, Headers } from '@angular/http';
 import { UUID } from 'angular2-uuid';
 
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Store } from '@ngrx/store';
 import { Todo } from '../domain/entities';
 

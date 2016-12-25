@@ -7,12 +7,17 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { todoReducer, todoFilterReducer } from '../reducers/todo.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { items, selectedItem } from '../reducers/playground.reducer';
 @NgModule({
   imports:[
     HttpModule,
     JsonpModule,
-    StoreModule.provideStore({ todos: todoReducer, todoFilter: todoFilterReducer }),
+    StoreModule.provideStore({ 
+      todos: todoReducer, 
+      todoFilter: todoFilterReducer,
+      items: items,
+      selectedItem: selectedItem
+    }),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [

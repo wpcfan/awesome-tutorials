@@ -19,3 +19,12 @@ export class Image {
   contentUrl: string;
   name: string;
 }
+export interface Item {
+  id: number;
+  name: string;
+  description: string;
+};
+export interface AppStore{
+  items: Item[];
+  selectedItem: Item;
+}
