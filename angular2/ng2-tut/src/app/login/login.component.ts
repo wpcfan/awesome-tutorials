@@ -5,15 +5,16 @@ import {
   state,
   style,
   transition,
-  animate
+  animate,
+  OnDestroy
 } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { MdlDialogService, MdlDialogReference } from 'angular2-mdl';
 import { Auth, Image } from '../domain/entities';
 import { RegisterDialogComponent } from './register-dialog.component';
 import { AuthService } from '../core/auth.service';
 import { BingImageService } from './bing-image.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
@@ -32,24 +33,28 @@ import { BingImageService } from './bing-image.service';
     ])
   ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
 
   username = '';
   password = '';
   slides: Image[] = [];
   photo = '/assets/login_default_bg.jpg';
   loginBtnState: string = 'inactive';
+  subscription: Subscription;
 
   constructor(
     private authService: AuthService,
     private bingService: BingImageService,
-    private dialogService: MdlDialogService,
-    private router: Router) {
-    this.bingService.getImageUrl()
+    private dialogService: MdlDialogService) {
+    this.subscription = this.bingService.getImageUrl()
       .subscribe((images: Image[]) => {
         this.slides = [...images];
         this.rotateImages(this.slides);
       });
+  }
+  ngOnDestroy(){
+    if(this.subscription !== undefined)
+      this.subscription.unsubscribe();
   }
   onSubmit(){
     this.authService

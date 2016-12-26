@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from './domain/entities';
 import { AuthService } from './core/auth.service';
 import { Store } from '@ngrx/store';
-import { AppState } from './domain/state';
+import { AppState, Auth } from './domain/state';
 import { Observable } from 'rxjs/Observable';
 import {
   LOGOUT

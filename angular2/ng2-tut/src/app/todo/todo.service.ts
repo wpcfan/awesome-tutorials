@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { AppState, Todo, Auth } from '../domain/state';
-import { AuthService } from '../core/auth.service';
 import {
   ADD_TODO,
   TOGGLE_TODO,
@@ -24,8 +23,7 @@ export class TodoService {
   private auth$: Observable<number>;
 
   constructor(
-    private http: Http, 
-    private authService: AuthService,
+    private http: Http,
     private router: Router,
     private store$: Store<AppState>
     ) {
