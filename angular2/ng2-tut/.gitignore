@@ -15,6 +15,7 @@
 .classpath
 .c9/
 *.launch
+.DS_Store
 .settings/
 chromeDummyDir/
 
