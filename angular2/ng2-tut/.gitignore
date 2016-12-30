@@ -32,6 +32,10 @@ debug.log
 /e2e/*.js
 /e2e/*.map
 
+# doc
+*.docx
+*.pdf
+
 #System Files
 .DS_Store
 Thumbs.db
