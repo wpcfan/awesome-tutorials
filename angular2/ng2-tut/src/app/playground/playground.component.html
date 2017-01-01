@@ -1,9 +1,14 @@
-<p>
+<!--<p>
   {{ clock | async }}
 </p>
 <ul>
   <li><a routerLink="one">One</a></li>
   <li><a routerLink="two">Two</a></li>
-</ul>
-
+</ul>-->
+<div
+  [@signal]="signal"
+  class="traffic-light">
+</div>
+<button (click)="onGo()">Go</button>
+<button (click)="onStop()">Stop</button>
 <router-outlet></router-outlet>
