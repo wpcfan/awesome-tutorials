@@ -5,6 +5,7 @@ import { PlaygroundComponent } from './playground.component';
 import { OneComponent } from './one/one.component';
 import { TwoComponent } from './two/two.component';
 import { ThreeComponent } from './three/three.component';
+import { FormDemoComponent } from './form-demo/form-demo.component';
 
 const routes: Routes = [
   { 
@@ -23,7 +24,13 @@ const routes: Routes = [
       },
       {
         path: 'two',
-        component: TwoComponent
+        component: TwoComponent,
+        children: [
+          {
+            path: 'form',
+            component: FormDemoComponent
+          }
+        ]
       }
     ] 
   },
