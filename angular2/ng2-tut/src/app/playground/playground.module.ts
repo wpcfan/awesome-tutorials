@@ -7,6 +7,8 @@ import { OneComponent } from './one/one.component';
 import { TwoComponent } from './two/two.component';
 import { ThreeComponent } from './three/three.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
+import { TrimSpacePipe } from './trim-space.pipe';
+import { LogOnClickDirective } from './log-on-click.directive';
 
 @NgModule({
   imports: [
@@ -17,7 +19,11 @@ import { FormDemoComponent } from './form-demo/form-demo.component';
   declarations: [
     PlaygroundComponent, 
     OneComponent, 
-    TwoComponent, ThreeComponent, FormDemoComponent
+    TwoComponent, 
+    ThreeComponent, 
+    FormDemoComponent,
+    TrimSpacePipe,
+    LogOnClickDirective
   ]
 })
 export class PlaygroundModule { }

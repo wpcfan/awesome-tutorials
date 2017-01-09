@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./one.component.css']
 })
 export class OneComponent implements OnInit {
-
+  birthday = new Date();
   constructor() { }
 
   ngOnInit() {
