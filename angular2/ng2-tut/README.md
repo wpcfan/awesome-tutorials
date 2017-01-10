@@ -1,3 +1,117 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Angular 2.x 从0到1](#angular-2x-%E4%BB%8E0%E5%88%B01)
+  - [史上最简单Angular 2.x教程，大叔都学会了](#%E5%8F%B2%E4%B8%8A%E6%9C%80%E7%AE%80%E5%8D%95angular-2x%E6%95%99%E7%A8%8B%E5%A4%A7%E5%8F%94%E9%83%BD%E5%AD%A6%E4%BC%9A%E4%BA%86)
+  - [标签（空格分隔）： 编程 前端 javascript 框架 教程](#%E6%A0%87%E7%AD%BE%E7%A9%BA%E6%A0%BC%E5%88%86%E9%9A%94-%E7%BC%96%E7%A8%8B-%E5%89%8D%E7%AB%AF-javascript-%E6%A1%86%E6%9E%B6-%E6%95%99%E7%A8%8B)
+- [前言 -- 一个大叔码农的Angular2创世纪](#%E5%89%8D%E8%A8%80----%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%8F%94%E7%A0%81%E5%86%9C%E7%9A%84angular2%E5%88%9B%E4%B8%96%E7%BA%AA)
+- [第一章：认识Angular 2.0](#%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AE%A4%E8%AF%86angular-20)
+  - [Angular2简介](#angular2%E7%AE%80%E4%BB%8B)
+  - [环境配置要求](#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82)
+  - [第一个小应用 Hello Angular](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%BA%94%E7%94%A8-hello-angular)
+  - [第一个组件](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
+  - [一些基础概念](#%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
+    - [什么是模块？](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9D%97)
+    - [引导过程](#%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B)
+- [第二章：用Form表单做一个登录控件](#%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%94%A8form%E8%A1%A8%E5%8D%95%E5%81%9A%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E6%8E%A7%E4%BB%B6)
+  - [对于login组件的小改造](#%E5%AF%B9%E4%BA%8Elogin%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B0%8F%E6%94%B9%E9%80%A0)
+  - [建立一个服务去完成业务逻辑](#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%8E%BB%E5%AE%8C%E6%88%90%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)
+    - [什么是依赖性注入？](#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%9D%E8%B5%96%E6%80%A7%E6%B3%A8%E5%85%A5)
+  - [双向数据绑定](#%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A)
+  - [表单数据的验证](#%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E7%9A%84%E9%AA%8C%E8%AF%81)
+  - [验证结果的样式自定义](#%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C%E7%9A%84%E6%A0%B7%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89)
+  - [组件样式](#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F)
+  - [进一步的练习](#%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E7%BB%83%E4%B9%A0)
+- [第三章：建立一个待办事项应用](#%E7%AC%AC%E4%B8%89%E7%AB%A0%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
+  - [建立routing的步骤](#%E5%BB%BA%E7%AB%8Brouting%E7%9A%84%E6%AD%A5%E9%AA%A4)
+    - [路由插座](#%E8%B7%AF%E7%94%B1%E6%8F%92%E5%BA%A7)
+    - [分离路由定义](#%E5%88%86%E7%A6%BB%E8%B7%AF%E7%94%B1%E5%AE%9A%E4%B9%89)
+  - [让待办事项变得有意义](#%E8%AE%A9%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%8F%98%E5%BE%97%E6%9C%89%E6%84%8F%E4%B9%89)
+    - [隔离业务逻辑](#%E9%9A%94%E7%A6%BB%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)
+  - [建立模拟web服务和异步操作](#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E6%8B%9Fweb%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
+    - [构建数据模型](#%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B)
+    - [实现内存web服务](#%E5%AE%9E%E7%8E%B0%E5%86%85%E5%AD%98web%E6%9C%8D%E5%8A%A1)
+    - [内存服务器提供的Restful API](#%E5%86%85%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8F%90%E4%BE%9B%E7%9A%84restful-api)
+    - [Angular2内建的Http方法](#angular2%E5%86%85%E5%BB%BA%E7%9A%84http%E6%96%B9%E6%B3%95)
+    - [页面展现](#%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%8E%B0)
+- [第四章：进化！模块化你的应用](#%E7%AC%AC%E5%9B%9B%E7%AB%A0%E8%BF%9B%E5%8C%96%E6%A8%A1%E5%9D%97%E5%8C%96%E4%BD%A0%E7%9A%84%E5%BA%94%E7%94%A8)
+  - [一个复杂组件的分拆](#%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%86%E6%8B%86)
+    - [输入和输出属性](#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%E5%B1%9E%E6%80%A7)
+    - [CSS样式的一点小说明](#css%E6%A0%B7%E5%BC%8F%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E8%AF%B4%E6%98%8E)
+    - [控制视图的封装模式](#%E6%8E%A7%E5%88%B6%E8%A7%86%E5%9B%BE%E7%9A%84%E5%B0%81%E8%A3%85%E6%A8%A1%E5%BC%8F)
+  - [封装成独立模块](#%E5%B0%81%E8%A3%85%E6%88%90%E7%8B%AC%E7%AB%8B%E6%A8%A1%E5%9D%97)
+  - [更真实的web服务](#%E6%9B%B4%E7%9C%9F%E5%AE%9E%E7%9A%84web%E6%9C%8D%E5%8A%A1)
+  - [完善Todo应用](#%E5%AE%8C%E5%96%84todo%E5%BA%94%E7%94%A8)
+    - [TodoItem和TodoList组件](#todoitem%E5%92%8Ctodolist%E7%BB%84%E4%BB%B6)
+  - [填坑，完成漏掉的功能](#%E5%A1%AB%E5%9D%91%E5%AE%8C%E6%88%90%E6%BC%8F%E6%8E%89%E7%9A%84%E5%8A%9F%E8%83%BD)
+    - [用路由参数传递数据](#%E7%94%A8%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE)
+    - [批量修改和批量删除](#%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%92%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4)
+- [第五章：多用户版本的待办事项应用](#%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%A4%9A%E7%94%A8%E6%88%B7%E7%89%88%E6%9C%AC%E7%9A%84%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%BA%94%E7%94%A8)
+  - [数据驱动开发](#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91)
+  - [验证用户账户的流程](#%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E7%9A%84%E6%B5%81%E7%A8%8B)
+    - [核心模块](#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97)
+    - [路由守卫](#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB)
+  - [路由模块化](#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96)
+  - [用VSCode进行调试](#%E7%94%A8vscode%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95)
+- [第六章：使用第三方样式库及模块优化](#%E7%AC%AC%E5%85%AD%E7%AB%A0%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93%E5%8F%8A%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
+  - [生产环境初体验](#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%88%9D%E4%BD%93%E9%AA%8C)
+  - [第三方样式库](#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A0%B7%E5%BC%8F%E5%BA%93)
+  - [模块优化](#%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96)
+    - [关于模块的最佳实践](#%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5)
+  - [多个不同组件间的通信](#%E5%A4%9A%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
+- [第七章：给组件带来活力](#%E7%AC%AC%E4%B8%83%E7%AB%A0%E7%BB%99%E7%BB%84%E4%BB%B6%E5%B8%A6%E6%9D%A5%E6%B4%BB%E5%8A%9B)
+  - [更炫的登陆页](#%E6%9B%B4%E7%82%AB%E7%9A%84%E7%99%BB%E9%99%86%E9%A1%B5)
+    - [响应式的CSS框架](#%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84css%E6%A1%86%E6%9E%B6)
+    - [寻找免费的图片源](#%E5%AF%BB%E6%89%BE%E5%85%8D%E8%B4%B9%E7%9A%84%E5%9B%BE%E7%89%87%E6%BA%90)
+  - [自带动画技能的Angular2](#%E8%87%AA%E5%B8%A6%E5%8A%A8%E7%94%BB%E6%8A%80%E8%83%BD%E7%9A%84angular2)
+  - [完成遗失已久的注册功能](#%E5%AE%8C%E6%88%90%E9%81%97%E5%A4%B1%E5%B7%B2%E4%B9%85%E7%9A%84%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD)
+    - [Restful API的实验](#restful-api%E7%9A%84%E5%AE%9E%E9%AA%8C)
+  - [Angular 2的组件生命周期](#angular-2%E7%9A%84%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+- [番外：Rx--隐藏在Angular 2.x中利剑](#%E7%95%AA%E5%A4%96rx--%E9%9A%90%E8%97%8F%E5%9C%A8angular-2x%E4%B8%AD%E5%88%A9%E5%89%91)
+  - [Rx再体验](#rx%E5%86%8D%E4%BD%93%E9%AA%8C)
+  - [常见操作](#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C)
+    - [合并类操作符](#%E5%90%88%E5%B9%B6%E7%B1%BB%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [combineLatest操作符](#combinelatest%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [zip操作符](#zip%E6%93%8D%E4%BD%9C%E7%AC%A6)
+    - [创建类操作符](#%E5%88%9B%E5%BB%BA%E7%B1%BB%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [from操作符](#from%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [fromEvent操作符](#fromevent%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [fromEventPattern](#fromeventpattern)
+      - [defer操作符](#defer%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [Interval](#interval)
+      - [Timer](#timer)
+    - [过滤类操作符](#%E8%BF%87%E6%BB%A4%E7%B1%BB%E6%93%8D%E4%BD%9C%E7%AC%A6)
+      - [filter](#filter)
+      - [debounceTime](#debouncetime)
+  - [Angular2中的内建支持](#angular2%E4%B8%AD%E7%9A%84%E5%86%85%E5%BB%BA%E6%94%AF%E6%8C%81)
+    - [Async管道](#async%E7%AE%A1%E9%81%93)
+    - [Rx版本的Todo](#rx%E7%89%88%E6%9C%AC%E7%9A%84todo)
+  - [小结](#%E5%B0%8F%E7%BB%93)
+- [第八章：查缺补漏大合集(上)](#%E7%AC%AC%E5%85%AB%E7%AB%A0%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F%E5%A4%A7%E5%90%88%E9%9B%86%E4%B8%8A)
+  - [第三方JS类库的引入](#%E7%AC%AC%E4%B8%89%E6%96%B9js%E7%B1%BB%E5%BA%93%E7%9A%84%E5%BC%95%E5%85%A5)
+    - [为什么JS不能直接使用](#%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8)
+    - [标准的JS库引入方法](#%E6%A0%87%E5%87%86%E7%9A%84js%E5%BA%93%E5%BC%95%E5%85%A5%E6%96%B9%E6%B3%95)
+    - [引入库的特殊情况](#%E5%BC%95%E5%85%A5%E5%BA%93%E7%9A%84%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5)
+  - [惰性路由和子路由](#%E6%83%B0%E6%80%A7%E8%B7%AF%E7%94%B1%E5%92%8C%E5%AD%90%E8%B7%AF%E7%94%B1)
+    - [惰性路由](#%E6%83%B0%E6%80%A7%E8%B7%AF%E7%94%B1)
+    - [子路由](#%E5%AD%90%E8%B7%AF%E7%94%B1)
+- [第九章：查缺补漏大合集(下)](#%E7%AC%AC%E4%B9%9D%E7%AB%A0%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F%E5%A4%A7%E5%90%88%E9%9B%86%E4%B8%8B)
+  - [Angular2 动画再体验](#angular2-%E5%8A%A8%E7%94%BB%E5%86%8D%E4%BD%93%E9%AA%8C)
+    - [State和Transition](#state%E5%92%8Ctransition)
+    - [奇妙的animate函数](#%E5%A5%87%E5%A6%99%E7%9A%84animate%E5%87%BD%E6%95%B0)
+    - [关键帧](#%E5%85%B3%E9%94%AE%E5%B8%A7)
+  - [方便的管道--PIPE](#%E6%96%B9%E4%BE%BF%E7%9A%84%E7%AE%A1%E9%81%93--pipe)
+    - [自定义一个Pipe](#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AApipe)
+    - [内建的Pipe](#%E5%86%85%E5%BB%BA%E7%9A%84pipe)
+      - [Decimal Pipe](#decimal-pipe)
+      - [Currency Pipe](#currency-pipe)
+      - [Percent Pipe](#percent-pipe)
+      - [Json Pipe](#json-pipe)
+  - [指令——Directive](#%E6%8C%87%E4%BB%A4directive)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Angular 2.x 从0到1 
 
 ## 史上最简单Angular 2.x教程，大叔都学会了
@@ -1326,7 +1440,7 @@ export class TodoService {
 }
 ```
 
-上面的代码我们看到定义了一个`api_url = 'api/todos'`，你可能会问这个是怎么来的？其实这个我们改写成`api_url = 'blablabla/nahnahnah'`也无所谓，因为这个内存web服务的机理是拦截web访问，也就是说随便什么地址都可以，内存web服务会拦截这个地址并解析你的请求是否满足RESTful API的要求。
+上面的代码我们看到定义了一个 `api_url = 'api/todos'`，你可能会问这个是怎么来的？分两部分看，`api/todos` 中前面的api定义成什么都可以，但后面这个todos是有讲究的，我们回去看一下 `src\app\todo\todo-data.ts` 返回的 `return {todos}` ，这个其实是 `return {todos: todos}` 的省略表示形式，如果我们不想让这个后半部分是todos，我们可以写成`{nahnahnah: todos}`。这样的话我们改写成 `api_url = 'blablabla/nahnahnah'` 也无所谓，因为这个内存Web服务的机理是拦截Web访问，也就是说随便什么地址都可以，内存Web服务会拦截这个地址并解析你的请求是否满足RESTful API的要求
 
 ### 内存服务器提供的Restful API
 
@@ -5614,6 +5728,564 @@ export class PlaygroundRoutingModule { }
 
 经过这个小练习，相信再复杂的路由你也可以搞定了。但是我要说一句，个人不是很推荐过于复杂的路由（复杂这里指层级嵌套太多）。层级多了之后意味着这个模块太大了，负责了过多它不应该负责的事情。也就是说当要使用子路由时，一定多问自己几遍，这样做是必须的吗？可以用别的方式解决吗？是不是我的模块改拆分了？
 
+# 第九章：查缺补漏大合集(下)
+
+## Angular2 动画再体验
+
+### State和Transition
+
+我写文章的习惯是先试验再理论，所以我们接下来梳理下Angular2提供的动画技能。还是从最简单的例子开始，一个非常简单的模版：
+
+```html
+<div class="traffic-light"></div>
+```
+
+同样非常简单的样式（其实就是画一个小黑块）：
+
+```css
+.traffic-light{  
+  width: 100px;  
+  height: 100px;  
+  background-color: black;
+}
+```
+
+现在的效果就是这个样子，如图所示，一点都不酷啊，没关系，我们一点点来，越简单的越容易弄懂概念。
+
+![一点也不酷的小黑块][122]
+
+下面我们为组件添加一个animations的元数据描述：
+
+```javascript
+import { 
+  Component, 
+  trigger,
+  state,
+  style
+} from '@angular/core';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css'],
+  animations: [
+    trigger('signal', [
+      state('go', style({
+        'background-color': 'green' 
+      }))
+    ])
+  ]
+})
+export class PlaygroundComponent {
+  
+  constructor() { }
+
+}
+```
+
+我们注意到animations中接受的是一个数组，这个数组里面我们使用了一个叫trigger的函数，trigger接受的第一个参数是触发器的名字，第二个参数是一个数组。这个数组是由一种叫state的函数和叫transition的函数组成的。
+
+那么什么是state？state表示一种状态，当这种状态激活时，state所附带的样式就会附着在应用trigger的那个控件上。transition又是什么呢？tranistion描述了一系列动画的步骤，在状态迁移时这些动画步骤就会执行。
+我们现在的这个版本中暂时只有state而没有transition，让我们先来看看效果，当然在可以看到效果前我们先要把这个trigger应用到某个控件上。那在我们的例子里就是模版中的那个div了。
+
+```html
+<div
+    [@signal]="'go'"
+    class="traffic-light">
+</div>
+```
+
+返回浏览器，你会发现那个小黑块变成小绿块了，如图所示
+
+![小黑块变成小绿块](https://dn-mhke0kuv.qbox.me/c572451e47f11c47b13b.gif)
+
+这说明什么？我们的state的样式附着在div上了。为什么呢？因为 [@signal]="'go'" 定义了trigger的状态是go。但这一点也不酷是吗？是的，暂时是这样，还是那句话，不要急。
+接下来，我们再加一个状态 stop，在stop激活时我们要把小方块的背景色设为红色，那么我们需要把animations改成下面的样子：
+
+```javascript
+animations: [
+    trigger('signal', [
+      state('go', style({
+        'background-color': 'green' 
+      })),
+      state('stop', style({
+          'background-color':'red'
+      }))
+    ])
+  ]
+
+```
+
+同时我们需要给模板加两个按钮Go和Stop。现在的模版看起来是下面的样子
+
+```html
+<div
+  [@signal]="signal"
+  class="traffic-light">
+</div>
+<button (click)="onGo()">Go</button>
+<button (click)="onStop()">Stop</button>
+
+```
+
+当然你看得到，我们点击按钮时需要处理对应的点击事件。在这里我们希望点击Go时，方块变绿，点击Stop时方块变红。如果要达成这个目的，我们需要一个叫signal的成员变量，在点击的处理函数中更改相应的状态。
+
+```javascript
+export class PlaygroundComponent {
+
+  signal: string;
+
+  constructor() { }
+
+  onGo(){
+    this.signal = 'go';
+  }
+  onStop(){
+    this.signal = 'stop';
+  }
+}
+
+```
+
+现在打开浏览器，试验一下，我们会发现点击Go变绿，而点击Stop变红。但是还是没动起来啊，是的，这是因为我们还没加transition呢，我们只需把animations改写一下，你分别点Go和Stop就能看到动画效果了。为了让效果更明显一些，我们为两种状态指定一下高度。
+
+```javascript
+import { 
+  Component, 
+  OnDestroy,
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/core';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css'],
+  animations: [
+    trigger('signal', [
+      state('void', style({
+        'transform':'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color': 'green', 
+        'height':'100px'
+      })),
+      state('stop', style({
+          'background-color':'red',
+          'height':'50px'
+      })),
+      transition('void => *', animate(5000))
+    ])
+  ]
+})
+export class PlaygroundComponent {
+  
+  signal: string;
+
+  constructor() { }
+
+  onGo(){
+    this.signal = 'go';
+  }
+  onStop(){
+    this.signal = 'stop';
+  }
+}
+```
+
+那么 `transition('* => *', animate(500))` 这句什么意思呢？前面那个 `'* => *'` 是一个状态迁移表达式，`*`  表示任意状态，所以这个表达式告诉我们，只要有状态的变化就会激发后面的动画效果。后面的就是告诉Angular做500毫秒的动画，这个动画默认是从一个状态过渡到另一个状态。现在大家打开浏览器体验一下，分别点击Go和Stop，会发现我们的小方块从一个正方形变成一个长方形，红色变成绿色的过程。体验完之后再来看这句话：动画其实就是由若干个状态组成，由transition定义状态过渡的步骤。
+
+![有了形状和颜色变化的动画](https://dn-mhke0kuv.qbox.me/ba29827ec46d67f30252.gif)
+
+那么下面我们介绍一个void 状态（空状态），为什么会有void状态呢？其实刚刚我们也体验了，只不过没有定义这个void 状态而已。我们在组件中并没有给signal赋初始值，这就意味着一开始trigger的状态就是void。我们往往在实现进场或离场动画时需要这个void状态。void状态就是描述没有状态值时的状态。
+
+```javascript
+animations: [
+    trigger('signal', [
+      state('void', style({
+        'transform':'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color': 'green', 
+        'height':'100px'
+      })),
+      state('stop', style({
+          'background-color':'red',
+          'height':'50px'
+      })),
+      transition('* => *', animate(500))
+    ])
+  ]
+
+```
+
+上面代码定义了一个void状态，而且样式上有一个按Y轴做的-100%的位移，其实这就是一开始让小方块从场景外进入场景内，这样就是实现了一种进场动画，大家可以在浏览器中试验一下。
+
+![用void状态实现的进场动画](https://dn-mhke0kuv.qbox.me/8f917381d0e3dd5dc94d.gif)
+
+### 奇妙的animate函数
+
+上面的我们的实验中，你会发现transition中有个animate函数，可能你认为它就是指定一个动画的时间的函数。它的身手可不止那么简单呢，我们来仔细挖掘一下。
+首先呢，我们来对上面的代码做一个小改造，把animations数组改成下面的样子：
+
+```javascript
+animations: [
+    trigger('signal', [
+      state('void', style({
+        'transform':'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color': 'green', 
+        'height':'100px'
+      })),
+      state('stop', style({
+          'background-color':'red',
+          'height':'50px'
+      })),
+      transition('* => *', animate('.5s 1s'))
+    ])
+  ]
+
+```
+
+我们其实只对animate中的参数做了一点小改动，就是把animate(500) 改成animate('.5s 1s')。那么.5s表示动画过渡时间为0.5秒（其实和上面设置的500毫秒是一样的），1s表示动画延迟1秒后播放。现在我们打开浏览器，看看效果如何吧。
+
+当然还有更狠的大招，这个字符串表达式还可以变成 '.5s 1s ease-out'，后面的这个ease-out是一种缓动函数，它是可以让动画效果更真实的一种方式。
+现实世界中物体照着一定节奏移动，并不是一开始就移动很快的，也不可能是一直匀速运动的。怎么理解呢？当皮球往下掉时，首先是越掉越快，撞到地上后回弹，最终才又碰触地板。而缓动函数可以使动画的过渡效果按照这样的真实场景抽象出的对应函数来进行绘制。ease-out只是众多的缓动函数的其中一种，我们当然可以指定其他函数。
+另外需要说明的一点是诸如ease-out只是真实函数的一个友好名称，我们当然可以直接指定背后的函数：cubic-bezier(0, 0, 0.58, 1) 。我们下个小例子不用这个ease-out，因为效果可能不是特别明显，我们找一个明显的，使用 cubic-bezier(0.175, 0.885, 0.32, 1.275) 。现在我们打开浏览器，你仔细观察一下是否看到了小方块回弹的效果
+
+```javascript
+animations: [
+    trigger('signal', [
+      state('void', style({
+        'transform':'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color': 'green', 
+        'height':'100px'
+      })),
+      state('stop', style({
+          'background-color':'red',
+          'height':'50px'
+      })),
+      transition('* => *', animate('.5s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)'))
+    ])
+  ]
+
+```
+
+![加上了缓动函数的进场动画](https://dn-mhke0kuv.qbox.me/a28dc317d1a5963c0962.gif)
+
+关于缓动函数的更多资料可以访问 http://easings.net/zh-cn 在这里可以看到各种函数的曲线和效果，以及cubic-bezier函数的各种参数
+
+![easing.net上列出了各种缓动函数的曲线和效果][123]
+
+需要注意的一点是Angular2实现动画的机制其实是基于W3C的Web Animation标准，这个标准暂时无法支持所有的cubic-bezier函数，只有部分函数被支持。这样的话我们如果要实现某些不被支持的函数怎么办呢？那就得有请我们的关键帧出场了。
+
+### 关键帧
+
+何谓关键帧？首先需要知道什么是帧？百度百科给了定义：
+帧——就是动画中最小单位的单幅影像画面，相当于电影胶片上的每一格镜头。在动画软件的时间轴上帧表现为一格或一个标记。
+关键帧——相当于二维动画中的原画。指角色或者物体运动或变化中的关键动作所处的那一帧。关键帧与关键帧之间的动画可以由软件来创建，叫做过渡帧或者中间帧。
+先来做一个小实验，我们把入场动画改造成关键帧形式。
+
+```javascript
+import { 
+  Component, 
+  OnDestroy,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+} from '@angular/core';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css'],
+  animations: [
+    trigger('signal', [
+      state('void', style({
+        'transform':'translateY(-100%)'
+      })),
+      state('go', style({
+        'background-color': 'green', 
+        'height':'100px'
+      })),
+      state('stop', style({
+          'background-color':'red',
+          'height':'50px'
+      })),
+      transition('void => *', animate(5000, keyframes([
+        style({'transform': 'scale(0)'}),
+        style({'transform': 'scale(0.1)'}),
+        style({'transform': 'scale(0.5)'}),
+        style({'transform': 'scale(0.9)'}),
+        style({'transform': 'scale(0.95)'}),
+        style({'transform': 'scale(1)'})
+      ]))),
+      transition('* => *', animate('.5s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)'))
+    ])
+  ]
+})
+export class PlaygroundComponent {
+  // clock = Observable.interval(1000).do(_=>console.log('observable created'));
+  signal: string;
+
+  constructor() { }
+
+  onGo(){
+    this.signal = 'go';
+  }
+  onStop(){
+    this.signal = 'stop';
+  }
+}
+```
+
+保存后返回浏览器，你应该可以看到一个正方形由小变大的进场动画。
+
+![关键帧实现的入场动画](https://dn-mhke0kuv.qbox.me/edc849700dcdfea6d9d6.gif)
+
+现在我们来分析一下代码，这个入场动画是5秒的时间，我们给出6个关键帧，也就是0s，1s，2s，3s，4s和5s这几个。对于每个关键帧，我们给出的样式都是放缩，而放缩的比例逐渐加大，而且是先快后慢，也就是说我们可以模拟出缓动函数的效果。
+
+如果我们不光做放缩，而且在style中还指定位置的话，这个动画就会出现边移动边变大的效果了。把入场动画改成下面的样子试试看吧。
+
+```javascript
+transition('void => *', animate(5000, keyframes([
+        style({'transform': 'scale(0)', 'padding': '0px'}),
+        style({'transform': 'scale(0.1)', 'padding': '50px'}),
+        style({'transform': 'scale(0.5)', 'padding': '100px'}),
+        style({'transform': 'scale(0.9)', 'padding': '120px'}),
+        style({'transform': 'scale(0.95)', 'padding': '135px'}),
+        style({'transform': 'scale(1)', 'padding': '140px'})
+]))),
+```
+
+![加上位移的效果](https://dn-mhke0kuv.qbox.me/dd5e62fd71249c5f6f36.gif)
+
+最后的结果可能还是不酷，但是这样的话利用关键帧我们如果结合好CSS样式，就会做出比较复杂的动画了。
+
+## 方便的管道--PIPE
+
+我们一直没有提到的一点就是管道，虽然我们的例子中没有用到，但其实这是Angular 2中提供非常方便的一个特性。这个特性可以让我们很快的将数据在界面上以我们想要的格式输出出来。还是拿例子说话，比如我们在页面上显示一个日期，先建立一个简单的模版：
+
+```html
+<p> Without Pipe: Today is {{ birthday }} </p>
+<p> With Pipe: Today is {{ birthday | date:"MM/dd/yy" }} </p>
+```
+
+再来建立对应的组件文件：
+
+```javascript
+import { Component, OnDestroy } from '@angular/core';
+
+@Component({
+  selector: 'app-playground',
+  templateUrl: './playground.component.html',
+  styleUrls: ['./playground.component.css']
+})
+export class PlaygroundComponent {
+  birthday = new Date();
+  constructor() { }
+
+}
+```
+
+![无管道和有管道的日期输出][124]
+
+上面的例子可能还没太明显，我们 进一步改造一下模板：
+
+```html
+<p> Without Pipe: Today is {{ birthday }} </p>
+<p> With Pipe: Today is {{ birthday | date:"MM/dd/yy" }} </p>
+<p>The time is {{ birthday | date:'shortTime' }}</p>
+<p>The time is {{ birthday | date:'medium' }}</p>
+
+```
+
+![同一数据可以显示成不同样子][125]
+
+而且更牛的是多个Pipes可以串起来使用，比如说上图中最下面那个日期我们希望把Dec大写，就可以这样使用：
+
+```html
+<p>The time is {{ birthday | date:'medium' | uppercase }}</p>
+```
+
+![多个Pipe连用][126]
+
+### 自定义一个Pipe
+
+那么自己写一个Pipe是怎样的体验呢？创建一个Pipe非常简单，我们来体会一下。首先创建一个 `src/app/playground/trim-space.pipe.ts` 的文件：
+
+```javascript
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({
+  name: 'trimSpace'
+})
+export class TrimSpacePipe implements PipeTransform {
+  transform(value: any, args: any[]): any {
+    return value.replace(/ /g, '');
+  }
+}
+```
+
+在Module文件中声明这个Pipe：`declarations: [PlaygroundComponent, TrimSpacePipe]` 以便于其他控件可以使用这个Pipe：
+
+```javascript
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+import { PlaygroundRoutingModule } from './playground-routing.module';
+import { PlaygroundComponent }   from './playground.component';
+import { PlaygroundService } from './playground.service';
+import { TrimSpacePipe } from './trim-space.pipe';
+
+@NgModule({
+    imports: [
+        SharedModule,
+        PlaygroundRoutingModule
+    ],
+    providers:[
+        PlaygroundService
+    ],
+    declarations: [PlaygroundComponent, TrimSpacePipe]
+})
+export class PlaygroundModule { }
+```
+
+然后在组件的模板文件中使用即可 `{{ birthday | date:'medium' | trimSpace}}` ：
+
+```html
+<p> Without Pipe: Today is {{ birthday }} </p>
+<p> With Pipe: Today is {{ birthday | date:"MM/dd/yy" }} </p>
+<p>The time is {{ birthday | date:'shortTime' }}</p>
+<p>The time is {{ birthday | date:'medium' | trimSpace}} with trim space pipe applied</p>
+<p>The time is {{ birthday | date:'medium' | uppercase }}</p>
+```
+
+打开浏览器看一下效果，我们看到应用了trimSpace管道的日期的空格被移除了，如图所示：
+
+![自定义一个移除空格的Pipe][127]
+
+### 内建的Pipe
+
+#### Decimal Pipe
+
+DatePipe和UpperCase Pipe我们刚刚已经见识过了，现在我们看一看内建的其他Pipe。首先是用于数字格式化的DecimalPipe。DecimalPipe的参数是以  `{minIntegerDigits}.{minFractionDigits}-{maxFractionDigits}` 的表达式形式体现的。其中：
+
+ 1. minIntegerDigits 是最小的整数位数，默认是1。 
+ 2. minFractionDigits 表示最小的小数位数，默认是0。
+ 3. maxFractionDigits 表示最大的小数位数，默认是3。
+
+```html
+<p>pi (no formatting): {{pi}}</p>
+<p>pi (.5-5): {{pi | number:'.5-5'}}</p>
+<p>pi (2.10-10): {{pi | number:'2.10-10'}}</p>
+<p>pi (.3-3): {{pi | number:'.3-3'}}</p>
+```
+
+如果我们在组件中定义 `pi: number = 3.1415927;` 的话，上面的数字会被格式化成下图的样子
+
+![Decimal Pipe用于数字的格式化][128]
+
+#### Currency Pipe
+
+顾名思义，这个Pipe是格式化货币的，这个Pipe的表达式形式是这样的：  `currency[:currencyCode[:symbolDisplay[:digitInfo]]]`，也就是说在currency管道后用分号分隔不同的属性设置：
+
+```html
+<p>A in USD: {{a | currency:'USD':true}}</p>
+<p>B in CNY: {{b | currency:'CNY':false:'4.2-2'}}</p>
+```
+
+上面的代码中 `USD `或 `CNY` 表面货币代码，`true` 或 `false` 表明是否使用该货币的默认符号，后面如果再有一个表达式就是规定货币的位数限制。这个限制的具体规则和上面Decimal Pipe的类似，如下图所示。
+
+![Currecy Pipe用于格式化货币][129]
+
+#### Percent Pipe
+
+这个管道当然就是用来格式化百分数的，百分数的整数位和小数位的规则也和上面提到的Decimal Pipe和Currency Pipe一致。如果在组件中定义 `myNum: number = 0.1415927`; 下面的代码会输出成下图的样子：
+
+```html
+<p>myNum : {{myNum | percent}}</p>
+<p>myNum (3.2-2) : {{myNum | percent:'3.2-2'}}</p>
+
+```
+
+![Percent Pipe用来格式化百分数][130]
+
+#### Json Pipe
+
+这个管道个人感觉更适合在调试中使用，它可以把任何对象格式化成JSON格式输出。如果我们在组件中定义了一个对象： 
+
+```javascript
+object: Object = {
+  foo: 'bar', 
+  baz: 'qux', 
+  nested: {
+    xyz: 3, 
+    numbers: [1, 2, 3, 4, 5]
+  }
+}; 
+```
+
+那么下面的模板会输出下图的样子，在调试阶段，这个特性很好帮助你输出可读性很强的对象格式。当然如果你使用了现代化的IDE，这么使用的意义就不是很大了：
+
+```html
+<div>
+  <p>Without JSON pipe:</p>
+  <pre>{{object}}</pre>
+  <p>With JSON pipe:</p>
+  <pre>{{object | json}}</pre>
+</div>
+
+```
+
+![Json Pipe用于以Json形式格式化对象][131]
+
+## 指令——Directive
+
+另一个我们一直没有提到的重要概念就是指令了，但这个虽然我们没提到，却已经用过了。比如 `*ngFor` ，`*ngIf` 等，这些都叫做结构性指令，而像 `*ngModel` 等属于属性型指令。
+Angular 2中的指令分成三种：结构型（Structural）指令和属性型（Attribute）指令，还有一种是什么呢？就是Component，组件本身就是一个带模板的指令。
+结构型指令可以通过添加、删除DOM元素来更改DOM树的布局，比如我们前面使用 `*ngFor`在todo-list的模板中添加了多个todo-item。而属性型指令可以改变一个DOM元素的外观或行为，比如我们利用 `*ngModel` 进行双向绑定，改变了该组件的默认行为（我们在组件中改变某个变量值，这种改变会直接反应到组件上，这并不是组件自身定义的行为，而是我们通过 `*ngModel` 来改变的）。
+Angular 2中给出的内建结构型指令如下表所示：
+
+|名称|用法|说明|
+|---|---|---|
+|ngIf|`<div*ngIf="canShow">`|基于canShow表达式的值移除或重新创建部分DOM树。|
+|ngFor| `<li *ngFor="let todo of todos">` | 把li元素及其内容转化成一个模板，并用它来为列表中的每个条目初始化视图。|
+|ngSwitch, ngSwitchCase, ngSwitchDefault| `<div [ngSwitch]="someCondition"></div>` |基于someCondition的当前值，从内嵌模板中选取一个，有条件的切换div的内容。|
+
+自定义一个指令也很简单，我们动手做一个。这个指令非常简单就是使任何控件加上这个指令后，其点击动作都会在console中输出 “I am clicked”。由于我们要监视其宿主的click事件，所以我们引入了 HostListener，在onClick方法上用 `@HostListen(‘click’)` ，表明在检测到宿主发生click事件时调用这个方法。
+
+```javascript
+import {
+  Directive,
+  HostListener
+} from '@angular/core';
+
+@Directive({
+    selector: "[log-on-click]",
+})
+export class LogOnClickDirective {
+
+    constructor() {}
+    @HostListener('click')
+    onClick() { console.log('I am clicked!'); }
+}
+```
+
+在模板中简单写一句就可以看效果了
+
+`<button log-on-click>Click Me</button>`
+
+![自定义指令使得点击按钮会log一条消息][132]
+
+代码： https://github.com/wpcfan/awesome-tutorials/tree/master/angular2/ng2-tut
 
   [1]: https://angular.io/
   [2]: http://www.typescriptlang.org/
@@ -5736,3 +6408,14 @@ export class PlaygroundRoutingModule { }
   [119]: http://static.zybuluo.com/wpcfan/u88hazpyr830l9v7ylyg9gfl/6.11.png
   [120]: http://static.zybuluo.com/wpcfan/n4f7mxyvlnucuphuwq4avrgn/5.4.png
   [121]: http://static.zybuluo.com/wpcfan/o251nxe81e2dhjdiatp8et3u/5.5.png
+  [122]: http://static.zybuluo.com/wpcfan/npguujhlx1lg6ox5gg46hjph/image_1b60vr91vij817c910e311ce18959.png
+  [123]: http://static.zybuluo.com/wpcfan/t94vzsfn9gfsep1tb6ih6kj9/image_1b61214078q71b4c1f2akq314o413.png
+  [124]: http://static.zybuluo.com/wpcfan/wtmiwicze7prizjal2glrbe8/image_1b614b7qbf3j1f007of19hac852a.png
+  [125]: http://static.zybuluo.com/wpcfan/gk94zxzw2aq2zgstgwp3y70y/image_1b614fvu3u0t14h1dt61evl5o337.png
+  [126]: http://static.zybuluo.com/wpcfan/576oyox10thg11weujczy9en/image_1b614jq928jl1meh3dm1p103vj3k.png
+  [127]: http://static.zybuluo.com/wpcfan/uwilfv8b9r199xw3bt84s41a/image_1b6154tek1inkpgi1vsh1m6fjte41.png
+  [128]: http://static.zybuluo.com/wpcfan/fnjetw6lycpsfp7y15zscvye/image_1b615fh9u1r5f4l1i0e88s68i4u.png
+  [129]: http://static.zybuluo.com/wpcfan/xx0ab7h47ot5amh2c2yspaqi/image_1b615np1d29315jko2rsju1g555b.png
+  [130]: http://static.zybuluo.com/wpcfan/jil5a4vbtwt9b6ungv508z8u/image_1b615s7nh14afairf8j1ghu1geu5o.png
+  [131]: http://static.zybuluo.com/wpcfan/z4n2w5sf3qdev43411wr88cr/image_1b6164jo91nc310rg17bv12lr1qdd65.png
+  [132]: http://static.zybuluo.com/wpcfan/kr1j72fqr22jmo5ctyso1qau/image_1b616r2dk92p1a14fe1idlt926v.png
