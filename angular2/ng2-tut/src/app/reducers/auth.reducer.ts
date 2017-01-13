@@ -9,12 +9,12 @@ import {
   REGISTER_FAILED_EXISTED
 } from '../actions/auth.action';
 
-export const authReducer = (state: Auth = {
+export function authReducer (state: Auth = {
     user: null, 
     hasError:true, 
     errMsg: null, 
     redirectUrl: null
-  }, action: Action) => {
+  }, action: Action) {
   switch (action.type) {
     case LOGIN:
       return Object.assign({}, action.payload, {hasError: false});

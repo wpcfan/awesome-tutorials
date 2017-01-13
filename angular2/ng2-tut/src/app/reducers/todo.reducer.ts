@@ -10,7 +10,7 @@ import {
   VisibilityFilters
 } from '../actions/todo.action';
 
-export const todoReducer = (state: Todo[] =[], action: Action) => {
+export function todoReducer (state: Todo[] =[], action: Action) {
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -41,7 +41,7 @@ export const todoReducer = (state: Todo[] =[], action: Action) => {
   }
 }
 
-export const todoFilterReducer = (state = (todo: Todo) => todo, action: Action) => {
+export function todoFilterReducer (state = (todo: Todo) => todo, action: Action) {
   switch (action.type) {
     case VisibilityFilters.SHOW_ALL:
       return todo => todo;
