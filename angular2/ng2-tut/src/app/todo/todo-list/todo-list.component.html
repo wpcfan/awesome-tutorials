@@ -1,5 +1,5 @@
 <section class="main" *ngIf="todos?.length > 0">
-  <mdl-icon-toggle class="toggle-all" [mdl-ripple]="true" (click)="onToggleAllTriggered()">expand_more</mdl-icon-toggle>
+  <md-icon class="toggle-all" (click)="onToggleAllTriggered()">expand_more</md-icon>
   <ul class="todo-list">
     <li *ngFor="let todo of todos" [class.completed]="todo.completed">
       <app-todo-item

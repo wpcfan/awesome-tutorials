@@ -1,36 +1,39 @@
 .todoDesc {
-    word-break: break-all;
-    padding: 15px 15px 15px 15px;
-    display: inline-flex;
-    line-height: 1.2;
-    transition: color 0.4s;
+  word-break: break-all;
+  padding: 15px 15px 15px 15px;
+  display: inline-flex;
+  line-height: 1.2;
+  transition: color 0.4s;
 }
-.labelcompleted {
-    color: #d9d9d9;
-    text-decoration: line-through;
+.label-completed {
+  color: #d9d9d9;
+  text-decoration: line-through;
+}
+.icon-completed {
+  color: #3F51B5;
 }
 .destroy {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
-    font-size: 30px;
-    color: #cc9a9a;
-    margin-bottom: 11px;
-    transition: color 0.2s ease-out;
-    border: 0px;
-    background-color: transparent;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+  border: 0px;
+  background-color: transparent;
 }
 .destroy:hover {
-    color: #af5b5e;
+  color: #af5b5e;
 }
 .destroy:after {
-    content: '×';
+  content: '×';
 }
 .destroy {
-    display: block;
+  display: block;
 }

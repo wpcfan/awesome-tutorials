@@ -9,7 +9,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
-import { MdlDialogService, MdlDialogReference } from 'angular2-mdl';
+import { MdDialog } from '@angular/material';
 import { Auth, Image } from '../domain/entities';
 import { RegisterDialogComponent } from './register-dialog.component';
 import { AuthService } from '../core/auth.service';
@@ -45,7 +45,7 @@ export class LoginComponent implements OnDestroy{
   constructor(
     private authService: AuthService,
     private bingService: BingImageService,
-    private dialogService: MdlDialogService) {
+    private dialog: MdDialog) {
     this.subscription = this.bingService.getImageUrl()
       .subscribe((images: Image[]) => {
         this.slides = [...images];
@@ -72,17 +72,8 @@ export class LoginComponent implements OnDestroy{
     this.loginBtnState = state ? 'active' : 'inactive';
   }
   register($event: MouseEvent){
-    let pDialog = this.dialogService.showCustomDialog({
-      component: RegisterDialogComponent,
-      isModal: true,
-      styles: {'width': '350px'},
-      clickOutsideToClose: true,
-      enterTransitionDuration: 400,
-      leaveTransitionDuration: 400
+    let pDialog = this.dialog.open(RegisterDialogComponent, {
+      width: '350px'
     });
-    pDialog.map( (dialogReference: MdlDialogReference) => {
-      console.log('dialog visible', dialogReference);
-    });
-
   }
 }

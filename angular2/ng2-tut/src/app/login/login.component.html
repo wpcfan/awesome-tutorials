@@ -1,53 +1,51 @@
 <div
-  class="mdl-grid mdl-grid--no-spacing login-container"
+  class="login-container"
+  fxLayout="row" 
+  fxLayoutAlign="center center"
   [ngStyle]="{'background-image': 'url(' + photo + ')'}">
-  <mdl-layout-spacer
-    class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
-  </mdl-layout-spacer>
+  <div class="fill-remaining-space" fxFlex></div>
   <form
-    class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone login-form"
+    class="login-form"
     (ngSubmit)="onSubmit()"
+    fxFlex
     >
-    <mdl-textfield
-      type="text"
-      label="Username..."
-      name="username"
-      floating-label
-      required
+    <md-input-container align="start">
+      <input md-input 
+      type="text" 
+      placeholder="Username" 
       [(ngModel)]="username"
-      #usernameRef="ngModel"
-      >
-    </mdl-textfield>
+      name="username"
+      required
+      #usernameRef="ngModel">
+    </md-input-container>
     <br/>
     <div *ngIf="auth?.hasError" >
       {{auth.errMsg}}
     </div>
     <br/>
-    <mdl-textfield
-      type="password"
-      label="Password..."
+    <md-input-container align="start">
+      <input md-input 
+      type="password" 
       name="password"
-      floating-label
-      required
+      placeholder="Password" 
       [(ngModel)]="password"
+      required
       #passwordRef="ngModel">
-    </mdl-textfield>
+    </md-input-container>
     <br/>
     <button
-      mdl-button mdl-button-type="raised"
-      mdl-colored="primary"
-      mdl-ripple type="submit"
+      md-raised-button 
+      type="submit"
       [@loginState]="loginBtnState"
       (mouseenter)="toggleLoginState(true)"
       (mouseleave)="toggleLoginState(false)">
       Login
     </button>
     <button
-      mdl-button
-      mdl-colored="accent"
+      md-raised-button
       (click)="register($event)">
       Register
     </button>
   </form>
-  <mdl-layout-spacer></mdl-layout-spacer>
+  <div class="fill-remaining-space" fxFlex></div>
 </div>

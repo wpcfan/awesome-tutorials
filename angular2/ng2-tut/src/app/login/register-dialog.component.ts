@@ -13,8 +13,7 @@ import {
   FormControl,
   FormBuilder
 } from '@angular/forms';
-import { MdlTextFieldComponent } from 'angular2-mdl';
-import { MdlDialogReference } from 'angular2-mdl';
+import { MdDialog } from '@angular/material';
 
 import { AuthService } from '../core/auth.service';
 
@@ -24,13 +23,13 @@ import { AuthService } from '../core/auth.service';
   styleUrls: ['register-dialog.component.css']
 })
 export class RegisterDialogComponent{
-  @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
+  @ViewChild('firstElement') private inputElement: HTMLInputElement;
   public form: FormGroup;
   public processingRegister = false;
-  public statusMessage = '';
+  public statusMessage;
 
   constructor(
-    private dialog: MdlDialogReference,
+    private dialog: MdDialog,
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService) {
@@ -40,16 +39,6 @@ export class RegisterDialogComponent{
           'password': new FormControl('', Validators.required),
           'repeatPassword': new FormControl('', Validators.required)
         },{validator: this.passwordMatchValidator})
-      });
-      // just if you want to be informed if the dialog is hidden
-      this.dialog.onHide().subscribe( (auth) => {
-        console.log('login dialog hidden');
-        if (auth) {
-          console.log('authenticated user', auth);
-        }
-      });
-      this.dialog.onVisible().subscribe( () => {
-        this.inputElement.setFocus();
       });
   }
 
@@ -78,13 +67,17 @@ export class RegisterDialogComponent{
     this.processingRegister = false;
       this.statusMessage = 'you are registered and will be signed in ...';
       setTimeout( () => {
-        this.dialog.hide();
+        this.dialog.closeAll()
         this.router.navigate(['todo']);
       }, 500);
   }
 
   @HostListener('keydown.esc')
   public onEsc(): void {
-    this.dialog.hide();
+    this.dialog.closeAll();
+  }
+
+  get ifShowStatusBar(): boolean {
+    return this.statusMessage!==null ? true: false;
   }
 }

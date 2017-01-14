@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdlModule } from 'angular2-mdl';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoModule } from './todo/todo.module';
 import { LoginModule } from './login/login.module';
-
 import { AppComponent } from './app.component';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    MdlModule,
     CoreModule,
     AppRoutingModule,
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(),
     LoginModule,
     TodoModule
   ],

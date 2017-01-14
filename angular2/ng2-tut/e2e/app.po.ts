@@ -6,6 +6,6 @@ export class Ng2TutPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root mdl-layout-title')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 }

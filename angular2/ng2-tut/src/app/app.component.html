@@ -1,32 +1,27 @@
-<mdl-layout mdl-layout-fixed-header>
-  <mdl-layout-header>
-    <mdl-layout-header-row>
-      <mdl-layout-title>{{title}}</mdl-layout-title>
-      <mdl-layout-spacer></mdl-layout-spacer>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation" *ngIf="!auth$.hasError">
-        <a class="mdl-navigation__link" routerLink="todo">Todos</a>
-      </nav>
-      <nav class="mdl-navigation" *ngIf="!auth$.hasError">
-        <a class="mdl-navigation__link">{{(auth$ | async).user?.username}}</a>
-      </nav>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" *ngIf="auth$.hasError" (click)="login()">
-          Login
-        </a>
-        <a class="mdl-navigation__link" *ngIf="!auth$.hasError" (click)="logout()">
-          Logout
-        </a>
-      </nav>
-    </mdl-layout-header-row>
-  </mdl-layout-header>
-  <mdl-layout-drawer>
-    <mdl-layout-title>{{title}}</mdl-layout-title>
-    <nav class="mdl-navigation" *ngIf="!auth$.hasError">
-      <a class="mdl-navigation__link" routerLink="todo">Todos</a>
-    </nav>
-  </mdl-layout-drawer>
-  <mdl-layout-content class="content">
+<md-sidenav-container *ngIf="!auth$.hasError">
+  <md-sidenav>
+    <!-- sidenav content -->
+    <a md-button routerLink="todo">Todos</a>
+  </md-sidenav>
+
+  <!-- primary content -->
+  <md-toolbar color="primary">
+    <span>{{title}}</span>
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+
+    <span>
+      <a md-button routerLink="todo" *ngIf="!auth$.hasError">Todos</a>
+      <a md-button *ngIf="!auth$.hasError">{{(auth$ | async).user?.username}}</a>
+      <a md-button *ngIf="auth$.hasError" (click)="login()">
+        Login
+      </a>
+      <a md-button *ngIf="!auth$.hasError" (click)="logout()">
+        Logout
+      </a>
+    </span>
+  </md-toolbar>
+  <div class="content">
     <router-outlet></router-outlet>
-  </mdl-layout-content>
-</mdl-layout>
+  </div>
+</md-sidenav-container>

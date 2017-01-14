@@ -7,8 +7,8 @@ describe('ng2-tut App', function() {
     page = new Ng2TutPage();
   });
 
-  it('should display message saying Awesome Todos', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Awesome Todos');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });
