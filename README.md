@@ -14,10 +14,10 @@ Angular 2.x
 
 ## [ Angular 2.0 从0到1 ][1]
 
-[1]: https://github.com/wpcfan/awesome-tutorials/blob/master/angular2/ng2-tut/README.md
-
 Spring Boot 
 
-## [ 重拾后端之Spring Boot ][1]
+## [ 重拾后端之Spring Boot ][2]
 
-[1]: https://github.com/wpcfan/spring-boot-tut/README.md
+[1]: https://github.com/wpcfan/awesome-tutorials/blob/master/angular2/ng2-tut/README.md
+
+[2]: https://github.com/wpcfan/spring-boot-tut/README.md
