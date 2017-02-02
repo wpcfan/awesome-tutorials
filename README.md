@@ -20,4 +20,4 @@ Spring Boot
 
 [1]: https://github.com/wpcfan/awesome-tutorials/blob/master/angular2/ng2-tut/README.md
 
-[2]: https://github.com/wpcfan/spring-boot-tut/README.md
+[2]: https://github.com/wpcfan/spring-boot-tut/blob/master/README.md
