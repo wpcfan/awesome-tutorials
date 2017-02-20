@@ -456,7 +456,7 @@ export class LoginComponent implements OnInit {
 
 如果我们把登录的业务逻辑在onClick方法中完成，当然也可以，但是这样做的耦合性太强了。设想一下，如果我们增加了微信登录、微博登录等，业务逻辑会越来越复杂，显然我们需要把这个业务逻辑分离出去。
 
-那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core\auth` （s这里是service的缩写，core\auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
+那么我们接下来创建一个AuthService吧, 首先我们在src\app下建立一个core的子文件夹（`src\app\core`）,然后命令行中输入 `ng g s core/auth` （s这里是service的缩写，core/auth是说在core的目录下建立auth服务相关文件）。`auth.service.ts`和`auth.service.spec.ts`这个两个文件应该已经出现在你的目录里了。
 
 下面我们为这个service添加一个方法，你可能注意到这里我们为这个方法指定了返回类型和参数类型。这就是TypeScript带来的好处，有了类型约束，你在别处调用这个方法时，如果给出的参数类型或返回类型不正确，IDE就可以直接告诉你错了。
 
