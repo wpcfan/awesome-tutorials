@@ -18,7 +18,7 @@ import 'hammerjs';
     CoreModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
     LoginModule,
     TodoModule
   ],

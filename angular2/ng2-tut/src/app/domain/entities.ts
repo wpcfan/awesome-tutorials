@@ -1,21 +1,21 @@
-export class Todo {
+export interface Todo {
   id?: string;
   desc: string;
   completed: boolean;
   userId?: number;
 }
-export class User {
+export interface User {
   id?: number;
   username: string;
   password: string;
 }
-export class Auth {
+export interface Auth {
   user?: User;
   hasError: boolean;
   errMsg?: string;
   redirectUrl?: string;
 }
-export class Image {
+export interface Image {
   contentUrl: string;
   name: string;
 }
