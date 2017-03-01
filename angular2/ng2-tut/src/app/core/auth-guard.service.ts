@@ -8,7 +8,6 @@ import {
   RouterStateSnapshot }    from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { AuthService } from './auth.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../domain/state';
 
@@ -23,7 +22,8 @@ export class AuthGuardService implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot
     ): Observable<boolean> {
-    let url: string = state.url;
+    const url: string = state.url;
+    
     return this.store$.select(appState => appState.auth)
       .map(auth => !auth.hasError);
   }
