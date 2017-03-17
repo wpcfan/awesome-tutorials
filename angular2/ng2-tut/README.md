@@ -162,7 +162,7 @@ Angular 支持大多数常用浏览器，包括下列版本：
 
 Angular2需要[node.js][7]和npm，我们下面的例子需要node.js 6.x.x和npm 3.x.x，请使用 `node -v` 和 `npm -v` 来检查。由于众所周知的原因，http://npmjs.org 的站点访问经常不是很顺畅，这里给出一个由淘宝团队维护的国内镜像 http://npm.taobao.org/ 。安装好node后，请输入`npm config set registry https://registry.npm.taobao.org`
 
-和[官方快速起步文档][8]给出的例子不同，我们下面要使用Angular团队目前正在开发中的一个工具--[Angular CLI][9] 。这是一个类似于React CLI和Ember CLI的命令行工具，用于快速构建Angular2的应用。它的优点是进一步屏蔽了很多配置的步骤、自动按官方推荐的模式进行代码组织、自动生成组件/服务等模板以及更方便的发布和测试代码。由于目前这个工具还在beta阶段，安装时请使用 `npm install -g angular-cli@latest` 命令。
+和[官方快速起步文档][8]给出的例子不同，我们下面要使用Angular团队目前正在开发中的一个工具--[Angular CLI][9] 。这是一个类似于React CLI和Ember CLI的命令行工具，用于快速构建Angular2的应用。它的优点是进一步屏蔽了很多配置的步骤、自动按官方推荐的模式进行代码组织、自动生成组件/服务等模板以及更方便的发布和测试代码。由于目前这个工具还在beta阶段，安装时请使用 `npm install -g @angular/cli@latest` 命令。
 
 IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，收费的有[WebStorm][12]。我们这里推荐采用 Visual Studio Code，可以到 https://code.visualstudio.com/ 下载 Windows/Linux/MacOS 版本。
 
