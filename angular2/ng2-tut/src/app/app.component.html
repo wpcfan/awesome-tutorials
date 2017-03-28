@@ -1,4 +1,4 @@
-<md-sidenav-container *ngIf="!auth$.hasError">
+<md-sidenav-container >
   <md-sidenav>
     <!-- sidenav content -->
     <a md-button routerLink="todo">Todos</a>
@@ -11,12 +11,12 @@
     <span class="fill-remaining-space"></span>
 
     <span>
-      <a md-button routerLink="todo" *ngIf="!auth$.hasError">Todos</a>
-      <a md-button *ngIf="!auth$.hasError">{{(auth$ | async).user?.username}}</a>
-      <a md-button *ngIf="auth$.hasError" (click)="login()">
+      <a md-button routerLink="todo" *ngIf="!(auth$|async).hasError">Todos</a>
+      <a md-button *ngIf="!(auth$|async).hasError">{{(auth$ | async).user?.username}}</a>
+      <a md-button *ngIf="(auth$|async).hasError" (click)="login()">
         Login
       </a>
-      <a md-button *ngIf="!auth$.hasError" (click)="logout()">
+      <a md-button *ngIf="!(auth$|async).hasError" (click)="logout()">
         Logout
       </a>
     </span>

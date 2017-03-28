@@ -15,7 +15,7 @@ import {
 })
 export class AppComponent {
   title = 'Awesome Todos';
-  private auth$: Observable<Auth>;
+  auth$: Observable<Auth>;
   constructor(
     private store$: Store<AppState>, 
     private router: Router){
