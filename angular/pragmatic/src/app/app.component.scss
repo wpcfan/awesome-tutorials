@@ -1,0 +1,20 @@
+// Import a pre-built theme
+@import '~@angular/material/core/theming/prebuilt/indigo-pink';
+// Import your custom input theme file so you can call the custom-input-theme function
+@import 'src/styles.scss';
+
+// Using the $theme variable from the pre-built theme you can call the theming function
+@include my-theme($theme);
+.site{
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+}
+
+.content{
+  flex: 1;
+}
+
+.sidenav {
+  width: 200px;
+}

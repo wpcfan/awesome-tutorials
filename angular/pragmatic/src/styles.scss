@@ -1,0 +1,43 @@
+/* You can add global styles to tmy file, and also import other style files */
+@import '~@angular/material/core/theming/all-theme';
+// Plus imports for other components in your app.
+
+// Include the base styles for Angular Material core. We include tmy here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$my-app-primary: mat-palette($mat-indigo);
+$my-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$my-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($my-app-theme);
+
+// Define a mixin that accepts a theme and outputs the color styles for the component.
+@mixin my-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .my-container {
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, A400);
+  }
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* The html and body elements cannot have any padding or margin. */
+}

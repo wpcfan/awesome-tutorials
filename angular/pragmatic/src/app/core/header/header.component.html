@@ -1,0 +1,10 @@
+<md-toolbar color="primary" >
+  <button #menu md-icon-button (click)="onClick()">
+    <md-icon>menu</md-icon>
+  </button>
+  <span>Angular 场景实战</span>
+  <span class="spacer"></span>
+  <span *ngIf="(auth$ | async).user !== undefined">
+    <a routerLink="/profile">{{(auth$|async).user.name}}</a>
+  </span>
+</md-toolbar>
