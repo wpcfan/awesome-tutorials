@@ -27,3 +27,15 @@ export interface AppState{
   auth: Auth;
   router: RouterState;
 }
+
+export enum AgeUnit {
+  Year = 0,
+  Month,
+  Day
+}
+
+export interface BirthDay{
+  age: number;
+  ageUnit: number;
+  dateOfBirth: string;
+}

@@ -1,3 +1,28 @@
-<p>
-  reactive works!
-</p>
+<form 
+[formGroup]="form" 
+(ngSubmit)="onSubmit()">
+  <md-input-container align="end">
+      <input mdInput 
+        formControlName="age" 
+        type="number" 
+        placeholder="年龄" 
+        max="200" 
+        min="1" />
+  </md-input-container>
+  <md-button-toggle-group formControlName="ageUnit">
+    <md-button-toggle value="0" >岁</md-button-toggle>
+    <md-button-toggle value="1" >月</md-button-toggle>
+    <md-button-toggle value="2" >天</md-button-toggle>
+  </md-button-toggle-group>
+  <md-input-container>
+      <input mdInput 
+        formControlName="dateOfBirth" 
+        type="date" 
+        placeholder="出生日期" 
+        max="2100-12-31" 
+        min="1900-01-01"
+        [value]="computed$ | async"
+        />
+      <md-hint align="start">YYYY/MM/DD格式输入</md-hint>
+  </md-input-container>
+</form>
