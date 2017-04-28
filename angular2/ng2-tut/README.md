@@ -3984,7 +3984,27 @@ export class AppRoutingModule {}
 
 # 第七章：给组件带来活力
 
+
 这节我们的主题是“专注酷炫一百年”；-）其实...没那么夸张了，但我们还是要在这一节了解MDL css框架、Angular2 内建的动画特性、更复杂的组件和概括一下Angular2的组件生命周期。
+
+## Angular 4 的改变
+
+由于 Angular 4 将动画模块移出了 `@angular/core` 所以，使用 Angular 4 的童鞋需要添加动画的引入方式。
+
+1. 首先执行 `cnpm install --save @angular/animations` 安装依赖
+2. 然后在 CoreModule 或者 AppModule 中如下面所示引入 `BrowserAnimationsModule`
+
+```typescript
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// 省略其他部分
+@NgModule({
+  imports: [
+// 省略其他部分
+    BrowserAnimationsModule,
+// 省略其他部分
+  ],
+// 省略其他部分
+```
 
 ## 更炫的登陆页
 

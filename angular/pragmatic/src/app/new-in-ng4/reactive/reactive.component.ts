@@ -69,29 +69,6 @@ export class ReactiveComponent implements OnInit {
       const date = moment().subtract(a, 'days').format('YYYY-MM-DD');
       return date;
     });
-    // this.ageSub = this.computed$.subscribe(date => this.form.controls['dateOfBirth'].setValue(date));
-    // this.dateOfBirth$ = this.form.controls['dateOfBirth'].valueChanges
-    //   .debounceTime(500)
-    //   .filter(d => {
-    //     if(moment(d).isValid 
-    //       && moment(d).isBefore()
-    //       && moment(d).year()> 1900) 
-    //       return d;
-    //   });
-    // this.dateOfBirthSub = this.dateOfBirth$.subscribe(date => {
-    //   const birth = moment(date, 'YYYY-MM-DD');
-    //   const days = moment().diff(birth, 'days');
-    //   if(days <= 90) {
-    //     this.form.controls['age'].setValue(days);
-    //     this.form.controls['ageUnit'].setValue(AgeUnit.Day);
-    //   } else if (days <= 720) {
-    //     this.form.controls['age'].setValue((days/30).toFixed(0));
-    //     this.form.controls['ageUnit'].setValue(AgeUnit.Month);
-    //   } else {
-    //     this.form.controls['age'].setValue((days/365).toFixed(0));
-    //     this.form.controls['ageUnit'].setValue(AgeUnit.Year);
-    //   }
-    // });
   }
 
   validateDate(c: FormControl): {[key: string]: any}{
