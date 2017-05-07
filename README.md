@@ -10,9 +10,9 @@
 # awesome-tutorials
 I am going to write a series of tutorials about web/android/ios development
 
-有问题的童鞋可以加入我的小密圈讨论：「学习是一种习惯」
-http://t.xiaomiquan.com/Une6Mzr
-(该链接7天内(5月5日前)有效)
+有问题的童鞋可以加入我的小密圈讨论：
+http://t.xiaomiquan.com/jayRnaQ
+(该链接7天内(5月14日前)有效)
 
 Angular 2.x 
 
