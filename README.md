@@ -11,8 +11,9 @@
 I am going to write a series of tutorials about web/android/ios development
 
 有问题的童鞋可以加入我的小密圈讨论：
-http://t.xiaomiquan.com/jayRnaQ
-(该链接7天内(5月14日前)有效)
+我正在「学习是一种习惯」和朋友们讨论有趣的话题，你一起来吧？
+http://t.xiaomiquan.com/AiqB6eU
+(该链接6天内(5月31日前)有效)
 
 Angular 2.x 
 
