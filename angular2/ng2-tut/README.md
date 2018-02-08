@@ -127,7 +127,7 @@
 
 作为一个出生于70年代的大叔，我在软件这个领域已经摸爬滚打了16年：从程序员、项目经理、产品经理、项目总监到部门管理等各个角色都体验过。深深地了解这个行业发展的速度之快是其他行业无法比拟的：从编程语言、各种平台、各种框架、设计模式到各类开源工具、组件林林种种，要学习的东西实在太多，变化太快。
 
-但万变不离其宗，名词变化虽多，但透射的本质其实是趋同的：那就是程序员受不了代码的折磨，千方百计的想让这个工作更简单，更能应对变化。比如说，面向对象编程（Object-Oriented Programming）理念的提出其实是牺牲了部分性能换来代码层次结构的清晰，因此也催生了C++，Java，C#等一系列优秀的面向对象编程语言；后来程序员们发现在实际的逻辑中，往往不是像对象树那样可以划分的那么清楚。还有一些类似安全、日志等功能其实是撒在系统各个角落的，然后，面向切面的编程（Aspect-Oriented Programming）应运而生。再后来一部分科学家发现现有的编程语言做分析或数据计算实在太麻烦，明明要计算的逻辑很清晰，却要用一大堆的对象封装赋值，函式编程（Functional Programming）出现了。最近几年被产品经理逼疯的程序员认为强类型语言改动起来太慢太繁琐，于是动态脚本类语言大行其道。
+但万变不离其宗，名词变化虽多，但透射的本质其实是趋同的：那就是程序员受不了代码的折磨，千方百计的想让这个工作更简单，更能应对变化。比如说，面向对象编程（Object-Oriented Programming）理念的提出其实是牺牲了部分性能换来代码层次结构的清晰，因此也催生了C++，Java，C#等一系列优秀的面向对象编程语言；后来程序员们发现在实际的逻辑中，往往不是像对象树那样可以划分得那么清楚。还有一些类似安全、日志等功能其实是撒在系统各个角落的，然后，面向切面的编程（Aspect-Oriented Programming）应运而生。再后来一部分科学家发现现有的编程语言做分析或数据计算实在太麻烦，明明要计算的逻辑很清晰，却要用一大堆的对象封装赋值，函式编程（Functional Programming）出现了。最近几年被产品经理逼疯的程序员认为强类型语言改动起来太慢太繁琐，于是动态脚本类语言大行其道。
 
 但仔细分析一下，这些不是互斥的，其实好的元素都会被慢慢吸收到各自的语言、平台上面去的。比如C#、Java也采纳了函式编程的一些特点，比如Lamda表达式，.Net和Java平台上也拥有动态脚本语言。本书写的Angular2就是在JavaScript这种脚本语言基础上引入了TypeScript，进而可以享受面向对象编程和强类型语言的优点；引入了依赖性注入（Dependency Injection）这种在强类型语言中被证明非常有用的设计模式；通过引入Rx，让Javascript拥有了函式编程的能力。
 
@@ -206,7 +206,7 @@ IDE的选择也比较多，免费的[Visual Studio Code][10] 和 [Atom][11]，�
 
 angular-cli为我们在\src\app目录下生成了一个新文件夹login，在login目录下生成了2个文件，其中 `login.component.spec.ts` 是测试文件，我们这里暂时不提。另一个是 `login.component.ts` 这个就是我们新建的Component了。
 
-Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`,大家在编码中尽量遵循Google的官方建议。
+Angular提倡的文件命名方式是这样的：`组件名称.component.ts` ，组件的HTML模板命名为： `组件名称.component.html`，组件的样式文件命名为： `组件名称.component.css`，大家在编码中尽量遵循Google的官方建议。
 
 我们新生成的Login组件源码如下
 
@@ -286,7 +286,7 @@ import { LoginComponent } from './login/login.component';
 export class AppModule { }
 ```
 
-@NgModule装饰器用来为模块定义元数据。declarations列出了应用中的顶层组件，包括引导性组件AppComponent和我们刚刚创建的LoginComponent。在module里面声明的组件在module范围内都可以直接使用，也就是说在同一module里面的任何Component都可以在其模板文件中直接使用声明的组件，就想我们在AppComponent的模板末尾加上 `<app-login></app-login>` 一样。
+@NgModule装饰器用来为模块定义元数据。declarations列出了应用中的顶层组件，包括引导性组件AppComponent和我们刚刚创建的LoginComponent。在module里面声明的组件在module范围内都可以直接使用，也就是说在同一module里面的任何Component都可以在其模板文件中直接使用声明的组件，就像我们在AppComponent的模板末尾加上 `<app-login></app-login>` 一样。
 
 imports引入了3个辅助模块：
 
@@ -397,7 +397,7 @@ export class LoginComponent implements OnInit {
 
 ![Chrome开发者工具][23]
 
-那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用是的input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`：
+那么如果要在onClick中传递一个参数，比如是上面的文本输入框输入的值怎么处理呢？我们可以在文本输入框标签内加一个#usernameRef，这个叫引用（reference）。注意这个**引用的是input对象**，我们如果想传递input的值，可以用`usernameRef.value`，然后就可以把`onClick()`方法改成`onClick(usernameRef.value)`：
 
 ```html
 <div>
@@ -477,7 +477,7 @@ export class AuthService {
 }
 ```
 
-等一下，这个service虽然被创建了，但仍然无法在Component中使用。当然你可以在Component中import这个服务，然后实例化后使用，但是这样做并不好，仍然时一个紧耦合的模式，Angular2提供了一种依赖性注入（Dependency Injection）的方法。
+等一下，这个service虽然被创建了，但仍然无法在Component中使用。当然你可以在Component中import这个服务，然后实例化后使用，但是这样做并不好，仍然是一个紧耦合的模式，Angular2提供了一种依赖性注入（Dependency Injection）的方法。
 
 ### 什么是依赖性注入？
 
@@ -559,17 +559,17 @@ export class LoginComponent implements OnInit {
 }
 ```
 
-看到这里你会发现我们仍然需要import相关的服务，这是import是要将类型引入进来，而provider里面会配置这个类型的实例。当然即使这样还是不太爽，可不可以不引入AuthService呢？答案是可以。
+看到这里你会发现我们仍然需要import相关的服务，这个import是要将类型引入进来，而provider里面会配置这个类型的实例。当然即使这样还是不太爽，可不可以不引入AuthService呢？答案是可以。
 
 我们看一下`app.module.ts`，这个根模块文件中我们发现也有个providers，根模块中的这个providers是配置在模块中全局可用的service或参数的。
 
 ```javascript
 providers: [
-    {provide: 'auth',  useClass: AuthService}
-    ]
+  { provide: 'auth',  useClass: AuthService }
+]
 ```
 
-providers是一个数组，这个数组呢其实是把你想要注入到其他组件中的服务配置在这里。大家注意到我们这里的写法和上面优点区别，没有直接写成
+providers是一个数组，这个数组呢其实是把你想要注入到其他组件中的服务配置在这里。大家注意到我们这里的写法和上面有点点区别，没有直接写成
 
 ```javascript
 providers:[AuthService]
@@ -581,7 +581,7 @@ providers:[AuthService]
 
 ```javascript
 constructor(@Inject('auth') private service) {
-  }
+}
 ```
 
 我们去掉了service的类型声明，但加了一个修饰符`@Inject('auth')`，这个修饰符的意思是请到系统配置中找到名称为`auth`的那个依赖注入到我修饰的变量中。当然这样改完后你会发现`Inject`这个修饰符系统不识别，我们需要在`@angular/core`中引用这个修饰符，现在`login.component.ts`看起来应该是下面这个样子
@@ -619,7 +619,7 @@ export class LoginComponent implements OnInit {
 
 ```javascript
 constructor(userService: UserService) {
-  userService.addUser({username: 'wang', password:'1234'});
+  userService.addUser({ username: 'wang', password:'1234' });
 }
 ```
 
@@ -637,15 +637,15 @@ providers: [
     { provide: 'user', useClass: UserService },
     { provide: BASE_URL,  useValue:   'http://localhost:3000/todos' },
     AuthGuardService
-    ]
+]
 ```
 
-我们发现providers数组是由一系列的provide对象构成的，这个对象是`{provide: ..., useClass: ...}`或者`{provide: ..., useValue: ...}`形式的。我们把第一个属性叫令牌，第二个属性叫定义对象。这两种形式分别对应**类供应商**和**值供应商**。
+我们发现providers数组是由一系列的provide对象构成的，这个对象是`{ provide: ..., useClass: ... }`或者`{ provide: ..., useValue: ... }`形式的。我们把第一个属性叫令牌，第二个属性叫定义对象。这两种形式分别对应**类供应商**和**值供应商**。
 
-值供应商通常用来进行运行期常量设置，比如网站的基础地址和功能标志等。那么最简单那种情形是怎么回事呢？比如：`providers: [ AuthGuardService ]`，其实这是一个语法糖，等价于`{provide: AuthGuardService, useClass:    AuthGuardService}` 。
+值供应商通常用来进行运行期常量设置，比如网站的基础地址和功能标志等。那么最简单那种情形是怎么回事呢？比如：`providers: [ AuthGuardService ]`，其实这是一个语法糖，等价于`{ provide: AuthGuardService, useClass: AuthGuardService }` 。
 
 ```
-{ provide: BASE_URL,  useValue:   'http://localhost:3000/todos' }
+{ provide: BASE_URL, useValue: 'http://localhost:3000/todos' }
 ```
 
 这个例子和其他的好像还是不太一样，BASE_URL不是个字符串对象也不是一个类对象。这是我们创建的一个令牌，这样创建的令牌拥有一个友好的名字，但不会与其它的同名令牌发生冲突。
@@ -711,7 +711,7 @@ console.log('auth result is: '
 
 `[(ngModel)]="username"`这个看起来很别扭，稍微解释一下，方括号[]的作用是说把等号后面当成表达式来解析而不是当成字符串，如果我们去掉方括号那就等于说是直接给这个ngModel赋值成“username”这个字符串了。方括号的含义是单向绑定，就是说我们在组件中给model赋的值会设置到HTML的input控件中。
 
-`[()]`是双向绑定的意思，就是说HTML对应控件的状态的改变会反射设置到组件的model中。ngModel是FormModule中提供的指令，它负责从Domain Model（这里就是username或password，以后我们可用绑定更复杂的对象）中创建一个FormControl的实例，并将这个实例和表单的控件绑定起来。
+`[()]`是双向绑定的意思，就是说HTML对应控件的状态的改变会反射设置到组件的model中。ngModel是FormModule中提供的指令，它负责从Domain Model（这里就是username或password，以后我们可绑定更复杂的对象）中创建一个FormControl的实例，并将这个实例和表单的控件绑定起来。
 
 同样的对于click事件的处理，我们不需要传入参数了，因为其调用的是刚刚我们改造的组件中的onClick方法。现在我们保存文件后打开浏览器看一下，效果和上一节的应该一样的。本节的完整代码如下：
 
@@ -773,7 +773,7 @@ export class LoginComponent implements OnInit {
     </div>
 ```
 
-注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。
+注意到我们只是为username和password两个控件加上了required这个属性，表明这两个控件为必填项。通过`#usernameRef="ngModel"`我们重新又加入了引用，这次的引用指向了ngModel，这个引用是要在模板中使用的，所以才加入这个引用，如果不需要在模板中使用，可以不要这句。`{{表达式}}`双花括号表示解析括号中的表达式，并把这个值输出到模板中。
 
 这里我们为了可以显性的看到控件的验证状态，直接在对应控件后输出了验证的状态。初始状态可以看到2个控件的验证状态都是false，试着填写一些字符在两个输入框中，看看状态变化吧。
 
@@ -807,7 +807,7 @@ export class LoginComponent implements OnInit {
         />
         {{ usernameRef.errors | json }}
         <div *ngIf="usernameRef.errors?.required">this is required</div>
-        <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charactors</div>
+        <div *ngIf="usernameRef.errors?.minlength">should be at least 3 characters</div>
       <input required type="password"
         [(ngModel)]="password"
         #passwordRef="ngModel"
