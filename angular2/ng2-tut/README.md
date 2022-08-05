@@ -993,7 +993,7 @@ export class LoginComponent implements OnInit {
   `]
 ```
 
-很多开发人员不太了解CSS，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][34]和https://css-tricks.com/multiple-class-id-selectors/。
+很多开发人员不太了解[CSS](https://www.scaler.com/topics/css/)，其实CSS还是比较简单的，我建议先从Selector开始看，Selector的概念弄懂后Angular2的开发CSS就会顺畅很多。具体可见[W3School中对于CSS Selctor的参考][34]和https://css-tricks.com/multiple-class-id-selectors/。
 
 ## 组件样式
 
