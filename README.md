@@ -4,7 +4,7 @@
 
 - [awesome-tutorials](#awesome-tutorials)
   - [[ Angular 2.0 从0到1 ][1]](#-angular-20-%E4%BB%8E0%E5%88%B01-1)
-  - [[ Angular Developer Roadmap ][2]](https://roadmap.sh/angular)
+  - [ Angular Developer Roadmap ](https://roadmap.sh/angular)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
